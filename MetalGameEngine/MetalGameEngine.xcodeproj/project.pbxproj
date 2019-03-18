@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
+		353F913B223F3B730071597B /* LoadObjectRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* LoadObjectRenderer.swift */; };
 		35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B13649223CEE370018ED0B /* AppDelegate.swift */; };
 		35B1364C223CEE370018ED0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1364B223CEE370018ED0B /* ViewController.swift */; };
 		35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364D223CEE390018ED0B /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		353F913A223F3B730071597B /* LoadObjectRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadObjectRenderer.swift; sourceTree = "<group>"; };
 		35B13646223CEE370018ED0B /* MetalGameEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalGameEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B13649223CEE370018ED0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35B1364B223CEE370018ED0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +38,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		353F9136223F39810071597B /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				353F913C223F42D50071597B /* LoadObject */,
+				353F9137223F398E0071597B /* Base */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
+		353F9137223F398E0071597B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				353F9138223F39EF0071597B /* Renderer.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		353F913C223F42D50071597B /* LoadObject */ = {
+			isa = PBXGroup;
+			children = (
+				353F913A223F3B730071597B /* LoadObjectRenderer.swift */,
+			);
+			path = LoadObject;
+			sourceTree = "<group>";
+		};
 		35B1363D223CEE370018ED0B = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +82,7 @@
 		35B13648223CEE370018ED0B /* MetalGameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				353F9136223F39810071597B /* Render */,
 				35B13649223CEE370018ED0B /* AppDelegate.swift */,
 				35B1364B223CEE370018ED0B /* ViewController.swift */,
 				35B1364D223CEE390018ED0B /* Assets.xcassets */,
@@ -134,6 +164,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B1364C223CEE370018ED0B /* ViewController.swift in Sources */,
+				353F913B223F3B730071597B /* LoadObjectRenderer.swift in Sources */,
+				353F9139223F39EF0071597B /* Renderer.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
