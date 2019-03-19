@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506144522408ED700BFB42E /* NormalMetalViewController.swift */; };
+		3506144B22409BAC00BFB42E /* MetalDrawableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506144A22409BAC00BFB42E /* MetalDrawableViewController.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* LoadObjectRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* LoadObjectRenderer.swift */; };
 		35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B13649223CEE370018ED0B /* AppDelegate.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3506144522408ED700BFB42E /* NormalMetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalMetalViewController.swift; sourceTree = "<group>"; };
+		3506144A22409BAC00BFB42E /* MetalDrawableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalDrawableViewController.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* LoadObjectRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadObjectRenderer.swift; sourceTree = "<group>"; };
 		35B13646223CEE370018ED0B /* MetalGameEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalGameEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3506144922409B8400BFB42E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3506144A22409BAC00BFB42E /* MetalDrawableViewController.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		353F9136223F39810071597B /* Render */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +75,15 @@
 			path = LoadObject;
 			sourceTree = "<group>";
 		};
+		353F913F223F7A670071597B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3506144922409B8400BFB42E /* Protocol */,
+				3506144522408ED700BFB42E /* NormalMetalViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		35B1363D223CEE370018ED0B = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +103,7 @@
 		35B13648223CEE370018ED0B /* MetalGameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				353F913F223F7A670071597B /* ViewController */,
 				353F9136223F39810071597B /* Render */,
 				35B13649223CEE370018ED0B /* AppDelegate.swift */,
 				35B1364B223CEE370018ED0B /* ViewController.swift */,
@@ -164,6 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B1364C223CEE370018ED0B /* ViewController.swift in Sources */,
+				3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */,
+				3506144B22409BAC00BFB42E /* MetalDrawableViewController.swift in Sources */,
 				353F913B223F3B730071597B /* LoadObjectRenderer.swift in Sources */,
 				353F9139223F39EF0071597B /* Renderer.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,

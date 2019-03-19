@@ -10,7 +10,7 @@ import MetalKit
 
 class LoadObjectRenderer: Renderer {
     
-    override init(metalView: MTKView) {
+    required init(metalView: MTKView) {
         super.init(metalView: metalView)
         
         metalView.delegate = self
@@ -18,21 +18,12 @@ class LoadObjectRenderer: Renderer {
         metalView.clearColor = MTLClearColor(red: 1, green: 0, blue: 0, alpha: 1)
     }
     
-}
-
-extension LoadObjectRenderer: MTKViewDelegate {
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    override func mtkView(drawableSizeWillChange size: CGSize) {
         
     }
     
-    func draw(in view: MTKView) {
-        guard let drawable = view.currentDrawable,
-            let descriptor = view.currentRenderPassDescriptor,
-            let commandBuffer = commandQueue.makeCommandBuffer()
-            else { return }
+    override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
         
-        commandBuffer.present(drawable)
-        commandBuffer.commit()
     }
+    
 }
-

@@ -9,6 +9,14 @@
 import Cocoa
 import MetalKit
 
+typealias MetalViewController = NSViewController & MetalDrawableViewController
+
+struct Data {
+    let title: String
+    let vcClass: MetalViewController.Type
+    let rendererClass: Renderer.Type
+}
+
 class ViewController: NSViewController {
     
     @IBOutlet weak var contentView: NSView!
@@ -20,23 +28,49 @@ class ViewController: NSViewController {
         }
     }
     
-    var mtkView: MTKView!
-    var renderer: Renderer!
+    var currentIndex = -1
+    var viewController: MetalViewController?
     
-    let titles = ["基本图形加载", "模型加载", "光照渲染"]
+    let datas: [Data] = [
+        Data(title: "基础模型加载", vcClass: NormalMetalViewController.self, rendererClass: LoadObjectRenderer.self),
+        Data(title: "模型（.obj）加载", vcClass: NormalMetalViewController.self, rendererClass: LoadObjectRenderer.self)
+    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mtkView = MTKView()
-        contentView.addSubview(mtkView)
-        renderer = LoadObjectRenderer(metalView: mtkView)
     }
 
     override func viewDidLayout() {
         super.viewDidLayout()
+    }
+    
+    func selected(at index: Int){
+        guard index != currentIndex else { return }
         
-        mtkView.frame = contentView.bounds
+        self.viewController?.removeFromParent()
+        
+        let data = datas[index]
+        
+        let title = data.title
+        print("select \(title)")
+        
+        let vcClass = data.vcClass
+        let viewController = vcClass.init(nibName: nil, bundle: nil)
+        
+        let rendererClass = data.rendererClass
+        let renderer = rendererClass.init(metalView: viewController.mtkView)
+        
+        viewController.setUpRenderer(renderer)
+        
+        self.addChild(viewController)
+        viewController.view.frame = contentView.bounds
+        
+        contentView.subviews.forEach{ $0.removeFromSuperview() }
+        
+        contentView.addSubview(viewController.view)
+        
+        self.viewController = viewController
     }
 
 }
@@ -44,7 +78,7 @@ class ViewController: NSViewController {
 // MARK: - NSTableViewDataSource
 extension ViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return titles.count
+        return datas.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -56,7 +90,7 @@ extension ViewController: NSTableViewDataSource {
         if identifier.rawValue == "FunctionCell" {
             tableColumn?.width = tableView.bounds.width
             let cell = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
-            cell?.textField?.stringValue = titles[row]
+            cell?.textField?.stringValue = datas[row].title
             cellView = cell
         }
         
@@ -68,7 +102,8 @@ extension ViewController: NSTableViewDataSource {
 extension ViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let selectedRow = tableView.selectedRow
-        print(titles[selectedRow])
+        
+        selected(at: selectedRow)
     }
 }
 
