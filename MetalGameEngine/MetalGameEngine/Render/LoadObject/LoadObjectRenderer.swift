@@ -12,10 +12,6 @@ class LoadObjectRenderer: Renderer {
     
     required init(metalView: MTKView) {
         super.init(metalView: metalView)
-        
-        metalView.delegate = self
-        
-        metalView.clearColor = MTLClearColor(red: 1, green: 0, blue: 0, alpha: 1)
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {

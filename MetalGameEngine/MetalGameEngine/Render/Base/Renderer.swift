@@ -12,9 +12,13 @@ import MetalKit
 
 class Renderer: NSObject {
     
+    static var device: MTLDevice!
+    static var library: MTLLibrary?
+    static var colorPixelFormat: MTLPixelFormat!
+    
     final let metalView: MTKView
-    final let device: MTLDevice
     final let commandQueue: MTLCommandQueue
+    final var depthStencilState: MTLDepthStencilState!
     
     required init(metalView: MTKView) {
         guard let device = MTLCreateSystemDefaultDevice(),
@@ -22,15 +26,26 @@ class Renderer: NSObject {
                 fatalError("GPU not available")
         }
         
+        Renderer.device = device
+        Renderer.library = device.makeDefaultLibrary()
+        Renderer.colorPixelFormat = metalView.colorPixelFormat
+        
         self.metalView = metalView
-        
-        self.device = device
-        
         self.commandQueue = commandQueue
         
-        metalView.device = device
-        
         super.init()
+        
+        self.metalView.delegate = self
+        self.metalView.device = device
+        
+        buildDepthStencilState()
+    }
+    
+    func buildDepthStencilState() {
+        let descriptor = MTLDepthStencilDescriptor()
+        descriptor.depthCompareFunction = .less
+        descriptor.isDepthWriteEnabled = true
+        depthStencilState = Renderer.device.makeDepthStencilState(descriptor: descriptor)
     }
     
     // need override
