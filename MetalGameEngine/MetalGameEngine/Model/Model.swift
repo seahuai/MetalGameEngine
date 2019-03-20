@@ -32,10 +32,10 @@ class Model: Node {
     let mesh: MTKMesh
     let submeshes: [Submesh]
     
-    init?(name: String, device: MTLDevice) {
+    init?(name: String) {
         guard let url = Bundle.main.url(forResource: name, withExtension: ".obj") else { return nil }
         
-        let alloctor = MTKMeshBufferAllocator(device: device)
+        let alloctor = MTKMeshBufferAllocator(device: Renderer.device)
         let asset = MDLAsset(url: url, vertexDescriptor: Model.defaultVertexDescriptor, bufferAllocator: alloctor)
         let mdlMesh = asset.object(at: 0) as! MDLMesh
         
@@ -47,7 +47,7 @@ class Model: Node {
         var mesh: MTKMesh
         
         do {
-            mesh = try MTKMesh(mesh: mdlMesh, device: device)
+            mesh = try MTKMesh(mesh: mdlMesh, device: Renderer.device)
         } catch {
             fatalError(error.localizedDescription)
         }

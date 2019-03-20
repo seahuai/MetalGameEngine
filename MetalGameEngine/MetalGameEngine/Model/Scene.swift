@@ -42,6 +42,10 @@ class Scene {
             renderEncoder.popDebugGroup()
         }
     }
+    
+    func sceneSizeWillChange(_ size: CGSize) {
+        // TODO
+    }
 
 }
 

@@ -42,19 +42,24 @@ extension Texture {
         let textureLoaderOptions: [MTKTextureLoader.Option: Any] = [.origin: MTKTextureLoader.Origin.bottomLeft,
                                                                     .SRGB: false,
                                                                     .generateMipmaps: NSNumber(booleanLiteral: true)]
-        
-        let fileExtension = URL(fileURLWithPath: name).pathExtension.isEmpty ? "png" : nil
-        guard let url = Bundle.main.url(forResource: name, withExtension: fileExtension) else {
-            print("load texture \(name) failed")
-            return nil
-        }
-        
         var texture: MTLTexture?
         
-        do {
-            texture = try textureLoader.newTexture(URL: url, options: textureLoaderOptions)
-        } catch {
-            print("load texture \(name) failed, reason: \(error.localizedDescription) ")
+        let fileExtension = URL(fileURLWithPath: name).pathExtension.isEmpty ? "png" : nil
+        let url = Bundle.main.url(forResource: name, withExtension: fileExtension)
+        
+        if let url = url {
+            do {
+                texture = try textureLoader.newTexture(URL: url, options: textureLoaderOptions)
+            } catch {
+                print("load texture \(name) failed, reason: \(error.localizedDescription) ")
+            }
+        }else {
+            do {
+                texture = try textureLoader.newTexture(name: name, scaleFactor: 1.0,
+                                              bundle: Bundle.main, options: nil)
+            } catch {
+                print("load texture \(name) failed, reason: \(error.localizedDescription) ")
+            }
         }
         
         return texture

@@ -9,12 +9,9 @@
 import Cocoa
 import MetalKit
 
-typealias MetalViewController = NSViewController & MetalDrawableViewController
-
 struct Data {
     let title: String
-    let vcClass: MetalViewController.Type
-    let rendererClass: Renderer.Type
+    let vcClass: NSViewController.Type
 }
 
 class ViewController: NSViewController {
@@ -29,11 +26,10 @@ class ViewController: NSViewController {
     }
     
     var currentIndex = -1
-    var viewController: MetalViewController?
+    var viewController: NSViewController?
     
     let datas: [Data] = [
-        Data(title: "基础模型加载", vcClass: NormalMetalViewController.self, rendererClass: LoadObjectRenderer.self),
-        Data(title: "模型（.obj）加载", vcClass: NormalMetalViewController.self, rendererClass: LoadObjectRenderer.self)
+        Data(title: "模型（.obj）加载", vcClass: LoadObjectViewController.self)
     ]
     
     
@@ -57,11 +53,6 @@ class ViewController: NSViewController {
         
         let vcClass = data.vcClass
         let viewController = vcClass.init(nibName: nil, bundle: nil)
-        
-        let rendererClass = data.rendererClass
-        let renderer = rendererClass.init(metalView: viewController.mtkView)
-        
-        viewController.setUpRenderer(renderer)
         
         self.addChild(viewController)
         viewController.view.frame = contentView.bounds

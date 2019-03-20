@@ -8,7 +8,7 @@
 
 import MetalKit
 
-class NormalMetalViewController: NSViewController, MetalDrawableViewController {
+class NormalMetalViewController: NSViewController {
     
     private var renderer: Renderer!
 

@@ -37,6 +37,7 @@ class Renderer: NSObject {
         
         self.metalView.delegate = self
         self.metalView.device = device
+        self.metalView.depthStencilPixelFormat = .depth32Float
         
         buildDepthStencilState()
     }
