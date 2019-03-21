@@ -15,6 +15,8 @@ class LoadObjectViewController: NormalMetalViewController {
     
     lazy var cube: Model = Model(name: "cube")!
     
+    lazy var chest: Model = Model(name: "chest")!
+    
     lazy var amibientLight: Light = {
         var light = Light()
         light.position = [0, 1, 0]
@@ -29,11 +31,16 @@ class LoadObjectViewController: NormalMetalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mtkView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
         scene = Scene()
         renderer = SceneRenderer(metalView: self.mtkView, scene: self.scene)
         
-        cube.position = [0, 0, 0]
+        cube.position = [0, -cube.size.y / 2, 0]
         scene.add(node: cube)
+        
+        chest.position = [0, 0, 0]
+        scene.add(node: chest)
         
         let camera = Camara()
         camera.position = [0, 0, -3]

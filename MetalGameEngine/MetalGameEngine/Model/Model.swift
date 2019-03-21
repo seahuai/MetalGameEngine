@@ -62,6 +62,8 @@ class Model: Node {
         }) ?? []
         
         super.init()
+        
+        self.boundingBox = mdlMesh.boundingBox
     }
     
     func setNeedsToRender(vertexFunctionName: String,

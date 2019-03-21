@@ -27,6 +27,8 @@
 		35B1364C223CEE370018ED0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1364B223CEE370018ED0B /* ViewController.swift */; };
 		35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364D223CEE390018ED0B /* Assets.xcassets */; };
 		35B13651223CEE390018ED0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364F223CEE390018ED0B /* Main.storyboard */; };
+		35F29EA722433BB000020395 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA522433BB000020395 /* chest.obj */; };
+		35F29EA822433BB000020395 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA622433BB000020395 /* chest.mtl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		35B13650223CEE390018ED0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35B13652223CEE390018ED0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B13653223CEE390018ED0B /* MetalGameEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalGameEngine.entitlements; sourceTree = "<group>"; };
+		35F29EA522433BB000020395 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.obj; sourceTree = "<group>"; };
+		35F29EA622433BB000020395 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.mtl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				35F29EA622433BB000020395 /* chest.mtl */,
+				35F29EA522433BB000020395 /* chest.obj */,
 				35242EA22242373400B8F91A /* cube.mtl */,
 				35242EA12242373400B8F91A /* cube.obj */,
 			);
@@ -238,7 +244,9 @@
 			files = (
 				35242EA32242373400B8F91A /* cube.obj in Resources */,
 				35242EA42242373400B8F91A /* cube.mtl in Resources */,
+				35F29EA822433BB000020395 /* chest.mtl in Resources */,
 				35242E9F224236EA00B8F91A /* Textures.xcassets in Resources */,
+				35F29EA722433BB000020395 /* chest.obj in Resources */,
 				35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */,
 				35B13651223CEE390018ED0B /* Main.storyboard in Resources */,
 			);

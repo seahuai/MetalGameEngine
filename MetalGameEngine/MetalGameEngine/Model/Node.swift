@@ -20,6 +20,12 @@ class Node {
     // 缩放
     var scale: float3 = float3(1)
     
+    // 尺寸
+    var boundingBox = MDLAxisAlignedBoundingBox()
+    var size: float3 {
+        return boundingBox.maxBounds - boundingBox.minBounds
+    }
+    
     // 模型矩阵
     var modelMatrix: float4x4 {
         let translationMatrix = float4x4(translation: position)
