@@ -42,11 +42,26 @@ class Scene {
             renderEncoder.popDebugGroup()
         }
     }
-    
-    func sceneSizeWillChange(_ size: CGSize) {
-        // TODO
-    }
+}
 
+extension Scene {
+    func sceneSizeWillChange(_ size: CGSize) {
+        
+    }
+    
+    func sceneRotate(_ translation: float2) {
+        let sensitivity: Float = 0.01
+        currentCamera.position = float4x4(rotationY: translation.x * sensitivity).upperLeft() * currentCamera.position
+//        currentCamera.position = float4x4(rotationY: translation.y * sensitivity).upperLeft() * currentCamera.position
+        currentCamera.rotation.y = atan2f(-currentCamera.position.x, -currentCamera.position.z)
+//        currentCamera.rotation.x = atan2f(-currentCamera.position.y, -currentCamera.position.z)
+    }
+    
+    func sceneZooming(_ delta: CGFloat) {
+        let sensitivity: Float = 0.01
+        let cameraVector = currentCamera.modelMatrix.upperLeft().columns.2
+        currentCamera.position += Float(delta) * sensitivity * cameraVector
+    }
 }
 
 extension Scene {

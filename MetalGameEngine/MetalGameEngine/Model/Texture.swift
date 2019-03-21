@@ -12,6 +12,8 @@ struct Texture {
     let color: MTLTexture?
     let normal: MTLTexture?
     let roughness: MTLTexture?
+    let metallic: MTLTexture?
+    let ambientOcclusion: MTLTexture?
 }
 
 extension Texture {
@@ -29,6 +31,8 @@ extension Texture {
         color = Texture.property(with: material, semantic: .baseColor)
         normal = Texture.property(with: material, semantic: .tangentSpaceNormal)
         roughness = Texture.property(with: material, semantic: .roughness)
+        metallic = Texture.property(with: material, semantic: .metallic)
+        ambientOcclusion = Texture.property(with: material, semantic: .ambientOcclusion)
     }
 }
 
@@ -84,6 +88,14 @@ extension Material {
         if let roughness = material?.property(with: .roughness),
             roughness.type == .float {
             self.roughness = roughness.floatValue
+        }
+        if let metallic = material?.property(with: .metallic),
+            metallic.type == .float {
+            self.metallic = metallic.floatValue
+        }
+        if let ao = material?.property(with: .ambientOcclusion),
+            ao.type == .float3 {
+            self.ambientOcclusion = ao.float3Value
         }
     }
 }

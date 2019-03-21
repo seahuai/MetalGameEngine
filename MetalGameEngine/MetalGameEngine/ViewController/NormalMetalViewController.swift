@@ -33,6 +33,8 @@ class NormalMetalViewController: NSViewController {
         super.viewDidLoad()
         
         self.view.addSubview(mtkView)
+        
+        addGestureRecognizer()
     }
     
     override func viewDidLayout() {
@@ -41,11 +43,19 @@ class NormalMetalViewController: NSViewController {
         mtkView.frame = self.view.bounds
     }
     
-    func setUpRenderer(_ renderer: Renderer) {
-        
-        self.renderer = renderer
-        
-        mtkView.delegate = renderer
+    private func addGestureRecognizer() {
+        let pan = NSPanGestureRecognizer(target: self, action: #selector(handlePan(gesture:)))
+        mtkView.addGestureRecognizer(pan)
     }
     
+    @objc func handlePan(gesture: NSPanGestureRecognizer) {
+        let x = Float(gesture.translation(in: gesture.view).x)
+        let y = Float(gesture.translation(in: gesture.view).y)
+        let translation = float2(x, y)
+        gesturePan(translation)
+        gesture.setTranslation(.zero, in: gesture.view)
+    }
+    
+    // need override
+    func gesturePan(_ translation: float2) {}
 }

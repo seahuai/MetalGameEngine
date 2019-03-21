@@ -38,11 +38,16 @@ class LoadObjectViewController: NormalMetalViewController {
         let camera = Camara()
         camera.position = [0, 0, -3]
         scene.cameras.append(camera)
+        
+        scene.lights.append(amibientLight)
     }
     
+    override func scrollWheel(with event: NSEvent) {
+        let delta = event.deltaY
+        scene.sceneZooming(delta)
+    }
     
-    
-    
-    
-    
+    override func gesturePan(_ translation: float2) {
+        scene.sceneRotate(translation)
+    }
 }

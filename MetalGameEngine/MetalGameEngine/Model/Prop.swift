@@ -57,7 +57,9 @@ extension Prop: Renderable {
             // 纹理
             renderEncoder.setFragmentTexture(submesh.texture.color, index: Int(BaseColorTexture.rawValue))
             renderEncoder.setFragmentTexture(submesh.texture.normal, index: Int(NormalTexture.rawValue))
-            renderEncoder.setFragmentTexture(submesh.texture.roughness, index: Int(Roughness.rawValue))
+            renderEncoder.setFragmentTexture(submesh.texture.roughness, index: Int(RoughnessTexture.rawValue))
+            renderEncoder.setFragmentTexture(submesh.texture.metallic, index: Int(MetallicTexture.rawValue))
+            renderEncoder.setFragmentTexture(submesh.texture.ambientOcclusion, index: Int(AOTexture.rawValue))
             
             var material = submesh.material
             renderEncoder.setFragmentBytes(&material, length: MemoryLayout<Material>.stride, index: Int(BufferIndexMaterials.rawValue))

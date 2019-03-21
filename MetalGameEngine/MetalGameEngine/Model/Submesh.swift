@@ -48,9 +48,10 @@ class Submesh {
         functionConstants.setConstantValue(&property, type: .bool, index: 1)
         property = self.texture.roughness != nil
         functionConstants.setConstantValue(&property, type: .bool, index: 2)
-//        property = false
-//        functionConstants.setConstantValue(&property, type: .bool, index: 3)
-//        functionConstants.setConstantValue(&property, type: .bool, index: 4)
+        property = self.texture.metallic != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 3)
+        property = self.texture.ambientOcclusion != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 4)
         
         return functionConstants
     }

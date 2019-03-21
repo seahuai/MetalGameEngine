@@ -73,7 +73,9 @@ typedef enum {
 typedef enum {
     BaseColorTexture = 0,
     NormalTexture = 1,
-    Roughness = 2
+    RoughnessTexture = 2,
+    MetallicTexture = 3,
+    AOTexture = 4
     
 } Textures;
 
