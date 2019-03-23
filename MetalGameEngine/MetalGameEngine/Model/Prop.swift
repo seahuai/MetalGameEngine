@@ -19,13 +19,9 @@ class Prop {
     
     let model: Model
     
-    convenience init(model: Model) {
-        self.init(model: model, vertexFunctionName: "vertex_main", fragmentFunctionName: "fragment_model")
-    }
-    
-     init(model: Model, vertexFunctionName: String, fragmentFunctionName: String) {
+     init(model: Model) {
         self.model = model
-        self.model.setNeedsToRender(vertexFunctionName: vertexFunctionName, fragmentFunctionName: fragmentFunctionName)
+        self.model.setNeedsToRender()
     }
 }
 

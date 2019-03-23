@@ -32,8 +32,16 @@ class Model: Node {
     let mesh: MTKMesh
     let submeshes: [Submesh]
     
-    init?(name: String) {
+    private let vertexFunctionName: String
+    private let fragmentFunctionName: String
+    
+    init?(name: String,
+          vertexFunctionName: String = "vertex_main",
+          fragmentFunctionName: String = "fragment_PBR") {
         guard let url = Bundle.main.url(forResource: name, withExtension: ".obj") else { return nil }
+        
+        self.vertexFunctionName = vertexFunctionName
+        self.fragmentFunctionName = fragmentFunctionName
         
         let alloctor = MTKMeshBufferAllocator(device: Renderer.device)
         let asset = MDLAsset(url: url, vertexDescriptor: Model.defaultVertexDescriptor, bufferAllocator: alloctor)
@@ -64,10 +72,10 @@ class Model: Node {
         super.init()
         
         self.boundingBox = mdlMesh.boundingBox
+        self.name = name
     }
     
-    func setNeedsToRender(vertexFunctionName: String,
-                          fragmentFunctionName: String) {
+    func setNeedsToRender() {
         submeshes.forEach{
             $0.setNeedsToRender(vertexFunctionName: vertexFunctionName,
                                 fragmentFunctionName: fragmentFunctionName)

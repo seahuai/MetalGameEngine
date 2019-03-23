@@ -13,9 +13,11 @@ class LoadObjectViewController: NormalMetalViewController {
     var renderer: SceneRenderer!
     var scene: Scene!
     
-    lazy var cube: Model = Model(name: "cube")!
+    lazy var cube = Model(name: "cube")!
     
-    lazy var chest: Model = Model(name: "chest")!
+    lazy var chest = Model(name: "chest")!
+    
+    lazy var plane = Model(name: "plane", fragmentFunctionName: "fragment_phong")!
     
     lazy var amibientLight: Light = {
         var light = Light()
@@ -31,19 +33,25 @@ class LoadObjectViewController: NormalMetalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mtkView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
+        mtkView.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 1)
         
         scene = Scene()
         renderer = SceneRenderer(metalView: self.mtkView, scene: self.scene)
         
-        cube.position = [0, -cube.size.y / 2, 0]
-        scene.add(node: cube)
+        plane.scale = [8, 8, 8]
+        plane.position = [0, 0, 0]
+//        plane.add(cube)
+//        plane.add(chest)
         
+        cube.position = [0, -cube.size.y / 2, 0]
         chest.position = [0, 0, 0]
+        
+        scene.add(node: plane)
+        scene.add(node: cube)
         scene.add(node: chest)
         
         let camera = Camara()
-        camera.position = [0, 0, -3]
+        camera.position = [0, 0, -6]
         scene.cameras.append(camera)
         
         scene.lights.append(amibientLight)
