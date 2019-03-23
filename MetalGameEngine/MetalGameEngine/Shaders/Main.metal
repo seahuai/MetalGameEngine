@@ -7,7 +7,7 @@
 //
 
 #include <metal_stdlib>
-#import "ShaderHeader.metal"
+#import "./Header/ShaderHeader.hpp"
 
 using namespace metal;
 

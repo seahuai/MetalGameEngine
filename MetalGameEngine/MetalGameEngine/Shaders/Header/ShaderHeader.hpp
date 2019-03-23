@@ -1,15 +1,16 @@
 //
-//  ModelHeader.metal
+//  ShaderHeader.hpp
 //  MetalGameEngine
 //
-//  Created by 张思槐 on 2019/3/22.
+//  Created by 张思槐 on 2019/3/23.
 //  Copyright © 2019 张思槐. All rights reserved.
 //
 
-#include <metal_stdlib>
-#import "Common.h"
+#ifndef ShaderHeader_hpp
+#define ShaderHeader_hpp
 
-using namespace metal;
+#import <simd/simd.h>
+#import "Common.h"
 
 constant bool hasColorTexture [[ function_constant(0) ]];
 constant bool hasNormalTexture [[ function_constant(1) ]];
@@ -34,3 +35,4 @@ struct VertexOut {
     float3 worldBitangent;
 };
 
+#endif /* ShaderHeader_hpp */

@@ -7,9 +7,12 @@
 //
 
 #include <metal_stdlib>
-#import "ShaderHeader.metal"
+#import "../Header/ShaderHeader.hpp"
+
 
 using namespace metal;
+
+
 
 fragment float4 fragment_phong(VertexOut in [[ stage_in ]]) {
     return float4(1, 0, 0, 1);
