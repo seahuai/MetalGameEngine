@@ -32,8 +32,8 @@ class Model: Node {
     let mesh: MTKMesh
     let submeshes: [Submesh]
     
-    private let vertexFunctionName: String
-    private let fragmentFunctionName: String
+    var vertexFunctionName: String
+    var fragmentFunctionName: String
     
     init?(name: String,
           vertexFunctionName: String = "vertex_main",
@@ -73,6 +73,16 @@ class Model: Node {
         
         self.boundingBox = mdlMesh.boundingBox
         self.name = name
+    }
+    
+    func enableGbuffer() {
+        fragmentFunctionName = "fragment_enable"
+        setNeedsToRender()
+    }
+    
+    func enablePhong() {
+        fragmentFunctionName = "fragment_phong"
+        setNeedsToRender()
     }
     
     func setNeedsToRender() {

@@ -10,14 +10,9 @@ import Cocoa
 
 class LoadObjectViewController: NormalMetalViewController {
     
-    var renderer: SceneRenderer!
-    var scene: Scene!
+    let scene = Scene()
     
     lazy var cube = Model(name: "cube")!
-    
-    lazy var chest = Model(name: "chest")!
-    
-    lazy var plane = Model(name: "plane", fragmentFunctionName: "fragment_phong")!
     
     lazy var amibientLight: Light = {
         var light = Light()
@@ -34,21 +29,11 @@ class LoadObjectViewController: NormalMetalViewController {
         super.viewDidLoad()
         
         mtkView.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 1)
-        
-        scene = Scene()
+
         renderer = SceneRenderer(metalView: self.mtkView, scene: self.scene)
         
-        plane.scale = [8, 8, 8]
-        plane.position = [0, 0, 0]
-//        plane.add(cube)
-//        plane.add(chest)
-        
-        cube.position = [0, -cube.size.y / 2, 0]
-        chest.position = [0, 0, 0]
-        
-        scene.add(node: plane)
+        cube.position = [0, 0, 0]
         scene.add(node: cube)
-        scene.add(node: chest)
         
         let camera = Camara()
         camera.position = [0, 0, -6]
@@ -63,6 +48,6 @@ class LoadObjectViewController: NormalMetalViewController {
     }
     
     override func gesturePan(_ translation: float2) {
-        scene.sceneRotate(translation)
+        scene.sceneHorizontalRotate(translation)
     }
 }

@@ -11,7 +11,7 @@ import MetalKit
 protocol Renderable {
     var identifier: String { get }
     var name: String { get }
-    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms)
+    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms)
 }
 
 // 负责Model的渲染
@@ -35,12 +35,16 @@ extension Prop: Renderable {
         return model.name
     }
     
-    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms) {
+    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms) {
         var _uniforms = uniforms
         _uniforms.modelMatrix = model.worldTransform
         _uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
         
+        var _fragmentUniforms = fragmentUniforms
+        _fragmentUniforms.tiling = uint(model.tiling)
+        
         renderEncoder.setVertexBytes(&_uniforms, length: MemoryLayout<Uniforms>.stride, index: Int(BufferIndexUniforms.rawValue))
+        renderEncoder.setFragmentBytes(&_fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(BufferIndexFragmentUniforms.rawValue))
         
         // 将顶点、切空间等数据送给着色器
         for (index, vertexBuffer) in model.mesh.vertexBuffers.enumerated() {

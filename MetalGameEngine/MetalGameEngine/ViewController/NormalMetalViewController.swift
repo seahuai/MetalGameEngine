@@ -10,7 +10,7 @@ import MetalKit
 
 class NormalMetalViewController: NSViewController {
     
-    private var renderer: Renderer!
+    var renderer: Renderer!
 
     var mtkView: MTKView
     

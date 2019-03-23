@@ -32,13 +32,11 @@ class Scene {
         fragmentUniforms.cameraPosition = currentCamera.position
         fragmentUniforms.tiling = 1
         
-        renderEncoder.setFragmentBytes(&fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(BufferIndexFragmentUniforms.rawValue))
-        
         renderEncoder.setFragmentBytes(&lights, length: MemoryLayout<Light>.stride * lights.count, index: Int(BufferIndexLights.rawValue))
         
         renderables.forEach{
             renderEncoder.pushDebugGroup($0.name)
-            $0.render(renderEncoder: renderEncoder, uniforms: uniforms)
+            $0.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: fragmentUniforms)
             renderEncoder.popDebugGroup()
         }
     }
@@ -49,12 +47,16 @@ extension Scene {
         
     }
     
-    func sceneRotate(_ translation: float2) {
+    func sceneHorizontalRotate(_ translation: float2) {
         let sensitivity: Float = 0.01
         currentCamera.position = float4x4(rotationY: translation.x * sensitivity).upperLeft() * currentCamera.position
-//        currentCamera.position = float4x4(rotationY: translation.y * sensitivity).upperLeft() * currentCamera.position
         currentCamera.rotation.y = atan2f(-currentCamera.position.x, -currentCamera.position.z)
-//        currentCamera.rotation.x = atan2f(-currentCamera.position.y, -currentCamera.position.z)
+    }
+    
+    func sceneRotate(_ translation: float2) {
+        let sensitivity: Float = 0.01
+        currentCamera.rotation.x -= Float(translation.y) * sensitivity
+        currentCamera.rotation.y += Float(translation.x) * sensitivity
     }
     
     func sceneZooming(_ delta: CGFloat) {

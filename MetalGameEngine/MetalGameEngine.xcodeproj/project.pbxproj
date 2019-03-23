@@ -22,6 +22,7 @@
 		35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242EA522423A9500B8F91A /* LoadObjectViewController.swift */; };
 		352C3F3B2246178800053171 /* Phong.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3A2246178800053171 /* Phong.metal */; };
 		352C3F3D2246179000053171 /* PBR.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3C2246179000053171 /* PBR.metal */; };
+		352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F4B22461F4A00053171 /* PhongViewController.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* SceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* SceneRenderer.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
@@ -61,6 +62,7 @@
 		352C3F4122461A5E00053171 /* PBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBR.h; sourceTree = "<group>"; };
 		352C3F4422461B0800053171 /* Phong.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Phong.h; sourceTree = "<group>"; };
 		352C3F4822461D2300053171 /* ShaderHeader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderHeader.hpp; sourceTree = "<group>"; };
+		352C3F4B22461F4A00053171 /* PhongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhongViewController.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* SceneRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRenderer.swift; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				3506144522408ED700BFB42E /* NormalMetalViewController.swift */,
 				35242EA522423A9500B8F91A /* LoadObjectViewController.swift */,
+				352C3F4B22461F4A00053171 /* PhongViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				358EDBA422448CFB00C01902 /* PBRShader.metal in Sources */,
 				3506145B2240C46200BFB42E /* Submesh.swift in Sources */,
 				35B1364C223CEE370018ED0B /* ViewController.swift in Sources */,
+				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,
 				3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */,
 				350614532240B53500BFB42E /* Node.swift in Sources */,
