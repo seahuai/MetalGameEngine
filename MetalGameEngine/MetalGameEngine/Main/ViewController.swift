@@ -30,8 +30,8 @@ class ViewController: NSViewController {
     
     let datas: [Data] = [
         Data(title: "模型（.obj）加载", vcClass: LoadObjectViewController.self),
-        Data(title: "Phong 光照模型", vcClass: PhongViewController.self)
-        
+        Data(title: "Phong 光照模型", vcClass: PhongViewController.self),
+        Data(title: "单光照情况下阴影", vcClass: ShadowViewController.self)
     ]
     
     

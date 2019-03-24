@@ -23,5 +23,6 @@ vertex VertexOut vertex_main(const VertexIn in [[ stage_in ]],
     out.worldTangent = uniforms.normalMatrix * in.tangent;
     out.worldBitangent = uniforms.normalMatrix * in.bitangent;
     out.uv = in.uv;
+    out.shadowPosition = uniforms.shadowMatrix * uniforms.modelMatrix * in.position;
     return out;
 }

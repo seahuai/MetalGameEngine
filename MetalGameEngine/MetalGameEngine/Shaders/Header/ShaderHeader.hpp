@@ -33,6 +33,7 @@ struct VertexOut {
     float2 uv;
     float3 worldTangent;
     float3 worldBitangent;
+    float4 shadowPosition;
 };
 
 #endif /* ShaderHeader_hpp */

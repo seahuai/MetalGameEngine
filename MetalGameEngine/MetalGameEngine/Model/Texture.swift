@@ -68,6 +68,18 @@ extension Texture {
         
         return texture
     }
+    
+    static func newTexture(pixelFormat: MTLPixelFormat, size: CGSize, label: String) -> MTLTexture {
+        let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: Int(size.width), height: Int(size.height), mipmapped: false)
+        descriptor.usage = [.shaderRead, .renderTarget]
+        descriptor.storageMode = .private
+        guard let texture = Renderer.device.makeTexture(descriptor: descriptor) else {
+            fatalError("new texture failed")
+        }
+        
+        texture.label = label
+        return texture
+    }
 }
 
 extension Material {

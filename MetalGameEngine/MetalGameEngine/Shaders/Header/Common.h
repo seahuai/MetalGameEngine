@@ -16,6 +16,7 @@ typedef struct {
     matrix_float4x4 viewMatrix;
     matrix_float4x4 projectionMatrix;
     matrix_float3x3 normalMatrix;
+    matrix_float4x4 shadowMatrix;
 } Uniforms;
 
 typedef struct {
@@ -75,8 +76,8 @@ typedef enum {
     NormalTexture = 1,
     RoughnessTexture = 2,
     MetallicTexture = 3,
-    AOTexture = 4
-    
+    AOTexture = 4,
+    ShadowTexture = 5
 } Textures;
 
 #endif /* Common_h */
