@@ -48,7 +48,7 @@ class Scene {
 
 extension Scene {
     func sceneSizeWillChange(_ size: CGSize) {
-        
+        currentCamera.aspect = Float(size.width)/Float(size.height)
     }
     
     func sceneHorizontalRotate(_ translation: float2) {
@@ -59,8 +59,8 @@ extension Scene {
     
     func sceneRotate(_ translation: float2) {
         let sensitivity: Float = 0.01
-        currentCamera.rotation.x -= Float(translation.y) * sensitivity
-        currentCamera.rotation.y += Float(translation.x) * sensitivity
+        currentCamera.rotation.x += Float(translation.y) * sensitivity
+        currentCamera.rotation.y -= Float(translation.x) * sensitivity
     }
     
     func sceneZooming(_ delta: CGFloat) {

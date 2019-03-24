@@ -25,7 +25,10 @@ class Camara: Node {
     
     // 视点矩阵
     var viewMatrix: float4x4 {
-        return self.modelMatrix.inverse
+        let translateMatrix = float4x4(translation: self.position).inverse
+        let rotateMatrix = float4x4(rotation: rotation)
+        let scaleMatrix = float4x4(scaling: scale)
+        return translateMatrix * scaleMatrix * rotateMatrix
     }
     
 }

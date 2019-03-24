@@ -51,7 +51,8 @@ class ShadowViewController: NormalMetalViewController {
         scene.add(node: tree)
         
         let camera = Camara()
-        camera.position = [1, 1.5, -4]
+        camera.position = [0, 0, -4]
+        camera.rotation = [-0.5, -0.5, 0]
         scene.cameras.append(camera)
         
         scene.lights.append(ambientLight)
@@ -66,6 +67,6 @@ class ShadowViewController: NormalMetalViewController {
     }
     
     override func gesturePan(_ translation: float2) {
-        scene.sceneHorizontalRotate(translation)
+        scene.sceneRotate(translation)
     }
 }
