@@ -29,8 +29,6 @@ class LoadObjectViewController: NormalMetalViewController {
         super.viewDidLoad()
         
         mtkView.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 1)
-
-        renderer = SceneRenderer(metalView: self.mtkView, scene: self.scene)
         
         cube.position = [0, 0, 0]
         scene.add(node: cube)
@@ -40,6 +38,8 @@ class LoadObjectViewController: NormalMetalViewController {
         scene.cameras.append(camera)
         
         scene.lights.append(amibientLight)
+        
+        renderer = PBRRenderer(metalView: self.mtkView, scene: self.scene)
     }
     
     override func scrollWheel(with event: NSEvent) {

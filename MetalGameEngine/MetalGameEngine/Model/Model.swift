@@ -12,7 +12,21 @@ import MetalKit
 
 class Model: Node {
     
-    private static var defaultVertexDescriptor: MDLVertexDescriptor = {
+    static let defaultVertexDescriptor: MDLVertexDescriptor = {
+        let floatSize = MemoryLayout<Float>.size
+        
+        let vertexDescriptor = MDLVertexDescriptor()
+        
+        vertexDescriptor.attributes[Int(Position.rawValue)] = MDLVertexAttribute(name: MDLVertexAttributePosition, format: .float3, offset: 0, bufferIndex: 0)
+        vertexDescriptor.attributes[Int(Normal.rawValue)] = MDLVertexAttribute(name: MDLVertexAttributeNormal, format: .float3, offset: floatSize * 3, bufferIndex: 0)
+        vertexDescriptor.attributes[Int(UV.rawValue)] = MDLVertexAttribute(name: MDLVertexAttributeTextureCoordinate, format: .float2, offset: floatSize * 6, bufferIndex: 0)
+        
+        vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: floatSize * 8)
+        
+        return vertexDescriptor
+    }()
+    
+    var defaultVertexDescriptor: MDLVertexDescriptor = {
         let floatSize = MemoryLayout<Float>.size
         
         let vertexDescriptor = MDLVertexDescriptor()
@@ -30,27 +44,19 @@ class Model: Node {
     
     let vertexBuffer: MTLBuffer
     let mesh: MTKMesh
-    let submeshes: [Submesh]
+    var submeshes: [Submesh] = []
     
-    var vertexFunctionName: String
-    var fragmentFunctionName: String
-    
-    init?(name: String,
-          vertexFunctionName: String = "vertex_main",
-          fragmentFunctionName: String = "fragment_PBR") {
+    init?(name: String) {
         guard let url = Bundle.main.url(forResource: name, withExtension: ".obj") else { return nil }
         
-        self.vertexFunctionName = vertexFunctionName
-        self.fragmentFunctionName = fragmentFunctionName
-        
         let alloctor = MTKMeshBufferAllocator(device: Renderer.device)
-        let asset = MDLAsset(url: url, vertexDescriptor: Model.defaultVertexDescriptor, bufferAllocator: alloctor)
+        let asset = MDLAsset(url: url, vertexDescriptor: self.defaultVertexDescriptor, bufferAllocator: alloctor)
         let mdlMesh = asset.object(at: 0) as! MDLMesh
         
         mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed: MDLVertexAttributeTextureCoordinate, tangentAttributeNamed: MDLVertexAttributeTangent, bitangentAttributeNamed: MDLVertexAttributeBitangent)
         
         // 更新vertexDescriptor
-        Model.defaultVertexDescriptor = mdlMesh.vertexDescriptor
+        self.defaultVertexDescriptor = mdlMesh.vertexDescriptor
         
         var mesh: MTKMesh
         
@@ -63,33 +69,17 @@ class Model: Node {
         self.mesh = mesh
         vertexBuffer = mesh.vertexBuffers[0].buffer
         
-        submeshes = mdlMesh.submeshes?.enumerated().compactMap({ (index, submesh) in
-            (submesh as? MDLSubmesh).map{
-                Submesh(mtkSubmesh: mesh.submeshes[index], mdlsubmesh: $0, vertexDescriptor: Model.defaultVertexDescriptor)
-            }
-        }) ?? []
         
         super.init()
         
+        submeshes = mdlMesh.submeshes?.enumerated().compactMap({ (index, submesh) in
+            (submesh as? MDLSubmesh).map{
+                Submesh(mtkSubmesh: mesh.submeshes[index], mdlsubmesh: $0, vertexDescriptor: self.defaultVertexDescriptor)
+            }
+        }) ?? []
+        
         self.boundingBox = mdlMesh.boundingBox
         self.name = name
-    }
-    
-    func enableGbuffer() {
-        fragmentFunctionName = "fragment_enable"
-        setNeedsToRender()
-    }
-    
-    func enablePhong() {
-        fragmentFunctionName = "fragment_phong"
-        setNeedsToRender()
-    }
-    
-    func setNeedsToRender() {
-        submeshes.forEach{
-            $0.setNeedsToRender(vertexFunctionName: vertexFunctionName,
-                                fragmentFunctionName: fragmentFunctionName)
-        }
     }
     
 }

@@ -54,26 +54,22 @@ class PhongViewController: NormalMetalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.renderer = SceneRenderer(metalView: self.mtkView, scene: self.scene)
+        self.renderer = PhongRenderer(metalView: self.mtkView, scene: self.scene)
         
         self.mtkView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
         
         let plane = Model(name: "plane")!
         plane.scale = [8, 8, 8]
         plane.tiling = 16
-        plane.enablePhong()
         
         let train = Model(name: "train")!
         train.position = [0, 0, 0]
-        train.enablePhong()
         
         let tree = Model(name: "treefir")!
         tree.position = [0, 0, 0]
-        tree.enablePhong()
         
         scene.add(node: plane)
         scene.add(node: train)
-//        scene.add(node: tree)
         
         let camera = Camara()
         camera.position = [0, 1, -3]

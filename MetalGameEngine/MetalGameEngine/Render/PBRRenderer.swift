@@ -8,9 +8,11 @@
 
 import MetalKit
 
-class SceneRenderer: Renderer {
+class PBRRenderer: Renderer {
     
     var scene: Scene!
+    
+    private var props: [Prop] = []
     
     convenience init(metalView: MTKView, scene: Scene) {
         self.init(metalView: metalView)
@@ -23,6 +25,8 @@ class SceneRenderer: Renderer {
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
         scene.sceneSizeWillChange(size)
+        
+        props = scene.props(type: .PBR)
     }
     
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
@@ -32,7 +36,13 @@ class SceneRenderer: Renderer {
         }
         
         renderEncoder.setDepthStencilState(self.depthStencilState)
-        scene.render(renderEncoder: renderEncoder)
+        
+        
+        renderEncoder.setFragmentBytes(scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: Int(BufferIndexLights.rawValue))
+        
+        for prop in props {
+            prop.render(renderEncoder: renderEncoder, uniforms: scene.uniforms, fragmentUniforms: scene.fragmentUniforms)
+        }
         
         renderEncoder.endEncoding()
     }

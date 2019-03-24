@@ -14,18 +14,108 @@ protocol Renderable {
     func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms)
 }
 
-// 负责Model的渲染
-class Prop {
+enum RendererType {
+    case PBR
+    case Phong
+    case Gbuffer
+    case Depth
+    case custom(v: String, f: String)
+}
+
+private class RenderableSubmesh {
+    let submesh: Submesh
+    var renderPipelineState: MTLRenderPipelineState!
     
-    let model: Model
+    init(_ submesh: Submesh, type: RendererType) {
+        self.submesh = submesh
+        
+        makeRendererPipeline(type)
+    }
     
-     init(model: Model) {
-        self.model = model
-        self.model.setNeedsToRender()
+    func makeRendererPipeline(_ type: RendererType) {
+        
+        var descripator = MTLRenderPipelineDescriptor()
+        
+        let vFunction: MTLFunction?
+        let fFunction: MTLFunction?
+        
+        func makeFunction(name: String, constantValues: MTLFunctionConstantValues? = nil) -> MTLFunction? {
+            let function: MTLFunction?
+            
+            if let constantValues = constantValues {
+                do {
+                    function = try Renderer.library?.makeFunction(name: name, constantValues: constantValues)
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
+            }else {
+                function = Renderer.library?.makeFunction(name: name)
+            }
+            
+            return function
+        }
+        
+        switch type {
+        case .PBR:
+            vFunction = makeFunction(name: "vertex_main")
+            fFunction = makeFunction(name: "fragment_PBR", constantValues: makeFunctionConstant())
+            descripator.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+        case .Phong:
+            vFunction = makeFunction(name: "vertex_main")
+            fFunction = makeFunction(name: "fragment_phong", constantValues: makeFunctionConstant())
+            descripator.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+        case .Depth:
+            vFunction = makeFunction(name: "vertex_depth")
+            fFunction = nil
+            descripator.colorAttachments[0].pixelFormat = .invalid
+        case .Gbuffer:
+            fatalError("not availabel")
+        default:
+            fatalError("not availabel")
+        }
+        
+        descripator.vertexFunction = vFunction
+        descripator.fragmentFunction = fFunction
+        descripator.depthAttachmentPixelFormat = .depth32Float
+        descripator.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(submesh.vertexDescriptor)
+        
+        do {
+            renderPipelineState = try Renderer.device.makeRenderPipelineState(descriptor: descripator)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func makeFunctionConstant() -> MTLFunctionConstantValues {
+        let functionConstants = MTLFunctionConstantValues()
+        var property = self.submesh.texture.color != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 0)
+        property = self.submesh.texture.normal != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 1)
+        property = self.submesh.texture.roughness != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 2)
+        property = self.submesh.texture.metallic != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 3)
+        property = self.submesh.texture.ambientOcclusion != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 4)
+        
+        return functionConstants
     }
 }
 
-extension Prop: Renderable {
+class Prop {
+    
+    private let renderableSubmeshes: [RenderableSubmesh]
+    
+    let model: Model
+    
+    init(model: Model, type: RendererType) {
+        self.model = model
+        renderableSubmeshes = model.submeshes.map{ RenderableSubmesh($0, type: type) }
+    }
+}
+
+extension Prop {
     
     var identifier: String {
         return model.identifier
@@ -35,7 +125,13 @@ extension Prop: Renderable {
         return model.name
     }
     
-    func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms) {
+    func render(renderEncoder: MTLRenderCommandEncoder,
+                pipelineState: MTLRenderPipelineState? = nil,
+                uniforms: Uniforms,
+                fragmentUniforms: FragmentUniforms) {
+        
+        renderEncoder.pushDebugGroup(self.name)
+        
         var _uniforms = uniforms
         _uniforms.modelMatrix = model.worldTransform
         _uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
@@ -51,8 +147,12 @@ extension Prop: Renderable {
             renderEncoder.setVertexBuffer(vertexBuffer.buffer, offset: 0, index: index)
         }
         
-        for submesh in model.submeshes {
-            renderEncoder.setRenderPipelineState(submesh.renderPipelineState!)
+        for renderableSubmesh in self.renderableSubmeshes {
+            let submesh = renderableSubmesh.submesh
+            
+            if (pipelineState == nil) {
+                renderEncoder.setRenderPipelineState(renderableSubmesh.renderPipelineState)
+            }
             
             // 纹理
             renderEncoder.setFragmentTexture(submesh.texture.color, index: Int(BaseColorTexture.rawValue))
@@ -73,6 +173,8 @@ extension Prop: Renderable {
                                                 indexBufferOffset: mtkSubmesh.indexBuffer.offset)
             
         }
+        
+        renderEncoder.popDebugGroup()
         
     }
 }

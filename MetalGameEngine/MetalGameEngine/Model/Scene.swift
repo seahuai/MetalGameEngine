@@ -11,6 +11,8 @@ import Metal
 // 以Scene为单位，每个场景单独渲染自己的光照和模型
 class Scene {
     
+    var shadowTexture: MTLTexture?
+    
     var cameras: [Camara] = []
     var currentCameraIndex = 0
     var currentCamera: Camara {
@@ -19,26 +21,28 @@ class Scene {
     
     var lights: [Light] = []
     
-    private var renderables: [Renderable] = []
+    var models: [Model] = []
     
-    func render(renderEncoder: MTLRenderCommandEncoder) {
-        
+    var uniforms: Uniforms {
         var uniforms = Uniforms()
         uniforms.viewMatrix = currentCamera.viewMatrix
         uniforms.projectionMatrix = currentCamera.projectionMatrix
-        
+        return uniforms
+    }
+    
+    var fragmentUniforms: FragmentUniforms {
         var fragmentUniforms = FragmentUniforms()
         fragmentUniforms.lightCount = uint(lights.count)
         fragmentUniforms.cameraPosition = currentCamera.position
         fragmentUniforms.tiling = 1
-        
-        renderEncoder.setFragmentBytes(&lights, length: MemoryLayout<Light>.stride * lights.count, index: Int(BufferIndexLights.rawValue))
-        
-        renderables.forEach{
-            renderEncoder.pushDebugGroup($0.name)
-            $0.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: fragmentUniforms)
-            renderEncoder.popDebugGroup()
+        return fragmentUniforms
+    }
+    
+    func props(type: RendererType) -> [Prop] {
+        let props: [Prop] = self.models.map{
+            return Prop(model: $0, type: type)
         }
+        return props
     }
 }
 
@@ -74,8 +78,7 @@ extension Scene {
         
         for _node in nodes {
             if let model = _node as? Model {
-                let prop = Prop(model: model)
-                renderables.append(prop)
+                models.append(model)
             }
         }
     }
@@ -86,11 +89,17 @@ extension Scene {
         nodes.append(contentsOf: node.children)
         
         for _node in nodes {
-            if let index = (renderables.index{ $0.identifier == _node.identifier }) {
-                renderables.remove(at: index)
+            
+            if let model = _node as? Model {
+                let identifer = model.identifier
+                if let index = (models.index { $0.identifier == identifer }) {
+                    models.remove(at: index)
+                    break
+                }
             }
         }
     }
+    
 }
 
 
