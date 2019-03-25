@@ -97,7 +97,9 @@ class ShadowRenderer: Renderer {
             prop.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
         }
         
-       renderEncoder.endEncoding()
+        scene.skybox?.render(renderEncoder: renderEncoder, uniforms: uniforms)
+        
+        renderEncoder.endEncoding()
         
         renderEncoder.popDebugGroup()
     }

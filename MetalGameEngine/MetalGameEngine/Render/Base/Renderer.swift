@@ -21,13 +21,10 @@ class Renderer: NSObject {
     final var depthStencilState: MTLDepthStencilState!
     
     required init(metalView: MTKView) {
-        guard let device = MTLCreateSystemDefaultDevice(),
-            let commandQueue = device.makeCommandQueue() else {
-                fatalError("GPU not available")
+        guard let commandQueue = Renderer.device.makeCommandQueue() else {
+                fatalError("Command queue not available")
         }
         
-        Renderer.device = device
-        Renderer.library = device.makeDefaultLibrary()
         Renderer.colorPixelFormat = metalView.colorPixelFormat
         
         self.metalView = metalView
@@ -36,7 +33,7 @@ class Renderer: NSObject {
         super.init()
         
         self.metalView.delegate = self
-        self.metalView.device = device
+        self.metalView.device = Renderer.device
         self.metalView.depthStencilPixelFormat = .depth32Float
         
         buildDepthStencilState()

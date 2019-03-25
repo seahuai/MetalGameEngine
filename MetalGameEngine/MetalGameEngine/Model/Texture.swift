@@ -69,6 +69,21 @@ extension Texture {
         return texture
     }
     
+    static func loadCubeTexture(imageName: String) -> MTLTexture? {
+        let textureLoader = MTKTextureLoader(device: Renderer.device)
+        if let texture = MDLTexture(cubeWithImagesNamed: [imageName]) {
+            let options: [MTKTextureLoader.Option: Any] =
+                [.origin: MTKTextureLoader.Origin.topLeft,
+                 .SRGB: false,
+                 .generateMipmaps: NSNumber(booleanLiteral: false)]
+            return try? textureLoader.newTexture(texture: texture, options: options)
+        }
+        
+        let texture = try? textureLoader.newTexture(name: imageName, scaleFactor: 1.0,
+                                                   bundle: .main)
+        return texture
+    }
+    
     static func newTexture(pixelFormat: MTLPixelFormat, size: CGSize, label: String) -> MTLTexture {
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: Int(size.width), height: Int(size.height), mipmapped: false)
         descriptor.usage = [.shaderRead, .renderTarget]

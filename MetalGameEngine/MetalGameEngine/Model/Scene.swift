@@ -23,6 +23,8 @@ class Scene {
     
     var models: [Model] = []
     
+    var skybox: Skybox?
+    
     var uniforms: Uniforms {
         var uniforms = Uniforms()
         uniforms.viewMatrix = currentCamera.viewMatrix
