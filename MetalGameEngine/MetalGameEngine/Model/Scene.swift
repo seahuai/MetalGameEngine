@@ -53,12 +53,14 @@ extension Scene {
     
     func sceneHorizontalRotate(_ translation: float2) {
         let sensitivity: Float = 0.01
+        currentCamera.isHorizontalRotate = true
         currentCamera.position = float4x4(rotationY: translation.x * sensitivity).upperLeft() * currentCamera.position
         currentCamera.rotation.y = atan2f(-currentCamera.position.x, -currentCamera.position.z)
     }
     
     func sceneRotate(_ translation: float2) {
         let sensitivity: Float = 0.01
+        currentCamera.isHorizontalRotate = false
         currentCamera.rotation.x += Float(translation.y) * sensitivity
         currentCamera.rotation.y -= Float(translation.x) * sensitivity
     }

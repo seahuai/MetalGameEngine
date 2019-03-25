@@ -18,17 +18,32 @@ class Camara: Node {
         return radians(fromDegrees: fovDegrees)
     }
     
+    var isHorizontalRotate = false
+    
     // 投影矩阵
     var projectionMatrix: float4x4 {
         return float4x4(projectionFov: fovRadians, near: near, far: far, aspect: aspect)
     }
     
     // 视点矩阵
-    var viewMatrix: float4x4 {
-        let translateMatrix = float4x4(translation: self.position).inverse
+    var horizontalRotateViewMatrix: float4x4 {
+        let translateMatrix = float4x4(translation: position)
+        let rotateMatrix = float4x4(rotation: rotation)
+        let scaleMatrix = float4x4(scaling: scale)
+        return (translateMatrix * scaleMatrix * rotateMatrix).inverse
+    }
+    
+    var rotateViewMatrix: float4x4 {
+        let translateMatrix = float4x4(translation: position).inverse
         let rotateMatrix = float4x4(rotation: rotation)
         let scaleMatrix = float4x4(scaling: scale)
         return translateMatrix * scaleMatrix * rotateMatrix
     }
+    
+    var viewMatrix: float4x4 {
+        return isHorizontalRotate ? horizontalRotateViewMatrix : rotateViewMatrix
+    }
+    
+    
     
 }
