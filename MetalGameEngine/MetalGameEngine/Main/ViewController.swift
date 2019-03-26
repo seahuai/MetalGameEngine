@@ -39,6 +39,10 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self.contentView, queue: OperationQueue.main) { _ in
+            self.viewController?.view.frame = self.contentView.bounds
+        }
     }
 
     override func viewDidLayout() {

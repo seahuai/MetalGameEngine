@@ -9,7 +9,6 @@
 import MetalKit
 
 class PhongRenderer: Renderer {
-    var scene: Scene!
     
     private var props: [Prop] = []
     

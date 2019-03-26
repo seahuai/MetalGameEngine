@@ -13,8 +13,6 @@ class ShadowRenderer: Renderer {
     
     var time: Float = 0
     
-    var scene: Scene!
-    
     var light: Light!
     
     var props: [Prop] = []
@@ -105,8 +103,6 @@ class ShadowRenderer: Renderer {
     }
         
     override func mtkView(drawableSizeWillChange size: CGSize) {
-        scene.sceneSizeWillChange(size)
-        
         buildDepthTexture(with: size)
         buildProps()
     }

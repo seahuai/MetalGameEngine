@@ -16,6 +16,7 @@ class NormalMetalViewController: NSViewController {
     
     override func loadView() {
         self.view = NSView()
+        self.view.postsFrameChangedNotifications = true
     }
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
@@ -37,6 +38,14 @@ class NormalMetalViewController: NSViewController {
         self.view.addSubview(mtkView)
         
         addGestureRecognizer()
+        
+        NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: self.view, queue: OperationQueue.main) { notification in
+            self.viewChangeSize(view: self.view)
+        }
+    }
+    
+    func viewChangeSize(view: NSView) {
+        self.mtkView.frame = self.view.bounds
     }
     
     override func viewDidLayout() {

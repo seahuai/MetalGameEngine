@@ -10,8 +10,6 @@ import MetalKit
 
 class PBRRenderer: Renderer {
     
-    var scene: Scene!
-    
     private var props: [Prop] = []
     
     convenience init(metalView: MTKView, scene: Scene) {
@@ -24,8 +22,6 @@ class PBRRenderer: Renderer {
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
-        scene.sceneSizeWillChange(size)
-        
         props = scene.props(type: .PBR)
     }
     

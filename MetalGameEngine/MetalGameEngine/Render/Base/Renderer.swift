@@ -20,6 +20,8 @@ class Renderer: NSObject {
     final let commandQueue: MTLCommandQueue
     final var depthStencilState: MTLDepthStencilState!
     
+    var scene: Scene!
+    
     required init(metalView: MTKView) {
         guard let commandQueue = Renderer.device.makeCommandQueue() else {
                 fatalError("Command queue not available")
@@ -55,6 +57,8 @@ class Renderer: NSObject {
 
 extension Renderer: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        scene.sceneSizeWillChange(size)
+        
         mtkView(drawableSizeWillChange: size)
     }
     
