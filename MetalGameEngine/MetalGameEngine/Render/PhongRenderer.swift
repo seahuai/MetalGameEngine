@@ -41,6 +41,8 @@ class PhongRenderer: Renderer {
             prop.render(renderEncoder: renderEncoder, uniforms: scene.uniforms, fragmentUniforms: scene.fragmentUniforms)
         }
         
+        scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
+        
         renderEncoder.endEncoding()
     }
 }

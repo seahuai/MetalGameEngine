@@ -18,7 +18,24 @@ class Skybox {
     
     var texture: MTLTexture?
     
-    init?(textureName: String?) {
+    struct Setting {
+        // 浑浊程度
+        var turbidity: Float = 0.28
+        // 太阳高度角
+        var sunElevation: Float = 0.6
+        // 大气散射
+        var upperAtmosphereScattering: Float = 0.1
+        // 地面反射
+        var groundAlbedo: Float = 4
+    }
+    
+    var setting = Setting() {
+        didSet {
+            texture = generateSkyboxTexture([256, 256])
+        }
+    }
+    
+    init?(textureName: String? = nil) {
         let alloctor = MTKMeshBufferAllocator(device: Renderer.device)
         let cube = MDLMesh(boxWithExtent: [1, 1, 1], segments: [1, 1, 1], inwardNormals: true, geometryType: .triangles, allocator: alloctor)
         
@@ -28,13 +45,16 @@ class Skybox {
             return nil
         }
         
-        if let name = textureName {
-            texture = Texture.loadCubeTexture(imageName: name)
-        }
-        
         pipelineState = Skybox.buildPipelineState(cube.vertexDescriptor)
         
         depthStencilState = Skybox.buildDepthStencilState()
+        
+        if let name = textureName {
+            texture = Texture.loadCubeTexture(imageName: name)
+        }else {
+            texture = generateSkyboxTexture([256, 256])
+        }
+        
     }
     
     func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms) {
@@ -58,6 +78,26 @@ class Skybox {
         
         renderEncoder.popDebugGroup()
     }
+    
+    private func generateSkyboxTexture(_ dimensions: int2) -> MTLTexture? {
+        var texture: MTLTexture?
+        let skyTexture = MDLSkyCubeTexture(name: "sky",
+                                           channelEncoding: .uInt8,
+                                           textureDimensions: dimensions,
+                                           turbidity: setting.turbidity,
+                                           sunElevation: setting.sunElevation,
+                                           upperAtmosphereScattering: setting.upperAtmosphereScattering,
+                                           groundAlbedo: setting.groundAlbedo)
+        do {
+            let textureLoader = MTKTextureLoader(device: Renderer.device)
+            texture = try textureLoader.newTexture(texture: skyTexture,
+                                                   options: nil)
+        } catch {
+            print(error.localizedDescription)
+        }
+        return texture
+    }
+    
 }
 
 extension Skybox {

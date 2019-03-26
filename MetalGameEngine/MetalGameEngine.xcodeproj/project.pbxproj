@@ -28,10 +28,10 @@
 		352C3F5822467E0500053171 /* MTLRenderPassDescriptorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5722467E0500053171 /* MTLRenderPassDescriptorExtension.swift */; };
 		352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5922467F1C00053171 /* ShadowRenderer.swift */; };
 		352C3F5C224752F800053171 /* PhongRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5B224752F800053171 /* PhongRenderer.swift */; };
-		352C3F5E224766A300053171 /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5D224766A300053171 /* MutipleLightViewController.swift */; };
 		352C3F60224766E000053171 /* SkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5F224766E000053171 /* SkyboxViewController.swift */; };
 		352C3F6222476EE700053171 /* Skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F6122476EE700053171 /* Skybox.swift */; };
 		352C3F65224905EE00053171 /* Skybox.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F64224905EE00053171 /* Skybox.metal */; };
+		352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* PBRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* PBRRenderer.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
@@ -77,10 +77,10 @@
 		352C3F5722467E0500053171 /* MTLRenderPassDescriptorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLRenderPassDescriptorExtension.swift; sourceTree = "<group>"; };
 		352C3F5922467F1C00053171 /* ShadowRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowRenderer.swift; sourceTree = "<group>"; };
 		352C3F5B224752F800053171 /* PhongRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhongRenderer.swift; sourceTree = "<group>"; };
-		352C3F5D224766A300053171 /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		352C3F5F224766E000053171 /* SkyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyboxViewController.swift; sourceTree = "<group>"; };
 		352C3F6122476EE700053171 /* Skybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skybox.swift; sourceTree = "<group>"; };
 		352C3F64224905EE00053171 /* Skybox.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Skybox.metal; sourceTree = "<group>"; };
+		352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSkyboxViewController.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* PBRRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBRRenderer.swift; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 				35242EA522423A9500B8F91A /* LoadObjectViewController.swift */,
 				352C3F4B22461F4A00053171 /* PhongViewController.swift */,
 				352C3F5222467C7E00053171 /* ShadowViewController.swift */,
-				352C3F5D224766A300053171 /* MutipleLightViewController.swift */,
 				352C3F5F224766E000053171 /* SkyboxViewController.swift */,
+				352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -387,8 +387,8 @@
 				352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */,
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,
+				352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */,
 				3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */,
-				352C3F5E224766A300053171 /* MutipleLightViewController.swift in Sources */,
 				352C3F5422467C7E00053171 /* ShadowViewController.swift in Sources */,
 				350614532240B53500BFB42E /* Node.swift in Sources */,
 				352C3F6222476EE700053171 /* Skybox.swift in Sources */,

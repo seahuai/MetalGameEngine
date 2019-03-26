@@ -61,7 +61,7 @@ class SkyboxViewController: NormalMetalViewController {
         let skybox = Skybox(textureName: "redSky")
         scene.skybox = skybox
         
-        self.renderer = ShadowRenderer(metalView: self.mtkView, scene: scene, light: sunLight)
+        self.renderer = PhongRenderer(metalView: self.mtkView, scene: scene)
     }
     
     override func scrollWheel(with event: NSEvent) {
