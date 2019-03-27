@@ -34,7 +34,7 @@ private class RenderableSubmesh {
     
     func makeRendererPipeline(_ type: RendererType) {
         
-        var descripator = MTLRenderPipelineDescriptor()
+        var descriptor = MTLRenderPipelineDescriptor()
         
         let vFunction: MTLFunction?
         let fFunction: MTLFunction?
@@ -59,28 +59,36 @@ private class RenderableSubmesh {
         case .PBR:
             vFunction = makeFunction(name: "vertex_main")
             fFunction = makeFunction(name: "fragment_PBR", constantValues: makeFunctionConstant())
-            descripator.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+            descriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+            descriptor.label = "PBR"
         case .Phong:
             vFunction = makeFunction(name: "vertex_main")
             fFunction = makeFunction(name: "fragment_phong", constantValues: makeFunctionConstant())
-            descripator.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+            descriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+            descriptor.label = "Phong"
         case .Depth:
             vFunction = makeFunction(name: "vertex_depth")
             fFunction = nil
-            descripator.colorAttachments[0].pixelFormat = .invalid
+            descriptor.colorAttachments[0].pixelFormat = .invalid
+            descriptor.label = "Depth"
         case .Gbuffer:
-            fatalError("not availabel")
+            vFunction = makeFunction(name: "vertex_main")
+            fFunction = makeFunction(name: "fragment_gbuffer", constantValues: makeFunctionConstant())
+            descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+            descriptor.colorAttachments[1].pixelFormat = .rgba16Float
+            descriptor.colorAttachments[2].pixelFormat = .rgba16Float
+            descriptor.label = "Gbuffer"
         default:
             fatalError("not availabel")
         }
         
-        descripator.vertexFunction = vFunction
-        descripator.fragmentFunction = fFunction
-        descripator.depthAttachmentPixelFormat = .depth32Float
-        descripator.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(submesh.vertexDescriptor)
+        descriptor.vertexFunction = vFunction
+        descriptor.fragmentFunction = fFunction
+        descriptor.depthAttachmentPixelFormat = .depth32Float
+        descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(submesh.vertexDescriptor)
         
         do {
-            renderPipelineState = try Renderer.device.makeRenderPipelineState(descriptor: descripator)
+            renderPipelineState = try Renderer.device.makeRenderPipelineState(descriptor: descriptor)
         } catch {
             fatalError(error.localizedDescription)
         }

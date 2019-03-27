@@ -12,13 +12,8 @@ class PBRRenderer: Renderer {
     
     private var props: [Prop] = []
     
-    convenience init(metalView: MTKView, scene: Scene) {
-        self.init(metalView: metalView)
-        self.scene = scene
-    }
-    
-    required init(metalView: MTKView) {
-        super.init(metalView: metalView)
+    required init(metalView: MTKView, scene: Scene) {
+        super.init(metalView: metalView, scene: scene)
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {

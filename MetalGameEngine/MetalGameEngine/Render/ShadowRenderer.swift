@@ -25,13 +25,12 @@ class ShadowRenderer: Renderer {
     var shadowRenderPipelineState: MTLRenderPipelineState!
     
     convenience init(metalView: MTKView, scene: Scene, light: Light) {
-        self.init(metalView: metalView)
-        self.scene = scene
+        self.init(metalView: metalView, scene: scene)
         self.light = light
     }
     
-    required init(metalView: MTKView) {
-        super.init(metalView: metalView)
+    required init(metalView: MTKView, scene: Scene) {
+        super.init(metalView: metalView, scene: scene)
     }
     
     func buildDepthTexture(with size: CGSize) {
@@ -87,7 +86,7 @@ class ShadowRenderer: Renderer {
         uniforms.viewMatrix = scene.uniforms.viewMatrix
         uniforms.projectionMatrix = scene.uniforms.projectionMatrix
         
-        renderEncoder.setFragmentTexture(shadowTexture, index: Int(ShadowTexture.rawValue))
+        renderEncoder.setFragmentTexture(shadowTexture, index: Int(DepthTexture.rawValue))
         
         renderEncoder.setFragmentBytes(scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: Int(BufferIndexLights.rawValue))
         

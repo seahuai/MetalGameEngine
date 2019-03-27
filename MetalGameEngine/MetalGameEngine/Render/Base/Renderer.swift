@@ -20,9 +20,9 @@ class Renderer: NSObject {
     final let commandQueue: MTLCommandQueue
     final var depthStencilState: MTLDepthStencilState!
     
-    var scene: Scene!
+    let scene: Scene
     
-    required init(metalView: MTKView) {
+    required init(metalView: MTKView, scene: Scene) {
         guard let commandQueue = Renderer.device.makeCommandQueue() else {
                 fatalError("Command queue not available")
         }
@@ -31,6 +31,7 @@ class Renderer: NSObject {
         
         self.metalView = metalView
         self.commandQueue = commandQueue
+        self.scene = scene
         
         super.init()
         

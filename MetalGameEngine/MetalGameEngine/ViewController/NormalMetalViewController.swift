@@ -23,8 +23,6 @@ class NormalMetalViewController: NSViewController {
         
         mtkView = MTKView()
         
-        renderer = Renderer(metalView: mtkView)
-        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     

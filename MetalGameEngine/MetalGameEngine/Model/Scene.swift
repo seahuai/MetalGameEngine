@@ -19,9 +19,15 @@ class Scene {
         return cameras[currentCameraIndex]
     }
     
-    var lights: [Light] = []
+    var lights: [Light] = [] {
+        didSet {
+            lightsChangeNotificationBlock?(lights)
+        }
+    }
+    var lightsChangeNotificationBlock: (([Light]) -> ())?
     
-    var models: [Model] = []
+    private var models: [Model] = []
+    var modelsChangeNotificationBlock: (([Model]) -> ())?
     
     var skybox: Skybox?
     
@@ -83,6 +89,7 @@ extension Scene {
         for _node in nodes {
             if let model = _node as? Model {
                 models.append(model)
+                modelsChangeNotificationBlock?(models)
             }
         }
     }
@@ -98,6 +105,7 @@ extension Scene {
                 let identifer = model.identifier
                 if let index = (models.index { $0.identifier == identifer }) {
                     models.remove(at: index)
+                    modelsChangeNotificationBlock?(models)
                     break
                 }
             }
