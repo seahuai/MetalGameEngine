@@ -80,4 +80,10 @@ typedef enum {
     DepthTexture = 5
 } Textures;
 
+typedef struct {
+    vector_float2 size;
+    float height;
+    uint maxTessellation;
+} TerrainData;
+
 #endif /* Common_h */

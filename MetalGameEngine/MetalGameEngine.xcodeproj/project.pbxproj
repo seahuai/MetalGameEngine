@@ -35,6 +35,10 @@
 		352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* PBRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* PBRRenderer.swift */; };
+		3553B39A224DAE7A0060229F /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B399224DAE7A0060229F /* Terrain.swift */; };
+		3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39C224DBCCD0060229F /* Tessellation.metal */; };
+		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
+		3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B3A0224DEF120060229F /* TerrainRenderer.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
 		358EDBA422448CFB00C01902 /* PBRShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 358EDBA322448CFB00C01902 /* PBRShader.metal */; };
 		358EDBAD2244D58B00C01902 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA72244D58A00C01902 /* train.obj */; };
@@ -89,6 +93,10 @@
 		352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSkyboxViewController.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* PBRRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBRRenderer.swift; sourceTree = "<group>"; };
+		3553B399224DAE7A0060229F /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
+		3553B39C224DBCCD0060229F /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
+		3553B39E224DEEE10060229F /* TerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainViewController.swift; sourceTree = "<group>"; };
+		3553B3A0224DEF120060229F /* TerrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainRenderer.swift; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		358EDBA322448CFB00C01902 /* PBRShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PBRShader.metal; sourceTree = "<group>"; };
 		358EDBA72244D58A00C01902 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
@@ -127,14 +135,10 @@
 		3506144C2240B4A800BFB42E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				350614522240B53500BFB42E /* Node.swift */,
-				350614542240B63C00BFB42E /* Camera.swift */,
-				350614582240C10600BFB42E /* Model.swift */,
-				356428312241E58B0000A5BB /* Texture.swift */,
-				3506145A2240C46200BFB42E /* Submesh.swift */,
-				35242E97224212E400B8F91A /* Prop.swift */,
+				3553B398224DAE3B0060229F /* Common Model */,
 				3506145C2240CD9900BFB42E /* Scene.swift */,
 				352C3F6122476EE700053171 /* Skybox.swift */,
+				3553B399224DAE7A0060229F /* Terrain.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,6 +167,7 @@
 		350614562240B7C500BFB42E /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				3553B39B224DBC800060229F /* Tessellation */,
 				3590B934224B1EE000CDD1AF /* Gbuffer */,
 				352C3F4522461B3100053171 /* Header */,
 				352C3F4322461AF900053171 /* Phong */,
@@ -248,6 +253,7 @@
 		353F9136223F39810071597B /* Render */ = {
 			isa = PBXGroup;
 			children = (
+				3553B3A0224DEF120060229F /* TerrainRenderer.swift */,
 				3590B932224B18C000CDD1AF /* DeferredRenderer.swift */,
 				353F913A223F3B730071597B /* PBRRenderer.swift */,
 				352C3F5922467F1C00053171 /* ShadowRenderer.swift */,
@@ -275,8 +281,30 @@
 				352C3F5F224766E000053171 /* SkyboxViewController.swift */,
 				352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */,
 				352184E9224A60250006D5BA /* MutipleLightViewController.swift */,
+				3553B39E224DEEE10060229F /* TerrainViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3553B398224DAE3B0060229F /* Common Model */ = {
+			isa = PBXGroup;
+			children = (
+				35242E97224212E400B8F91A /* Prop.swift */,
+				3506145A2240C46200BFB42E /* Submesh.swift */,
+				356428312241E58B0000A5BB /* Texture.swift */,
+				350614522240B53500BFB42E /* Node.swift */,
+				350614542240B63C00BFB42E /* Camera.swift */,
+				350614582240C10600BFB42E /* Model.swift */,
+			);
+			path = "Common Model";
+			sourceTree = "<group>";
+		};
+		3553B39B224DBC800060229F /* Tessellation */ = {
+			isa = PBXGroup;
+			children = (
+				3553B39C224DBCCD0060229F /* Tessellation.metal */,
+			);
+			path = Tessellation;
 			sourceTree = "<group>";
 		};
 		3590B934224B1EE000CDD1AF /* Gbuffer */ = {
@@ -411,6 +439,7 @@
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,
 				352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */,
+				3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */,
 				3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */,
 				352C3F5422467C7E00053171 /* ShadowViewController.swift in Sources */,
 				350614532240B53500BFB42E /* Node.swift in Sources */,
@@ -422,11 +451,13 @@
 				352C3F5C224752F800053171 /* PhongRenderer.swift in Sources */,
 				35242E98224212E400B8F91A /* Prop.swift in Sources */,
 				350614592240C10600BFB42E /* Model.swift in Sources */,
+				3553B39A224DAE7A0060229F /* Terrain.swift in Sources */,
 				353F913B223F3B730071597B /* PBRRenderer.swift in Sources */,
 				352C3F51224676BD00053171 /* Shadow.metal in Sources */,
 				35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */,
 				358EDBB42244D93200C01902 /* PhongShader.metal in Sources */,
 				3506145D2240CD9900BFB42E /* Scene.swift in Sources */,
+				3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */,
 				352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */,
 				35242E9D2242312F00B8F91A /* Main.metal in Sources */,
 				352C3F3B2246178800053171 /* Phong.metal in Sources */,
@@ -435,6 +466,7 @@
 				353F9139223F39EF0071597B /* Renderer.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,
 				356428322241E58B0000A5BB /* Texture.swift in Sources */,
+				3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */,
 				350614552240B63C00BFB42E /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

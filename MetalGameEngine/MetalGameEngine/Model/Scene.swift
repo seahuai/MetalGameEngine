@@ -31,6 +31,8 @@ class Scene {
     
     var skybox: Skybox?
     
+    var terrain: Terrain?
+    
     var uniforms: Uniforms {
         var uniforms = Uniforms()
         uniforms.viewMatrix = currentCamera.viewMatrix

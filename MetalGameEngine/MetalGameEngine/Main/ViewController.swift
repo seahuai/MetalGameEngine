@@ -34,7 +34,8 @@ class ViewController: NSViewController {
         Data(title: "天空盒（立方体纹理）", vcClass: SkyboxViewController.self),
         Data(title: "天空盒（自定义参数）", vcClass: CustomSkyboxViewController.self),
         Data(title: "多光照渲染", vcClass: MutipleLightViewController.self),
-        Data(title: "单光照情况下阴影", vcClass: ShadowViewController.self)
+        Data(title: "单光照情况下阴影", vcClass: ShadowViewController.self),
+        Data(title: "地形加载", vcClass: TerrainViewController.self)
     ]
     
     
