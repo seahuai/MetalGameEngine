@@ -24,6 +24,8 @@ class TerrainViewController: NormalMetalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.mtkView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
         let camera = Camara()
         camera.position = [0, 1, -5]
         scene.cameras.append(camera)
@@ -35,6 +37,13 @@ class TerrainViewController: NormalMetalViewController {
         scene.terrain = terrain
         
         self.renderer = TerrainRenderer(metalView: self.mtkView, scene: scene)
+        
+        let tapGesutre = NSClickGestureRecognizer(target: self, action: #selector(click))
+        self.view.addGestureRecognizer(tapGesutre)
+    }
+    
+    @objc func click() {
+        scene.terrain?.isWireframe.toggle()
     }
     
     override func scrollWheel(with event: NSEvent) {

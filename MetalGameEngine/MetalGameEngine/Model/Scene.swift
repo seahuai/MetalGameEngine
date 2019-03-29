@@ -77,8 +77,13 @@ extension Scene {
     
     func sceneZooming(_ delta: CGFloat) {
         let sensitivity: Float = 0.01
-        let cameraVector = currentCamera.modelMatrix.upperLeft().columns.2
-        currentCamera.position += Float(delta) * sensitivity * cameraVector
+        if currentCamera.isHorizontalRotate {
+            let cameraVector = currentCamera.modelMatrix.upperLeft().columns.2
+            currentCamera.position += Float(delta) * sensitivity * cameraVector
+        } else {
+            currentCamera.position.z += Float(delta) * sensitivity
+        }
+    
     }
 }
 
