@@ -36,17 +36,17 @@ fragment float4 fragment_composition(VertexOut in [[ stage_in ]],
 {
     constexpr sampler s(min_filter::linear, mag_filter::linear);
     
-    float4 baseColor = colorTexture.sample(s, in.textureCoods);
+    float3 baseColor = colorTexture.sample(s, in.textureCoods).xyz;
     float3 normal = normalTexture.sample(s, in.textureCoods).xyz;
     float4 position = positionTexture.sample(s, in.textureCoods);
     
-    float3 diffuseColor = diffuseLighting(baseColor.rgb,
+    float3 diffuseColor = diffuseLighting(baseColor,
                                           position.xyz,
                                           normal,
                                           lights,
                                           fragmentUniforms);
     
-    if (baseColor.a <= 0.001) {
+    if (position.a <= 0.001) {
         // in shadow
         diffuseColor *= 0.2;
     }

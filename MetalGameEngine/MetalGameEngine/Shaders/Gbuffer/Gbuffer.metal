@@ -28,13 +28,11 @@ fragment GbufferOut fragment_gbuffer(VertexOut in [[ stage_in ]],
     
     constexpr sampler s(filter::linear, address::repeat);
     
-    float3 baseColor;
     if (hasColorTexture) {
-        baseColor = baseColorTexture.sample(s, in.uv * fragmentUniforms.tiling).rgb;
+        out.baseColor = baseColorTexture.sample(s, in.uv * fragmentUniforms.tiling);
     } else {
-        baseColor = material.baseColor;
+        out.baseColor = float4(material.baseColor, 1);
     }
-    out.baseColor = float4(baseColor, 1);
     
     if (hasNormalTexture) {
         out.normal = normalTexture.sample(s, in.uv * fragmentUniforms.tiling);
@@ -53,8 +51,8 @@ fragment GbufferOut fragment_gbuffer(VertexOut in [[ stage_in ]],
     float shadowSample = depthTextrue.sample(shadowSampler, xy);
     float currentSample = in.shadowPosition.z / in.shadowPosition.w;
     
-    if (currentSample > shadowSample) {
-        out.baseColor.a = 0;
+    if (currentSample > shadowSample ) {
+        out.position.a = 0;
     }
     
     return out;

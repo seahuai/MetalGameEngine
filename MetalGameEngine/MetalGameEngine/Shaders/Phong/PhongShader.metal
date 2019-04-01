@@ -22,15 +22,11 @@ fragment float4 fragment_phong(VertexOut in [[ stage_in ]],
     
     constexpr sampler textureSampler(filter:: linear, address::repeat);
     
-    float4 baseColor = 0;
+    float3 baseColor = 0;
     if (hasColorTexture) {
-        baseColor = baseColorTexture.sample(textureSampler, in.uv * fragmentUniforms.tiling);
+        baseColor = baseColorTexture.sample(textureSampler, in.uv * fragmentUniforms.tiling).rgb;
     }else {
-        baseColor = float4(material.baseColor, 1);
-    }
-    
-    if (baseColor.a <= 0.0001) {
-        discard_fragment();
+        baseColor = material.baseColor;
     }
     
     float3 normal = 0;
@@ -44,7 +40,7 @@ fragment float4 fragment_phong(VertexOut in [[ stage_in ]],
     
     normal = normalize(normal);
     
-    float3 finalColor = phongLighting(baseColor.rgb,
+    float3 finalColor = phongLighting(baseColor,
                                         in.worldPosition,
                                         normal,
                                         lights,
