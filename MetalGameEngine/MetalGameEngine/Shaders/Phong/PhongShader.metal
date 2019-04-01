@@ -18,7 +18,7 @@ fragment float4 fragment_phong(VertexOut in [[ stage_in ]],
                                constant Material &material [[ buffer(BufferIndexMaterials) ]],
                                texture2d<float> baseColorTexture [[ texture(BaseColorTexture), function_constant(hasColorTexture) ]],
                                texture2d<float> normalTexture [[ texture(NormalTexture), function_constant(hasNormalTexture) ]],
-                               depth2d<float> shadowTexture [[ texture(DepthTexture) ]]) {
+                               depth2d<float> shadowTexture [[ texture(ShadowTexture) ]]) {
     
     constexpr sampler textureSampler(filter:: linear, address::repeat);
     

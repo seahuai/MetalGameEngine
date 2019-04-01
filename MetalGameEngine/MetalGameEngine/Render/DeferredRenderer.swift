@@ -99,6 +99,7 @@ extension DeferredRenderer {
     
     func renderShadow(_ renderEncoder: MTLRenderCommandEncoder, light: Light) {
         renderEncoder.pushDebugGroup("shadow")
+        renderEncoder.label = "Shadow RenderEncoder"
         
         renderEncoder.setCullMode(.none)
         renderEncoder.setDepthStencilState(self.depthStencilState)
@@ -144,12 +145,14 @@ extension DeferredRenderer {
     
     func renderGbuffer(_ renderEncoder: MTLRenderCommandEncoder) {
         renderEncoder.pushDebugGroup("Gbuffer")
-        renderEncoder.setDepthStencilState(self.depthStencilState)
+        renderEncoder.label = "Gbuffer RenderEncoder"
         
         uniforms.viewMatrix = scene.currentCamera.viewMatrix
         uniforms.projectionMatrix = scene.currentCamera.projectionMatrix
         
-        renderEncoder.setFragmentTexture(shadowTexture, index: Int(DepthTexture.rawValue))
+        renderEncoder.setDepthStencilState(self.depthStencilState)
+        
+        renderEncoder.setFragmentTexture(shadowTexture, index: Int(ShadowTexture.rawValue))
         
         for prop in gbufferProps {
             prop.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
@@ -194,6 +197,7 @@ extension DeferredRenderer {
     
     func renderMain(_ renderEncoder: MTLRenderCommandEncoder) {
         renderEncoder.pushDebugGroup("Composition")
+        renderEncoder.label = "Composition RenderEncoder"
         
         scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
         

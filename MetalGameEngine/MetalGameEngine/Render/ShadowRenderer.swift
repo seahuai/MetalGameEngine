@@ -86,7 +86,7 @@ class ShadowRenderer: Renderer {
         uniforms.viewMatrix = scene.uniforms.viewMatrix
         uniforms.projectionMatrix = scene.uniforms.projectionMatrix
         
-        renderEncoder.setFragmentTexture(shadowTexture, index: Int(DepthTexture.rawValue))
+        renderEncoder.setFragmentTexture(shadowTexture, index: Int(ShadowTexture.rawValue))
         
         renderEncoder.setFragmentBytes(scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: Int(BufferIndexLights.rawValue))
         

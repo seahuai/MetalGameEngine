@@ -22,7 +22,7 @@ fragment GbufferOut fragment_gbuffer(VertexOut in [[ stage_in ]],
                                      constant FragmentUniforms &fragmentUniforms [[ buffer(BufferIndexFragmentUniforms) ]],
                                      texture2d<float> baseColorTexture [[ texture(BaseColorTexture), function_constant(hasColorTexture) ]],
                                      texture2d<float> normalTexture [[ texture(NormalTexture), function_constant(hasNormalTexture) ]],
-                                     depth2d<float> depthTextrue [[ texture(DepthTexture) ]])
+                                     depth2d<float> depthTextrue [[ texture(ShadowTexture) ]])
 {
     GbufferOut out;
     
