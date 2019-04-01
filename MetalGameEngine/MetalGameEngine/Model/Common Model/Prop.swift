@@ -65,6 +65,10 @@ private class RenderableSubmesh {
             vFunction = makeFunction(name: "vertex_main")
             fFunction = makeFunction(name: "fragment_phong", constantValues: makeFunctionConstant())
             descriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+            descriptor.colorAttachments[0].isBlendingEnabled = true
+            descriptor.colorAttachments[0].alphaBlendOperation = .add
+            descriptor.colorAttachments[0].sourceAlphaBlendFactor = .sourceAlpha
+            descriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
             descriptor.label = "Phong"
         case .Depth:
             vFunction = makeFunction(name: "vertex_depth")

@@ -22,6 +22,14 @@
 		35242EA42242373400B8F91A /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35242EA22242373400B8F91A /* cube.mtl */; };
 		35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242EA522423A9500B8F91A /* LoadObjectViewController.swift */; };
 		3525CE962251E748000E2A4C /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
+		3525CE982251F66A000E2A4C /* InstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE972251F66A000E2A4C /* InstanceViewController.swift */; };
+		3525CE9F2251F876000E2A4C /* grass01.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CE9E2251F876000E2A4C /* grass01.mtl */; };
+		3525CEA12251F87C000E2A4C /* grass01.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA02251F87C000E2A4C /* grass01.obj */; };
+		3525CEA62251FB04000E2A4C /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA32251FB03000E2A4C /* tree.obj */; };
+		3525CEA72251FB04000E2A4C /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA42251FB03000E2A4C /* tree.mtl */; };
+		3525CEA82251FB04000E2A4C /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA52251FB04000E2A4C /* License.txt */; };
+		3525CEAB225223C8000E2A4C /* large-plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA9225223C7000E2A4C /* large-plane.mtl */; };
+		3525CEAC225223C8000E2A4C /* large-plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEAA225223C7000E2A4C /* large-plane.obj */; };
 		352C3F3B2246178800053171 /* Phong.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3A2246178800053171 /* Phong.metal */; };
 		352C3F3D2246179000053171 /* PBR.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3C2246179000053171 /* PBR.metal */; };
 		352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F4B22461F4A00053171 /* PhongViewController.swift */; };
@@ -78,6 +86,14 @@
 		35242EA22242373400B8F91A /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
 		35242EA522423A9500B8F91A /* LoadObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadObjectViewController.swift; sourceTree = "<group>"; };
 		3525CE952251E748000E2A4C /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
+		3525CE972251F66A000E2A4C /* InstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceViewController.swift; sourceTree = "<group>"; };
+		3525CE9E2251F876000E2A4C /* grass01.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grass01.mtl; sourceTree = "<group>"; };
+		3525CEA02251F87C000E2A4C /* grass01.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grass01.obj; sourceTree = "<group>"; };
+		3525CEA32251FB03000E2A4C /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
+		3525CEA42251FB03000E2A4C /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
+		3525CEA52251FB04000E2A4C /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		3525CEA9225223C7000E2A4C /* large-plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "large-plane.mtl"; sourceTree = "<group>"; };
+		3525CEAA225223C7000E2A4C /* large-plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "large-plane.obj"; sourceTree = "<group>"; };
 		352C3F3A2246178800053171 /* Phong.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Phong.metal; sourceTree = "<group>"; };
 		352C3F3C2246179000053171 /* PBR.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PBR.metal; sourceTree = "<group>"; };
 		352C3F4122461A5E00053171 /* PBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBR.h; sourceTree = "<group>"; };
@@ -185,18 +201,73 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				3525CE9D2251F86E000E2A4C /* Grass */,
+				3525CE9C2251F85F000E2A4C /* PBR Model */,
+				3525CE9B2251F856000E2A4C /* Tree */,
+				3525CE9A2251F84E000E2A4C /* Train */,
+				3525CE992251F845000E2A4C /* Ground */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		3525CE992251F845000E2A4C /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				3525CEA9225223C7000E2A4C /* large-plane.mtl */,
+				3525CEAA225223C7000E2A4C /* large-plane.obj */,
 				358EDBA82244D58A00C01902 /* plane.mtl */,
 				358EDBAA2244D58B00C01902 /* plane.obj */,
+			);
+			path = Ground;
+			sourceTree = "<group>";
+		};
+		3525CE9A2251F84E000E2A4C /* Train */ = {
+			isa = PBXGroup;
+			children = (
 				358EDBA92244D58A00C01902 /* train.mtl */,
 				358EDBA72244D58A00C01902 /* train.obj */,
+			);
+			path = Train;
+			sourceTree = "<group>";
+		};
+		3525CE9B2251F856000E2A4C /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				3525CEA22251FAF7000E2A4C /* tree */,
 				358EDBAB2244D58B00C01902 /* treefir.mtl */,
 				358EDBAC2244D58B00C01902 /* treefir.obj */,
+			);
+			path = Tree;
+			sourceTree = "<group>";
+		};
+		3525CE9C2251F85F000E2A4C /* PBR Model */ = {
+			isa = PBXGroup;
+			children = (
 				35F29EA622433BB000020395 /* chest.mtl */,
 				35F29EA522433BB000020395 /* chest.obj */,
 				35242EA22242373400B8F91A /* cube.mtl */,
 				35242EA12242373400B8F91A /* cube.obj */,
 			);
-			path = File;
+			path = "PBR Model";
+			sourceTree = "<group>";
+		};
+		3525CE9D2251F86E000E2A4C /* Grass */ = {
+			isa = PBXGroup;
+			children = (
+				3525CEA02251F87C000E2A4C /* grass01.obj */,
+				3525CE9E2251F876000E2A4C /* grass01.mtl */,
+			);
+			path = Grass;
+			sourceTree = "<group>";
+		};
+		3525CEA22251FAF7000E2A4C /* tree */ = {
+			isa = PBXGroup;
+			children = (
+				3525CEA52251FB04000E2A4C /* License.txt */,
+				3525CEA42251FB03000E2A4C /* tree.mtl */,
+				3525CEA32251FB03000E2A4C /* tree.obj */,
+			);
+			path = tree;
 			sourceTree = "<group>";
 		};
 		352C3F4222461AE900053171 /* PBR */ = {
@@ -285,6 +356,7 @@
 				352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */,
 				352184E9224A60250006D5BA /* MutipleLightViewController.swift */,
 				3553B39E224DEEE10060229F /* TerrainViewController.swift */,
+				3525CE972251F66A000E2A4C /* InstanceViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -411,15 +483,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				358EDBAD2244D58B00C01902 /* train.obj in Resources */,
+				3525CEA62251FB04000E2A4C /* tree.obj in Resources */,
 				35242EA32242373400B8F91A /* cube.obj in Resources */,
 				358EDBB22244D58B00C01902 /* treefir.obj in Resources */,
+				3525CEAC225223C8000E2A4C /* large-plane.obj in Resources */,
+				3525CEAB225223C8000E2A4C /* large-plane.mtl in Resources */,
 				35242EA42242373400B8F91A /* cube.mtl in Resources */,
+				3525CEA72251FB04000E2A4C /* tree.mtl in Resources */,
 				358EDBB12244D58B00C01902 /* treefir.mtl in Resources */,
+				3525CE9F2251F876000E2A4C /* grass01.mtl in Resources */,
 				35F29EA822433BB000020395 /* chest.mtl in Resources */,
 				35242E9F224236EA00B8F91A /* Textures.xcassets in Resources */,
 				358EDBAE2244D58B00C01902 /* plane.mtl in Resources */,
+				3525CEA12251F87C000E2A4C /* grass01.obj in Resources */,
 				358EDBAF2244D58B00C01902 /* train.mtl in Resources */,
 				35F29EA722433BB000020395 /* chest.obj in Resources */,
+				3525CEA82251FB04000E2A4C /* License.txt in Resources */,
 				35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */,
 				35B13651223CEE390018ED0B /* Main.storyboard in Resources */,
 				358EDBB02244D58B00C01902 /* plane.obj in Resources */,
@@ -468,6 +547,7 @@
 				3590B938224B21A600CDD1AF /* GbufferComposition.metal in Sources */,
 				352C3F3D2246179000053171 /* PBR.metal in Sources */,
 				353F9139223F39EF0071597B /* Renderer.swift in Sources */,
+				3525CE982251F66A000E2A4C /* InstanceViewController.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,
 				356428322241E58B0000A5BB /* Texture.swift in Sources */,
 				3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */,

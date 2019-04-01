@@ -26,7 +26,7 @@ class MutipleLightViewController: NormalMetalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mtkView.clearColor = MTLClearColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+        self.mtkView.clearColor = MTLClearColor(red: 1, green: 0, blue: 0, alpha: 1)
         
         let plane = Model(name: "plane")!
         plane.scale = [8, 8, 8]

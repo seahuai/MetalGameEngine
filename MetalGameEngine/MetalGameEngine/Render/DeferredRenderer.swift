@@ -195,7 +195,10 @@ extension DeferredRenderer {
     func renderMain(_ renderEncoder: MTLRenderCommandEncoder) {
         renderEncoder.pushDebugGroup("Composition")
         
+        scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
+        
         renderEncoder.setRenderPipelineState(compositionPipelineState)
+        renderEncoder.setDepthStencilState(self.depthStencilState)
         
         renderEncoder.setVertexBuffer(quadVertexBuffer, offset: 0, index: 0)
         renderEncoder.setVertexBuffer(quadTextureCoodBuffer, offset: 0, index: 1)
@@ -209,7 +212,7 @@ extension DeferredRenderer {
         renderEncoder.setFragmentTexture(normalTexture, index: 1)
         renderEncoder.setFragmentTexture(positionTexture, index: 2)
         
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
+        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 12)
       
         renderEncoder.endEncoding()
         
