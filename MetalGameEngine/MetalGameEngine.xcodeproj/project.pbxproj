@@ -21,6 +21,7 @@
 		35242EA32242373400B8F91A /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35242EA12242373400B8F91A /* cube.obj */; };
 		35242EA42242373400B8F91A /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35242EA22242373400B8F91A /* cube.mtl */; };
 		35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242EA522423A9500B8F91A /* LoadObjectViewController.swift */; };
+		3525CE962251E748000E2A4C /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
 		352C3F3B2246178800053171 /* Phong.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3A2246178800053171 /* Phong.metal */; };
 		352C3F3D2246179000053171 /* PBR.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3C2246179000053171 /* PBR.metal */; };
 		352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F4B22461F4A00053171 /* PhongViewController.swift */; };
@@ -76,6 +77,7 @@
 		35242EA12242373400B8F91A /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		35242EA22242373400B8F91A /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
 		35242EA522423A9500B8F91A /* LoadObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadObjectViewController.swift; sourceTree = "<group>"; };
+		3525CE952251E748000E2A4C /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		352C3F3A2246178800053171 /* Phong.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Phong.metal; sourceTree = "<group>"; };
 		352C3F3C2246179000053171 /* PBR.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PBR.metal; sourceTree = "<group>"; };
 		352C3F4122461A5E00053171 /* PBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBR.h; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				350614502240B4FA00BFB42E /* MathLibrary.swift */,
+				3525CE952251E748000E2A4C /* Transform.swift */,
 			);
 			name = Utility;
 			path = Model/Utility;
@@ -434,6 +437,7 @@
 				358EDBA422448CFB00C01902 /* PBRShader.metal in Sources */,
 				3506145B2240C46200BFB42E /* Submesh.swift in Sources */,
 				35B1364C223CEE370018ED0B /* ViewController.swift in Sources */,
+				3525CE962251E748000E2A4C /* Transform.swift in Sources */,
 				352C3F5822467E0500053171 /* MTLRenderPassDescriptorExtension.swift in Sources */,
 				352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */,
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,

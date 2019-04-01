@@ -12,17 +12,21 @@
 using namespace metal;
 
 vertex VertexOut vertex_main(const VertexIn in [[ stage_in ]],
-                             constant Uniforms &uniforms [[ buffer(BufferIndexUniforms) ]])
+                             constant Uniforms &uniforms [[ buffer(BufferIndexUniforms) ]],
+                             constant InstanceUniforms *instancesUniforms [[ buffer(BufferIndexInstanceUniforms) ]],
+                             uint instanceId [[ instance_id ]])
 {
     VertexOut out;
     
-    float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix;
+    InstanceUniforms instanceUniforms = instancesUniforms[instanceId];
+    
+    float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * instanceUniforms.modelMatrix;
     out.position = mvp * in.position;
-    out.worldPosition = (uniforms.modelMatrix * in.position).xyz;
-    out.worldNormal = uniforms.normalMatrix * in.normal;
-    out.worldTangent = uniforms.normalMatrix * in.tangent;
-    out.worldBitangent = uniforms.normalMatrix * in.bitangent;
+    out.worldPosition = (instanceUniforms.modelMatrix * in.position).xyz;
+    out.worldNormal = instanceUniforms.normalMatrix * in.normal;
+    out.worldTangent = instanceUniforms.normalMatrix * in.tangent;
+    out.worldBitangent = instanceUniforms.normalMatrix * in.bitangent;
     out.uv = in.uv;
-    out.shadowPosition = uniforms.shadowMatrix * uniforms.modelMatrix * in.position;
+    out.shadowPosition = uniforms.shadowMatrix * instanceUniforms.modelMatrix * in.position;
     return out;
 }

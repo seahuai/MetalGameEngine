@@ -17,9 +17,12 @@ struct VertexIn {
 };
 
 vertex float4 vertex_depth(VertexIn in [[ stage_in ]],
-                           constant Uniforms &uniforms [[ buffer(BufferIndexUniforms) ]])
+                           constant Uniforms &uniforms [[ buffer(BufferIndexUniforms) ]],
+                           constant InstanceUniforms *instancesUniforms [[ buffer(BufferIndexInstanceUniforms) ]],
+                           uint instanceId [[ instance_id ]])
 {
-    float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix;
+    float4x4 modelMatrix = instancesUniforms[instanceId].modelMatrix;
+    float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * modelMatrix;
     float4 position = mvp * in.position;
     return position;
 }

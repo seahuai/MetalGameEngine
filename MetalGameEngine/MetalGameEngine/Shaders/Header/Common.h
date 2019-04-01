@@ -20,6 +20,11 @@ typedef struct {
 } Uniforms;
 
 typedef struct {
+    matrix_float4x4 modelMatrix;
+    matrix_float3x3 normalMatrix;
+} InstanceUniforms;
+
+typedef struct {
     uint lightCount;
     uint tiling;
     vector_float3 cameraPosition;
@@ -60,7 +65,8 @@ typedef enum {
     BufferIndexUniforms = 11,
     BufferIndexLights = 12,
     BufferIndexFragmentUniforms = 13,
-    BufferIndexMaterials = 14
+    BufferIndexMaterials = 14,
+    BufferIndexInstanceUniforms = 15
 } BufferIndices;
 
 typedef enum {
