@@ -38,6 +38,8 @@ class PhongRenderer: Renderer {
         
         scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
         
+        Debug.debugLight(in: scene, with: renderEncoder)
+        
         renderEncoder.endEncoding()
     }
 }

@@ -44,6 +44,8 @@
 		352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* PBRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* PBRRenderer.swift */; };
+		353FAF182254E5840012F85C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF172254E5840012F85C /* Debug.swift */; };
+		353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF1A2254E5DD0012F85C /* DebugLight.metal */; };
 		3553B39A224DAE7A0060229F /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B399224DAE7A0060229F /* Terrain.swift */; };
 		3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39C224DBCCD0060229F /* Tessellation.metal */; };
 		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
@@ -111,6 +113,8 @@
 		352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSkyboxViewController.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* PBRRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBRRenderer.swift; sourceTree = "<group>"; };
+		353FAF172254E5840012F85C /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		353FAF1A2254E5DD0012F85C /* DebugLight.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = DebugLight.metal; sourceTree = "<group>"; };
 		3553B399224DAE7A0060229F /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		3553B39C224DBCCD0060229F /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
 		3553B39E224DEEE10060229F /* TerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		350614562240B7C500BFB42E /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				353FAF192254E5CA0012F85C /* Debug */,
 				3553B39B224DBC800060229F /* Tessellation */,
 				3590B934224B1EE000CDD1AF /* Gbuffer */,
 				352C3F4522461B3100053171 /* Header */,
@@ -312,6 +317,7 @@
 			children = (
 				352C3F5722467E0500053171 /* MTLRenderPassDescriptorExtension.swift */,
 				3590B939224BAEBA00CDD1AF /* Utility.swift */,
+				353FAF172254E5840012F85C /* Debug.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -359,6 +365,14 @@
 				3525CE972251F66A000E2A4C /* InstanceViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		353FAF192254E5CA0012F85C /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				353FAF1A2254E5DD0012F85C /* DebugLight.metal */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		3553B398224DAE3B0060229F /* Common Model */ = {
@@ -520,6 +534,7 @@
 				352C3F5822467E0500053171 /* MTLRenderPassDescriptorExtension.swift in Sources */,
 				352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */,
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
+				353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,
 				352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */,
 				3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */,
@@ -543,6 +558,7 @@
 				3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */,
 				352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */,
 				35242E9D2242312F00B8F91A /* Main.metal in Sources */,
+				353FAF182254E5840012F85C /* Debug.swift in Sources */,
 				352C3F3B2246178800053171 /* Phong.metal in Sources */,
 				3590B938224B21A600CDD1AF /* GbufferComposition.metal in Sources */,
 				352C3F3D2246179000053171 /* PBR.metal in Sources */,

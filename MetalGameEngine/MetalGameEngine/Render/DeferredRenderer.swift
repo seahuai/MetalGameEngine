@@ -85,7 +85,10 @@ class DeferredRenderer: Renderer {
         guard let mainRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
             return
         }
+        
         renderMain(mainRenderEncoder)
+        
+        mainRenderEncoder.endEncoding()
     }
 }
 
@@ -217,8 +220,6 @@ extension DeferredRenderer {
         renderEncoder.setFragmentTexture(positionTexture, index: 2)
         
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 12)
-      
-        renderEncoder.endEncoding()
         
         renderEncoder.popDebugGroup()
     }
