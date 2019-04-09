@@ -36,7 +36,7 @@ class MutipleLightViewController: NormalMetalViewController {
         scene.add(node: plane)
         scene.add(node: train)
         
-        let camera = Camara()
+        let camera = Camera()
         camera.position = [0, 2, -10]
         camera.rotation = [-0.5, 0, 0]
         scene.cameras.append(camera)

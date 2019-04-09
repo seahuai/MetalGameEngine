@@ -26,7 +26,7 @@ class TerrainViewController: NormalMetalViewController {
         
         self.mtkView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
         
-        let camera = Camara()
+        let camera = Camera()
         camera.position = [0, 1, -5]
         scene.cameras.append(camera)
         

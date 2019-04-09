@@ -68,7 +68,7 @@ class PhongViewController: NormalMetalViewController {
         scene.add(node: plane)
         scene.add(node: train)
         
-        let camera = Camara()
+        let camera = Camera()
         camera.position = [0, 1, -3]
         scene.cameras.append(camera)
         

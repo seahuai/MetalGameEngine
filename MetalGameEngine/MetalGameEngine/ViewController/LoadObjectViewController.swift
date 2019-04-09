@@ -33,7 +33,7 @@ class LoadObjectViewController: NormalMetalViewController {
         cube.position = [0, 0, 0]
         scene.add(node: cube)
         
-        let camera = Camara()
+        let camera = Camera()
         camera.position = [0, 0, -6]
         scene.cameras.append(camera)
         

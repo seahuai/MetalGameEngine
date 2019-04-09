@@ -43,7 +43,7 @@ class WaterViewController: NormalMetalViewController {
         
         scene.add(node: plane)
         
-        let camera = Camara()
+        let camera = Camera()
         camera.position = [0, 0, -4]
         camera.rotation = [-0.5, -0.5, 0]
         scene.cameras.append(camera)

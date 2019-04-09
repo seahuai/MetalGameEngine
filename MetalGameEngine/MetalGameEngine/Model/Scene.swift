@@ -15,9 +15,9 @@ class Scene {
     
     var nodes: [Node] = []
     
-    var cameras: [Camara] = []
+    var cameras: [Camera] = []
     var currentCameraIndex = 0
-    var currentCamera: Camara {
+    var currentCamera: Camera {
         return cameras[currentCameraIndex]
     }
     

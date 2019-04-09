@@ -61,7 +61,7 @@ extension PhongRenderer {
         let reflectionPass = Water.reflectionPass(size: drawableSize)
         guard let reflectionEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: reflectionPass.descriptor) else { return }
         reflectionEncoder.setFragmentBytes(scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: Int(BufferIndexLights.rawValue))
-        let reflectionCamera = Camara()
+        let reflectionCamera = Camera()
         reflectionCamera.position.y = -4
 //        reflectionCamera.rotation.x *= -1
         uniforms.viewMatrix = reflectionCamera.viewMatrix

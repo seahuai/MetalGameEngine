@@ -50,7 +50,7 @@ class SkyboxViewController: NormalMetalViewController {
         scene.add(node: train)
         scene.add(node: tree)
         
-        let camera = Camara()
+        let camera = Camera()
         camera.position = [0, 0, -4]
         camera.rotation = [-0.5, -0.5, 0]
         scene.cameras.append(camera)

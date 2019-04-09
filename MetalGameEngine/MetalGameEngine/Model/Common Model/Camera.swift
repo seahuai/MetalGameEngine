@@ -8,10 +8,10 @@
 
 import MetalKit
 
-class Camara: Node {
+class Camera: Node {
     
-    var copy: Camara {
-        let camera = Camara()
+    var copy: Camera {
+        let camera = Camera()
         camera.position = self.position
         camera.rotation = self.position
         camera.scale = self.scale
