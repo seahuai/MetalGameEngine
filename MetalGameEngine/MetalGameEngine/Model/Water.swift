@@ -14,8 +14,8 @@ class Water: Node {
     
     var timer: Float = 0
     
-    private static var refletionPass: RenderPass?
-    private static var refractionPass: RenderPass?
+    static var reflectionPass: RenderPass?
+    static var refractionPass: RenderPass?
     
     private let waterNormalTexture: MTLTexture
     private var underWaterTexture: MTLTexture?
@@ -90,6 +90,8 @@ class Water: Node {
         renderEncoder.setFragmentBytes(&timer, length: MemoryLayout<Float>.size, index: 1)
         
         renderEncoder.setFragmentTexture(waterNormalTexture, index: 0)
+        renderEncoder.setFragmentTexture(reflectionTexture, index: 1)
+        renderEncoder.setFragmentTexture(refractionTexture, index: 2)
         
         for submesh in waterMesh.submeshes {
             renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
@@ -102,12 +104,12 @@ class Water: Node {
 extension Water {
     @discardableResult
     static func reflectionPass(size: CGSize, needUpdate: Bool = false) -> RenderPass {
-        if !needUpdate, let renderPass = Water.refletionPass {
+        if !needUpdate, let renderPass = Water.reflectionPass {
             return renderPass
         }
         
         let renderPass = RenderPass(name: "Reflection", size: size)
-        Water.refletionPass = renderPass
+        Water.reflectionPass = renderPass
         
         return renderPass
     }

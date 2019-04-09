@@ -35,11 +35,21 @@ fragment float4 fragment_water(VertexOut in [[ stage_in ]],
                                constant float4 &waterColor [[ buffer(0) ]],
                                constant float &timer [[ buffer(1) ]],
                                constant FragmentUniforms &fragementUniforms [[ buffer(BufferIndexFragmentUniforms) ]],
-                               texture2d<float> normalTexture) {
+                               texture2d<float> normalTexture [[ texture(0) ]],
+                               texture2d<float> reflectionTexture [[ texture(1) ]],
+                               texture2d<float> refractionTexture [[ texture(2) ]])
+{
     
     constexpr sampler s(filter::linear , address::repeat);
     
     float4 color;
+    
+    float width = reflectionTexture.get_width();
+    float height = reflectionTexture.get_height();
+    float x = in.position.x / width;
+    float y = in.position.y / height;
+    float2 reflectionCood = float2(x, 1 - y);
+    float2 refractionCood = float2(x, y);
     
     float2 uv = in.uv * 2.0;
     float waveStrength = 0.1;
@@ -47,10 +57,11 @@ fragment float4 fragment_water(VertexOut in [[ stage_in ]],
     float2 rippleY = float2(-uv.x, uv.y) + timer;
     float2 ripple = ((normalTexture.sample(s, rippleX).rg * 2.0 - 1.0) + (normalTexture.sample(s, rippleY).rg * 2.0 - 1.0)) * waveStrength;
     
+    reflectionCood += ripple;
     
-    float4 testColor = normalTexture.sample(s, ripple);
-    color = mix(testColor, waterColor, 0.3);
+    float4 reflection = reflectionTexture.sample(s, reflectionCood);
     
+    color = mix(reflection, waterColor, 0.3);
     
     return color;
 }

@@ -51,7 +51,7 @@ class WaterViewController: NormalMetalViewController {
         scene.lights.append(ambientLight)
         scene.lights.append(sunLight)
         
-        let water = Water()
+        let water = Water(size: [5, 5])
         water.position = [0, 0.2, 0]
         scene.add(node: water)
         

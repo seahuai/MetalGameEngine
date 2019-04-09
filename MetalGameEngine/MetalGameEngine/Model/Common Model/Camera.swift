@@ -10,6 +10,14 @@ import MetalKit
 
 class Camara: Node {
     
+    var copy: Camara {
+        let camera = Camara()
+        camera.position = self.position
+        camera.rotation = self.position
+        camera.scale = self.scale
+        return camera
+    }
+    
     var fovDegrees: Float = 70
     var aspect: Float = 1
     var near: Float = 0.001
@@ -43,7 +51,4 @@ class Camara: Node {
     var viewMatrix: float4x4 {
         return isHorizontalRotate ? horizontalRotateViewMatrix : rotateViewMatrix
     }
-    
-    
-    
 }
