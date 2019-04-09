@@ -67,6 +67,11 @@
 		35B1364C223CEE370018ED0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1364B223CEE370018ED0B /* ViewController.swift */; };
 		35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364D223CEE390018ED0B /* Assets.xcassets */; };
 		35B13651223CEE390018ED0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364F223CEE390018ED0B /* Main.storyboard */; };
+		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
+		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
+		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
+		35EB8419225C76050088B3F9 /* Water.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8418225C76050088B3F9 /* Water.metal */; };
+		35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841B225C7E660088B3F9 /* WaterViewController.swift */; };
 		35F29EA722433BB000020395 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA522433BB000020395 /* chest.obj */; };
 		35F29EA822433BB000020395 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA622433BB000020395 /* chest.mtl */; };
 /* End PBXBuildFile section */
@@ -139,6 +144,11 @@
 		35B13650223CEE390018ED0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35B13652223CEE390018ED0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B13653223CEE390018ED0B /* MetalGameEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalGameEngine.entitlements; sourceTree = "<group>"; };
+		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
+		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
+		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		35EB8418225C76050088B3F9 /* Water.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Water.metal; sourceTree = "<group>"; };
+		35EB841B225C7E660088B3F9 /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
 		35F29EA522433BB000020395 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.obj; sourceTree = "<group>"; };
 		35F29EA622433BB000020395 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.mtl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +171,7 @@
 				3506145C2240CD9900BFB42E /* Scene.swift */,
 				352C3F6122476EE700053171 /* Skybox.swift */,
 				3553B399224DAE7A0060229F /* Terrain.swift */,
+				35EB8411225C41DF0088B3F9 /* Water.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 		350614562240B7C500BFB42E /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				35EB8417225C75FD0088B3F9 /* Water */,
 				353FAF192254E5CA0012F85C /* Debug */,
 				3553B39B224DBC800060229F /* Tessellation */,
 				3590B934224B1EE000CDD1AF /* Gbuffer */,
@@ -206,6 +218,7 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				35EB8413225C42DB0088B3F9 /* normal-water.png */,
 				3525CE9D2251F86E000E2A4C /* Grass */,
 				3525CE9C2251F85F000E2A4C /* PBR Model */,
 				3525CE9B2251F856000E2A4C /* Tree */,
@@ -318,6 +331,7 @@
 				352C3F5722467E0500053171 /* MTLRenderPassDescriptorExtension.swift */,
 				3590B939224BAEBA00CDD1AF /* Utility.swift */,
 				353FAF172254E5840012F85C /* Debug.swift */,
+				35EB8415225C72010088B3F9 /* Geometry.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -363,6 +377,7 @@
 				352184E9224A60250006D5BA /* MutipleLightViewController.swift */,
 				3553B39E224DEEE10060229F /* TerrainViewController.swift */,
 				3525CE972251F66A000E2A4C /* InstanceViewController.swift */,
+				35EB841B225C7E660088B3F9 /* WaterViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -438,6 +453,14 @@
 			path = MetalGameEngine;
 			sourceTree = "<group>";
 		};
+		35EB8417225C75FD0088B3F9 /* Water */ = {
+			isa = PBXGroup;
+			children = (
+				35EB8418225C76050088B3F9 /* Water.metal */,
+			);
+			path = Water;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,6 +531,7 @@
 				3525CE9F2251F876000E2A4C /* grass01.mtl in Resources */,
 				35F29EA822433BB000020395 /* chest.mtl in Resources */,
 				35242E9F224236EA00B8F91A /* Textures.xcassets in Resources */,
+				35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */,
 				358EDBAE2244D58B00C01902 /* plane.mtl in Resources */,
 				3525CEA12251F87C000E2A4C /* grass01.obj in Resources */,
 				358EDBAF2244D58B00C01902 /* train.mtl in Resources */,
@@ -531,9 +555,12 @@
 				3506145B2240C46200BFB42E /* Submesh.swift in Sources */,
 				35B1364C223CEE370018ED0B /* ViewController.swift in Sources */,
 				3525CE962251E748000E2A4C /* Transform.swift in Sources */,
+				35EB8412225C41DF0088B3F9 /* Water.swift in Sources */,
 				352C3F5822467E0500053171 /* MTLRenderPassDescriptorExtension.swift in Sources */,
+				35EB8419225C76050088B3F9 /* Water.metal in Sources */,
 				352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */,
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
+				35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */,
 				353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,
 				352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */,
@@ -550,6 +577,7 @@
 				35242E98224212E400B8F91A /* Prop.swift in Sources */,
 				350614592240C10600BFB42E /* Model.swift in Sources */,
 				3553B39A224DAE7A0060229F /* Terrain.swift in Sources */,
+				35EB8416225C72010088B3F9 /* Geometry.swift in Sources */,
 				353F913B223F3B730071597B /* PBRRenderer.swift in Sources */,
 				352C3F51224676BD00053171 /* Shadow.metal in Sources */,
 				35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */,

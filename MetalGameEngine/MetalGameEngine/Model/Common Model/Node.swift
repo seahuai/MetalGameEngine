@@ -62,3 +62,9 @@ class Node {
     }
     
 }
+
+extension Node: Equatable {
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}

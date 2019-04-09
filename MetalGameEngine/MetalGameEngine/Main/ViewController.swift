@@ -36,7 +36,8 @@ class ViewController: NSViewController {
         Data(title: "多光照渲染", vcClass: MutipleLightViewController.self),
         Data(title: "单光照情况下阴影", vcClass: ShadowViewController.self),
         Data(title: "地形加载", vcClass: TerrainViewController.self),
-        Data(title: "实例化", vcClass: InstanceViewController.self)
+        Data(title: "实例化", vcClass: InstanceViewController.self),
+        Data(title: "水波纹", vcClass: WaterViewController.self)
     ]
     
     

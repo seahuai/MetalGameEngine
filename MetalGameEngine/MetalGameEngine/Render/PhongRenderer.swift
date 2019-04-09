@@ -38,6 +38,8 @@ class PhongRenderer: Renderer {
         
         scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
         
+        scene.renderWaters(renderEncoder: renderEncoder, reflectionTexture: nil, refractionTexture: nil)
+        
         Debug.debugLight(in: scene, with: renderEncoder)
         
         renderEncoder.endEncoding()

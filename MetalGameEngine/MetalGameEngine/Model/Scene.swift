@@ -13,6 +13,8 @@ class Scene {
     
     var shadowTexture: MTLTexture?
     
+    var nodes: [Node] = []
+    
     var cameras: [Camara] = []
     var currentCameraIndex = 0
     var currentCamera: Camara {
@@ -28,6 +30,8 @@ class Scene {
     
     private var models: [Model] = []
     var modelsChangeNotificationBlock: (([Model]) -> ())?
+    
+    private var waters: [Water] = []
     
     var skybox: Skybox?
     
@@ -53,6 +57,20 @@ class Scene {
             return Prop(model: $0, type: type)
         }
         return props
+    }
+}
+
+extension Scene {
+    func renderWaters(renderEncoder: MTLRenderCommandEncoder, reflectionTexture: MTLTexture?, refractionTexture: MTLTexture?) {
+        guard !waters.isEmpty else { return }
+        
+        for water in waters {
+            water.render(renderEncoder: renderEncoder,
+                         uniforms: self.uniforms,
+                         fragmentUniforms: self.fragmentUniforms,
+                         reflectionTexture: reflectionTexture,
+                         refractionTexture: refractionTexture)
+        }
     }
 }
 
@@ -89,7 +107,6 @@ extension Scene {
 
 extension Scene {
     func add(node: Node) {
-        var nodes: [Node] = []
         nodes.append(node)
         nodes.append(contentsOf: node.children)
         
@@ -98,26 +115,30 @@ extension Scene {
                 models.append(model)
                 modelsChangeNotificationBlock?(models)
             }
+            
+            if let water = _node as? Water {
+                waters.append(water)
+            }
         }
     }
     
     func remove(node: Node) {
-        var nodes: [Node] = []
-        nodes.append(node)
-        nodes.append(contentsOf: node.children)
-        
-        for _node in nodes {
+        if let index = nodes.index(of: node) {
+            nodes.remove(at: index)
             
-            if let model = _node as? Model {
-                let identifer = model.identifier
-                if let index = (models.index { $0.identifier == identifer }) {
-                    models.remove(at: index)
-                    modelsChangeNotificationBlock?(models)
-                    break
-                }
+            if let model = node as? Model {
+                guard let index = models.index(of: model) else { return }
+                models.remove(at: index)
+                modelsChangeNotificationBlock?(models)
+            }
+            
+            if let water = node as? Water {
+                guard let index = waters.index(of: water) else { return }
+                waters.remove(at: index)
             }
         }
     }
+
     
 }
 
