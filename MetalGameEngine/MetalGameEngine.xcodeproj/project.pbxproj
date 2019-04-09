@@ -72,6 +72,8 @@
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
 		35EB8419225C76050088B3F9 /* Water.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8418225C76050088B3F9 /* Water.metal */; };
 		35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841B225C7E660088B3F9 /* WaterViewController.swift */; };
+		35EB841E225C8DB20088B3F9 /* underwater.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB841D225C8DB20088B3F9 /* underwater.png */; };
+		35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841F225C92BE0088B3F9 /* RenderPass.swift */; };
 		35F29EA722433BB000020395 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA522433BB000020395 /* chest.obj */; };
 		35F29EA822433BB000020395 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA622433BB000020395 /* chest.mtl */; };
 /* End PBXBuildFile section */
@@ -149,6 +151,8 @@
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		35EB8418225C76050088B3F9 /* Water.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Water.metal; sourceTree = "<group>"; };
 		35EB841B225C7E660088B3F9 /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
+		35EB841D225C8DB20088B3F9 /* underwater.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underwater.png; sourceTree = "<group>"; };
+		35EB841F225C92BE0088B3F9 /* RenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPass.swift; sourceTree = "<group>"; };
 		35F29EA522433BB000020395 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.obj; sourceTree = "<group>"; };
 		35F29EA622433BB000020395 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.mtl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +222,7 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				35EB841D225C8DB20088B3F9 /* underwater.png */,
 				35EB8413225C42DB0088B3F9 /* normal-water.png */,
 				3525CE9D2251F86E000E2A4C /* Grass */,
 				3525CE9C2251F85F000E2A4C /* PBR Model */,
@@ -332,6 +337,7 @@
 				3590B939224BAEBA00CDD1AF /* Utility.swift */,
 				353FAF172254E5840012F85C /* Debug.swift */,
 				35EB8415225C72010088B3F9 /* Geometry.swift */,
+				35EB841F225C92BE0088B3F9 /* RenderPass.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				358EDBAF2244D58B00C01902 /* train.mtl in Resources */,
 				35F29EA722433BB000020395 /* chest.obj in Resources */,
 				3525CEA82251FB04000E2A4C /* License.txt in Resources */,
+				35EB841E225C8DB20088B3F9 /* underwater.png in Resources */,
 				35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */,
 				35B13651223CEE390018ED0B /* Main.storyboard in Resources */,
 				358EDBB02244D58B00C01902 /* plane.obj in Resources */,
@@ -594,6 +601,7 @@
 				3525CE982251F66A000E2A4C /* InstanceViewController.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,
 				356428322241E58B0000A5BB /* Texture.swift in Sources */,
+				35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */,
 				3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */,
 				350614552240B63C00BFB42E /* Camera.swift in Sources */,
 			);

@@ -10,25 +10,25 @@ import MetalKit
 
 class Water: Node {
     
-    let waterNormalTexture: MTLTexture
+    var color = float4(0.0, 0.3, 0.5, 1.0)
     
+    var timer: Float = 0
+    
+    private static var refletionPass: RenderPass?
+    private static var refractionPass: RenderPass?
+    
+    private let waterNormalTexture: MTLTexture
+    private var underWaterTexture: MTLTexture?
     private var pipelineState: MTLRenderPipelineState!
-    
     private let waterMesh: MTKMesh!
     
-//    private var depthStencilState: MTLDepthStencilState!
-//
-//    private var refletionTexture: MTLTexture!
-//    private var reflectionDepthTexture: MTLTexture!
-//    private var refractionTexture: MTLTexture!
-//    private var refractionDepthTexture: MTLTexture!
-//
-//    private var reflectionPassDescripator: MTLRenderPassDescriptor!
-//    private var refractionPassDescripator: MTLRenderPassDescriptor!
-    
-    init(normalTextureName: String? = nil, size: float2 = [100, 100]) {
-        let textureName = normalTextureName ?? "normal-water"
-        guard let waterNormalTexture = Texture.loadTexture(imageNamed: textureName) else {
+    init(normalTextureName: String? = nil,
+         underWaterTextureName: String? = nil,
+         size: float2 = [100, 100]) {
+        
+        let normalTextureName = normalTextureName ?? "normal-water"
+        
+        guard let waterNormalTexture = Texture.loadTexture(imageNamed: normalTextureName) else {
             fatalError()
         }
         
@@ -38,13 +38,12 @@ class Water: Node {
 
         super.init()
         
+        if let underWaterTextureName = underWaterTextureName {
+            let texture = Texture.loadTexture(imageNamed: underWaterTextureName)
+            self.underWaterTexture = texture
+        }
+        
         buildRenderPipelineState()
-//
-//        buildDepthStencilState()
-//
-//        initializeTextures(drawableSize)
-//
-//        initializePassDescripator()
     }
     
     private func buildRenderPipelineState() {
@@ -54,6 +53,12 @@ class Water: Node {
         descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(waterMesh.vertexDescriptor)
         descriptor.depthAttachmentPixelFormat = .depth32Float
         descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        
+        descriptor.colorAttachments[0].isBlendingEnabled = true
+        descriptor.colorAttachments[0].rgbBlendOperation = .add
+        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        
         do {
             pipelineState = try Renderer.device.makeRenderPipelineState(descriptor: descriptor)
         } catch {
@@ -69,6 +74,8 @@ class Water: Node {
         
         renderEncoder.pushDebugGroup("Water")
         
+        timer += 0.001
+        
         renderEncoder.setRenderPipelineState(pipelineState)
         
         renderEncoder.setVertexBuffer(waterMesh.vertexBuffers[0].buffer, offset: 0, index: 0)
@@ -79,46 +86,42 @@ class Water: Node {
         
         var _fragmentUniforms = fragmentUniforms
         renderEncoder.setFragmentBytes(&_fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(BufferIndexFragmentUniforms.rawValue))
+        renderEncoder.setFragmentBytes(&color, length: MemoryLayout<float4>.stride, index: 0)
+        renderEncoder.setFragmentBytes(&timer, length: MemoryLayout<Float>.size, index: 1)
+        
+        renderEncoder.setFragmentTexture(waterNormalTexture, index: 0)
         
         for submesh in waterMesh.submeshes {
             renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
         }
         
         renderEncoder.popDebugGroup()
-        
     }
-
-}
-
-private extension Water {
-    
-//    func initializeTextures(_ size: CGSize) {
-//        refletionTexture = Texture.newTexture(pixelFormat: .bgra8Unorm, size: size, label: "Refletion")
-//        reflectionDepthTexture = Texture.newTexture(pixelFormat: .depth32Float, size: size, label: "Refletion Depth")
-//
-//        refractionTexture = Texture.newTexture(pixelFormat: .bgra8Unorm, size: size, label: "Refraction")
-//        refractionTexture = Texture.newTexture(pixelFormat: .depth32Float, size: size, label: "Refraction Depth")
-//    }
-//
-//    func initializePassDescripator() {
-//        reflectionPassDescripator = MTLRenderPassDescriptor()
-//        reflectionPassDescripator.setupColorAttachment(index: 0, texture: refletionTexture)
-//        reflectionPassDescripator.setupDepthAttachment(with: reflectionDepthTexture)
-//
-//        refractionPassDescripator = MTLRenderPassDescriptor()
-//        refractionPassDescripator.setupColorAttachment(index: 0, texture: refractionTexture)
-//        refractionPassDescripator.setupDepthAttachment(with: refractionDepthTexture)
-//    }
-//
-//    func buildDepthStencilState() {
-//        let descriptor = MTLDepthStencilDescriptor()
-//        descriptor.depthCompareFunction = .less
-//        descriptor.isDepthWriteEnabled = true
-//        depthStencilState = Renderer.device.makeDepthStencilState(descriptor: descriptor)!
-//    }
 }
 
 extension Water {
+    @discardableResult
+    static func reflectionPass(size: CGSize, needUpdate: Bool = false) -> RenderPass {
+        if !needUpdate, let renderPass = Water.refletionPass {
+            return renderPass
+        }
+        
+        let renderPass = RenderPass(name: "Reflection", size: size)
+        Water.refletionPass = renderPass
+        
+        return renderPass
+    }
     
-
+    @discardableResult
+    static func refractionPass(size: CGSize, needUpdate: Bool = false) -> RenderPass {
+        if !needUpdate, let renderPass = Water.refractionPass {
+            return renderPass
+        }
+        
+        let renderPass = RenderPass(name: "Refraction", size: size)
+        Water.refractionPass = renderPass
+        
+        return renderPass
+    }
 }
+

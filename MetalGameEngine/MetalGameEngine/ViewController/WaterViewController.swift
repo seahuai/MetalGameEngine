@@ -38,19 +38,10 @@ class WaterViewController: NormalMetalViewController {
         let skybox = Skybox(textureName: "redSky")
         scene.skybox = skybox
         
-        let plane = Model(name: "plane")!
-        plane.scale = [8, 8, 8]
+        let plane = Model(name: "large-plane")!
         plane.tiling = 16
         
-        let train = Model(name: "train")!
-        train.position = [0, 0, -1]
-        
-        let tree = Model(name: "treefir")!
-        tree.position = [0, 0, 1]
-        
         scene.add(node: plane)
-//        scene.add(node: train)
-//        scene.add(node: tree)
         
         let camera = Camara()
         camera.position = [0, 0, -4]
@@ -61,6 +52,7 @@ class WaterViewController: NormalMetalViewController {
         scene.lights.append(sunLight)
         
         let water = Water()
+        water.position = [0, 0.2, 0]
         scene.add(node: water)
         
         self.renderer = PhongRenderer(metalView: self.mtkView, scene: scene)

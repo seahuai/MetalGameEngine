@@ -20,6 +20,9 @@ class PhongRenderer: Renderer {
         scene.sceneSizeWillChange(size)
         
         props = scene.props(type: .Phong)
+        
+        Water.reflectionPass(size: size, needUpdate: true)
+        Water.refractionPass(size: size, needUpdate: true)
     }
     
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
