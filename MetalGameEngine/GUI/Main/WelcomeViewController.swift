@@ -10,6 +10,8 @@ import Cocoa
 
 class WelcomeViewController: NSViewController {
     
+    var creatNewSceneViewController = CreatNewSceneViewController()
+    
     struct RowData {
         var title: String
         var lastModifiedDate: String
@@ -18,8 +20,7 @@ class WelcomeViewController: NSViewController {
     var rowDatas: [RowData] = []
     
     @IBAction func newSceneAction(_ sender: NSButton) {
-        let vc = CreatNewSceneViewController()
-        self.presentAsModalWindow(vc)
+        self.presentAsModalWindow(creatNewSceneViewController)
     }
     
     @IBOutlet weak var historyTableView: NSTableView! {
@@ -33,6 +34,13 @@ class WelcomeViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        creatNewSceneViewController.delegete = self
+    }
+}
+
+extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
+    func creatNewSceneViewController(viewController: CreatNewSceneViewController, didCreatScene name: String, renderType: RenderType) {
+        
     }
 }
 

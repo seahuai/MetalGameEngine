@@ -8,11 +8,21 @@
 
 import Cocoa
 
+protocol CreatNewSceneViewControllerDelegate: class {
+    func creatNewSceneViewController(viewController: CreatNewSceneViewController,
+                                     didCreatScene name: String,
+                                     renderType: RenderType)
+}
+
 class CreatNewSceneViewController: NSViewController {
     
-    var shaderTypeIndex = 0
+    weak var delegete: CreatNewSceneViewControllerDelegate?
     
-    var shaders = ["选择", "Rasterization", "Ray Tracing", "Deffered Rendering"]
+    private var shaderTypeIndex = 0
+    
+    private var renderType: RenderType = .unknown
+    
+    private var shaders = ["选择", "Rasterization", "Ray Tracing", "Deffered Rendering"]
 
     @IBOutlet weak var sceneNameTextField: NSTextField! {
         didSet {
@@ -28,21 +38,7 @@ class CreatNewSceneViewController: NSViewController {
     
     @IBAction func done(_ sender: NSButton) {
         
-        if shaderTypeIndex == 0 {
-            let error: InvaildError = .inputInvaildError
-            let alert = NSAlert(error: error)
-            alert.messageText = "场景信息不完整"
-            alert.informativeText = "未选择着色器类型"
-            alert.runModal()
-        }
-        
-        if sceneNameTextField.stringValue.isEmpty {
-            let error: InvaildError = .inputInvaildError
-            let alert = NSAlert(error: error)
-            alert.messageText = "场景信息不完整"
-            alert.informativeText = "场景名称不能为空"
-            alert.runModal()
-        }
+        delegete?.creatNewSceneViewController(viewController: self, didCreatScene: self.sceneNameTextField.stringValue, renderType: renderType)
         
     }
     
@@ -52,6 +48,9 @@ class CreatNewSceneViewController: NSViewController {
     
     @IBAction func selectShaderType(_ sender: NSPopUpButton) {
         shaderTypeIndex = sender.indexOfSelectedItem
+        if shaderTypeIndex == 1 { renderType = .rasterization}
+        if shaderTypeIndex == 2 { renderType = .rayTracing }
+        if shaderTypeIndex == 3 { renderType = .deffered }
         sender.title = shaders[shaderTypeIndex]
         reloadDoneButtonState()
     }

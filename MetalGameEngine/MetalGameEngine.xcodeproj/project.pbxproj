@@ -22,6 +22,7 @@
 		350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9453225DD9D3003B51E3 /* CreatNewSceneViewController.swift */; };
 		350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350E9454225DD9D3003B51E3 /* CreatNewSceneViewController.xib */; };
 		350E9459225DE129003B51E3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9458225DE129003B51E3 /* Error.swift */; };
+		350E945B225DE6B7003B51E3 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E945A225DE6B7003B51E3 /* Enum.swift */; };
 		352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352184E9224A60250006D5BA /* MutipleLightViewController.swift */; };
 		35242E98224212E400B8F91A /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
 		35242E9D2242312F00B8F91A /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
@@ -106,6 +107,7 @@
 		350E9453225DD9D3003B51E3 /* CreatNewSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatNewSceneViewController.swift; sourceTree = "<group>"; };
 		350E9454225DD9D3003B51E3 /* CreatNewSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatNewSceneViewController.xib; sourceTree = "<group>"; };
 		350E9458225DE129003B51E3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		350E945A225DE6B7003B51E3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		35242E97224212E400B8F91A /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
 		35242E9C2242312F00B8F91A /* Main.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Main.metal; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				350E9458225DE129003B51E3 /* Error.swift */,
+				350E945A225DE6B7003B51E3 /* Enum.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 			files = (
 				350E9440225D96C2003B51E3 /* WelcomeViewController.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
+				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
 				350E9459225DE129003B51E3 /* Error.swift in Sources */,
 				350E943E225D96C2003B51E3 /* AppDelegate.swift in Sources */,
