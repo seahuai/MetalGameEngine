@@ -10,7 +10,7 @@ import MetalKit
 
 class Water: Node {
     
-    var color = float4(0.0, 0.3, 0.5, 1.0)
+    var color = float4(0.0, 0.3, 0.5, 0.1)
     
     var timer: Float = 0
     
@@ -75,6 +75,11 @@ class Water: Node {
         renderEncoder.pushDebugGroup("Water")
         
         timer += 0.001
+        
+        var refractionTexture = refractionTexture
+        if let underWaterTexture = self.underWaterTexture {
+            refractionTexture = underWaterTexture
+        }
         
         renderEncoder.setRenderPipelineState(pipelineState)
         

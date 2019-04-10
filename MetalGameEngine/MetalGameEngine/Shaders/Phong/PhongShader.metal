@@ -12,7 +12,7 @@
 
 using namespace metal;
 
-fragment float4 fragment_phong(VertexOut in [[ stage_in ]],
+fragment float4 fragment_phong(FragmentIn in [[ stage_in ]],
                                constant Light *lights [[ buffer(BufferIndexLights) ]],
                                constant FragmentUniforms &fragmentUniforms [[ buffer(BufferIndexFragmentUniforms) ]],
                                constant Material &material [[ buffer(BufferIndexMaterials) ]],

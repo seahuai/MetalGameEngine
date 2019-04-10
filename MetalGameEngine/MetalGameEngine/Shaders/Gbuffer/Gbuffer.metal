@@ -17,7 +17,7 @@ struct GbufferOut {
     float4 position [[ color(2) ]];
 };
 
-fragment GbufferOut fragment_gbuffer(VertexOut in [[ stage_in ]],
+fragment GbufferOut fragment_gbuffer(FragmentIn in [[ stage_in ]],
                                      constant Material &material [[ buffer(BufferIndexMaterials) ]],
                                      constant FragmentUniforms &fragmentUniforms [[ buffer(BufferIndexFragmentUniforms) ]],
                                      texture2d<float> baseColorTexture [[ texture(BaseColorTexture), function_constant(hasColorTexture) ]],

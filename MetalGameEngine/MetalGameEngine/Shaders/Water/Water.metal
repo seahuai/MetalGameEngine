@@ -51,17 +51,25 @@ fragment float4 fragment_water(VertexOut in [[ stage_in ]],
     float2 reflectionCood = float2(x, 1 - y);
     float2 refractionCood = float2(x, y);
     
-    float2 uv = in.uv * 2.0;
+    float tiling = 1.0;
+    float2 uv = in.uv * tiling;
     float waveStrength = 0.1;
     float2 rippleX = float2(uv.x + timer, uv.y);
     float2 rippleY = float2(-uv.x, uv.y) + timer;
     float2 ripple = ((normalTexture.sample(s, rippleX).rg * 2.0 - 1.0) + (normalTexture.sample(s, rippleY).rg * 2.0 - 1.0)) * waveStrength;
     
     reflectionCood += ripple;
+    refractionCood += ripple;
+    
+    float3 toCamera = normalize(fragementUniforms.cameraPosition - in.worldPosition);
+    float mixRatio = dot(toCamera, float3(0, 1, 0));
     
     float4 reflection = reflectionTexture.sample(s, reflectionCood);
+    float4 refraction = refractionTexture.sample(s, refractionCood);
     
-    color = mix(reflection, waterColor, 0.3);
+    color = mix(reflection, refraction, mixRatio);
+    
+    color = mix(color, waterColor, 0.3);
     
     return color;
 }

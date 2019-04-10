@@ -29,16 +29,18 @@ class PhongRenderer: Renderer {
         
         renderWaterTextures(with: commandBuffer)
         
+        var uniforms = scene.uniforms
+        
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
             return
         }
-        
+
         renderEncoder.setDepthStencilState(self.depthStencilState)
-        
+
         renderEncoder.setFragmentBytes(scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: Int(BufferIndexLights.rawValue))
-        
+
         for prop in props {
-            prop.render(renderEncoder: renderEncoder, uniforms: scene.uniforms, fragmentUniforms: scene.fragmentUniforms)
+            prop.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
         }
         
         scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
@@ -46,7 +48,7 @@ class PhongRenderer: Renderer {
         renderWater(in: renderEncoder)
         
         Debug.debugLight(in: scene, with: renderEncoder)
-        
+
         renderEncoder.endEncoding()
     }
 }
@@ -61,20 +63,22 @@ extension PhongRenderer {
         let reflectionPass = Water.reflectionPass(size: drawableSize)
         guard let reflectionEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: reflectionPass.descriptor) else { return }
         reflectionEncoder.setFragmentBytes(scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: Int(BufferIndexLights.rawValue))
-        let reflectionCamera = Camera()
-        reflectionCamera.position.y = -4
-//        reflectionCamera.rotation.x *= -1
+        let reflectionCamera = scene.currentCamera.copy;
+        reflectionCamera.position.y *= -1;
+        reflectionCamera.rotation = [0, 0, 0];
+        reflectionCamera.rotation.x = -scene.currentCamera.rotation.x
+
+        uniforms.clipPlane = [0, 1, 0, 0.1]
         uniforms.viewMatrix = reflectionCamera.viewMatrix
         renderProps(in: reflectionEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
         scene.skybox?.render(renderEncoder: reflectionEncoder, uniforms: uniforms)
-        
         reflectionEncoder.endEncoding()
     }
     
     func renderWater(in renderEncoder: MTLRenderCommandEncoder) {
         scene.renderWaters(renderEncoder: renderEncoder,
                            reflectionTexture: Water.reflectionPass?.texture,
-                           refractionTexture: Water.refractionPass?.texture)
+                           refractionTexture: nil)
     }
     
     private func renderProps(in renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms, fragmentUniforms: FragmentUniforms) {

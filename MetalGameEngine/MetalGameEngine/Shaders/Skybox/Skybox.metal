@@ -9,6 +9,8 @@
 #include <metal_stdlib>
 using namespace metal;
 
+#import "../Header/Common.h"
+
 
 struct VertexIn {
     float4 position [[ attribute(0) ]];
@@ -17,18 +19,25 @@ struct VertexIn {
 struct VertexOut {
     float4 position [[ position ]];
     float3 textureCood;
+    float clipDistance [[ clip_distance ]] [1];
+};
+
+struct FragmentIn {
+    float4 position [[ position ]];
+    float3 textureCood;
 };
 
 vertex VertexOut vertex_skybox(VertexIn in [[ stage_in ]],
-                               constant float4x4 &matrix [[ buffer(1) ]])
+                               constant Uniforms &uniforms [[ buffer(BufferIndexUniforms) ]])
 {
     VertexOut out;
-    out.position = (matrix * in.position).xyww;
+    out.position = (uniforms.projectionMatrix * uniforms.viewMatrix * in.position).xyww;
     out.textureCood = in.position.xyz;
+    out.clipDistance[0] = dot(uniforms.clipPlane, (uniforms.modelMatrix * in.position));
     return out;
 }
 
-fragment float4 fragment_skybox(VertexOut in [[ stage_in ]],
+fragment float4 fragment_skybox(FragmentIn in [[ stage_in ]],
                                 texturecube<float> cubeTexture [[ texture(0) ]])
 {
     constexpr sampler s(filter::linear);

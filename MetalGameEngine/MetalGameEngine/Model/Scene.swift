@@ -41,6 +41,7 @@ class Scene {
         var uniforms = Uniforms()
         uniforms.viewMatrix = currentCamera.viewMatrix
         uniforms.projectionMatrix = currentCamera.projectionMatrix
+        uniforms.clipPlane = [0, -1, 0, 100];
         return uniforms
     }
     

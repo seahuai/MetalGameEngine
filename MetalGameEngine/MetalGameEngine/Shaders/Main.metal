@@ -28,5 +28,6 @@ vertex VertexOut vertex_main(const VertexIn in [[ stage_in ]],
     out.worldBitangent = instanceUniforms.normalMatrix * in.bitangent;
     out.uv = in.uv;
     out.shadowPosition = uniforms.shadowMatrix * instanceUniforms.modelMatrix * in.position;
+    out.clipDistance[0] = dot(uniforms.clipPlane, (instanceUniforms.modelMatrix * in.position));
     return out;
 }

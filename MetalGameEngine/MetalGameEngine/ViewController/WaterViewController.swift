@@ -44,15 +44,15 @@ class WaterViewController: NormalMetalViewController {
         scene.add(node: plane)
         
         let camera = Camera()
-        camera.position = [0, 0, -4]
+        camera.position = [0, 2, -3]
         camera.rotation = [-0.5, -0.5, 0]
         scene.cameras.append(camera)
         
         scene.lights.append(ambientLight)
         scene.lights.append(sunLight)
         
-        let water = Water(size: [5, 5])
-        water.position = [0, 0.2, 0]
+        let water = Water(underWaterTextureName: "underwater", size: [10, 10])
+        water.position = [0, 0.2, 3]
         scene.add(node: water)
         
         self.renderer = PhongRenderer(metalView: self.mtkView, scene: scene)

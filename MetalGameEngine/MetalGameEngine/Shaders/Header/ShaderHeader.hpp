@@ -34,6 +34,17 @@ struct VertexOut {
     float3 worldTangent;
     float3 worldBitangent;
     float4 shadowPosition;
+    float clipDistance [[ clip_distance ]] [1];
+};
+
+struct FragmentIn {
+    float4 position [[ position ]];
+    float3 worldPosition;
+    float3 worldNormal;
+    float2 uv;
+    float3 worldTangent;
+    float3 worldBitangent;
+    float4 shadowPosition;
 };
 
 #endif /* ShaderHeader_hpp */

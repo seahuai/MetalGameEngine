@@ -13,7 +13,7 @@ class Camera: Node {
     var copy: Camera {
         let camera = Camera()
         camera.position = self.position
-        camera.rotation = self.position
+        camera.rotation = self.rotation
         camera.scale = self.scale
         return camera
     }
