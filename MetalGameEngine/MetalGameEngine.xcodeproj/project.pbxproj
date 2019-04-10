@@ -23,6 +23,40 @@
 		350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350E9454225DD9D3003B51E3 /* CreatNewSceneViewController.xib */; };
 		350E9459225DE129003B51E3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9458225DE129003B51E3 /* Error.swift */; };
 		350E945B225DE6B7003B51E3 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E945A225DE6B7003B51E3 /* Enum.swift */; };
+		350E945E225E16F9003B51E3 /* MainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E945D225E16F9003B51E3 /* MainRenderer.swift */; };
+		350E945F225E172C003B51E3 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
+		350E9460225E1738003B51E3 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506145C2240CD9900BFB42E /* Scene.swift */; };
+		350E9461225E1738003B51E3 /* Skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F6122476EE700053171 /* Skybox.swift */; };
+		350E9462225E1738003B51E3 /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B399224DAE7A0060229F /* Terrain.swift */; };
+		350E9463225E1738003B51E3 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
+		350E9464225E173C003B51E3 /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
+		350E9465225E173C003B51E3 /* Submesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506145A2240C46200BFB42E /* Submesh.swift */; };
+		350E9466225E173C003B51E3 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
+		350E9467225E173C003B51E3 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350614522240B53500BFB42E /* Node.swift */; };
+		350E9468225E173C003B51E3 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350614542240B63C00BFB42E /* Camera.swift */; };
+		350E9469225E173C003B51E3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350614582240C10600BFB42E /* Model.swift */; };
+		350E946A225E174A003B51E3 /* Water.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8418225C76050088B3F9 /* Water.metal */; };
+		350E946B225E174D003B51E3 /* DebugLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF1A2254E5DD0012F85C /* DebugLight.metal */; };
+		350E946C225E1751003B51E3 /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39C224DBCCD0060229F /* Tessellation.metal */; };
+		350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3590B935224B218F00CDD1AF /* Gbuffer.metal */; };
+		350E946E225E1754003B51E3 /* GbufferComposition.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3590B937224B21A600CDD1AF /* GbufferComposition.metal */; };
+		350E946F225E175F003B51E3 /* Phong.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3A2246178800053171 /* Phong.metal */; };
+		350E9470225E175F003B51E3 /* PhongShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 358EDBB32244D93200C01902 /* PhongShader.metal */; };
+		350E9471225E1763003B51E3 /* PBR.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F3C2246179000053171 /* PBR.metal */; };
+		350E9472225E1763003B51E3 /* PBRShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 358EDBA322448CFB00C01902 /* PBRShader.metal */; };
+		350E9473225E1765003B51E3 /* Shadow.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F50224676BD00053171 /* Shadow.metal */; };
+		350E9474225E1768003B51E3 /* Skybox.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F64224905EE00053171 /* Skybox.metal */; };
+		350E9475225E1768003B51E3 /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
+		350E9476225E177C003B51E3 /* MTLRenderPassDescriptorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5722467E0500053171 /* MTLRenderPassDescriptorExtension.swift */; };
+		350E9477225E177C003B51E3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B939224BAEBA00CDD1AF /* Utility.swift */; };
+		350E9478225E177C003B51E3 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF172254E5840012F85C /* Debug.swift */; };
+		350E9479225E177C003B51E3 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
+		350E947A225E177C003B51E3 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841F225C92BE0088B3F9 /* RenderPass.swift */; };
+		350E947B225E178A003B51E3 /* Textures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35242E9E224236EA00B8F91A /* Textures.xcassets */; };
+		350E947C225E178E003B51E3 /* underwater.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB841D225C8DB20088B3F9 /* underwater.png */; };
+		350E947D225E178E003B51E3 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
+		350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350614502240B4FA00BFB42E /* MathLibrary.swift */; };
+		350E947F225E17B1003B51E3 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
 		352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352184E9224A60250006D5BA /* MutipleLightViewController.swift */; };
 		35242E98224212E400B8F91A /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
 		35242E9D2242312F00B8F91A /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
@@ -108,6 +142,7 @@
 		350E9454225DD9D3003B51E3 /* CreatNewSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatNewSceneViewController.xib; sourceTree = "<group>"; };
 		350E9458225DE129003B51E3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		350E945A225DE6B7003B51E3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		350E945D225E16F9003B51E3 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		35242E97224212E400B8F91A /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
 		35242E9C2242312F00B8F91A /* Main.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Main.metal; sourceTree = "<group>"; };
@@ -208,16 +243,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3506144E2240B4BD00BFB42E /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				350614502240B4FA00BFB42E /* MathLibrary.swift */,
-				3525CE952251E748000E2A4C /* Transform.swift */,
-			);
-			name = Utility;
-			path = Model/Utility;
-			sourceTree = "<group>";
-		};
 		3506144F2240B4E300BFB42E /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +275,7 @@
 		350E943C225D96C2003B51E3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				350E945C225E16D9003B51E3 /* Renderer */,
 				350E9457225DE11B003B51E3 /* Utility */,
 				350E944E225DD978003B51E3 /* NewScene */,
 				350E944B225DC1F2003B51E3 /* Main */,
@@ -287,6 +313,14 @@
 				350E945A225DE6B7003B51E3 /* Enum.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		350E945C225E16D9003B51E3 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				350E945D225E16F9003B51E3 /* MainRenderer.swift */,
+			);
+			path = Renderer;
 			sourceTree = "<group>";
 		};
 		35242EA02242371A00B8F91A /* File */ = {
@@ -403,6 +437,8 @@
 		352C3F5622467DEC00053171 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				350614502240B4FA00BFB42E /* MathLibrary.swift */,
+				3525CE952251E748000E2A4C /* Transform.swift */,
 				352C3F5722467E0500053171 /* MTLRenderPassDescriptorExtension.swift */,
 				3590B939224BAEBA00CDD1AF /* Utility.swift */,
 				353FAF172254E5840012F85C /* Debug.swift */,
@@ -524,7 +560,6 @@
 				353F9136223F39810071597B /* Render */,
 				350614562240B7C500BFB42E /* Shaders */,
 				3506144C2240B4A800BFB42E /* Model */,
-				3506144E2240B4BD00BFB42E /* Utility */,
 				35B1364D223CEE390018ED0B /* Assets.xcassets */,
 				35242E9E224236EA00B8F91A /* Textures.xcassets */,
 			);
@@ -618,8 +653,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				350E947D225E178E003B51E3 /* normal-water.png in Resources */,
 				350E9442225D96C3003B51E3 /* Assets.xcassets in Resources */,
+				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
+				350E947C225E178E003B51E3 /* underwater.png in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,12 +698,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				350E9474225E1768003B51E3 /* Skybox.metal in Sources */,
+				350E945F225E172C003B51E3 /* Renderer.swift in Sources */,
+				350E9466225E173C003B51E3 /* Texture.swift in Sources */,
+				350E9468225E173C003B51E3 /* Camera.swift in Sources */,
+				350E9473225E1765003B51E3 /* Shadow.metal in Sources */,
+				350E9463225E1738003B51E3 /* Water.swift in Sources */,
+				350E9470225E175F003B51E3 /* PhongShader.metal in Sources */,
+				350E9461225E1738003B51E3 /* Skybox.swift in Sources */,
+				350E9472225E1763003B51E3 /* PBRShader.metal in Sources */,
+				350E9471225E1763003B51E3 /* PBR.metal in Sources */,
+				350E9475225E1768003B51E3 /* Main.metal in Sources */,
+				350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */,
 				350E9440225D96C2003B51E3 /* WelcomeViewController.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
+				350E9478225E177C003B51E3 /* Debug.swift in Sources */,
+				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
+				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
+				350E945E225E16F9003B51E3 /* MainRenderer.swift in Sources */,
+				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
+				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
+				350E9469225E173C003B51E3 /* Model.swift in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
 				350E9459225DE129003B51E3 /* Error.swift in Sources */,
 				350E943E225D96C2003B51E3 /* AppDelegate.swift in Sources */,
+				350E9467225E173C003B51E3 /* Node.swift in Sources */,
+				350E947A225E177C003B51E3 /* RenderPass.swift in Sources */,
+				350E9476225E177C003B51E3 /* MTLRenderPassDescriptorExtension.swift in Sources */,
+				350E946F225E175F003B51E3 /* Phong.metal in Sources */,
+				350E9464225E173C003B51E3 /* Prop.swift in Sources */,
+				350E9465225E173C003B51E3 /* Submesh.swift in Sources */,
+				350E946A225E174A003B51E3 /* Water.metal in Sources */,
+				350E9460225E1738003B51E3 /* Scene.swift in Sources */,
+				350E9477225E177C003B51E3 /* Utility.swift in Sources */,
+				350E9462225E1738003B51E3 /* Terrain.swift in Sources */,
+				350E946C225E1751003B51E3 /* Tessellation.metal in Sources */,
+				350E946E225E1754003B51E3 /* GbufferComposition.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +907,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/zhangsihuai/Code/Repo/MetalGameEngine/MetalGameEngine/MetalGameEngine/Shaders/Header/Common.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -892,6 +962,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/zhangsihuai/Code/Repo/MetalGameEngine/MetalGameEngine/MetalGameEngine/Shaders/Header/Common.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
