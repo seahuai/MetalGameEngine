@@ -38,8 +38,10 @@ class CreatNewSceneViewController: NSViewController {
     
     @IBAction func done(_ sender: NSButton) {
         
-        delegete?.creatNewSceneViewController(viewController: self, didCreatScene: self.sceneNameTextField.stringValue, renderType: renderType)
+        self.dismiss(self)
         
+        delegete?.creatNewSceneViewController(viewController: self, didCreatScene: self.sceneNameTextField.stringValue, renderType: renderType)
+
     }
     
     @IBAction func cancel(_ sender: NSButton) {

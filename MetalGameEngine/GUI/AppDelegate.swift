@@ -11,10 +11,17 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        // 初始化必要的变量
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            fatalError("GPU not available")
+        }
+        
+        Renderer.device = device
+        Renderer.library = device.makeDefaultLibrary()
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

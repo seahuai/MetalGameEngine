@@ -10,6 +10,10 @@ import MetalKit
 
 class MainRenderer: Renderer {
     
+    required init(metalView: MTKView, scene: Scene) {
+        super.init(metalView: metalView, scene: scene)
+    }
+    
 }
 
 

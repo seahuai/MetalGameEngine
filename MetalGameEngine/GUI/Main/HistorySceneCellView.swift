@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class HistorySceneCellView: NSView {
+class HistorySceneCellView: NSTableCellView {
     
     static let identifier = NSUserInterfaceItemIdentifier("HistorySceneCellView")
     
@@ -35,9 +35,6 @@ class HistorySceneCellView: NSView {
         
         separator = CALayer()
         separator.backgroundColor = NSColor.lightGray.withAlphaComponent(0.3).cgColor
-        
-        titleTextField.stringValue = "标题标题标题"
-        lastModifiedTextField.stringValue = "最后修改时间：xxxxxx"
         
         self.addSubview(titleTextField)
         self.addSubview(lastModifiedTextField)

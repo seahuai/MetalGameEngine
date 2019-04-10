@@ -57,6 +57,8 @@
 		350E947D225E178E003B51E3 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350614502240B4FA00BFB42E /* MathLibrary.swift */; };
 		350E947F225E17B1003B51E3 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
+		350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
+		350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
 		352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352184E9224A60250006D5BA /* MutipleLightViewController.swift */; };
 		35242E98224212E400B8F91A /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
 		35242E9D2242312F00B8F91A /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
@@ -143,6 +145,7 @@
 		350E9458225DE129003B51E3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		350E945A225DE6B7003B51E3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		350E945D225E16F9003B51E3 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
+		350E9480225E2CFC003B51E3 /* DateExtextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtextension.swift; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		35242E97224212E400B8F91A /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
 		35242E9C2242312F00B8F91A /* Main.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Main.metal; sourceTree = "<group>"; };
@@ -311,6 +314,7 @@
 			children = (
 				350E9458225DE129003B51E3 /* Error.swift */,
 				350E945A225DE6B7003B51E3 /* Enum.swift */,
+				350E9480225E2CFC003B51E3 /* DateExtextension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -725,6 +729,7 @@
 				350E943E225D96C2003B51E3 /* AppDelegate.swift in Sources */,
 				350E9467225E173C003B51E3 /* Node.swift in Sources */,
 				350E947A225E177C003B51E3 /* RenderPass.swift in Sources */,
+				350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */,
 				350E9476225E177C003B51E3 /* MTLRenderPassDescriptorExtension.swift in Sources */,
 				350E946F225E175F003B51E3 /* Phong.metal in Sources */,
 				350E9464225E173C003B51E3 /* Prop.swift in Sources */,
@@ -771,6 +776,7 @@
 				3553B39A224DAE7A0060229F /* Terrain.swift in Sources */,
 				35EB8416225C72010088B3F9 /* Geometry.swift in Sources */,
 				353F913B223F3B730071597B /* PBRRenderer.swift in Sources */,
+				350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */,
 				352C3F51224676BD00053171 /* Shadow.metal in Sources */,
 				35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */,
 				358EDBB42244D93200C01902 /* PhongShader.metal in Sources */,

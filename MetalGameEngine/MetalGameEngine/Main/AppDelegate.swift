@@ -16,8 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        guard let device = MTLCreateSystemDefaultDevice(),
-            let commandQueue = device.makeCommandQueue() else {
+        guard let device = MTLCreateSystemDefaultDevice() else {
                 fatalError("GPU not available")
         }
         

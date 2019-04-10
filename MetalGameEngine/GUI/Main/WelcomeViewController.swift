@@ -14,10 +14,17 @@ class WelcomeViewController: NSViewController {
     
     struct RowData {
         var title: String
-        var lastModifiedDate: String
+        var lastModifiedDateText: String
+        var scene: Scene?
+        var renderType: RenderType
     }
     
-    var rowDatas: [RowData] = []
+    var rowDatas: [RowData] = [] {
+        didSet {
+            historyTableView.reloadData()
+            historyTableView.needsDisplay = true
+        }
+    }
     
     @IBAction func newSceneAction(_ sender: NSButton) {
         self.presentAsModalWindow(creatNewSceneViewController)
@@ -28,9 +35,10 @@ class WelcomeViewController: NSViewController {
             self.historyTableView.dataSource = self
             self.historyTableView.delegate = self
             self.historyTableView.rowHeight = 44
+            self.historyTableView.doubleAction = #selector(tableViewDoubleClickRow(tableView:))
+            self.historyTableView.tableColumns.first?.width = self.historyTableView.bounds.width
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +48,25 @@ class WelcomeViewController: NSViewController {
 
 extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
     func creatNewSceneViewController(viewController: CreatNewSceneViewController, didCreatScene name: String, renderType: RenderType) {
-        
+        let date = Date()
+        let dateString = date.yyyyMMdd() + " " + date.HHmm()
+        let scene = Scene()
+        let data = RowData(title: name, lastModifiedDateText: dateString, scene: scene, renderType: renderType)
+        rowDatas.append(data)
     }
+ 
 }
 
 extension WelcomeViewController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 10
+        return rowDatas.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        guard let column = tableColumn else { return nil }
+        guard let column = tableColumn,
+            column.identifier.rawValue == "HistoryDataColumn" else { return nil }
         
-        column.width = tableView.bounds.width
         column.title = "场景"
         
         var cell = tableView.makeView(withIdentifier: HistorySceneCellView.identifier, owner: nil) as? HistorySceneCellView
@@ -62,7 +75,24 @@ extension WelcomeViewController: NSTableViewDataSource, NSTableViewDelegate {
             cell?.identifier = HistorySceneCellView.identifier
         }
         
+        let rowData = rowDatas[row]
+        cell?.titleTextField.stringValue = rowData.title
+        cell?.lastModifiedTextField.stringValue = rowData.lastModifiedDateText
+        
         return cell
+    }
+    
+    @objc func tableViewDoubleClickRow(tableView: NSTableView) {
+        let clickedRow = tableView.clickedRow
+        updateRowDataLastModifiedDate(at: clickedRow)
+    }
+    
+    
+    private func updateRowDataLastModifiedDate(at index: Int) {
+        if index >= rowDatas.count || index < 0 { return }
+        let date = Date()
+        let dateString = date.yyyyMMdd() + " " + date.HHmm()
+        rowDatas[index].lastModifiedDateText = dateString
     }
 }
 
