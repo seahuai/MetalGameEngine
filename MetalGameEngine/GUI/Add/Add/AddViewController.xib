@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="addTypeSegmentedControl" destination="QP8-MI-39x" id="zan-Ax-BhF"/>
                 <outlet property="containerView" destination="BC9-tL-HuJ" id="8Hs-Nx-H8Z"/>
+                <outlet property="doneButton" destination="jeG-wa-aXb" id="7zb-P9-qfD"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -36,10 +37,13 @@
                 </customView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jeG-wa-aXb">
                     <rect key="frame" x="167" y="-2" width="67" height="32"/>
-                    <buttonCell key="cell" type="push" title="添加" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="jhX-VH-J6p">
+                    <buttonCell key="cell" type="push" title="完成" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="jhX-VH-J6p">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="doneButtonDidClick:" target="-2" id="bdB-so-PT2"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J4u-bd-FdD">
                     <rect key="frame" x="247" y="-2" width="67" height="32"/>
@@ -47,6 +51,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="cancelButtonDidClick:" target="-2" id="oku-Ol-84k"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

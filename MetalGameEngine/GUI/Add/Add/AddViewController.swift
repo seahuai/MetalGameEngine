@@ -30,6 +30,18 @@ class AddViewController: NSViewController {
     
     private var viewController: NSViewController?
     
+    @IBOutlet weak var doneButton: NSButton!
+    
+    @IBAction func doneButtonDidClick(_ sender: NSButton) {
+        
+    }
+    
+    
+    @IBAction func cancelButtonDidClick(_ sender: NSButton) {
+        self.dismiss(self)
+    }
+    
+    
     private var viewControllers: [NSViewController] =
         [
             AddModelViewController(),

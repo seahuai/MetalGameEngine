@@ -17,23 +17,23 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VYI-hI-qhl">
-                    <rect key="frame" x="28" y="125" width="47" height="18"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="名称：" id="XJz-6o-fAS">
+                    <rect key="frame" x="28" y="125" width="33" height="18"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="名称" id="XJz-6o-fAS">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-AC-dFJ">
-                    <rect key="frame" x="28" y="82" width="47" height="18"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="位置：" id="d9V-FU-XMo">
+                    <rect key="frame" x="28" y="82" width="33" height="18"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="位置" id="d9V-FU-XMo">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="krr-eX-p71">
-                    <rect key="frame" x="83" y="123" width="369" height="22"/>
+                    <rect key="frame" x="69" y="123" width="383" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="untitled" drawsBackground="YES" id="3ms-pC-o5Z">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -41,7 +41,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QqX-zn-qjS">
-                    <rect key="frame" x="83" y="80" width="22" height="22"/>
+                    <rect key="frame" x="69" y="80" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="QqX-zn-qjS" secondAttribute="height" multiplier="1:1" id="PRy-Ho-d4l"/>
                     </constraints>
@@ -52,7 +52,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8UC-Eg-vdE">
-                    <rect key="frame" x="120" y="80" width="22" height="22"/>
+                    <rect key="frame" x="106" y="80" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="8UC-Eg-vdE" secondAttribute="height" multiplier="1:1" id="ECT-ap-BMO"/>
                     </constraints>
@@ -63,7 +63,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VSy-VI-jQd">
-                    <rect key="frame" x="157" y="80" width="22" height="22"/>
+                    <rect key="frame" x="143" y="80" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="VSy-VI-jQd" secondAttribute="height" multiplier="1:1" id="lUk-Q9-eUG"/>
                     </constraints>
@@ -74,22 +74,22 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYR-9i-J0v">
-                    <rect key="frame" x="4" y="40" width="71" height="17"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="模型路径：" id="opt-I9-UNh">
+                    <rect key="frame" x="3" y="40" width="58" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="模型路径" id="opt-I9-UNh">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1uC-od-fzj">
-                    <rect key="frame" x="77" y="31" width="67" height="32"/>
+                    <rect key="frame" x="63" y="31" width="67" height="32"/>
                     <buttonCell key="cell" type="push" title="路径" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iLh-UV-QQz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bm2-ir-dJ7">
-                    <rect key="frame" x="81" y="19" width="41" height="14"/>
+                    <rect key="frame" x="67" y="19" width="41" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="/Path..." id="MW1-D8-cf0">
                         <font key="font" metaFont="systemThin" size="11"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
