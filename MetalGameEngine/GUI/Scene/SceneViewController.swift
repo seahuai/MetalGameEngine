@@ -11,6 +11,16 @@ import MetalKit
 
 class SceneViewController: NSViewController {
     
+    private lazy var addViewController = AddViewController()
+    
+    @IBOutlet weak var segmentedControl: NSSegmentedControl!
+    
+    @IBOutlet weak var addButton: NSButton!
+    
+    @IBAction func addButtonDidClick(_ sender: NSButton) {
+        self.presentAsModalWindow(addViewController)
+    }
+    
     let scene: Scene
     
     let renderType: RenderType

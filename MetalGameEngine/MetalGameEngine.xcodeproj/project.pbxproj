@@ -98,6 +98,18 @@
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
 		357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB8F225F103E00880C01 /* SceneViewController.swift */; };
 		357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFB90225F103E00880C01 /* SceneViewController.xib */; };
+		357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB9E225F1C8D00880C01 /* AddViewController.swift */; };
+		357BFBA1225F1C8D00880C01 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFB9F225F1C8D00880C01 /* AddViewController.xib */; };
+		357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFBA2225F204700880C01 /* AddCameraViewController.swift */; };
+		357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFBA3225F204700880C01 /* AddCameraViewController.xib */; };
+		357BFBB5225F20FF00880C01 /* AddTerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFBB3225F20FF00880C01 /* AddTerrainViewController.swift */; };
+		357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFBB4225F20FF00880C01 /* AddTerrainViewController.xib */; };
+		357BFBB9225F213E00880C01 /* AddModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFBB7225F213E00880C01 /* AddModelViewController.swift */; };
+		357BFBBA225F213E00880C01 /* AddModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFBB8225F213E00880C01 /* AddModelViewController.xib */; };
+		357BFBBD225F214C00880C01 /* AddLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFBBB225F214C00880C01 /* AddLightViewController.swift */; };
+		357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFBBC225F214C00880C01 /* AddLightViewController.xib */; };
+		357BFBC1225F215C00880C01 /* AddSkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFBBF225F215C00880C01 /* AddSkyboxViewController.swift */; };
+		357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFBC0225F215C00880C01 /* AddSkyboxViewController.xib */; };
 		358EDBA422448CFB00C01902 /* PBRShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 358EDBA322448CFB00C01902 /* PBRShader.metal */; };
 		358EDBAD2244D58B00C01902 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA72244D58A00C01902 /* train.obj */; };
 		358EDBAE2244D58B00C01902 /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA82244D58A00C01902 /* plane.mtl */; };
@@ -190,6 +202,18 @@
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		357BFB8F225F103E00880C01 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		357BFB90225F103E00880C01 /* SceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
+		357BFB9E225F1C8D00880C01 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		357BFB9F225F1C8D00880C01 /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
+		357BFBA2225F204700880C01 /* AddCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCameraViewController.swift; sourceTree = "<group>"; };
+		357BFBA3225F204700880C01 /* AddCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCameraViewController.xib; sourceTree = "<group>"; };
+		357BFBB3225F20FF00880C01 /* AddTerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTerrainViewController.swift; sourceTree = "<group>"; };
+		357BFBB4225F20FF00880C01 /* AddTerrainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTerrainViewController.xib; sourceTree = "<group>"; };
+		357BFBB7225F213E00880C01 /* AddModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModelViewController.swift; sourceTree = "<group>"; };
+		357BFBB8225F213E00880C01 /* AddModelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddModelViewController.xib; sourceTree = "<group>"; };
+		357BFBBB225F214C00880C01 /* AddLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLightViewController.swift; sourceTree = "<group>"; };
+		357BFBBC225F214C00880C01 /* AddLightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLightViewController.xib; sourceTree = "<group>"; };
+		357BFBBF225F215C00880C01 /* AddSkyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSkyboxViewController.swift; sourceTree = "<group>"; };
+		357BFBC0225F215C00880C01 /* AddSkyboxViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddSkyboxViewController.xib; sourceTree = "<group>"; };
 		358EDBA322448CFB00C01902 /* PBRShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PBRShader.metal; sourceTree = "<group>"; };
 		358EDBA72244D58A00C01902 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
 		358EDBA82244D58A00C01902 /* plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plane.mtl; sourceTree = "<group>"; };
@@ -282,10 +306,11 @@
 		350E943C225D96C2003B51E3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				357BFB93225F1C0500880C01 /* Add */,
 				357BFB8C225F0F5200880C01 /* Scene */,
-				350E9457225DE11B003B51E3 /* Utility */,
 				350E944E225DD978003B51E3 /* NewScene */,
 				350E944B225DC1F2003B51E3 /* Welcome */,
+				350E9457225DE11B003B51E3 /* Utility */,
 				350E943D225D96C2003B51E3 /* AppDelegate.swift */,
 				350E9441225D96C3003B51E3 /* Assets.xcassets */,
 				350E9446225D96C3003B51E3 /* Info.plist */,
@@ -541,6 +566,73 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		357BFB93225F1C0500880C01 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				357BFB9D225F1C7C00880C01 /* Add */,
+				357BFB98225F1C3700880C01 /* Model */,
+				357BFB9B225F1C5800880C01 /* Light */,
+				357BFB9C225F1C6200880C01 /* Camera */,
+				357BFB9A225F1C4300880C01 /* Skybox */,
+				357BFBB2225F20EB00880C01 /* Terrain */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		357BFB98225F1C3700880C01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				357BFBB7225F213E00880C01 /* AddModelViewController.swift */,
+				357BFBB8225F213E00880C01 /* AddModelViewController.xib */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		357BFB9A225F1C4300880C01 /* Skybox */ = {
+			isa = PBXGroup;
+			children = (
+				357BFBBF225F215C00880C01 /* AddSkyboxViewController.swift */,
+				357BFBC0225F215C00880C01 /* AddSkyboxViewController.xib */,
+			);
+			path = Skybox;
+			sourceTree = "<group>";
+		};
+		357BFB9B225F1C5800880C01 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				357BFBBB225F214C00880C01 /* AddLightViewController.swift */,
+				357BFBBC225F214C00880C01 /* AddLightViewController.xib */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
+		357BFB9C225F1C6200880C01 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				357BFBA2225F204700880C01 /* AddCameraViewController.swift */,
+				357BFBA3225F204700880C01 /* AddCameraViewController.xib */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		357BFB9D225F1C7C00880C01 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				357BFB9E225F1C8D00880C01 /* AddViewController.swift */,
+				357BFB9F225F1C8D00880C01 /* AddViewController.xib */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		357BFBB2225F20EB00880C01 /* Terrain */ = {
+			isa = PBXGroup;
+			children = (
+				357BFBB3225F20FF00880C01 /* AddTerrainViewController.swift */,
+				357BFBB4225F20FF00880C01 /* AddTerrainViewController.xib */,
+			);
+			path = Terrain;
+			sourceTree = "<group>";
+		};
 		3590B934224B1EE000CDD1AF /* Gbuffer */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,10 +765,16 @@
 			files = (
 				350E947D225E178E003B51E3 /* normal-water.png in Resources */,
 				350E9442225D96C3003B51E3 /* Assets.xcassets in Resources */,
+				357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */,
+				357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */,
+				357BFBBA225F213E00880C01 /* AddModelViewController.xib in Resources */,
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
 				350E947C225E178E003B51E3 /* underwater.png in Resources */,
+				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
+				357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */,
 				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
+				357BFBA1225F1C8D00880C01 /* AddViewController.xib in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,6 +818,7 @@
 				350E9474225E1768003B51E3 /* Skybox.metal in Sources */,
 				350E945F225E172C003B51E3 /* Renderer.swift in Sources */,
 				350E9466225E173C003B51E3 /* Texture.swift in Sources */,
+				357BFBBD225F214C00880C01 /* AddLightViewController.swift in Sources */,
 				350E9468225E173C003B51E3 /* Camera.swift in Sources */,
 				350E9473225E1765003B51E3 /* Shadow.metal in Sources */,
 				350E9463225E1738003B51E3 /* Water.swift in Sources */,
@@ -727,9 +826,11 @@
 				350E9461225E1738003B51E3 /* Skybox.swift in Sources */,
 				350E9472225E1763003B51E3 /* PBRShader.metal in Sources */,
 				350E9471225E1763003B51E3 /* PBR.metal in Sources */,
+				357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */,
 				350E9475225E1768003B51E3 /* Main.metal in Sources */,
 				350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */,
 				350E9440225D96C2003B51E3 /* WelcomeViewController.swift in Sources */,
+				357BFBB9225F213E00880C01 /* AddModelViewController.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
 				350E9478225E177C003B51E3 /* Debug.swift in Sources */,
 				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
@@ -738,9 +839,11 @@
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
+				357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */,
 				357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */,
 				350E9469225E173C003B51E3 /* Model.swift in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
+				357BFBB5225F20FF00880C01 /* AddTerrainViewController.swift in Sources */,
 				350E9459225DE129003B51E3 /* Error.swift in Sources */,
 				350E943E225D96C2003B51E3 /* AppDelegate.swift in Sources */,
 				350E9467225E173C003B51E3 /* Node.swift in Sources */,
@@ -753,6 +856,7 @@
 				350E946A225E174A003B51E3 /* Water.metal in Sources */,
 				350E9460225E1738003B51E3 /* Scene.swift in Sources */,
 				350E9477225E177C003B51E3 /* Utility.swift in Sources */,
+				357BFBC1225F215C00880C01 /* AddSkyboxViewController.swift in Sources */,
 				350E9462225E1738003B51E3 /* Terrain.swift in Sources */,
 				350E946C225E1751003B51E3 /* Tessellation.metal in Sources */,
 				350E946E225E1754003B51E3 /* GbufferComposition.metal in Sources */,

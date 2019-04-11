@@ -58,7 +58,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s0v-sB-lED">
-                    <rect key="frame" x="98" y="142" width="268" height="22"/>
+                    <rect key="frame" x="98" y="142" width="258" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="名称" drawsBackground="YES" id="OIn-7R-YAr">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -111,7 +111,7 @@
                 <constraint firstItem="Vaa-p3-2Rt" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" constant="40" id="5X9-4N-yz4"/>
                 <constraint firstItem="UIM-Ni-DMs" firstAttribute="top" secondItem="r5i-k9-B4M" secondAttribute="bottom" constant="25" id="7us-vn-1Qk"/>
                 <constraint firstItem="Rvo-ge-lQk" firstAttribute="leading" secondItem="srL-I5-0Z8" secondAttribute="leading" id="9Fo-SG-LWH"/>
-                <constraint firstAttribute="trailing" secondItem="s0v-sB-lED" secondAttribute="trailing" constant="20" id="D34-Z1-Qvc"/>
+                <constraint firstAttribute="trailing" secondItem="s0v-sB-lED" secondAttribute="trailing" constant="30" id="D34-Z1-Qvc"/>
                 <constraint firstItem="4dH-fI-lCH" firstAttribute="bottom" secondItem="srL-I5-0Z8" secondAttribute="bottom" id="E8f-HD-PwG"/>
                 <constraint firstItem="Laz-Sr-1fe" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="EDW-IW-DiH"/>
                 <constraint firstItem="UIM-Ni-DMs" firstAttribute="trailing" secondItem="r5i-k9-B4M" secondAttribute="trailing" id="Kpw-cQ-EB0"/>

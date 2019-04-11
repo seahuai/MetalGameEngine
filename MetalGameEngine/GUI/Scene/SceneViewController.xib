@@ -7,8 +7,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SceneViewController" customModule="GUI" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="5Og-ma-rRM" id="Fl6-fy-dA5"/>
                 <outlet property="mtkView" destination="LPg-93-zzq" id="do5-dk-nR2"/>
                 <outlet property="sceneNodesTableView" destination="812-gG-duJ" id="RtE-2n-8kH"/>
+                <outlet property="segmentedControl" destination="FZD-GA-ZDq" id="afI-mh-hXt"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -107,6 +109,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="addButtonDidClick:" target="-2" id="qVM-Mb-0Bn"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

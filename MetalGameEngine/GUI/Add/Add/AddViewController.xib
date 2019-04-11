@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AddViewController" customModule="GUI" customModuleProvider="target">
+            <connections>
+                <outlet property="addTypeSegmentedControl" destination="QP8-MI-39x" id="zan-Ax-BhF"/>
+                <outlet property="containerView" destination="BC9-tL-HuJ" id="8Hs-Nx-H8Z"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="324"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QP8-MI-39x">
+                    <rect key="frame" x="107" y="291" width="266" height="24"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="t5Z-fl-Gkf">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment label="模型" width="47"/>
+                            <segment label="光照" width="47" selected="YES" tag="1"/>
+                            <segment label="视点" width="47"/>
+                            <segment label="天空盒"/>
+                            <segment label="地形"/>
+                        </segments>
+                    </segmentedCell>
+                </segmentedControl>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="BC9-tL-HuJ">
+                    <rect key="frame" x="5" y="31" width="470" height="252"/>
+                </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jeG-wa-aXb">
+                    <rect key="frame" x="167" y="-2" width="67" height="32"/>
+                    <buttonCell key="cell" type="push" title="添加" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="jhX-VH-J6p">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J4u-bd-FdD">
+                    <rect key="frame" x="247" y="-2" width="67" height="32"/>
+                    <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CgD-9L-NJI">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="QP8-MI-39x" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="AH2-E8-e8A"/>
+                <constraint firstItem="jeG-wa-aXb" firstAttribute="top" secondItem="BC9-tL-HuJ" secondAttribute="bottom" constant="5" id="Mr4-P9-f1N"/>
+                <constraint firstItem="QP8-MI-39x" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="Qvj-SV-SS9"/>
+                <constraint firstItem="BC9-tL-HuJ" firstAttribute="top" secondItem="QP8-MI-39x" secondAttribute="bottom" constant="10" id="coB-8T-3A1"/>
+                <constraint firstAttribute="bottom" secondItem="J4u-bd-FdD" secondAttribute="bottom" constant="5" id="gV0-ak-2r3"/>
+                <constraint firstItem="jeG-wa-aXb" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" constant="-40" id="hCt-DX-Bo5"/>
+                <constraint firstItem="J4u-bd-FdD" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" constant="40" id="tJ9-LM-f43"/>
+                <constraint firstAttribute="bottom" secondItem="jeG-wa-aXb" secondAttribute="bottom" constant="5" id="tQr-Kb-cC7"/>
+                <constraint firstAttribute="trailing" secondItem="BC9-tL-HuJ" secondAttribute="trailing" constant="5" id="uaD-9i-NU7"/>
+                <constraint firstItem="BC9-tL-HuJ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="zPq-ZC-wVu"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="180"/>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="I9S-E2-xo2"/>
+    </objects>
+</document>
