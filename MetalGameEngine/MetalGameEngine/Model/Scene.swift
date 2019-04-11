@@ -11,6 +11,8 @@ import Metal
 // 以Scene为单位，每个场景单独渲染自己的光照和模型
 class Scene {
     
+    var name: String = "untitled"
+    
     var shadowTexture: MTLTexture?
     
     var nodes: [Node] = []
@@ -108,35 +110,65 @@ extension Scene {
 
 extension Scene {
     func add(node: Node) {
-        nodes.append(node)
-        nodes.append(contentsOf: node.children)
+        var allNodes: [Node] = []
         
-        for _node in nodes {
-            if let model = _node as? Model {
-                models.append(model)
-                modelsChangeNotificationBlock?(models)
-            }
-            
-            if let water = _node as? Water {
-                waters.append(water)
-            }
+        nodes.append(node)
+        
+        allNodes.append(node)
+        allNodes.append(contentsOf: node.children)
+        
+        for _node in allNodes {
+           _add(node: _node)
         }
     }
     
     func remove(node: Node) {
-        if let index = nodes.index(of: node) {
+        if let index = nodes.firstIndex(of: node) {
             nodes.remove(at: index)
-            
-            if let model = node as? Model {
-                guard let index = models.index(of: model) else { return }
-                models.remove(at: index)
-                modelsChangeNotificationBlock?(models)
+            _remove(node: node)
+        } else {
+            node.parent?.remove(node)
+            _remove(node: node)
+        }
+    }
+    
+    private func _add(node: Node) {
+        if let model = node as? Model {
+            models.append(model)
+            modelsChangeNotificationBlock?(models)
+        }
+        
+        if let water = node as? Water {
+            waters.append(water)
+        }
+        
+        if let camera = node as? Camera {
+            cameras.append(camera)
+        }
+    }
+    
+    private func _remove(node: Node) {
+        
+        if node.parent == nil {
+            for _node in node.children {
+                _remove(node: _node)
             }
-            
-            if let water = node as? Water {
-                guard let index = waters.index(of: water) else { return }
-                waters.remove(at: index)
-            }
+        }
+        
+        if let model = node as? Model {
+            guard let index = models.firstIndex(of: model) else { return }
+            models.remove(at: index)
+            modelsChangeNotificationBlock?(models)
+        }
+        
+        if let water = node as? Water {
+            guard let index = waters.firstIndex(of: water) else { return }
+            waters.remove(at: index)
+        }
+        
+        if let camera = node as? Camera {
+            guard let index = cameras.firstIndex(of: camera) else { return }
+            cameras.remove(at: index)
         }
     }
 

@@ -13,10 +13,9 @@ class WelcomeViewController: NSViewController {
     var creatNewSceneViewController = CreatNewSceneViewController()
     
     struct RowData {
-        var title: String
-        var lastModifiedDateText: String
-        var scene: Scene?
+        var scene: Scene
         var renderType: RenderType
+        var lastModifiedDateText: String
     }
     
     var rowDatas: [RowData] = [] {
@@ -44,15 +43,25 @@ class WelcomeViewController: NSViewController {
         super.viewDidLoad()
         creatNewSceneViewController.delegete = self
     }
+    
+    func openScene(rowData: RowData) {
+        let vc = SceneViewController(rowData.scene, renderType: rowData.renderType)
+        self.presentAsModalWindow(vc)
+    }
 }
 
 extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
-    func creatNewSceneViewController(viewController: CreatNewSceneViewController, didCreatScene name: String, renderType: RenderType) {
+    func creatNewSceneViewController(viewController: CreatNewSceneViewController, didCreatScene name: String, renderType: RenderType, open: Bool) {
         let date = Date()
         let dateString = date.yyyyMMdd() + " " + date.HHmm()
         let scene = Scene()
-        let data = RowData(title: name, lastModifiedDateText: dateString, scene: scene, renderType: renderType)
+        scene.name = name
+        let data = RowData(scene: scene, renderType: renderType, lastModifiedDateText: dateString)
         rowDatas.append(data)
+        
+        if open {
+            openScene(rowData: data)
+        }
     }
  
 }
@@ -76,7 +85,7 @@ extension WelcomeViewController: NSTableViewDataSource, NSTableViewDelegate {
         }
         
         let rowData = rowDatas[row]
-        cell?.titleTextField.stringValue = rowData.title
+        cell?.titleTextField.stringValue = rowData.scene.name
         cell?.lastModifiedTextField.stringValue = rowData.lastModifiedDateText
         
         return cell
@@ -84,6 +93,8 @@ extension WelcomeViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     @objc func tableViewDoubleClickRow(tableView: NSTableView) {
         let clickedRow = tableView.clickedRow
+        let rowData = rowDatas[clickedRow]
+        openScene(rowData: rowData)
         updateRowDataLastModifiedDate(at: clickedRow)
     }
     

@@ -96,6 +96,8 @@
 		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
 		3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B3A0224DEF120060229F /* TerrainRenderer.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
+		357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB8F225F103E00880C01 /* SceneViewController.swift */; };
+		357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFB90225F103E00880C01 /* SceneViewController.xib */; };
 		358EDBA422448CFB00C01902 /* PBRShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 358EDBA322448CFB00C01902 /* PBRShader.metal */; };
 		358EDBAD2244D58B00C01902 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA72244D58A00C01902 /* train.obj */; };
 		358EDBAE2244D58B00C01902 /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA82244D58A00C01902 /* plane.mtl */; };
@@ -186,6 +188,8 @@
 		3553B39E224DEEE10060229F /* TerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainViewController.swift; sourceTree = "<group>"; };
 		3553B3A0224DEF120060229F /* TerrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainRenderer.swift; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		357BFB8F225F103E00880C01 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
+		357BFB90225F103E00880C01 /* SceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
 		358EDBA322448CFB00C01902 /* PBRShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PBRShader.metal; sourceTree = "<group>"; };
 		358EDBA72244D58A00C01902 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
 		358EDBA82244D58A00C01902 /* plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plane.mtl; sourceTree = "<group>"; };
@@ -278,10 +282,10 @@
 		350E943C225D96C2003B51E3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				350E945C225E16D9003B51E3 /* Renderer */,
+				357BFB8C225F0F5200880C01 /* Scene */,
 				350E9457225DE11B003B51E3 /* Utility */,
 				350E944E225DD978003B51E3 /* NewScene */,
-				350E944B225DC1F2003B51E3 /* Main */,
+				350E944B225DC1F2003B51E3 /* Welcome */,
 				350E943D225D96C2003B51E3 /* AppDelegate.swift */,
 				350E9441225D96C3003B51E3 /* Assets.xcassets */,
 				350E9446225D96C3003B51E3 /* Info.plist */,
@@ -290,14 +294,14 @@
 			path = GUI;
 			sourceTree = "<group>";
 		};
-		350E944B225DC1F2003B51E3 /* Main */ = {
+		350E944B225DC1F2003B51E3 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
 				350E943F225D96C2003B51E3 /* WelcomeViewController.swift */,
 				350E9443225D96C3003B51E3 /* Main.storyboard */,
 				350E944C225DCDEA003B51E3 /* HistorySceneCellView.swift */,
 			);
-			path = Main;
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		350E944E225DD978003B51E3 /* NewScene */ = {
@@ -527,6 +531,16 @@
 			path = Tessellation;
 			sourceTree = "<group>";
 		};
+		357BFB8C225F0F5200880C01 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				350E945C225E16D9003B51E3 /* Renderer */,
+				357BFB8F225F103E00880C01 /* SceneViewController.swift */,
+				357BFB90225F103E00880C01 /* SceneViewController.xib */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		3590B934224B1EE000CDD1AF /* Gbuffer */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +676,7 @@
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
 				350E947C225E178E003B51E3 /* underwater.png in Resources */,
+				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,6 +738,7 @@
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
+				357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */,
 				350E9469225E173C003B51E3 /* Model.swift in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
 				350E9459225DE129003B51E3 /* Error.swift in Sources */,

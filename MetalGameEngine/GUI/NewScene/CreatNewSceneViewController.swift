@@ -11,7 +11,8 @@ import Cocoa
 protocol CreatNewSceneViewControllerDelegate: class {
     func creatNewSceneViewController(viewController: CreatNewSceneViewController,
                                      didCreatScene name: String,
-                                     renderType: RenderType)
+                                     renderType: RenderType,
+                                     open: Bool)
 }
 
 class CreatNewSceneViewController: NSViewController {
@@ -36,11 +37,13 @@ class CreatNewSceneViewController: NSViewController {
     
     @IBOutlet weak var cancelButton: NSButton!
     
+    @IBOutlet weak var openImmediatelyCheckBox: NSButton!
+    
     @IBAction func done(_ sender: NSButton) {
         
         self.dismiss(self)
         
-        delegete?.creatNewSceneViewController(viewController: self, didCreatScene: self.sceneNameTextField.stringValue, renderType: renderType)
+        delegete?.creatNewSceneViewController(viewController: self, didCreatScene: self.sceneNameTextField.stringValue, renderType: renderType, open: openImmediatelyCheckBox.state == .on)
 
     }
     
