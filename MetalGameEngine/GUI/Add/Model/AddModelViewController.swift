@@ -9,7 +9,13 @@
 import Cocoa
 
 class AddModelViewController: NSViewController {
-
+    
+    @IBOutlet weak var modelNameTextField: NSTextField!
+    
+    @IBOutlet weak var positionX: NSTextField!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

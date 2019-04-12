@@ -126,6 +126,8 @@
 		35B1364C223CEE370018ED0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1364B223CEE370018ED0B /* ViewController.swift */; };
 		35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364D223CEE390018ED0B /* Assets.xcassets */; };
 		35B13651223CEE390018ED0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364F223CEE390018ED0B /* Main.storyboard */; };
+		35B398382260251600D0905A /* VectorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B398372260251600D0905A /* VectorInputView.swift */; };
+		35B3983A226027E200D0905A /* OnlyNumericFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B39839226027E200D0905A /* OnlyNumericFormatter.swift */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -233,6 +235,8 @@
 		35B13650223CEE390018ED0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35B13652223CEE390018ED0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B13653223CEE390018ED0B /* MetalGameEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalGameEngine.entitlements; sourceTree = "<group>"; };
+		35B398372260251600D0905A /* VectorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorInputView.swift; sourceTree = "<group>"; };
+		35B39839226027E200D0905A /* OnlyNumericFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyNumericFormatter.swift; sourceTree = "<group>"; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				350E9458225DE129003B51E3 /* Error.swift */,
 				350E945A225DE6B7003B51E3 /* Enum.swift */,
 				350E9480225E2CFC003B51E3 /* DateExtextension.swift */,
+				35B39839226027E200D0905A /* OnlyNumericFormatter.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 		357BFB93225F1C0500880C01 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				35B39836226024E200D0905A /* View */,
 				357BFB9D225F1C7C00880C01 /* Add */,
 				357BFB98225F1C3700880C01 /* Model */,
 				357BFB9B225F1C5800880C01 /* Light */,
@@ -674,6 +680,14 @@
 				35242E9E224236EA00B8F91A /* Textures.xcassets */,
 			);
 			path = MetalGameEngine;
+			sourceTree = "<group>";
+		};
+		35B39836226024E200D0905A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B398372260251600D0905A /* VectorInputView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		35EB8417225C75FD0088B3F9 /* Water */ = {
@@ -857,9 +871,11 @@
 				350E9460225E1738003B51E3 /* Scene.swift in Sources */,
 				350E9477225E177C003B51E3 /* Utility.swift in Sources */,
 				357BFBC1225F215C00880C01 /* AddSkyboxViewController.swift in Sources */,
+				35B398382260251600D0905A /* VectorInputView.swift in Sources */,
 				350E9462225E1738003B51E3 /* Terrain.swift in Sources */,
 				350E946C225E1751003B51E3 /* Tessellation.metal in Sources */,
 				350E946E225E1754003B51E3 /* GbufferComposition.metal in Sources */,
+				35B3983A226027E200D0905A /* OnlyNumericFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
