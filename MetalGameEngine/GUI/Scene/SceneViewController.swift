@@ -29,6 +29,7 @@ class SceneViewController: NSViewController {
         didSet {
             self.sceneNodesTableView.dataSource = self
             self.sceneNodesTableView.delegate = self
+            self.sceneNodesTableView.rowHeight = 26
             self.sceneNodesTableView.tableColumns.first?.width = self.sceneNodesTableView.bounds.width
         }
     }
@@ -50,10 +51,34 @@ class SceneViewController: NSViewController {
         super.viewDidLoad()
         
         self.title = scene.name
+        
+        addViewController.delegate = self
     }
-    
+}
+
+extension SceneViewController: AddViewControllerDelegate {
+    func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?) {
+        scene.add(node: node, parentNode: parentNode)
+    }
 }
 
 extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+//        return scene.nodes.count
+        return 10
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let column = tableColumn else { return nil }
+        
+        var sceneNodeCellView = tableView.makeView(withIdentifier: SceneNodeCellView.identifier, owner: nil) as? SceneNodeCellView
+        if sceneNodeCellView == nil {
+            sceneNodeCellView = SceneNodeCellView()
+        }
+        
+        return sceneNodeCellView
+    }
+    
     
 }

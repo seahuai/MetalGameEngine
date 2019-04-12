@@ -109,17 +109,25 @@ extension Scene {
 }
 
 extension Scene {
-    func add(node: Node) {
-        var allNodes: [Node] = []
-        
-        nodes.append(node)
-        
-        allNodes.append(node)
-        allNodes.append(contentsOf: node.children)
-        
-        for _node in allNodes {
-           _add(node: _node)
+    func add(node: Node, parentNode: Node? = nil) {
+        if let parentNode = parentNode {
+            parentNode.add(node)
+            let isContain = contain(node: parentNode)
+            if isContain {
+                _add(node: node)
+            } else {
+                add(node: parentNode)
+            }
+        } else {
+            var allNodes: [Node] = []
+            nodes.append(node)
+            allNodes.append(node)
+            allNodes.append(contentsOf: node.children)
+            for _node in allNodes {
+                _add(node: _node)
+            }
         }
+        
     }
     
     func remove(node: Node) {
@@ -170,6 +178,16 @@ extension Scene {
             guard let index = cameras.firstIndex(of: camera) else { return }
             cameras.remove(at: index)
         }
+    }
+    
+    private func contain(node: Node) -> Bool {
+        if nodes.contains(node) { return true }
+        
+        for parentNode in nodes {
+            return parentNode.contain(node: node)
+        }
+        
+        return false
     }
 
     

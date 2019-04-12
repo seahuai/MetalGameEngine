@@ -16,3 +16,11 @@ class AddCameraViewController: NSViewController {
     }
     
 }
+
+
+extension AddCameraViewController: AddNodeVaildable {
+    var isVaild: Bool {
+        return false
+    }
+}
+

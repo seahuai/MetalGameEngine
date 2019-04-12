@@ -16,3 +16,10 @@ class AddTerrainViewController: NSViewController {
     }
     
 }
+
+extension AddTerrainViewController: AddNodeVaildable {
+    var isVaild: Bool {
+        return false
+    }
+}
+

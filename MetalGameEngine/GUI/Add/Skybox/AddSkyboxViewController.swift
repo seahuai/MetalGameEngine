@@ -16,3 +16,10 @@ class AddSkyboxViewController: NSViewController {
     }
     
 }
+
+extension AddSkyboxViewController: AddNodeVaildable {
+    var isVaild: Bool {
+        return false
+    }
+}
+

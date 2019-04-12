@@ -53,8 +53,6 @@
 		350E9479225E177C003B51E3 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
 		350E947A225E177C003B51E3 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841F225C92BE0088B3F9 /* RenderPass.swift */; };
 		350E947B225E178A003B51E3 /* Textures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35242E9E224236EA00B8F91A /* Textures.xcassets */; };
-		350E947C225E178E003B51E3 /* underwater.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB841D225C8DB20088B3F9 /* underwater.png */; };
-		350E947D225E178E003B51E3 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350614502240B4FA00BFB42E /* MathLibrary.swift */; };
 		350E947F225E17B1003B51E3 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
 		350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
@@ -128,6 +126,10 @@
 		35B13651223CEE390018ED0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364F223CEE390018ED0B /* Main.storyboard */; };
 		35B398382260251600D0905A /* VectorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B398372260251600D0905A /* VectorInputView.swift */; };
 		35B3983A226027E200D0905A /* OnlyNumericFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B39839226027E200D0905A /* OnlyNumericFormatter.swift */; };
+		35B3983B2260343400D0905A /* plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA82244D58A00C01902 /* plane.mtl */; };
+		35B3983C2260343400D0905A /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBAA2244D58B00C01902 /* plane.obj */; };
+		35B3983F2260349300D0905A /* FileTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3983E2260349300D0905A /* FileTool.swift */; };
+		35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B39841226066F900D0905A /* SceneNodeCellView.swift */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -237,6 +239,8 @@
 		35B13653223CEE390018ED0B /* MetalGameEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalGameEngine.entitlements; sourceTree = "<group>"; };
 		35B398372260251600D0905A /* VectorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorInputView.swift; sourceTree = "<group>"; };
 		35B39839226027E200D0905A /* OnlyNumericFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyNumericFormatter.swift; sourceTree = "<group>"; };
+		35B3983E2260349300D0905A /* FileTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTool.swift; sourceTree = "<group>"; };
+		35B39841226066F900D0905A /* SceneNodeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeCellView.swift; sourceTree = "<group>"; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				350E945A225DE6B7003B51E3 /* Enum.swift */,
 				350E9480225E2CFC003B51E3 /* DateExtextension.swift */,
 				35B39839226027E200D0905A /* OnlyNumericFormatter.swift */,
+				35B3983E2260349300D0905A /* FileTool.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 		357BFB8C225F0F5200880C01 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				35B39840226066E500D0905A /* View */,
 				350E945C225E16D9003B51E3 /* Renderer */,
 				357BFB8F225F103E00880C01 /* SceneViewController.swift */,
 				357BFB90225F103E00880C01 /* SceneViewController.xib */,
@@ -690,6 +696,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		35B39840226066E500D0905A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B39841226066F900D0905A /* SceneNodeCellView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		35EB8417225C75FD0088B3F9 /* Water */ = {
 			isa = PBXGroup;
 			children = (
@@ -777,16 +791,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				350E947D225E178E003B51E3 /* normal-water.png in Resources */,
 				350E9442225D96C3003B51E3 /* Assets.xcassets in Resources */,
 				357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */,
 				357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */,
 				357BFBBA225F213E00880C01 /* AddModelViewController.xib in Resources */,
+				35B3983C2260343400D0905A /* plane.obj in Resources */,
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
-				350E947C225E178E003B51E3 /* underwater.png in Resources */,
 				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
 				357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */,
+				35B3983B2260343400D0905A /* plane.mtl in Resources */,
 				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
 				357BFBA1225F1C8D00880C01 /* AddViewController.xib in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
@@ -831,11 +845,13 @@
 			files = (
 				350E9474225E1768003B51E3 /* Skybox.metal in Sources */,
 				350E945F225E172C003B51E3 /* Renderer.swift in Sources */,
+				35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */,
 				350E9466225E173C003B51E3 /* Texture.swift in Sources */,
 				357BFBBD225F214C00880C01 /* AddLightViewController.swift in Sources */,
 				350E9468225E173C003B51E3 /* Camera.swift in Sources */,
 				350E9473225E1765003B51E3 /* Shadow.metal in Sources */,
 				350E9463225E1738003B51E3 /* Water.swift in Sources */,
+				35B3983F2260349300D0905A /* FileTool.swift in Sources */,
 				350E9470225E175F003B51E3 /* PhongShader.metal in Sources */,
 				350E9461225E1738003B51E3 /* Skybox.swift in Sources */,
 				350E9472225E1763003B51E3 /* PBRShader.metal in Sources */,

@@ -16,3 +16,11 @@ class AddLightViewController: NSViewController {
     }
     
 }
+
+
+extension AddLightViewController: AddNodeVaildable {
+    var isVaild: Bool {
+        return false
+    }
+}
+

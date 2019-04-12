@@ -61,6 +61,10 @@ class Node {
         children.remove(at: index)
     }
     
+    final func contain(node: Node) -> Bool {
+        return node.children.contains(node)
+    }
+    
 }
 
 extension Node: Equatable {
