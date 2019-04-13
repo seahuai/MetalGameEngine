@@ -57,6 +57,7 @@
 		350E947F225E17B1003B51E3 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
 		350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
 		350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
+		351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */; };
 		352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352184E9224A60250006D5BA /* MutipleLightViewController.swift */; };
 		35242E98224212E400B8F91A /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
 		35242E9D2242312F00B8F91A /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
@@ -164,6 +165,7 @@
 		350E945A225DE6B7003B51E3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		350E945D225E16F9003B51E3 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
 		350E9480225E2CFC003B51E3 /* DateExtextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtextension.swift; sourceTree = "<group>"; };
+		351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNodeVaildable.swift; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		35242E97224212E400B8F91A /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
 		35242E9C2242312F00B8F91A /* Main.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Main.metal; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 			children = (
 				357BFB9E225F1C8D00880C01 /* AddViewController.swift */,
 				357BFB9F225F1C8D00880C01 /* AddViewController.xib */,
+				351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				357BFBB9225F213E00880C01 /* AddModelViewController.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
 				350E9478225E177C003B51E3 /* Debug.swift in Sources */,
+				351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */,
 				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
 				350E945E225E16F9003B51E3 /* MainRenderer.swift in Sources */,

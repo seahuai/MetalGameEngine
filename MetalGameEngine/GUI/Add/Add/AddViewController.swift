@@ -8,10 +8,6 @@
 
 import Cocoa
 
-protocol AddNodeVaildable {
-    var isVaild: Bool { get }
-}
-
 protocol AddViewControllerDelegate: class {
     func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?)
 }
@@ -19,6 +15,12 @@ protocol AddViewControllerDelegate: class {
 class AddViewController: NSViewController {
     
     weak var delegate: AddViewControllerDelegate?
+    
+    var paretnNodes: [Node] = []{
+        didSet {
+            (viewControllers[0] as? AddModelViewController)?.parentNodes = self.paretnNodes
+        }
+    }
 
     @IBOutlet weak var addTypeSegmentedControl: NSSegmentedControl! {
         didSet {
@@ -47,10 +49,13 @@ class AddViewController: NSViewController {
             fatalError()
         }
         
-        guard viewController.isVaild else {
+        let vaildInformation = viewController.checkVaild()
+        
+        guard vaildInformation.isVaild else {
+            let errorMsg = vaildInformation.errorMsg
             let alert = NSAlert(error: InvaildError.inputInvaildError)
-            alert.messageText = "信息不完整"
-            alert.alertStyle = .informational
+            alert.messageText = "创建失败"
+            alert.informativeText = errorMsg ?? ""
             alert.runModal()
             return
         }
@@ -63,6 +68,8 @@ class AddViewController: NSViewController {
             
             delegate?.addViewController(viewController: self, add: model, parentNode: modelInformation.parentNode)
         }
+        
+        self.dismiss(self)
         
     }
     

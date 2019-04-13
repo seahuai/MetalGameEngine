@@ -35,20 +35,32 @@ class AddModelViewController: NSViewController {
     @IBAction func selectModelButtonClick(_ sender: NSPopUpButton) {
         changePopUpButtonTitle(titles: objModelNames, sender: sender)
         
-        modelInformation.objFileName = objModelNames[sender.indexOfSelectedItem - 1]
+        let objFileName = objModelNames[sender.indexOfSelectedItem - 1]
+        
+        modelInformation.objFileName = objFileName
+        
+        if modelNameTextField.stringValue.isEmpty {
+            modelNameTextField.stringValue = objFileName
+        }
     }
     
     @IBAction func selectParentNodeButtonClick(_ sender: NSPopUpButton) {
         changePopUpButtonTitle(titles: parentNodeNames, sender: sender)
         
-        let index = sender.indexOfSelectedItem
+        let index = sender.indexOfSelectedItem - 1
         if index >= 1 {
             modelInformation.parentNode = parentNodes[index - 1]
+        } else {
+            modelInformation.parentNode = nil
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
         
         setupItems()
     }
@@ -63,6 +75,7 @@ class AddModelViewController: NSViewController {
         
         parentNodeNames = parentNodes.map{ $0.name }
         parentNodeNames.insert("无", at: 0)
+        selectParentNodeButton.addItem(withTitle: "选择")
         selectParentNodeButton.addItems(withTitles: parentNodeNames)
     }
     
@@ -75,12 +88,20 @@ class AddModelViewController: NSViewController {
 }
 
 extension AddModelViewController: AddNodeVaildable {
-    var isVaild: Bool {
-        
-        if !modelNameTextField.stringValue.isEmpty {
-            modelInformation.modelName = modelNameTextField.stringValue
+    
+    func checkVaild() -> (isVaild: Bool, errorMsg: String?) {
+    
+        if selectModelButton.indexOfSelectedItem <= 0 || selectParentNodeButton.indexOfSelectedItem <= 0 {
+            return (false, "信息不完整")
         }
         
-        return !modelNameTextField.stringValue.isEmpty
+        let name = modelNameTextField.stringValue
+        if parentNodeNames.contains(name) {
+            return (false, "模型名称 \"\(name)\" 已存在")
+        }
+        
+        modelInformation.modelName = name
+        
+        return (true, nil)
     }
 }

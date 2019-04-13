@@ -12,9 +12,15 @@ class SceneNodeCellView: NSView {
     
     static let identifier = NSUserInterfaceItemIdentifier("SceneNodeCellView")
     
+    var hierarchyLevel: Int = 0
+    
     var node: Node! {
         didSet {
-            
+            hierarchyLevel = hierarchyLevel(node: self.node)
+            hierarchyLabel.stringValue = "\(hierarchyLevel + 1)"
+            typeLabel.stringValue = nodeType(node: self.node)
+            nameLabel.stringValue = node.name
+            needsLayout = true
         }
     }
     
@@ -74,9 +80,10 @@ class SceneNodeCellView: NSView {
         let padding: CGFloat = 5
         let margin: CGFloat = 3
         let height: CGFloat = 16
+        let left = padding * CGFloat(hierarchyLevel)
         
         hierarchyLabel.sizeToFit()
-        hierarchyLabel.frame.origin = CGPoint(x: padding, y: padding)
+        hierarchyLabel.frame.origin = CGPoint(x: padding + left, y: padding)
         hierarchyLabel.frame.size.height = height
         hierarchyLabel.layer?.cornerRadius = 2
         
@@ -89,4 +96,31 @@ class SceneNodeCellView: NSView {
         nameLabel.frame.size = CGSize(width: boundsSize.width - padding - typeLabel.frame.maxX - margin, height: height)
     }
     
+}
+
+private extension SceneNodeCellView {
+
+    private func hierarchyLevel(node: Node) -> Int {
+        if let parent = node.parent {
+            return hierarchyLevel(node: parent) + 1
+        }
+        return 0
+    }
+    
+    private func nodeType(node: Node) -> String {
+        if let _ = node as? Model {
+            return "M"
+        }
+        
+        if let _ = node as? Camera {
+            return "C"
+        }
+        
+        if let _ = node as? Water {
+            return "W"
+        }
+        
+        return "?"
+    }
+
 }

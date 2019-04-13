@@ -18,8 +18,11 @@ class SceneViewController: NSViewController {
     @IBOutlet weak var addButton: NSButton!
     
     @IBAction func addButtonDidClick(_ sender: NSButton) {
+        addViewController.paretnNodes = nodes
         self.presentAsModalWindow(addViewController)
     }
+    
+    var nodes: [Node] = []
     
     let scene: Scene
     
@@ -53,20 +56,31 @@ class SceneViewController: NSViewController {
         self.title = scene.name
         
         addViewController.delegate = self
+        
+        reloadNodes()
+    }
+    
+    func reloadNodes() {
+        nodes = []
+        for parent in scene.nodes {
+            nodes.append(parent)
+            nodes.append(contentsOf: parent.subNodes)
+        }
+        sceneNodesTableView.reloadData()
     }
 }
 
 extension SceneViewController: AddViewControllerDelegate {
     func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?) {
         scene.add(node: node, parentNode: parentNode)
+        reloadNodes()
     }
 }
 
 extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-//        return scene.nodes.count
-        return 10
+        return nodes.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -76,6 +90,9 @@ extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
         if sceneNodeCellView == nil {
             sceneNodeCellView = SceneNodeCellView()
         }
+        
+        let node = nodes[row]
+        sceneNodeCellView?.node = node
         
         return sceneNodeCellView
     }

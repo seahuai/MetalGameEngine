@@ -39,6 +39,20 @@ class Node {
     var parent: Node?
     var children: [Node] = []
     
+    var subNodes: [Node] {
+        var nodes: [Node] = []
+        
+        if children.isEmpty {
+            return []
+        }
+        
+        for child in children {
+            nodes.append(child)
+            nodes.append(contentsOf: child.subNodes)
+        }
+        return nodes
+    }
+    
     var worldTransform: float4x4 {
         if let parent = parent {
            return parent.worldTransform * self.modelMatrix
@@ -62,7 +76,7 @@ class Node {
     }
     
     final func contain(node: Node) -> Bool {
-        return node.children.contains(node)
+        return subNodes.contains(node)
     }
     
 }

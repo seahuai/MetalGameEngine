@@ -181,12 +181,15 @@ extension Scene {
     }
     
     private func contain(node: Node) -> Bool {
-        if nodes.contains(node) { return true }
-        
         for parentNode in nodes {
-            return parentNode.contain(node: node)
+            if parentNode == node {
+                return true
+            }
+            
+            if parentNode.contain(node: node) {
+                return true
+            }
         }
-        
         return false
     }
 
