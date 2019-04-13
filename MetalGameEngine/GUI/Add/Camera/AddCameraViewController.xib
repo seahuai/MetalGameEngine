@@ -27,7 +27,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="klU-PM-5AA">
                     <rect key="frame" x="28" y="155" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="旋转" id="Q6p-wJ-g9K">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -65,7 +65,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t9a-Jn-0Wc">
                     <rect key="frame" x="28" y="113" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="视野" id="kbK-Tc-03H">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -75,7 +75,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="ET0-3d-D2z"/>
                     </constraints>
-                    <sliderCell key="cell" state="on" alignment="left" maxValue="180" doubleValue="70" tickMarkPosition="above" sliderType="linear" id="X1o-i3-MQn"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="180" doubleValue="70" tickMarkPosition="below" sliderType="linear" id="X1o-i3-MQn"/>
                     <connections>
                         <action selector="fovDegreeSliderValueChanged:" target="-2" id="E0V-Sr-Qkw"/>
                     </connections>
@@ -91,7 +91,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jzd-1k-4gV">
                     <rect key="frame" x="28" y="71" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="截面" id="yHF-pa-PFI">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -123,7 +123,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lpz-cu-jLe">
                     <rect key="frame" x="15" y="29" width="44" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="父节点" id="VPs-O5-Zid">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -148,7 +148,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yga-gg-AFH">
                     <rect key="frame" x="28" y="239" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="名称" id="MQh-Qh-X9X">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -164,7 +164,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GoT-I6-Vdb">
                     <rect key="frame" x="28" y="197" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="位置" id="M8m-yh-jaJ">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

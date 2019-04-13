@@ -23,7 +23,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VYI-hI-qhl">
                     <rect key="frame" x="28" y="183" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="名称" id="XJz-6o-fAS">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -31,7 +31,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-AC-dFJ">
                     <rect key="frame" x="28" y="141" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="位置" id="d9V-FU-XMo">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -47,7 +47,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYR-9i-J0v">
                     <rect key="frame" x="28" y="99" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="模型" id="opt-I9-UNh">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -72,7 +72,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6f-L3-JRb">
                     <rect key="frame" x="15" y="55" width="44" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="父节点" id="7S4-9o-pfY">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

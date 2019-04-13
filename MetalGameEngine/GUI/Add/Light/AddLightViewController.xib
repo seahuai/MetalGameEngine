@@ -7,6 +7,15 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AddLightViewController" customModule="GUI" customModuleProvider="target">
             <connections>
+                <outlet property="attenuationXLabel" destination="jzQ-gX-hi5" id="2fB-Q9-kNA"/>
+                <outlet property="attenuationYLabel" destination="N36-pb-WNT" id="iMN-Qx-YTy"/>
+                <outlet property="attenuationZLabel" destination="HCF-CU-uCI" id="PQ6-F6-zDo"/>
+                <outlet property="coneDegreeLabel" destination="Pvw-ek-MRd" id="FdR-mc-vYn"/>
+                <outlet property="intensityLabel" destination="tSO-WG-mOd" id="F3z-8c-r28"/>
+                <outlet property="lightColorWell" destination="c7E-Nj-HW4" id="azk-Zl-VOZ"/>
+                <outlet property="positionInputView" destination="iin-Ha-V4J" id="E6W-iD-S0X"/>
+                <outlet property="selectLightTypeButton" destination="O7W-a9-vIg" id="Uah-eH-Fe1"/>
+                <outlet property="specularColorWell" destination="xO7-wX-XnV" id="kg9-Cz-5o4"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -19,7 +28,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6xO-uL-qIB">
                     <rect key="frame" x="28" y="208" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="类型" id="aAy-1f-vUY">
-                        <font key="font" usesAppearanceFont="YES"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -27,7 +36,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HcP-Cr-oFq">
                     <rect key="frame" x="28" y="166" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="位置" id="dL9-1u-JJ5">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -35,7 +44,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zzr-eA-Ocb">
                     <rect key="frame" x="28" y="124" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="颜色" id="PwO-mv-Mh0">
-                        <font key="font" usesAppearanceFont="YES"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -56,6 +65,9 @@
                             </items>
                         </menu>
                     </popUpButtonCell>
+                    <connections>
+                        <action selector="selectLightTypeButtonClick:" target="-2" id="Ad1-dW-YPR"/>
+                    </connections>
                 </popUpButton>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="c7E-Nj-HW4">
                     <rect key="frame" x="67" y="121" width="48" height="24"/>
@@ -68,7 +80,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IKz-iV-xRS">
                     <rect key="frame" x="143" y="124" width="58" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="反射颜色" id="eYN-Ys-4aw">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -81,109 +93,128 @@
                     </constraints>
                     <color key="color" name="textColor" catalog="System" colorSpace="catalog"/>
                 </colorWell>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tSO-WG-mOd">
-                    <rect key="frame" x="36" y="23" width="18" height="11"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="tSO-WG-mOd">
+                    <rect key="frame" x="71" y="28" width="18" height="11"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="0.5" id="cYR-S4-21c">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hak-WT-lMR">
-                    <rect key="frame" x="60" y="25" width="28" height="30"/>
-                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.5" sliderType="circular" id="msM-QR-lvn"/>
+                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="hak-WT-lMR">
+                    <rect key="frame" x="97" y="25" width="32" height="32"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.5" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="circular" id="msM-QR-lvn"/>
+                    <connections>
+                        <action selector="sliderValueChanged:" target="-2" id="hxu-w5-Fec"/>
+                    </connections>
                 </slider>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uja-Nq-ADJ">
-                    <rect key="frame" x="30" y="36" width="29" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="强度" id="tn6-hg-Lan">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JFE-m0-RRw">
                     <rect key="frame" x="28" y="82" width="31" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="衰减" id="NYM-td-NTB">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pvw-ek-MRd">
-                    <rect key="frame" x="110" y="23" width="18" height="11"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="0.5" id="hQA-cD-twl">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="15" translatesAutoresizingMaskIntoConstraints="NO" id="Pvw-ek-MRd">
+                    <rect key="frame" x="149" y="28" width="16" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="45" id="hQA-cD-twl">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lPy-38-pAY">
-                    <rect key="frame" x="134" y="25" width="28" height="30"/>
-                    <sliderCell key="cell" state="on" alignment="left" maxValue="90" doubleValue="45" sliderType="circular" id="mb8-vm-q17"/>
+                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="lPy-38-pAY">
+                    <rect key="frame" x="174" y="25" width="32" height="32"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="90" doubleValue="45" numberOfTickMarks="90" allowsTickMarkValuesOnly="YES" sliderType="circular" id="mb8-vm-q17"/>
+                    <connections>
+                        <action selector="sliderValueChanged:" target="-2" id="ENx-fc-Tpc"/>
+                    </connections>
                 </slider>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lho-VU-kr8">
-                    <rect key="frame" x="104" y="36" width="29" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="角度" id="afF-Kc-F19">
+                    <rect key="frame" x="142" y="41" width="29" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="GTq-DY-rCQ"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="角度" id="afF-Kc-F19">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jzQ-gX-hi5">
-                    <rect key="frame" x="63" y="70" width="18" height="11"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="0.5" id="KM7-LP-CMq">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="jzQ-gX-hi5">
+                    <rect key="frame" x="75" y="70" width="10" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="2" id="KM7-LP-CMq">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wAM-55-0Wm">
-                    <rect key="frame" x="79" y="72" width="28" height="30"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" sliderType="circular" id="p7x-ic-B6u"/>
+                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="wAM-55-0Wm">
+                    <rect key="frame" x="97" y="67" width="32" height="32"/>
+                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="circular" id="p7x-ic-B6u"/>
+                    <connections>
+                        <action selector="sliderValueChanged:" target="-2" id="VpL-wv-wqA"/>
+                    </connections>
                 </slider>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lx3-wG-Ldz">
-                    <rect key="frame" x="65" y="83" width="13" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="X" id="rPO-69-Qt2">
+                    <rect key="frame" x="65" y="83" width="29" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="i9J-CL-a1Z"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="X" id="rPO-69-Qt2">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N36-pb-WNT">
-                    <rect key="frame" x="115" y="70" width="18" height="11"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="0.5" id="ezu-Fs-2oT">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="N36-pb-WNT">
+                    <rect key="frame" x="152" y="70" width="10" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="2" id="ezu-Fs-2oT">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PB3-fv-YCh">
-                    <rect key="frame" x="131" y="72" width="28" height="30"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" sliderType="circular" id="BDf-9U-fo7"/>
+                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="PB3-fv-YCh">
+                    <rect key="frame" x="174" y="67" width="32" height="32"/>
+                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="circular" id="BDf-9U-fo7"/>
+                    <connections>
+                        <action selector="sliderValueChanged:" target="-2" id="lce-L6-dhz"/>
+                    </connections>
                 </slider>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cdE-99-QVs">
-                    <rect key="frame" x="118" y="83" width="12" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Y" id="I88-ch-W9d">
+                    <rect key="frame" x="142" y="83" width="29" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="nP0-8C-Hgj"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Y" id="I88-ch-W9d">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HCF-CU-uCI">
-                    <rect key="frame" x="167" y="70" width="18" height="11"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="0.5" id="X4G-gb-L0k">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="HCF-CU-uCI">
+                    <rect key="frame" x="229" y="70" width="10" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="2" id="X4G-gb-L0k">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pXf-PL-s7J">
-                    <rect key="frame" x="183" y="72" width="28" height="30"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" sliderType="circular" id="uM3-se-UnU"/>
+                <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="pXf-PL-s7J">
+                    <rect key="frame" x="251" y="67" width="32" height="32"/>
+                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="circular" id="uM3-se-UnU"/>
+                    <connections>
+                        <action selector="sliderValueChanged:" target="-2" id="fdM-Eo-YYj"/>
+                    </connections>
                 </slider>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Quj-t6-Vu1">
-                    <rect key="frame" x="170" y="83" width="12" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Z" id="KV4-uf-0ZD">
+                    <rect key="frame" x="219" y="83" width="29" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="vtO-v5-D32"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Z" id="KV4-uf-0ZD">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -204,12 +235,30 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hyT-T4-QAq">
+                    <rect key="frame" x="28" y="40" width="31" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="其它" id="Laf-sd-ufO">
+                        <font key="font" metaFont="systemSemibold" size="13"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uja-Nq-ADJ">
+                    <rect key="frame" x="65" y="41" width="29" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="B1u-zW-tYG"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="强度" id="tn6-hg-Lan">
+                        <font key="font" metaFont="cellTitle"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="hak-WT-lMR" firstAttribute="leading" secondItem="Uja-Nq-ADJ" secondAttribute="trailing" constant="5" id="1bH-Mf-bb0"/>
                 <constraint firstItem="IKz-iV-xRS" firstAttribute="centerY" secondItem="Zzr-eA-Ocb" secondAttribute="centerY" id="2FU-B3-bc2"/>
                 <constraint firstItem="HcP-Cr-oFq" firstAttribute="top" secondItem="6xO-uL-qIB" secondAttribute="bottom" constant="25" id="5sN-ug-nOL"/>
-                <constraint firstItem="Uja-Nq-ADJ" firstAttribute="trailing" secondItem="JFE-m0-RRw" secondAttribute="trailing" id="9tz-t2-lKl"/>
                 <constraint firstItem="jzQ-gX-hi5" firstAttribute="centerX" secondItem="Lx3-wG-Ldz" secondAttribute="centerX" id="Aug-B0-8Ys"/>
                 <constraint firstItem="IKz-iV-xRS" firstAttribute="leading" secondItem="c7E-Nj-HW4" secondAttribute="trailing" constant="30" id="AyF-y6-yC0"/>
                 <constraint firstItem="wAM-55-0Wm" firstAttribute="leading" secondItem="Lx3-wG-Ldz" secondAttribute="trailing" constant="5" id="BPh-TX-fwr"/>
@@ -222,17 +271,20 @@
                 <constraint firstItem="lPy-38-pAY" firstAttribute="leading" secondItem="lho-VU-kr8" secondAttribute="trailing" constant="5" id="M1x-hc-y0y"/>
                 <constraint firstItem="tSO-WG-mOd" firstAttribute="centerX" secondItem="Uja-Nq-ADJ" secondAttribute="centerX" id="NCR-rP-zcP"/>
                 <constraint firstItem="lho-VU-kr8" firstAttribute="centerY" secondItem="Uja-Nq-ADJ" secondAttribute="centerY" id="PZJ-Nh-B9K"/>
-                <constraint firstItem="lho-VU-kr8" firstAttribute="leading" secondItem="hak-WT-lMR" secondAttribute="trailing" constant="20" id="Q9n-KB-wZA"/>
+                <constraint firstItem="hyT-T4-QAq" firstAttribute="trailing" secondItem="JFE-m0-RRw" secondAttribute="trailing" id="Q7k-Nj-YOe"/>
+                <constraint firstItem="lho-VU-kr8" firstAttribute="leading" secondItem="hak-WT-lMR" secondAttribute="trailing" constant="15" id="Q9n-KB-wZA"/>
+                <constraint firstItem="Uja-Nq-ADJ" firstAttribute="top" secondItem="hyT-T4-QAq" secondAttribute="top" id="QBI-9y-Fip"/>
                 <constraint firstItem="lPy-38-pAY" firstAttribute="top" secondItem="lho-VU-kr8" secondAttribute="top" id="RHL-Zn-LDh"/>
                 <constraint firstItem="6xO-uL-qIB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="SAe-en-yhq"/>
+                <constraint firstItem="Uja-Nq-ADJ" firstAttribute="leading" secondItem="hyT-T4-QAq" secondAttribute="trailing" constant="10" id="Sl6-Sn-mrv"/>
                 <constraint firstItem="HCF-CU-uCI" firstAttribute="centerX" secondItem="Quj-t6-Vu1" secondAttribute="centerX" id="TPS-ID-wum"/>
-                <constraint firstItem="Uja-Nq-ADJ" firstAttribute="top" secondItem="JFE-m0-RRw" secondAttribute="bottom" constant="30" id="TwX-5f-aWL"/>
                 <constraint firstItem="PB3-fv-YCh" firstAttribute="top" secondItem="cdE-99-QVs" secondAttribute="top" id="UCp-25-dIt"/>
                 <constraint firstItem="iin-Ha-V4J" firstAttribute="centerY" secondItem="HcP-Cr-oFq" secondAttribute="centerY" id="YD3-p1-q3J"/>
                 <constraint firstItem="N36-pb-WNT" firstAttribute="top" secondItem="cdE-99-QVs" secondAttribute="bottom" constant="2" id="Ymz-rQ-beR"/>
                 <constraint firstItem="cdE-99-QVs" firstAttribute="top" secondItem="Lx3-wG-Ldz" secondAttribute="top" id="ZcO-O1-kfw"/>
                 <constraint firstItem="hak-WT-lMR" firstAttribute="top" secondItem="Uja-Nq-ADJ" secondAttribute="top" id="Zgh-tX-887"/>
                 <constraint firstItem="c7E-Nj-HW4" firstAttribute="centerY" secondItem="Zzr-eA-Ocb" secondAttribute="centerY" id="aCd-CS-XVQ"/>
+                <constraint firstItem="hyT-T4-QAq" firstAttribute="top" secondItem="JFE-m0-RRw" secondAttribute="bottom" constant="25" id="cQ7-z0-KXk"/>
                 <constraint firstItem="Lx3-wG-Ldz" firstAttribute="top" secondItem="JFE-m0-RRw" secondAttribute="top" id="d0I-ZQ-W0N"/>
                 <constraint firstItem="cdE-99-QVs" firstAttribute="leading" secondItem="wAM-55-0Wm" secondAttribute="trailing" constant="15" id="d9P-0t-hVW"/>
                 <constraint firstItem="jzQ-gX-hi5" firstAttribute="top" secondItem="Lx3-wG-Ldz" secondAttribute="bottom" constant="2" id="eaS-74-wKb"/>

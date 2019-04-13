@@ -42,23 +42,23 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Laz-Sr-1fe">
-                    <rect key="frame" x="28" y="144" width="62" height="18"/>
+                    <rect key="frame" x="28" y="145" width="58" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="场景名称" id="aQA-rN-or4">
-                        <font key="font" metaFont="system" size="14"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r5i-k9-B4M">
-                    <rect key="frame" x="28" y="101" width="62" height="18"/>
+                    <rect key="frame" x="28" y="103" width="58" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="渲染方式" id="2Dy-RO-lB3">
-                        <font key="font" metaFont="system" size="14"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s0v-sB-lED">
-                    <rect key="frame" x="98" y="142" width="258" height="22"/>
+                    <rect key="frame" x="94" y="143" width="262" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="名称" drawsBackground="YES" id="OIn-7R-YAr">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -66,7 +66,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="srL-I5-0Z8">
-                    <rect key="frame" x="95" y="97" width="76" height="25"/>
+                    <rect key="frame" x="91" y="98" width="76" height="25"/>
                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="csJ-S2-UMn" id="o93-OM-UAL">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -83,7 +83,7 @@
                     </connections>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4dH-fI-lCH">
-                    <rect key="frame" x="176" y="100" width="91" height="14"/>
+                    <rect key="frame" x="172" y="101" width="91" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="* 选定后无法更改" id="Mg0-Pu-CXh">
                         <font key="font" metaFont="systemThin" size="11"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -91,15 +91,15 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UIM-Ni-DMs">
-                    <rect key="frame" x="28" y="58" width="62" height="18"/>
+                    <rect key="frame" x="28" y="61" width="58" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="立即打开" id="gf5-We-mKP">
-                        <font key="font" metaFont="system" size="14"/>
+                        <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rvo-ge-lQk">
-                    <rect key="frame" x="96" y="58" width="22" height="18"/>
+                    <rect key="frame" x="92" y="61" width="22" height="18"/>
                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="PDU-TF-sBJ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
