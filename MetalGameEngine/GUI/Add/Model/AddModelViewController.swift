@@ -97,7 +97,7 @@ extension AddModelViewController: AddNodeVaildable {
         
         let name = modelNameTextField.stringValue
         if parentNodeNames.contains(name) {
-            return (false, "模型名称 \"\(name)\" 已存在")
+            return (false, "名称 \"\(name)\" 已存在")
         }
         
         modelInformation.modelName = name

@@ -19,6 +19,7 @@ class AddViewController: NSViewController {
     var paretnNodes: [Node] = []{
         didSet {
             (viewControllers[0] as? AddModelViewController)?.parentNodes = self.paretnNodes
+            (viewControllers[2] as? AddCameraViewController)?.parentNodes = self.paretnNodes
         }
     }
 
@@ -67,6 +68,11 @@ class AddViewController: NSViewController {
             model.position = modelInformation.position
             
             delegate?.addViewController(viewController: self, add: model, parentNode: modelInformation.parentNode)
+        }
+        
+        if let vc = viewController as? AddCameraViewController {
+            let cameraInformation = vc.cameraInformation
+            delegate?.addViewController(viewController: self, add: cameraInformation.camera, parentNode: cameraInformation.parentNode)
         }
         
         self.dismiss(self)

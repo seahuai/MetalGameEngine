@@ -14,11 +14,11 @@ class Node {
     
     var name = "untitled"
     // 位置
-    var position: float3 = float3(0)
+    var position: float3 = [0, 0, 0]
     // 旋转
-    var rotation: float3 = float3(0)
+    var rotation: float3 = [0, 0, 0]
     // 缩放
-    var scale: float3 = float3(1)
+    var scale: float3 = [1, 1, 1]
     
     // 尺寸
     var boundingBox = MDLAxisAlignedBoundingBox()
@@ -71,7 +71,7 @@ class Node {
             children.append(child)
         }
         node.children = []
-        guard let index = (children.index { $0 === node }) else { return }
+        guard let index = (children.firstIndex { $0 === node }) else { return }
         children.remove(at: index)
     }
     
