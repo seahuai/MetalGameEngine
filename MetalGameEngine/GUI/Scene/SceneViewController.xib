@@ -32,14 +32,17 @@
                             <segment label="光源" width="36" tag="1"/>
                         </segments>
                     </segmentedCell>
+                    <connections>
+                        <action selector="segmentedControlValueChanged:" target="-2" id="aa7-yd-HXI"/>
+                    </connections>
                 </segmentedControl>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="98" horizontalPageScroll="10" verticalLineScroll="98" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBU-QN-nvy">
+                <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBU-QN-nvy">
                     <rect key="frame" x="5" y="5" width="220" height="299"/>
                     <clipView key="contentView" id="PjN-go-byz">
                         <rect key="frame" x="1" y="0.0" width="218" height="298"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="96" rowSizeStyle="automatic" headerView="gTX-wJ-iHx" viewBased="YES" id="812-gG-duJ">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="gTX-wJ-iHx" viewBased="YES" id="812-gG-duJ">
                                 <rect key="frame" x="0.0" y="0.0" width="218" height="273"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>

@@ -22,12 +22,6 @@ class SceneViewController: NSViewController {
         self.presentAsModalWindow(addViewController)
     }
     
-    var nodes: [Node] = []
-    
-    let scene: Scene
-    
-    let renderType: RenderType
-    
     @IBOutlet weak var sceneNodesTableView: NSTableView! {
         didSet {
             self.sceneNodesTableView.dataSource = self
@@ -38,6 +32,15 @@ class SceneViewController: NSViewController {
     }
     
     @IBOutlet weak var mtkView: MTKView!
+    
+    @IBAction func segmentedControlValueChanged(_ sender: NSSegmentedControl) {
+        sceneNodesTableView.reloadData()
+    }
+    
+    
+    var nodes: [Node] = []
+    let scene: Scene
+    let renderType: RenderType
     
     init(_ scene: Scene, renderType: RenderType) {
         self.scene = scene
@@ -60,13 +63,15 @@ class SceneViewController: NSViewController {
         reloadNodes()
     }
     
-    func reloadNodes() {
+    private func reloadNodes() {
         nodes = []
         for parent in scene.nodes {
             nodes.append(parent)
             nodes.append(contentsOf: parent.subNodes)
         }
-        sceneNodesTableView.reloadData()
+        if segmentedControl.indexOfSelectedItem == 0 {
+            sceneNodesTableView.reloadData()
+        }
     }
 }
 
@@ -75,27 +80,59 @@ extension SceneViewController: AddViewControllerDelegate {
         scene.add(node: node, parentNode: parentNode)
         reloadNodes()
     }
+    
+    func addViewController(viewController: AddViewController, add light: Light) {
+        scene.lights.append(light)
+        if segmentedControl.indexOfSelectedItem == 1 {
+            sceneNodesTableView.reloadData()
+        }
+    }
 }
 
 extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return nodes.count
+        let index = segmentedControl.indexOfSelectedItem
+        
+        if index == 0 {
+            return nodes.count
+        }
+        
+        if index == 1 {
+            return scene.lights.count
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let _ = tableColumn else { return nil }
         
-        var sceneNodeCellView = tableView.makeView(withIdentifier: SceneNodeCellView.identifier, owner: nil) as? SceneNodeCellView
-        if sceneNodeCellView == nil {
-            sceneNodeCellView = SceneNodeCellView()
+        var view: NSView?
+        
+        let index = segmentedControl.indexOfSelectedItem
+        
+        if index == 0 {
+            var sceneNodeCellView = tableView.makeView(withIdentifier: SceneNodeCellView.identifier, owner: nil) as? SceneNodeCellView
+            if sceneNodeCellView == nil {
+                sceneNodeCellView = SceneNodeCellView()
+            }
+            
+            let node = nodes[row]
+            sceneNodeCellView?.node = node
+            view = sceneNodeCellView
+        } else if index == 1 {
+            var sceneLightCellView = tableView.makeView(withIdentifier: SceneLightCellView.identifier, owner: nil) as? SceneLightCellView
+            if sceneLightCellView == nil {
+                sceneLightCellView = SceneLightCellView()
+                sceneLightCellView?.identifier = identifier
+            }
+            
+            let light = scene.lights[row]
+            sceneLightCellView?.light = light
+            view = sceneLightCellView
         }
         
-        let node = nodes[row]
-        sceneNodeCellView?.node = node
-        
-        return sceneNodeCellView
+        return view
     }
-    
-    
 }

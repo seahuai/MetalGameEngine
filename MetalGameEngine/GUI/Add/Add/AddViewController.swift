@@ -10,6 +10,7 @@ import Cocoa
 
 protocol AddViewControllerDelegate: class {
     func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?)
+    func addViewController(viewController: AddViewController, add light: Light)
 }
 
 class AddViewController: NSViewController {
@@ -73,6 +74,11 @@ class AddViewController: NSViewController {
         if let vc = viewController as? AddCameraViewController {
             let cameraInformation = vc.cameraInformation
             delegate?.addViewController(viewController: self, add: cameraInformation.camera, parentNode: cameraInformation.parentNode)
+        }
+        
+        if let vc = viewController as? AddLightViewController {
+            let light = vc.lightNode.light
+            delegate?.addViewController(viewController: self, add: light)
         }
         
         self.dismiss(self)

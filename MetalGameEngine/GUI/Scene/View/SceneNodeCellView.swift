@@ -67,10 +67,6 @@ class SceneNodeCellView: NSView {
         nameLabel.maximumNumberOfLines = 1
         nameLabel.backgroundColor = NSColor.clear
         addSubview(nameLabel)
-        
-        hierarchyLabel.stringValue = "111"
-        typeLabel.stringValue = "M"
-        nameLabel.stringValue = "魔性信息学理性"
     }
     
     override func layout() {

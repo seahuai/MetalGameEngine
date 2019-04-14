@@ -86,6 +86,9 @@
 		352C3F6222476EE700053171 /* Skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F6122476EE700053171 /* Skybox.swift */; };
 		352C3F65224905EE00053171 /* Skybox.metal in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F64224905EE00053171 /* Skybox.metal */; };
 		352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */; };
+		352F50DE2262C9DD002351FD /* NSColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50DD2262C9DD002351FD /* NSColorExtension.swift */; };
+		352F50E12262D3BE002351FD /* LightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E02262D3BE002351FD /* LightNode.swift */; };
+		352F50E3226356FE002351FD /* SceneLightCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E2226356FE002351FD /* SceneLightCellView.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* PBRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* PBRRenderer.swift */; };
 		353FAF182254E5840012F85C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF172254E5840012F85C /* Debug.swift */; };
@@ -197,6 +200,9 @@
 		352C3F6122476EE700053171 /* Skybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skybox.swift; sourceTree = "<group>"; };
 		352C3F64224905EE00053171 /* Skybox.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Skybox.metal; sourceTree = "<group>"; };
 		352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSkyboxViewController.swift; sourceTree = "<group>"; };
+		352F50DD2262C9DD002351FD /* NSColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorExtension.swift; sourceTree = "<group>"; };
+		352F50E02262D3BE002351FD /* LightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightNode.swift; sourceTree = "<group>"; };
+		352F50E2226356FE002351FD /* SceneLightCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLightCellView.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* PBRRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBRRenderer.swift; sourceTree = "<group>"; };
 		353FAF172254E5840012F85C /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -316,6 +322,7 @@
 		350E943C225D96C2003B51E3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				352F50DF2262D2FC002351FD /* Model */,
 				357BFB93225F1C0500880C01 /* Add */,
 				357BFB8C225F0F5200880C01 /* Scene */,
 				350E944E225DD978003B51E3 /* NewScene */,
@@ -356,6 +363,7 @@
 				350E9480225E2CFC003B51E3 /* DateExtextension.swift */,
 				35B39839226027E200D0905A /* OnlyNumericFormatter.swift */,
 				35B3983E2260349300D0905A /* FileTool.swift */,
+				352F50DD2262C9DD002351FD /* NSColorExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -499,6 +507,14 @@
 				352C3F64224905EE00053171 /* Skybox.metal */,
 			);
 			path = Skybox;
+			sourceTree = "<group>";
+		};
+		352F50DF2262D2FC002351FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				352F50E02262D3BE002351FD /* LightNode.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		353F9136223F39810071597B /* Render */ = {
@@ -703,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				35B39841226066F900D0905A /* SceneNodeCellView.swift */,
+				352F50E2226356FE002351FD /* SceneLightCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -864,8 +881,10 @@
 				350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */,
 				350E9440225D96C2003B51E3 /* WelcomeViewController.swift in Sources */,
 				357BFBB9225F213E00880C01 /* AddModelViewController.swift in Sources */,
+				352F50E3226356FE002351FD /* SceneLightCellView.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
 				350E9478225E177C003B51E3 /* Debug.swift in Sources */,
+				352F50DE2262C9DD002351FD /* NSColorExtension.swift in Sources */,
 				351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */,
 				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
@@ -889,6 +908,7 @@
 				350E9465225E173C003B51E3 /* Submesh.swift in Sources */,
 				350E946A225E174A003B51E3 /* Water.metal in Sources */,
 				350E9460225E1738003B51E3 /* Scene.swift in Sources */,
+				352F50E12262D3BE002351FD /* LightNode.swift in Sources */,
 				350E9477225E177C003B51E3 /* Utility.swift in Sources */,
 				357BFBC1225F215C00880C01 /* AddSkyboxViewController.swift in Sources */,
 				35B398382260251600D0905A /* VectorInputView.swift in Sources */,

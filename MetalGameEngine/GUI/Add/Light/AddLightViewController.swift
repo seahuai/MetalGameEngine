@@ -10,7 +10,9 @@ import Cocoa
 
 class AddLightViewController: NSViewController {
     
-    private var lightTypes = ["直射光", "环境光", "点光源", "舞台光"]
+    var lightNode: LightNode!
+    
+    private var lightTypes = ["直射光", "聚光灯光", "点光源", "环境光"]
     
     @IBOutlet weak var selectLightTypeButton: NSPopUpButton!
     @IBOutlet weak var positionInputView: VectorInputView!
@@ -21,7 +23,8 @@ class AddLightViewController: NSViewController {
     @IBOutlet weak var attenuationZLabel: NSTextField!
     @IBOutlet weak var intensityLabel: NSTextField!
     @IBOutlet weak var coneDegreeLabel: NSTextField!
-
+    @IBOutlet weak var spotLightDirectionInputView: VectorInputView!
+    
     @IBAction func sliderValueChanged(_ sender: NSSlider) {
         /*
          1: attenuation x
@@ -58,8 +61,26 @@ class AddLightViewController: NSViewController {
 
 
 extension AddLightViewController: AddNodeVaildable {
-    var isVaild: Bool {
-        return false
+    func checkVaild() -> (isVaild: Bool, errorMsg: String?) {
+        
+        let index = selectLightTypeButton.indexOfSelectedItem
+        
+        if index <= 0 {
+            return (false, "灯光类型未选择")
+        }
+        
+        lightNode = LightNode()
+        lightNode.position = positionInputView.float3Value
+        lightNode.color = lightColorWell.color.float3Value
+        lightNode.specularColor = specularColorWell.color.float3Value
+        lightNode.intensity = intensityLabel.floatValue
+        lightNode.attenuation = [attenuationXLabel.floatValue, attenuationYLabel.floatValue, attenuationZLabel.floatValue]
+        lightNode.coneAngle = radians(fromDegrees: coneDegreeLabel.floatValue)
+        lightNode.coneDirection = spotLightDirectionInputView.float3Value
+        lightNode.coneAttenuation = 12
+        lightNode.type = LightType(UInt32(index))
+        
+        return (true, nil)
     }
 }
 
