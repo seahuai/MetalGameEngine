@@ -36,7 +36,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="krr-eX-p71">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="krr-eX-p71">
                     <rect key="frame" x="67" y="181" width="385" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="untitled" drawsBackground="YES" id="3ms-pC-o5Z">
                         <font key="font" metaFont="system"/>
@@ -120,6 +120,7 @@
                 <constraint firstItem="a6f-L3-JRb" firstAttribute="top" secondItem="Qec-0f-KhJ" secondAttribute="bottom" constant="25" id="JPa-ba-q5O"/>
                 <constraint firstItem="a6f-L3-JRb" firstAttribute="trailing" secondItem="FYR-9i-J0v" secondAttribute="trailing" id="NAt-e3-Xfy"/>
                 <constraint firstItem="vDY-AC-dFJ" firstAttribute="top" secondItem="VYI-hI-qhl" secondAttribute="bottom" constant="25" id="Vt7-qm-Sm8"/>
+                <constraint firstAttribute="trailing" secondItem="krr-eX-p71" secondAttribute="trailing" constant="30" id="cnt-iL-S77"/>
                 <constraint firstItem="FYR-9i-J0v" firstAttribute="trailing" secondItem="vDY-AC-dFJ" secondAttribute="trailing" id="e0Y-Bq-5sX"/>
                 <constraint firstItem="vDY-AC-dFJ" firstAttribute="trailing" secondItem="VYI-hI-qhl" secondAttribute="trailing" id="fhz-PR-4uJ"/>
                 <constraint firstItem="IKj-Cc-7iS" firstAttribute="leading" secondItem="vDY-AC-dFJ" secondAttribute="trailing" constant="10" id="gcq-Fi-mP1"/>

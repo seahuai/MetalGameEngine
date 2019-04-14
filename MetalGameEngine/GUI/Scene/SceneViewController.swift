@@ -11,17 +11,13 @@ import MetalKit
 
 class SceneViewController: NSViewController {
     
-    private lazy var addViewController = AddViewController()
-    
-    @IBOutlet weak var segmentedControl: NSSegmentedControl!
-    
-    @IBOutlet weak var addButton: NSButton!
-    
-    @IBAction func addButtonDidClick(_ sender: NSButton) {
-        addViewController.paretnNodes = nodes
-        self.presentAsModalWindow(addViewController)
+    @IBOutlet weak var segmentedControl: NSSegmentedControl! {
+        didSet {
+            self.segmentedControl.selectedSegment = 0
+        }
     }
-    
+    @IBOutlet weak var addButton: NSButton!
+    @IBOutlet weak var mtkView: MTKView!
     @IBOutlet weak var sceneNodesTableView: NSTableView! {
         didSet {
             self.sceneNodesTableView.dataSource = self
@@ -30,14 +26,26 @@ class SceneViewController: NSViewController {
             self.sceneNodesTableView.tableColumns.first?.width = self.sceneNodesTableView.bounds.width
         }
     }
-    
-    @IBOutlet weak var mtkView: MTKView!
+
+    @IBAction func addButtonDidClick(_ sender: NSButton) {
+        addViewController.paretnNodes = nodes
+        self.presentAsModalWindow(addViewController)
+    }
     
     @IBAction func segmentedControlValueChanged(_ sender: NSSegmentedControl) {
         sceneNodesTableView.reloadData()
     }
     
-    
+    private lazy var addViewController = AddViewController()
+    private var segmentIndex: Int {
+        get {
+            return segmentedControl.indexOfSelectedItem
+        }
+        
+        set {
+            segmentedControl.selectedSegment = newValue
+        }
+    }
     var nodes: [Node] = []
     let scene: Scene
     let renderType: RenderType
@@ -56,11 +64,13 @@ class SceneViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = scene.name
+        self.title = "场景 \"\(scene.name)\" "
         
         addViewController.delegate = self
         
         reloadNodes()
+        
+        setupMenu()
     }
     
     private func reloadNodes() {
@@ -75,6 +85,34 @@ class SceneViewController: NSViewController {
     }
 }
 
+// MARK: - Menu
+extension SceneViewController {
+    func setupMenu() {
+        let menu = NSMenu(title: "操作")
+        let editMenuItem = NSMenuItem(title: "编辑", action: #selector(editNode), keyEquivalent: "")
+        let deleteMenuItem = NSMenuItem(title: "删除", action: #selector(deleteNode), keyEquivalent: "")
+        menu.items = [editMenuItem, deleteMenuItem]
+        sceneNodesTableView.menu = menu
+    }
+    
+    @objc func deleteNode() {
+        let clickedRow = sceneNodesTableView.clickedRow
+        if segmentIndex == 0 {
+            let node = nodes[clickedRow]
+            scene.remove(node: node)
+            reloadNodes()
+        } else if segmentIndex == 1 {
+            scene.lights.remove(at: clickedRow)
+            sceneNodesTableView.reloadData()
+        }
+    }
+    
+    @objc func editNode() {
+        
+    }
+}
+
+// MARK: - AddViewControllerDelegate
 extension SceneViewController: AddViewControllerDelegate {
     func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?) {
         scene.add(node: node, parentNode: parentNode)
@@ -89,6 +127,7 @@ extension SceneViewController: AddViewControllerDelegate {
     }
 }
 
+// MARK: - NSTableViewDataSource, NSTableViewDelegate
 extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
