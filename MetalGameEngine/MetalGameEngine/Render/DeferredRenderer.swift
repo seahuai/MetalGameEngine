@@ -35,14 +35,6 @@ class DeferredRenderer: Renderer {
     required init(metalView: MTKView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
         
-        scene.modelsChangeNotificationBlock = { [weak self] models in
-            self?.buildProps()
-        }
-        
-        scene.lightsChangeNotificationBlock = { [weak self] lights in
-            self?.buildLights()
-        }
-        
         buildProps()
         buildLights()
         

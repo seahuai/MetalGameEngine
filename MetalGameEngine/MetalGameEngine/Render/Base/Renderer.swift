@@ -58,12 +58,16 @@ class Renderer: NSObject {
 
 extension Renderer: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        scene.sceneSizeWillChange(size)
+        guard !scene.cameras.isEmpty else { return }
         
+        scene.sceneSizeWillChange(size)
         mtkView(drawableSizeWillChange: size)
     }
     
     func draw(in view: MTKView) {
+        // 没有光照和视点不进行渲染
+        guard !scene.lights.isEmpty, !scene.cameras.isEmpty else { return }
+        
         guard let drawable = view.currentDrawable,
             let descriptor = view.currentRenderPassDescriptor,
             let commandBuffer = commandQueue.makeCommandBuffer()

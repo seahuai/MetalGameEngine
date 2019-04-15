@@ -23,7 +23,6 @@
 		350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350E9454225DD9D3003B51E3 /* CreatNewSceneViewController.xib */; };
 		350E9459225DE129003B51E3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9458225DE129003B51E3 /* Error.swift */; };
 		350E945B225DE6B7003B51E3 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E945A225DE6B7003B51E3 /* Enum.swift */; };
-		350E945E225E16F9003B51E3 /* MainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E945D225E16F9003B51E3 /* MainRenderer.swift */; };
 		350E945F225E172C003B51E3 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		350E9460225E1738003B51E3 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506145C2240CD9900BFB42E /* Scene.swift */; };
 		350E9461225E1738003B51E3 /* Skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F6122476EE700053171 /* Skybox.swift */; };
@@ -89,6 +88,7 @@
 		352F50DE2262C9DD002351FD /* NSColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50DD2262C9DD002351FD /* NSColorExtension.swift */; };
 		352F50E12262D3BE002351FD /* LightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E02262D3BE002351FD /* LightNode.swift */; };
 		352F50E3226356FE002351FD /* SceneLightCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E2226356FE002351FD /* SceneLightCellView.swift */; };
+		352F50E6226370AC002351FD /* RasterizationRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E5226370AC002351FD /* RasterizationRender.swift */; };
 		353F9139223F39EF0071597B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F9138223F39EF0071597B /* Renderer.swift */; };
 		353F913B223F3B730071597B /* PBRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* PBRRenderer.swift */; };
 		353FAF182254E5840012F85C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF172254E5840012F85C /* Debug.swift */; };
@@ -143,6 +143,10 @@
 		35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841F225C92BE0088B3F9 /* RenderPass.swift */; };
 		35F29EA722433BB000020395 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA522433BB000020395 /* chest.obj */; };
 		35F29EA822433BB000020395 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA622433BB000020395 /* chest.mtl */; };
+		35FC74B42264268B00634353 /* RasterizationRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E5226370AC002351FD /* RasterizationRender.swift */; };
+		35FC74B522642A3A00634353 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA92244D58A00C01902 /* train.mtl */; };
+		35FC74B622642A3A00634353 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBA72244D58A00C01902 /* train.obj */; };
+		35FC74B822642AA700634353 /* SceneViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC74B722642AA700634353 /* SceneViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,7 +170,6 @@
 		350E9454225DD9D3003B51E3 /* CreatNewSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatNewSceneViewController.xib; sourceTree = "<group>"; };
 		350E9458225DE129003B51E3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		350E945A225DE6B7003B51E3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
-		350E945D225E16F9003B51E3 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
 		350E9480225E2CFC003B51E3 /* DateExtextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtextension.swift; sourceTree = "<group>"; };
 		351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNodeVaildable.swift; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		352F50DD2262C9DD002351FD /* NSColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorExtension.swift; sourceTree = "<group>"; };
 		352F50E02262D3BE002351FD /* LightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightNode.swift; sourceTree = "<group>"; };
 		352F50E2226356FE002351FD /* SceneLightCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLightCellView.swift; sourceTree = "<group>"; };
+		352F50E5226370AC002351FD /* RasterizationRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RasterizationRender.swift; sourceTree = "<group>"; };
 		353F9138223F39EF0071597B /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		353F913A223F3B730071597B /* PBRRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBRRenderer.swift; sourceTree = "<group>"; };
 		353FAF172254E5840012F85C /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 		35EB841F225C92BE0088B3F9 /* RenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPass.swift; sourceTree = "<group>"; };
 		35F29EA522433BB000020395 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.obj; sourceTree = "<group>"; };
 		35F29EA622433BB000020395 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.mtl; sourceTree = "<group>"; };
+		35FC74B722642AA700634353 /* SceneViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,14 +371,6 @@
 				352F50DD2262C9DD002351FD /* NSColorExtension.swift */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		350E945C225E16D9003B51E3 /* Renderer */ = {
-			isa = PBXGroup;
-			children = (
-				350E945D225E16F9003B51E3 /* MainRenderer.swift */,
-			);
-			path = Renderer;
 			sourceTree = "<group>";
 		};
 		35242EA02242371A00B8F91A /* File */ = {
@@ -517,9 +514,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		352F50E422637074002351FD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				352F50E5226370AC002351FD /* RasterizationRender.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		353F9136223F39810071597B /* Render */ = {
 			isa = PBXGroup;
 			children = (
+				352F50E422637074002351FD /* Main */,
 				3553B3A0224DEF120060229F /* TerrainRenderer.swift */,
 				3590B932224B18C000CDD1AF /* DeferredRenderer.swift */,
 				353F913A223F3B730071597B /* PBRRenderer.swift */,
@@ -588,9 +594,9 @@
 			isa = PBXGroup;
 			children = (
 				35B39840226066E500D0905A /* View */,
-				350E945C225E16D9003B51E3 /* Renderer */,
 				357BFB8F225F103E00880C01 /* SceneViewController.swift */,
 				357BFB90225F103E00880C01 /* SceneViewController.xib */,
+				35FC74B722642AA700634353 /* SceneViewControllerExtension.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -819,8 +825,10 @@
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
 				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
+				35FC74B522642A3A00634353 /* train.mtl in Resources */,
 				357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */,
 				35B3983B2260343400D0905A /* plane.mtl in Resources */,
+				35FC74B622642A3A00634353 /* train.obj in Resources */,
 				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
 				357BFBA1225F1C8D00880C01 /* AddViewController.xib in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
@@ -884,16 +892,17 @@
 				352F50E3226356FE002351FD /* SceneLightCellView.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
 				350E9478225E177C003B51E3 /* Debug.swift in Sources */,
+				35FC74B822642AA700634353 /* SceneViewControllerExtension.swift in Sources */,
 				352F50DE2262C9DD002351FD /* NSColorExtension.swift in Sources */,
 				351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */,
 				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
-				350E945E225E16F9003B51E3 /* MainRenderer.swift in Sources */,
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
 				357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */,
 				357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */,
+				35FC74B42264268B00634353 /* RasterizationRender.swift in Sources */,
 				350E9469225E173C003B51E3 /* Model.swift in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
 				357BFBB5225F20FF00880C01 /* AddTerrainViewController.swift in Sources */,
@@ -966,6 +975,7 @@
 				352C3F3D2246179000053171 /* PBR.metal in Sources */,
 				353F9139223F39EF0071597B /* Renderer.swift in Sources */,
 				3525CE982251F66A000E2A4C /* InstanceViewController.swift in Sources */,
+				352F50E6226370AC002351FD /* RasterizationRender.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,
 				356428322241E58B0000A5BB /* Texture.swift in Sources */,
 				35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */,

@@ -8,8 +8,20 @@
 
 import Metal
 
+protocol SceneDelegate: class {
+    func scene(_ scene: Scene, didChangeModels models: [Model])
+    func scene(_ scnee: Scene, didChangeLights lights: [Light])
+}
+
 // 以Scene为单位，每个场景单独渲染自己的光照和模型
 class Scene {
+    
+    weak var delegate: SceneDelegate? {
+        didSet {
+            self.delegate?.scene(self, didChangeModels: self.models)
+            self.delegate?.scene(self, didChangeLights: self.lights)
+        }
+    }
     
     var name: String = "untitled"
     
@@ -20,18 +32,18 @@ class Scene {
     var cameras: [Camera] = []
     var currentCameraIndex = 0
     var currentCamera: Camera {
+        // 防止越界
+        currentCameraIndex = currentCameraIndex % cameras.count
         return cameras[currentCameraIndex]
     }
     
     var lights: [Light] = [] {
         didSet {
-            lightsChangeNotificationBlock?(lights)
+            delegate?.scene(self, didChangeLights: self.lights)
         }
     }
-    var lightsChangeNotificationBlock: (([Light]) -> ())?
     
     private var models: [Model] = []
-    var modelsChangeNotificationBlock: (([Model]) -> ())?
     
     private var waters: [Water] = []
     
@@ -143,7 +155,7 @@ extension Scene {
     private func _add(node: Node) {
         if let model = node as? Model {
             models.append(model)
-            modelsChangeNotificationBlock?(models)
+            delegate?.scene(self, didChangeModels: models)
         }
         
         if let water = node as? Water {
@@ -166,7 +178,7 @@ extension Scene {
         if let model = node as? Model {
             guard let index = models.firstIndex(of: model) else { return }
             models.remove(at: index)
-            modelsChangeNotificationBlock?(models)
+            delegate?.scene(self, didChangeModels: models)
         }
         
         if let water = node as? Water {

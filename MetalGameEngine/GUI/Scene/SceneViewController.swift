@@ -49,6 +49,7 @@ class SceneViewController: NSViewController {
     var nodes: [Node] = []
     let scene: Scene
     let renderType: RenderType
+    var renderer: Renderer!
     
     init(_ scene: Scene, renderType: RenderType) {
         self.scene = scene
@@ -70,7 +71,26 @@ class SceneViewController: NSViewController {
         
         reloadNodes()
         
+        setupGestureRecognizer()
+        
         setupMenu()
+        
+        setupRenderer()
+        
+        
+    }
+    
+    private func setupRenderer() {
+        switch renderType {
+        case .rasterization:
+            renderer = RasterizationRender(metalView: mtkView, scene: scene)
+        case .rayTracing:
+            fallthrough
+        case .deffered:
+            fallthrough
+        default:
+            fatalError()
+        }
     }
     
     private func reloadNodes() {
