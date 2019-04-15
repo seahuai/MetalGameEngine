@@ -110,13 +110,13 @@ class AddViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "添加"
+        
         for vc in viewControllers {
             self.addChild(vc)
         }
         
         self.segmentedControlValueChanged(sender: self.addTypeSegmentedControl)
-        
-        self.title = "添加"
     }
     
     @objc func segmentedControlValueChanged(sender: NSSegmentedControl) {

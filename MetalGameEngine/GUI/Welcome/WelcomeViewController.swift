@@ -46,7 +46,8 @@ class WelcomeViewController: NSViewController {
     
     func openScene(rowData: RowData) {
         let vc = SceneViewController(rowData.scene, renderType: rowData.renderType)
-        self.presentAsModalWindow(vc)
+        let sceneWindow = NSWindow(contentViewController: vc)
+        sceneWindow.makeKeyAndOrderFront(NSApp)
     }
 }
 

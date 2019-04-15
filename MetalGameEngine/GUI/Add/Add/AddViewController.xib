@@ -16,11 +16,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="324"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="400"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QP8-MI-39x">
-                    <rect key="frame" x="107" y="291" width="266" height="24"/>
+                    <rect key="frame" x="107" y="367" width="266" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="t5Z-fl-Gkf">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -33,7 +33,7 @@
                     </segmentedCell>
                 </segmentedControl>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="BC9-tL-HuJ">
-                    <rect key="frame" x="5" y="31" width="470" height="252"/>
+                    <rect key="frame" x="5" y="31" width="470" height="328"/>
                 </customView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jeG-wa-aXb">
                     <rect key="frame" x="167" y="-2" width="67" height="32"/>

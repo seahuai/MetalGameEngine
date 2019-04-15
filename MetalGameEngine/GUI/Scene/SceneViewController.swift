@@ -30,6 +30,9 @@ class SceneViewController: NSViewController {
     @IBAction func addButtonDidClick(_ sender: NSButton) {
         addViewController.paretnNodes = nodes
         self.presentAsModalWindow(addViewController)
+        let windowSize = NSSize(width: 480, height: 420)
+        NSApp.mainWindow?.contentMinSize = windowSize
+        NSApp.mainWindow?.contentMaxSize = windowSize
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: NSSegmentedControl) {
