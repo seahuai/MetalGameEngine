@@ -50,7 +50,7 @@ class Skybox {
         depthStencilState = Skybox.buildDepthStencilState()
         
         if let name = textureName {
-            texture = Texture.loadCubeTexture(imageName: name)
+            texture = Texture.loadCubeTexture(imageName: name)            
         }else {
             texture = generateSkyboxTexture([256, 256])
         }

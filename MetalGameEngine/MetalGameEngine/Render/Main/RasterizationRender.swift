@@ -102,6 +102,9 @@ private extension RasterizationRender {
             prop.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
         }
         
+        // 渲染天空盒
+        scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
+        
         renderEncoder.endEncoding()
         
         renderEncoder.popDebugGroup()

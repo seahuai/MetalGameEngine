@@ -76,8 +76,6 @@ class SceneViewController: NSViewController {
         setupMenu()
         
         setupRenderer()
-        
-        
     }
     
     private func setupRenderer() {
@@ -99,7 +97,7 @@ class SceneViewController: NSViewController {
             nodes.append(parent)
             nodes.append(contentsOf: parent.subNodes)
         }
-        if segmentedControl.indexOfSelectedItem == 0 {
+        if segmentIndex == 0 {
             sceneNodesTableView.reloadData()
         }
     }
@@ -134,16 +132,22 @@ extension SceneViewController {
 
 // MARK: - AddViewControllerDelegate
 extension SceneViewController: AddViewControllerDelegate {
-    func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?) {
+    func addViewController(_ viewController: AddViewController, didAddNode node: Node, parentNode: Node?) {
         scene.add(node: node, parentNode: parentNode)
+        segmentIndex = 0
         reloadNodes()
     }
     
-    func addViewController(viewController: AddViewController, add light: Light) {
+    func addViewController(_ viewController: AddViewController, didAddLight light: Light) {
         scene.lights.append(light)
-        if segmentedControl.indexOfSelectedItem == 1 {
-            sceneNodesTableView.reloadData()
-        }
+        segmentIndex = 1
+        sceneNodesTableView.reloadData()
+    }
+    
+    func addViewController(_ viewController: AddViewController, didAddSkybox skybox: Skybox) {
+        scene.skybox = skybox
+        segmentIndex = 2
+        sceneNodesTableView.reloadData()
     }
 }
 

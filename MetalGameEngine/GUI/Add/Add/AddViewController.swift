@@ -9,8 +9,9 @@
 import Cocoa
 
 protocol AddViewControllerDelegate: class {
-    func addViewController(viewController: AddViewController, add node: Node, parentNode: Node?)
-    func addViewController(viewController: AddViewController, add light: Light)
+    func addViewController(_ viewController: AddViewController, didAddNode node: Node, parentNode: Node?)
+    func addViewController(_ viewController: AddViewController, didAddLight light: Light)
+    func addViewController(_ viewController: AddViewController, didAddSkybox skybox: Skybox)
 }
 
 class AddViewController: NSViewController {
@@ -54,11 +55,12 @@ class AddViewController: NSViewController {
         let vaildInformation = viewController.checkVaild()
         
         guard vaildInformation.isVaild else {
-            let errorMsg = vaildInformation.errorMsg
-            let alert = NSAlert(error: InvaildError.inputInvaildError)
-            alert.messageText = "创建失败"
-            alert.informativeText = errorMsg ?? ""
-            alert.runModal()
+            if let errorMsg = vaildInformation.errorMsg {
+                let alert = NSAlert(error: InvaildError.inputInvaildError)
+                alert.messageText = "创建失败"
+                alert.informativeText = errorMsg
+                alert.runModal()
+            }
             return
         }
         
@@ -68,17 +70,22 @@ class AddViewController: NSViewController {
             model.name = modelInformation.modelName ?? modelInformation.objFileName!
             model.position = modelInformation.position
             
-            delegate?.addViewController(viewController: self, add: model, parentNode: modelInformation.parentNode)
+            delegate?.addViewController(self, didAddNode: model, parentNode: modelInformation.parentNode)
         }
         
         if let vc = viewController as? AddCameraViewController {
             let cameraInformation = vc.cameraInformation
-            delegate?.addViewController(viewController: self, add: cameraInformation.camera, parentNode: cameraInformation.parentNode)
+            delegate?.addViewController(self, didAddNode: cameraInformation.camera, parentNode: cameraInformation.parentNode)
         }
         
         if let vc = viewController as? AddLightViewController {
             let light = vc.lightNode.light
-            delegate?.addViewController(viewController: self, add: light)
+            delegate?.addViewController(self, didAddLight: light)
+        }
+        
+        if let vc = viewController as? AddSkyboxViewController {
+            let skybox = vc.skybox!
+            delegate?.addViewController(self, didAddSkybox: skybox)
         }
         
         self.dismiss(self)
