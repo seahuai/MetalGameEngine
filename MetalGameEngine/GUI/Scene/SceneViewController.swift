@@ -28,7 +28,13 @@ class SceneViewController: NSViewController {
     }
 
     @IBAction func addButtonDidClick(_ sender: NSButton) {
-        addViewController.paretnNodes = nodes
+        // 地形不能作为父节点也不能作为子节点
+        var nodesExcludedTerrain = nodes
+        nodesExcludedTerrain.removeAll { (node) -> Bool in
+            if let _ = node as? Terrain { return true }
+            return false
+        }
+        addViewController.paretnNodes = nodesExcludedTerrain
         self.presentAsModalWindow(addViewController)
         let windowSize = NSSize(width: 480, height: 420)
         NSApp.mainWindow?.contentMinSize = windowSize
@@ -39,6 +45,7 @@ class SceneViewController: NSViewController {
         sceneNodesTableView.reloadData()
     }
     
+    // MARK: - 变量
     private lazy var addViewController = AddViewController()
     private var segmentIndex: Int {
         get {
@@ -158,13 +165,11 @@ extension SceneViewController: AddViewControllerDelegate {
 extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        let index = segmentedControl.indexOfSelectedItem
+        let index = self.segmentIndex
         
         if index == 0 {
             return nodes.count
-        }
-        
-        if index == 1 {
+        } else if index == 1 {
             return scene.lights.count
         }
         

@@ -49,7 +49,7 @@ class Scene {
     
     var skybox: Skybox?
     
-    var terrain: Terrain?
+    var terrains: [Terrain] = []
     
     var uniforms: Uniforms {
         var uniforms = Uniforms()
@@ -165,6 +165,10 @@ extension Scene {
         if let camera = node as? Camera {
             cameras.append(camera)
         }
+        
+        if let terrain = node as? Terrain {
+            terrains.append(terrain)
+        }
     }
     
     private func _remove(node: Node) {
@@ -189,6 +193,11 @@ extension Scene {
         if let camera = node as? Camera {
             guard let index = cameras.firstIndex(of: camera) else { return }
             cameras.remove(at: index)
+        }
+        
+        if let terrain = node as? Terrain {
+            guard let index = terrains.firstIndex(of: terrain) else { return }
+            terrains.remove(at: index)
         }
     }
     

@@ -88,6 +88,11 @@ class AddViewController: NSViewController {
             delegate?.addViewController(self, didAddSkybox: skybox)
         }
         
+        if let vc = viewController as? AddTerrainViewController {
+            let terrain = vc.terrain!
+            delegate?.addViewController(self, didAddNode: terrain, parentNode: nil)
+        }
+        
         self.dismiss(self)
         
     }

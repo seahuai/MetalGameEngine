@@ -116,6 +116,10 @@ private extension SceneNodeCellView {
             return "W"
         }
         
+        if let _ = node as? Terrain {
+            return "T"
+        }
+        
         return "?"
     }
 

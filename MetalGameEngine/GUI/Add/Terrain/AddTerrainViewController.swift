@@ -9,6 +9,8 @@
 import Cocoa
 
 class AddTerrainViewController: NSViewController {
+    
+    var terrain: Terrain!
 
     @IBOutlet weak var inputTextfield: NSTextField!
     @IBOutlet weak var positionInputView: VectorInputView!
@@ -21,8 +23,14 @@ class AddTerrainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         inputTextfield.delegate = self
+        
+        let formatter = OnlyNumericFormatter()
+        formatter.isMinusEnabled = false
+        heightTextField.formatter = formatter
+        sizeXTextField.formatter = formatter
+        sizeZTextField.formatter = formatter
     }
     
 }
@@ -49,11 +57,22 @@ extension AddTerrainViewController: NSTextFieldDelegate {
 extension AddTerrainViewController: AddNodeVaildable {
     func checkVaild() -> (isVaild: Bool, errorMsg: String?) {
         if let _ = previewImageView.image {
+            let size: float2 = [sizeXTextField.floatValue, sizeZTextField.floatValue]
+            let height = heightTextField.floatValue
+            
+            if height == Float.zero {
+                return(false, "高度不能为 0")
+            }
+            
+            if size == float2.zero {
+                return(false, "尺寸不能为 0")
+            }
+            
+            terrain = Terrain(heightMapName: inputTextfield.stringValue, size: size, height: height)
             return (true, nil)
         } else {
             return (false, nil)
         }
     }
-    
 }
 
