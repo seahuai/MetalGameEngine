@@ -134,6 +134,8 @@
 		35B3983C2260343400D0905A /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBAA2244D58B00C01902 /* plane.obj */; };
 		35B3983F2260349300D0905A /* FileTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3983E2260349300D0905A /* FileTool.swift */; };
 		35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B39841226066F900D0905A /* SceneNodeCellView.swift */; };
+		35C05ACB2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
+		35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -253,6 +255,7 @@
 		35B39839226027E200D0905A /* OnlyNumericFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyNumericFormatter.swift; sourceTree = "<group>"; };
 		35B3983E2260349300D0905A /* FileTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTool.swift; sourceTree = "<group>"; };
 		35B39841226066F900D0905A /* SceneNodeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeCellView.swift; sourceTree = "<group>"; };
+		35C05ACA2264BC9D00A13B47 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mountain.png; path = MetalGameEngine/Textures.xcassets/mountain.textureset/Universal.mipmapset/mountain.png; sourceTree = SOURCE_ROOT; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -376,6 +379,7 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				35C05ACA2264BC9D00A13B47 /* mountain.png */,
 				35EB841D225C8DB20088B3F9 /* underwater.png */,
 				35EB8413225C42DB0088B3F9 /* normal-water.png */,
 				3525CE9D2251F86E000E2A4C /* Grass */,
@@ -827,6 +831,7 @@
 				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
 				35FC74B522642A3A00634353 /* train.mtl in Resources */,
 				357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */,
+				35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */,
 				35B3983B2260343400D0905A /* plane.mtl in Resources */,
 				35FC74B622642A3A00634353 /* train.obj in Resources */,
 				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
@@ -861,6 +866,7 @@
 				35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */,
 				35B13651223CEE390018ED0B /* Main.storyboard in Resources */,
 				358EDBB02244D58B00C01902 /* plane.obj in Resources */,
+				35C05ACB2264BC9D00A13B47 /* mountain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
