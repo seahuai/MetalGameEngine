@@ -141,7 +141,21 @@ extension SceneViewController {
     }
     
     @objc func editNode() {
+        var editObject: Any?
+        let clickedRow = sceneNodesTableView.clickedRow
+        if segmentIndex == 0 {
+            editObject = nodes[clickedRow]
+        } else if segmentIndex == 1 {
+            editObject = scene.lights[clickedRow]
+        } else if segmentIndex == 2 {
+            editObject = skyboxs[clickedRow]
+        }
         
+        if let object = editObject {
+            let editVC = EditViewController()
+            editVC.editObject = object
+            self.presentAsModalWindow(editVC)
+        }
     }
 }
 

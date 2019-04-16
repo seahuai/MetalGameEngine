@@ -40,6 +40,8 @@ class Model: Node {
         return vertexDescriptor
     }()
     
+    var fileName: String?
+    
     var tiling = 1
     var instanceCount = 1 {
         didSet {
@@ -87,6 +89,7 @@ class Model: Node {
         
         self.boundingBox = mdlMesh.boundingBox
         self.name = name
+        self.fileName = name
         
         initializeTransformBuffer()
     }

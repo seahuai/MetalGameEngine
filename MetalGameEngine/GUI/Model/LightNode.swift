@@ -19,6 +19,20 @@ class LightNode: Node {
     var coneDirection: float3 = [0, 0, 0]
     var coneAttenuation: Float = 12
     
+    override init() { super.init() }
+    
+    init(_ light: Light) {
+        super.init()
+        self.type = light.type
+        self.color = light.color
+        self.specularColor = light.specularColor
+        self.intensity = light.intensity
+        self.attenuation = light.attenuation
+        self.coneAngle = light.coneAngle
+        self.coneDirection = light.coneDirection
+        self.coneAttenuation = light.coneAttenuation
+    }
+    
     var light: Light {
         var light = Light()
         light.type = type

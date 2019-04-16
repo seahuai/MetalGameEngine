@@ -139,6 +139,8 @@
 		35DAA2CA2265B2A100D63D11 /* RayTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */; };
 		35DAA2CC2265B39600D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
 		35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
+		35DAA2D32266060D00D63D11 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2D12266060D00D63D11 /* EditViewController.swift */; };
+		35DAA2D42266060D00D63D11 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DAA2D22266060D00D63D11 /* EditViewController.xib */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -261,6 +263,8 @@
 		35C05ACA2264BC9D00A13B47 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mountain.png; path = MetalGameEngine/Textures.xcassets/mountain.textureset/Universal.mipmapset/mountain.png; sourceTree = SOURCE_ROOT; };
 		35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingViewController.swift; sourceTree = "<group>"; };
 		35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingRenderer.swift; sourceTree = "<group>"; };
+		35DAA2D12266060D00D63D11 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		35DAA2D22266060D00D63D11 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				352F50DF2262D2FC002351FD /* Model */,
+				35DAA2D02266041600D63D11 /* Edit */,
 				357BFB93225F1C0500880C01 /* Add */,
 				357BFB8C225F0F5200880C01 /* Scene */,
 				350E944E225DD978003B51E3 /* NewScene */,
@@ -749,6 +754,15 @@
 			path = RayTracing;
 			sourceTree = "<group>";
 		};
+		35DAA2D02266041600D63D11 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				35DAA2D12266060D00D63D11 /* EditViewController.swift */,
+				35DAA2D22266060D00D63D11 /* EditViewController.xib */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		35EB8417225C75FD0088B3F9 /* Water */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +858,7 @@
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
 				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
+				35DAA2D42266060D00D63D11 /* EditViewController.xib in Resources */,
 				35FC74B522642A3A00634353 /* train.mtl in Resources */,
 				357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */,
 				35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */,
@@ -940,6 +955,7 @@
 				350E946A225E174A003B51E3 /* Water.metal in Sources */,
 				350E9460225E1738003B51E3 /* Scene.swift in Sources */,
 				352F50E12262D3BE002351FD /* LightNode.swift in Sources */,
+				35DAA2D32266060D00D63D11 /* EditViewController.swift in Sources */,
 				350E9477225E177C003B51E3 /* Utility.swift in Sources */,
 				357BFBC1225F215C00880C01 /* AddSkyboxViewController.swift in Sources */,
 				35B398382260251600D0905A /* VectorInputView.swift in Sources */,

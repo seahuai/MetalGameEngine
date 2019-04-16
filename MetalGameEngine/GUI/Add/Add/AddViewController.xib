@@ -33,10 +33,10 @@
                     </segmentedCell>
                 </segmentedControl>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="BC9-tL-HuJ">
-                    <rect key="frame" x="5" y="31" width="470" height="328"/>
+                    <rect key="frame" x="5" y="36" width="470" height="323"/>
                 </customView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jeG-wa-aXb">
-                    <rect key="frame" x="167" y="-2" width="67" height="32"/>
+                    <rect key="frame" x="167" y="3" width="67" height="32"/>
                     <buttonCell key="cell" type="push" title="完成" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="jhX-VH-J6p">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -46,7 +46,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J4u-bd-FdD">
-                    <rect key="frame" x="247" y="-2" width="67" height="32"/>
+                    <rect key="frame" x="247" y="3" width="67" height="32"/>
                     <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CgD-9L-NJI">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -61,10 +61,10 @@
                 <constraint firstItem="jeG-wa-aXb" firstAttribute="top" secondItem="BC9-tL-HuJ" secondAttribute="bottom" constant="5" id="Mr4-P9-f1N"/>
                 <constraint firstItem="QP8-MI-39x" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="Qvj-SV-SS9"/>
                 <constraint firstItem="BC9-tL-HuJ" firstAttribute="top" secondItem="QP8-MI-39x" secondAttribute="bottom" constant="10" id="coB-8T-3A1"/>
-                <constraint firstAttribute="bottom" secondItem="J4u-bd-FdD" secondAttribute="bottom" constant="5" id="gV0-ak-2r3"/>
+                <constraint firstAttribute="bottom" secondItem="J4u-bd-FdD" secondAttribute="bottom" constant="10" id="gV0-ak-2r3"/>
                 <constraint firstItem="jeG-wa-aXb" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" constant="-40" id="hCt-DX-Bo5"/>
                 <constraint firstItem="J4u-bd-FdD" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" constant="40" id="tJ9-LM-f43"/>
-                <constraint firstAttribute="bottom" secondItem="jeG-wa-aXb" secondAttribute="bottom" constant="5" id="tQr-Kb-cC7"/>
+                <constraint firstAttribute="bottom" secondItem="jeG-wa-aXb" secondAttribute="bottom" constant="10" id="tQr-Kb-cC7"/>
                 <constraint firstAttribute="trailing" secondItem="BC9-tL-HuJ" secondAttribute="trailing" constant="5" id="uaD-9i-NU7"/>
                 <constraint firstItem="BC9-tL-HuJ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="zPq-ZC-wVu"/>
             </constraints>

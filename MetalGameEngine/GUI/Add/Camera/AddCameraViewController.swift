@@ -10,12 +10,8 @@ import Cocoa
 
 class AddCameraViewController: NSViewController {
     
-    struct CameraInformation {
-        var camera: Camera!
-        var parentNode: Node?
-    }
-    
-    var cameraInformation = CameraInformation()
+    var camera: Camera!
+    var parentNode: Node?
     
     var parentNodes: [Node] = []
     private var parentNodeNames: [String] = []
@@ -44,11 +40,6 @@ class AddCameraViewController: NSViewController {
     @IBAction func selectParentNodeButtonClick(_ sender: NSPopUpButton) {
         let index = sender.indexOfSelectedItem - 1
         sender.title = parentNodeNames[index]
-        if index >= 1 {
-            cameraInformation.parentNode = parentNodes[index - 1]
-        } else {
-            cameraInformation.parentNode = nil
-        }
     }
     
     
@@ -98,7 +89,14 @@ extension AddCameraViewController: AddNodeVaildable {
         camera.far = farPlaneTextField.floatValue
         camera.fovDegrees = Float(forDegreeSlider.integerValue)
         
-        cameraInformation.camera = camera
+        var parentNode: Node? = nil
+        let index = selectParentNodeButton.indexOfSelectedItem - 1
+        if index >= 1 {
+            parentNode = parentNodes[index - 1]
+        }
+        
+        self.camera = camera
+        self.parentNode = parentNode
         
         return (true, nil)
         

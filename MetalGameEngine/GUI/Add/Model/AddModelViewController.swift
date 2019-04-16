@@ -10,15 +10,9 @@ import Cocoa
 
 class AddModelViewController: NSViewController {
     
-    struct ModelInformation {
-        var modelName: String?
-        var objFileName: String?
-        var parentNode: Node?
-        var position: float3 = [0 ,0, 0]
-    }
+    var model: Model!
+    var parentNode: Node?
     
-    var modelInformation: ModelInformation = ModelInformation()
-  
     var parentNodes: [Node] = []
     
     private var parentNodeNames: [String] = []
@@ -34,25 +28,10 @@ class AddModelViewController: NSViewController {
     
     @IBAction func selectModelButtonClick(_ sender: NSPopUpButton) {
         changePopUpButtonTitle(titles: objModelNames, sender: sender)
-        
-        let objFileName = objModelNames[sender.indexOfSelectedItem - 1]
-        
-        modelInformation.objFileName = objFileName
-        
-        if modelNameTextField.stringValue.isEmpty {
-            modelNameTextField.stringValue = objFileName
-        }
     }
     
     @IBAction func selectParentNodeButtonClick(_ sender: NSPopUpButton) {
         changePopUpButtonTitle(titles: parentNodeNames, sender: sender)
-        
-        let index = sender.indexOfSelectedItem - 1
-        if index >= 1 {
-            modelInformation.parentNode = parentNodes[index - 1]
-        } else {
-            modelInformation.parentNode = nil
-        }
     }
     
     override func viewDidLoad() {
@@ -100,7 +79,23 @@ extension AddModelViewController: AddNodeVaildable {
             return (false, "名称 \"\(name)\" 已存在")
         }
         
-        modelInformation.modelName = name
+        let selectModelButtonIndex = selectModelButton.indexOfSelectedItem
+        let objFileName = objModelNames[selectModelButtonIndex - 1]
+  
+        guard let model = Model(name: objFileName) else {
+            return (false, "创建失败")
+        }
+        
+        let selectParentNodeButtonIndex = selectParentNodeButton.indexOfSelectedItem
+        let index = selectParentNodeButtonIndex - 1
+        var parentNode: Node? = nil
+        if index >= 1 {
+            parentNode = parentNodes[index - 1]
+        }
+        
+        model.position = postitionTextfield.float3Value
+        self.model = model
+        self.parentNode = parentNode
         
         return (true, nil)
     }

@@ -65,17 +65,15 @@ class AddViewController: NSViewController {
         }
         
         if let vc = viewController as? AddModelViewController {
-            let modelInformation = vc.modelInformation
-            guard let model = Model(name: modelInformation.objFileName!) else { return }
-            model.name = modelInformation.modelName ?? modelInformation.objFileName!
-            model.position = modelInformation.position
-            
-            delegate?.addViewController(self, didAddNode: model, parentNode: modelInformation.parentNode)
+            let model = vc.model!
+            let parentNode = vc.parentNode
+            delegate?.addViewController(self, didAddNode: model, parentNode: parentNode)
         }
         
         if let vc = viewController as? AddCameraViewController {
-            let cameraInformation = vc.cameraInformation
-            delegate?.addViewController(self, didAddNode: cameraInformation.camera, parentNode: cameraInformation.parentNode)
+            let camera = vc.camera!
+            let parentNode = vc.parentNode
+            delegate?.addViewController(self, didAddNode: camera, parentNode: parentNode)
         }
         
         if let vc = viewController as? AddLightViewController {
