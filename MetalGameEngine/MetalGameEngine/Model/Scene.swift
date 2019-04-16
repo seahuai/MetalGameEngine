@@ -31,10 +31,10 @@ class Scene {
     
     var cameras: [Camera] = []
     var currentCameraIndex = 0
-    var currentCamera: Camera {
+    var currentCamera: Camera? {
         // 防止越界
-        currentCameraIndex = currentCameraIndex % cameras.count
-        return cameras[currentCameraIndex]
+        let contain = cameras.indices.contains(currentCameraIndex)
+        return contain ? cameras[currentCameraIndex] : nil
     }
     
     var lights: [Light] = [] {
@@ -53,17 +53,25 @@ class Scene {
     
     var uniforms: Uniforms {
         var uniforms = Uniforms()
-        uniforms.viewMatrix = currentCamera.viewMatrix
-        uniforms.projectionMatrix = currentCamera.projectionMatrix
         uniforms.clipPlane = [0, -1, 0, 100];
+        
+        if let currentCamera = currentCamera {
+            uniforms.viewMatrix = currentCamera.viewMatrix
+            uniforms.projectionMatrix = currentCamera.projectionMatrix
+        }
+        
         return uniforms
     }
     
     var fragmentUniforms: FragmentUniforms {
         var fragmentUniforms = FragmentUniforms()
         fragmentUniforms.lightCount = uint(lights.count)
-        fragmentUniforms.cameraPosition = currentCamera.position
         fragmentUniforms.tiling = 1
+        
+        if let currentCamera = currentCamera {
+            fragmentUniforms.cameraPosition = currentCamera.position
+        }
+        
         return fragmentUniforms
     }
     
@@ -91,10 +99,12 @@ extension Scene {
 
 extension Scene {
     func sceneSizeWillChange(_ size: CGSize) {
+        guard let currentCamera = currentCamera else { return }
         currentCamera.aspect = Float(size.width)/Float(size.height)
     }
     
     func sceneHorizontalRotate(_ translation: float2) {
+        guard let currentCamera = currentCamera else { return }
         let sensitivity: Float = 0.01
         currentCamera.isHorizontalRotate = true
         currentCamera.position = float4x4(rotationY: translation.x * sensitivity).upperLeft() * currentCamera.position
@@ -102,6 +112,7 @@ extension Scene {
     }
     
     func sceneRotate(_ translation: float2) {
+        guard let currentCamera = currentCamera else { return }
         let sensitivity: Float = 0.01
         currentCamera.isHorizontalRotate = false
         currentCamera.rotation.x += Float(translation.y) * sensitivity
@@ -109,6 +120,7 @@ extension Scene {
     }
     
     func sceneZooming(_ delta: CGFloat) {
+        guard let currentCamera = currentCamera else { return }
         let sensitivity: Float = 0.01
         if currentCamera.isHorizontalRotate {
             let cameraVector = currentCamera.modelMatrix.upperLeft().columns.2
