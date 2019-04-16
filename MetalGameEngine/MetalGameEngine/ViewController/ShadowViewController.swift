@@ -58,7 +58,14 @@ class ShadowViewController: NormalMetalViewController {
         scene.lights.append(ambientLight)
         scene.lights.append(sunLight)
         
-        self.renderer = ShadowRenderer(metalView: self.mtkView, scene: scene, light: sunLight)
+        let skybox = Skybox(textureName: nil)
+        scene.skybox = skybox
+        
+        let terrain = Terrain(heightMapName: "mountain", size: [1, 1], height: 1)
+        scene.add(node: terrain)
+        
+        self.renderer = RasterizationRender(metalView: self.mtkView, scene: scene)
+        
     }
     
     override func scrollWheel(with event: NSEvent) {

@@ -12,7 +12,7 @@ class Terrain: Node {
     
     let maxTessellationFactors = 64
     
-    var isWireframe = true
+    var isWireframe = false
     
     var patchSize: float2 = [8, 8] {
         didSet {
@@ -40,8 +40,12 @@ class Terrain: Node {
         return buffer
     }()
     
+    private var depthStencilState: MTLDepthStencilState!
     private var renderPipelineState: MTLRenderPipelineState!
     private var computePipelineState: MTLComputePipelineState!
+    
+    private var terrainData: TerrainData!
+    private var uniforms: Uniforms!
     
     init(heightMapName: String,
          size: float2 = [8, 8],
@@ -58,29 +62,32 @@ class Terrain: Node {
         
         super.init()
         
-        self.name = "\(heightMapName) Terrain"
+        self.name = "Terrain \(heightMapName)"
         
         buildControlPointsBuffers()
+        
+        buildDepthStencilState()
         
         buildComputePipelineState()
         
         buildRenderPipelineState()
     }
     
-    func render(mainPassDescriptor: MTLRenderPassDescriptor,
+    func compute(mainPassDescriptor: MTLRenderPassDescriptor,
                 commandBuffer: MTLCommandBuffer,
                 uniforms: Uniforms,
                 cameraPosition: float3) {
         
-        var _uniforms = uniforms
-        _uniforms.modelMatrix = self.modelMatrix
+        self.uniforms = uniforms
+        self.uniforms.modelMatrix = self.modelMatrix
         
         var cameraPosition = cameraPosition
         
-        var terrainData = TerrainData(size: self.patchSize, height: self.height, maxTessellation: uint(self.maxTessellationFactors))
+        terrainData = TerrainData(size: self.patchSize, height: self.height, maxTessellation: uint(self.maxTessellationFactors))
         
         guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
         
+        computeEncoder.pushDebugGroup("Terrain Compute")
         // compute
         computeEncoder.setComputePipelineState(computePipelineState)
         
@@ -88,7 +95,7 @@ class Terrain: Node {
         computeEncoder.setBytes(&insideFactors, length: MemoryLayout<Float>.size * insideFactors.count, index: 1)
         computeEncoder.setBuffer(tessellationFactorsBuffer, offset: 0, index: 2)
         computeEncoder.setBytes(&cameraPosition, length: MemoryLayout<float3>.stride, index: 3)
-        computeEncoder.setBytes(&_uniforms, length: MemoryLayout<Uniforms>.stride, index: 4)
+        computeEncoder.setBytes(&self.uniforms, length: MemoryLayout<Uniforms>.stride, index: 4)
         computeEncoder.setBuffer(controlPointsBuffer, offset: 0, index: 5)
         computeEncoder.setBytes(&terrainData, length: MemoryLayout<TerrainData>.stride, index: 6)
         
@@ -96,25 +103,39 @@ class Terrain: Node {
         computeEncoder.dispatchThreadgroups(MTLSize(width: patchCount, height: 1, depth: 1), threadsPerThreadgroup: MTLSize(width: width, height: 1, depth: 1))
         
         computeEncoder.endEncoding()
+        computeEncoder.popDebugGroup()
+    }
+    
+    func render(_ renderEncoder: MTLRenderCommandEncoder) {
+        renderEncoder.pushDebugGroup("Terrain")
         
-        guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else { return }
+        renderEncoder.setDepthStencilState(depthStencilState)
+        
         // render
         renderEncoder.setRenderPipelineState(renderPipelineState)
         renderEncoder.setTriangleFillMode(isWireframe ? .lines : .fill)
-    
+        
         renderEncoder.setVertexBuffer(controlPointsBuffer, offset: 0, index: 0)
-        renderEncoder.setVertexBytes(&_uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
+        renderEncoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
         renderEncoder.setVertexBytes(&terrainData, length: MemoryLayout<TerrainData>.stride, index: 2)
         renderEncoder.setVertexTexture(heightMap, index: 0)
         renderEncoder.setTessellationFactorBuffer(tessellationFactorsBuffer, offset: 0, instanceStride: 0)
         
         renderEncoder.drawPatches(numberOfPatchControlPoints: 4, patchStart: 0, patchCount: patchCount, patchIndexBuffer: nil, patchIndexBufferOffset: 0, instanceCount: 1, baseInstance: 0)
         
-        renderEncoder.endEncoding()
+        renderEncoder.popDebugGroup()
     }
 }
 
 private extension Terrain {
+    func buildDepthStencilState() {
+        let desciptor = MTLDepthStencilDescriptor()
+        desciptor.depthCompareFunction = .less
+        desciptor.isDepthWriteEnabled = true
+        depthStencilState = Renderer.device.makeDepthStencilState(descriptor: desciptor)
+    }
+    
+    
     func buildComputePipelineState() {
         guard let kernalFunction = Renderer.library?.makeFunction(name: "tessellation_main") else {
             fatalError()

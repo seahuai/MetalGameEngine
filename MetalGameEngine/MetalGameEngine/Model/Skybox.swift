@@ -10,6 +10,8 @@ import MetalKit
 
 class Skybox {
     
+    var name: String = "Skybox"
+    
     let mesh: MTKMesh
     
     let pipelineState: MTLRenderPipelineState
@@ -59,6 +61,7 @@ class Skybox {
     
     func render(renderEncoder: MTLRenderCommandEncoder, uniforms: Uniforms) {
         renderEncoder.pushDebugGroup("Skybox")
+        renderEncoder.setCullMode(.back)
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setDepthStencilState(depthStencilState)
         

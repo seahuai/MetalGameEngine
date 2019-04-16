@@ -34,7 +34,7 @@ class TerrainViewController: NormalMetalViewController {
         
         let terrain = Terrain(heightMapName: "cliffs-of-insanity")
         terrain.height = 3
-        scene.terrain = terrain
+        scene.terrains = [terrain]
         
         self.renderer = TerrainRenderer(metalView: self.mtkView, scene: scene)
         
@@ -43,7 +43,9 @@ class TerrainViewController: NormalMetalViewController {
     }
     
     @objc func click() {
-        scene.terrain?.isWireframe.toggle()
+        scene.terrains.forEach{
+            $0.isWireframe.toggle()
+        }
     }
     
     override func scrollWheel(with event: NSEvent) {

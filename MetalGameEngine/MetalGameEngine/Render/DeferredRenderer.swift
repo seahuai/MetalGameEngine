@@ -142,8 +142,8 @@ extension DeferredRenderer {
         renderEncoder.pushDebugGroup("Gbuffer")
         renderEncoder.label = "Gbuffer RenderEncoder"
         
-        uniforms.viewMatrix = scene.currentCamera.viewMatrix
-        uniforms.projectionMatrix = scene.currentCamera.projectionMatrix
+        uniforms.viewMatrix = scene.uniforms.viewMatrix
+        uniforms.projectionMatrix = scene.uniforms.projectionMatrix
         
         renderEncoder.setDepthStencilState(self.depthStencilState)
         

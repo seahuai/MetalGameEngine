@@ -16,10 +16,12 @@ class TerrainRenderer: Renderer {
     
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
         
-        self.scene.terrain?.render(mainPassDescriptor: mainPassDescriptor,
-                                   commandBuffer: commandBuffer,
-                                   uniforms: scene.uniforms,
-                                   cameraPosition: scene.currentCamera.position)
+//        self.scene.terrains.forEach { (terrain) in
+//            terrain.render(mainPassDescriptor: mainPassDescriptor,
+//                           commandBuffer: commandBuffer,
+//                           uniforms: scene.uniforms,
+//                           cameraPosition: scene.fragmentUniforms.cameraPosition)
+//        }
         
     }
 }

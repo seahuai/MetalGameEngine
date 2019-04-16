@@ -57,6 +57,7 @@ class SceneViewController: NSViewController {
         }
     }
     var nodes: [Node] = []
+    var skyboxs: [Skybox] = []
     let scene: Scene
     let renderType: RenderType
     var renderer: Renderer!
@@ -132,6 +133,10 @@ extension SceneViewController {
         } else if segmentIndex == 1 {
             scene.lights.remove(at: clickedRow)
             sceneNodesTableView.reloadData()
+        } else if segmentIndex == 2 {
+            skyboxs.remove(at: clickedRow)
+            scene.skybox = skyboxs.first
+            sceneNodesTableView.reloadData()
         }
     }
     
@@ -156,6 +161,7 @@ extension SceneViewController: AddViewControllerDelegate {
     
     func addViewController(_ viewController: AddViewController, didAddSkybox skybox: Skybox) {
         scene.skybox = skybox
+        skyboxs.append(skybox)
         segmentIndex = 2
         sceneNodesTableView.reloadData()
     }
@@ -171,6 +177,8 @@ extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
             return nodes.count
         } else if index == 1 {
             return scene.lights.count
+        } else if index == 2 {
+            return skyboxs.count
         }
         
         return 0
@@ -202,6 +210,17 @@ extension SceneViewController: NSTableViewDataSource, NSTableViewDelegate {
             let light = scene.lights[row]
             sceneLightCellView?.light = light
             view = sceneLightCellView
+        } else if index == 2 {
+            let identifier = NSUserInterfaceItemIdentifier("SkyboxTextfield")
+            var textfield = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTextField
+            if textfield == nil {
+                textfield = NSTextField()
+                textfield?.identifier = identifier
+            }
+            
+            let skybox = skyboxs[row]
+            textfield?.stringValue = skybox.name
+            view = textfield
         }
         
         return view

@@ -10,13 +10,14 @@ import MetalKit
 
 class RenderPass {
     var descriptor: MTLRenderPassDescriptor!
-    var texture: MTLTexture!
+    var texture: MTLTexture?
     var depthTexture: MTLTexture!
+    let isDepth: Bool
     let name: String
     
-    init(name: String, size: CGSize) {
+    init(name: String, size: CGSize, isDepth: Bool = false) {
         self.name = name
-        
+        self.isDepth = isDepth
         updateTextures(size: size)
     }
     
@@ -26,13 +27,17 @@ class RenderPass {
     }
     
     private func initializeTextures(size: CGSize) {
-        texture = Texture.newTexture(pixelFormat: .bgra8Unorm, size: size, label: name)
+        if !isDepth {
+            texture = Texture.newTexture(pixelFormat: .bgra8Unorm, size: size, label: name)
+        }
         depthTexture = Texture.newTexture(pixelFormat: .depth32Float, size: size, label: name)
     }
     
     private func initializeDescriptor() {
         descriptor = MTLRenderPassDescriptor()
-        descriptor.setupColorAttachment(index: 0, texture: texture)
+        if let texture = texture {
+            descriptor.setupColorAttachment(index: 0, texture: texture)
+        }
         descriptor.setupDepthAttachment(with: depthTexture)
     }
     

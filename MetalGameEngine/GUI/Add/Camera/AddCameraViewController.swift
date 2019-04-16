@@ -73,8 +73,8 @@ class AddCameraViewController: NSViewController {
     }
     
     private func setupDefaultValues() {
-        nearPlaneTextField.stringValue = "0.001"
-        farPlaneTextField.stringValue = "100"
+        nearPlaneTextField.stringValue = "1"
+        farPlaneTextField.stringValue = "150"
     }
     
 }

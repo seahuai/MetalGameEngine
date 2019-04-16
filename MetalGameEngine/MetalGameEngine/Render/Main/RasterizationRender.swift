@@ -23,7 +23,7 @@ class RasterizationRender: Renderer {
     private var lightsBuffer: MTLBuffer?
     
     // 渲染阴影相关
-    private var shadowRenderPass: RenderPass!
+    private var shadowRenderPass: RenderPass?
     private var firstDirectionalLight: Light?
     
     
@@ -32,25 +32,33 @@ class RasterizationRender: Renderer {
         
         scene.delegate = self
         
-        shadowRenderPass = RenderPass(name: "Shadow", size: metalView.drawableSize)
+        if metalView.drawableSize.width != .zero && metalView.drawableSize.height != 0 {
+            shadowRenderPass = RenderPass(name: "Shadow", size: metalView.drawableSize, isDepth: true)
+        }
+        
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
-        shadowRenderPass.updateTextures(size: size)
+        if shadowRenderPass == nil {
+            shadowRenderPass = RenderPass(name: "Shadow", size: size, isDepth: true)
+        }
+        shadowRenderPass?.updateTextures(size: size)
     }
     
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
         
+        // 渲染阴影纹理
         renderShadowPass(commandBuffer)
         
-        guard let mainRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else { return }
-        renderMain(mainRenderEncoder)
+        // 渲染主要内容
+        renderMain(mainPassDescriptor, commandBuffer: commandBuffer)
     }
 }
 
 private extension RasterizationRender {
     // MARK: - Render Shadow
     func renderShadowPass(_ commandBuffer: MTLCommandBuffer) {
+        guard let shadowRenderPass = shadowRenderPass else { return }
         // 没有直射光就不渲染阴影
         guard let light = self.firstDirectionalLight,
             let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: shadowRenderPass.descriptor) else {
@@ -86,7 +94,20 @@ private extension RasterizationRender {
     }
     
     // MARK: - Render Main
-    func renderMain(_ renderEncoder: MTLRenderCommandEncoder) {
+    func renderMain(_ mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
+        
+        // 需要计算的优先处理
+        
+        // 计算地形相关数据
+        let terrains = scene.terrains
+        terrains.forEach { (terrain) in
+            terrain.compute(mainPassDescriptor: mainPassDescriptor, commandBuffer: commandBuffer, uniforms: scene.uniforms, cameraPosition: scene.fragmentUniforms.cameraPosition)
+        }
+        
+        guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
+            return
+        }
+        
         renderEncoder.pushDebugGroup("Main")
         
         renderEncoder.setDepthStencilState(self.depthStencilState)
@@ -95,7 +116,7 @@ private extension RasterizationRender {
         uniforms.viewMatrix = scene.uniforms.viewMatrix
         uniforms.projectionMatrix = scene.uniforms.projectionMatrix
         
-        renderEncoder.setFragmentTexture(shadowRenderPass.depthTexture, index: Int(ShadowTexture.rawValue))
+        renderEncoder.setFragmentTexture(shadowRenderPass?.depthTexture, index: Int(ShadowTexture.rawValue))
         renderEncoder.setFragmentBuffer(lightsBuffer, offset: 0, index: Int(BufferIndexLights.rawValue))
         
         for prop in props {
@@ -104,6 +125,11 @@ private extension RasterizationRender {
         
         // 渲染天空盒
         scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
+        
+        // 渲染地形
+        terrains.forEach { (terrain) in
+            terrain.render(renderEncoder)
+        }
         
         renderEncoder.endEncoding()
         
