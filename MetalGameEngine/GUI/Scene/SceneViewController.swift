@@ -196,7 +196,11 @@ extension SceneViewController: EditViewControllerDelegate {
     }
     
     func editViewConttoller(_ editViewController: EditViewController, didEditSkybox skybox: Skybox) {
-        
+        scene.skybox = skybox
+        skyboxs.removeAll()
+        skyboxs.insert(skybox, at: 0)
+        segmentIndex = 2
+        sceneNodesTableView.reloadData()
     }
 }
 
