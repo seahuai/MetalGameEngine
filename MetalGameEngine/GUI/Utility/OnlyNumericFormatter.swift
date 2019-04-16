@@ -10,6 +10,17 @@ import Cocoa
 
 class OnlyNumericFormatter: NumberFormatter {
     
+    override init() {
+        super.init()
+        self.maximumFractionDigits = 2
+        self.format = "0.00"
+        self.roundingMode = .halfUp
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var isMinusEnabled = true
     
     override func isPartialStringValid(_ partialString: String, newEditingString newString: AutoreleasingUnsafeMutablePointer<NSString?>?, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
