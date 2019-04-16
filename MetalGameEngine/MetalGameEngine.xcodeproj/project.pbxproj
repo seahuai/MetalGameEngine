@@ -138,7 +138,6 @@
 		35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
 		35DAA2CA2265B2A100D63D11 /* RayTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */; };
 		35DAA2CC2265B39600D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
-		35DAA2CD2265B3AC00D63D11 /* RayTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */; };
 		35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
@@ -921,7 +920,6 @@
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
-				35DAA2CD2265B3AC00D63D11 /* RayTracingViewController.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
 				35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */,
 				357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */,
