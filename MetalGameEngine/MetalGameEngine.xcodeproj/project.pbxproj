@@ -136,6 +136,10 @@
 		35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B39841226066F900D0905A /* SceneNodeCellView.swift */; };
 		35C05ACB2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
 		35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
+		35DAA2CA2265B2A100D63D11 /* RayTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */; };
+		35DAA2CC2265B39600D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
+		35DAA2CD2265B3AC00D63D11 /* RayTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */; };
+		35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -256,6 +260,8 @@
 		35B3983E2260349300D0905A /* FileTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTool.swift; sourceTree = "<group>"; };
 		35B39841226066F900D0905A /* SceneNodeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeCellView.swift; sourceTree = "<group>"; };
 		35C05ACA2264BC9D00A13B47 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mountain.png; path = MetalGameEngine/Textures.xcassets/mountain.textureset/Universal.mipmapset/mountain.png; sourceTree = SOURCE_ROOT; };
+		35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingViewController.swift; sourceTree = "<group>"; };
+		35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingRenderer.swift; sourceTree = "<group>"; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -313,6 +319,7 @@
 		350614562240B7C500BFB42E /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				35DAA2CF2265BE0B00D63D11 /* RayTracing */,
 				35EB8417225C75FD0088B3F9 /* Water */,
 				353FAF192254E5CA0012F85C /* Debug */,
 				3553B39B224DBC800060229F /* Tessellation */,
@@ -521,7 +528,9 @@
 		352F50E422637074002351FD /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3590B932224B18C000CDD1AF /* DeferredRenderer.swift */,
 				352F50E5226370AC002351FD /* RasterizationRender.swift */,
+				35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -531,7 +540,6 @@
 			children = (
 				352F50E422637074002351FD /* Main */,
 				3553B3A0224DEF120060229F /* TerrainRenderer.swift */,
-				3590B932224B18C000CDD1AF /* DeferredRenderer.swift */,
 				353F913A223F3B730071597B /* PBRRenderer.swift */,
 				352C3F5922467F1C00053171 /* ShadowRenderer.swift */,
 				352C3F5B224752F800053171 /* PhongRenderer.swift */,
@@ -561,6 +569,7 @@
 				3553B39E224DEEE10060229F /* TerrainViewController.swift */,
 				3525CE972251F66A000E2A4C /* InstanceViewController.swift */,
 				35EB841B225C7E660088B3F9 /* WaterViewController.swift */,
+				35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -734,6 +743,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		35DAA2CF2265BE0B00D63D11 /* RayTracing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RayTracing;
+			sourceTree = "<group>";
+		};
 		35EB8417225C75FD0088B3F9 /* Water */ = {
 			isa = PBXGroup;
 			children = (
@@ -905,7 +921,9 @@
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
+				35DAA2CD2265B3AC00D63D11 /* RayTracingViewController.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
+				35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */,
 				357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */,
 				357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */,
 				35FC74B42264268B00634353 /* RasterizationRender.swift in Sources */,
@@ -956,6 +974,7 @@
 				3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */,
 				352C3F5422467C7E00053171 /* ShadowViewController.swift in Sources */,
 				350614532240B53500BFB42E /* Node.swift in Sources */,
+				35DAA2CA2265B2A100D63D11 /* RayTracingViewController.swift in Sources */,
 				352C3F6222476EE700053171 /* Skybox.swift in Sources */,
 				352C3F60224766E000053171 /* SkyboxViewController.swift in Sources */,
 				3590B933224B18C000CDD1AF /* DeferredRenderer.swift in Sources */,
@@ -973,6 +992,7 @@
 				358EDBB42244D93200C01902 /* PhongShader.metal in Sources */,
 				3506145D2240CD9900BFB42E /* Scene.swift in Sources */,
 				3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */,
+				35DAA2CC2265B39600D63D11 /* RayTracingRenderer.swift in Sources */,
 				352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */,
 				35242E9D2242312F00B8F91A /* Main.metal in Sources */,
 				353FAF182254E5840012F85C /* Debug.swift in Sources */,
