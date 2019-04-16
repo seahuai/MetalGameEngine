@@ -130,7 +130,7 @@ class Terrain: Node {
 private extension Terrain {
     func buildDepthStencilState() {
         let desciptor = MTLDepthStencilDescriptor()
-        desciptor.depthCompareFunction = .less
+        desciptor.depthCompareFunction = .lessEqual
         desciptor.isDepthWriteEnabled = true
         depthStencilState = Renderer.device.makeDepthStencilState(descriptor: desciptor)
     }

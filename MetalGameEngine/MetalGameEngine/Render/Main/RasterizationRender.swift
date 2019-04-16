@@ -8,7 +8,7 @@
 
 import MetalKit
 
-class RasterizationRender: Renderer {
+class RasterizationRenderer: Renderer {
     
     // 用于渲染的对象
     private var props: [Prop] = []
@@ -55,7 +55,7 @@ class RasterizationRender: Renderer {
     }
 }
 
-private extension RasterizationRender {
+private extension RasterizationRenderer {
     // MARK: - Render Shadow
     func renderShadowPass(_ commandBuffer: MTLCommandBuffer) {
         guard let shadowRenderPass = shadowRenderPass else { return }
@@ -138,7 +138,7 @@ private extension RasterizationRender {
 }
 
 
-extension RasterizationRender: SceneDelegate {
+extension RasterizationRenderer: SceneDelegate {
     func scene(_ scene: Scene, didChangeModels models: [Model]) {
         props = scene.props(type: .Phong)
         shadowProps = scene.props(type: .Depth)

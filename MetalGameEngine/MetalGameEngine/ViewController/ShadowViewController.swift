@@ -64,7 +64,7 @@ class ShadowViewController: NormalMetalViewController {
         let terrain = Terrain(heightMapName: "mountain", size: [1, 1], height: 1)
         scene.add(node: terrain)
         
-        self.renderer = RasterizationRender(metalView: self.mtkView, scene: scene)
+        self.renderer = RasterizationRenderer(metalView: self.mtkView, scene: scene)
         
     }
     

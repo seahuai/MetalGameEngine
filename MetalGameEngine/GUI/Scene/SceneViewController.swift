@@ -92,7 +92,7 @@ class SceneViewController: NSViewController {
     private func setupRenderer() {
         switch renderType {
         case .rasterization:
-            renderer = RasterizationRender(metalView: mtkView, scene: scene)
+            renderer = RasterizationRenderer(metalView: mtkView, scene: scene)
         case .rayTracing:
             fallthrough
         case .deffered:
