@@ -81,7 +81,10 @@ extension AddCameraViewController: AddNodeVaildable {
             return (false, "信息不完整")
         }
         
-        let camera = Camera()
+        if camera == nil {
+            self.camera = Camera()
+        }
+        
         camera.name = name
         camera.position = positionInputView.float3Value
         camera.rotation = rotationInputView.float3Value
@@ -95,7 +98,6 @@ extension AddCameraViewController: AddNodeVaildable {
             parentNode = parentNodes[index - 1]
         }
         
-        self.camera = camera
         self.parentNode = parentNode
         
         return (true, nil)

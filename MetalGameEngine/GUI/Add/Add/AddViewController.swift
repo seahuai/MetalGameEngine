@@ -18,12 +18,7 @@ class AddViewController: NSViewController {
     
     weak var delegate: AddViewControllerDelegate?
     
-    var paretnNodes: [Node] = []{
-        didSet {
-            (viewControllers[0] as? AddModelViewController)?.parentNodes = self.paretnNodes
-            (viewControllers[2] as? AddCameraViewController)?.parentNodes = self.paretnNodes
-        }
-    }
+    var paretnNodes: [Node] = []
 
     @IBOutlet weak var addTypeSegmentedControl: NSSegmentedControl! {
         didSet {
@@ -100,13 +95,13 @@ class AddViewController: NSViewController {
     }
     
     
-    private var viewControllers: [NSViewController] =
+    private var viewControllerTypes: [NSViewController.Type] =
         [
-            AddModelViewController(),
-            AddLightViewController(),
-            AddCameraViewController(),
-            AddSkyboxViewController(),
-            AddTerrainViewController()
+            AddModelViewController.self,
+            AddLightViewController.self,
+            AddCameraViewController.self,
+            AddSkyboxViewController.self,
+            AddTerrainViewController.self
         ]
     
     
@@ -114,11 +109,10 @@ class AddViewController: NSViewController {
         super.viewDidLoad()
         
         self.title = "添加"
-        
-        for vc in viewControllers {
-            self.addChild(vc)
-        }
-        
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
         self.segmentedControlValueChanged(sender: self.addTypeSegmentedControl)
     }
     
@@ -126,9 +120,15 @@ class AddViewController: NSViewController {
         let index = sender.selectedSegment
         
         viewController?.view.removeFromSuperview()
+        viewController?.removeFromParent()
         
-        viewController = viewControllers[index]
+        viewController = viewControllerTypes[index].init()
         
+        // TODO: Optimize
+        (viewController as? AddModelViewController)?.parentNodes = self.paretnNodes
+        (viewController as? AddCameraViewController)?.parentNodes = self.paretnNodes
+        
+        addChild(viewController!)
         containerView.addSubview(self.viewController!.view)
         viewController?.view.frame = containerView.bounds
     }

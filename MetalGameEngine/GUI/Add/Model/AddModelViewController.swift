@@ -10,7 +10,7 @@ import Cocoa
 
 class AddModelViewController: NSViewController {
     
-    var model: Model!
+    var model: Model?
     var parentNode: Node?
     
     var parentNodes: [Node] = []
@@ -19,11 +19,8 @@ class AddModelViewController: NSViewController {
     private var objModelNames: [String] = []
     
     @IBOutlet weak var modelNameTextField: NSTextField!
-    
     @IBOutlet weak var postitionTextfield: VectorInputView!
-    
     @IBOutlet weak var selectModelButton: NSPopUpButton!
-    
     @IBOutlet weak var selectParentNodeButton: NSPopUpButton!
     
     @IBAction func selectModelButtonClick(_ sender: NSPopUpButton) {
@@ -81,9 +78,13 @@ extension AddModelViewController: AddNodeVaildable {
         
         let selectModelButtonIndex = selectModelButton.indexOfSelectedItem
         let objFileName = objModelNames[selectModelButtonIndex - 1]
-  
-        guard let model = Model(name: objFileName) else {
-            return (false, "创建失败")
+        
+        // 如果 model 未空才创建新的对象
+        if self.model == nil {
+            guard let model = Model(name: objFileName) else {
+                return (false, "创建失败")
+            }
+            self.model = model
         }
         
         let selectParentNodeButtonIndex = selectParentNodeButton.indexOfSelectedItem
@@ -93,8 +94,8 @@ extension AddModelViewController: AddNodeVaildable {
             parentNode = parentNodes[index - 1]
         }
         
-        model.position = postitionTextfield.float3Value
-        self.model = model
+        self.model!.position = postitionTextfield.float3Value
+        self.model!.name = name
         self.parentNode = parentNode
         
         return (true, nil)

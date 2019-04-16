@@ -47,6 +47,15 @@ class SceneViewController: NSViewController {
     
     // MARK: - 变量
     private lazy var addViewController = AddViewController()
+    private lazy var editViewController = EditViewController()
+    
+    private var nodes: [Node] = []
+    private var skyboxs: [Skybox] = []
+    
+    private var renderer: Renderer!
+    let scene: Scene
+    let renderType: RenderType
+    
     private var segmentIndex: Int {
         get {
             return segmentedControl.indexOfSelectedItem
@@ -56,11 +65,6 @@ class SceneViewController: NSViewController {
             segmentedControl.selectedSegment = newValue
         }
     }
-    var nodes: [Node] = []
-    var skyboxs: [Skybox] = []
-    let scene: Scene
-    let renderType: RenderType
-    var renderer: Renderer!
     
     init(_ scene: Scene, renderType: RenderType) {
         self.scene = scene
@@ -79,13 +83,12 @@ class SceneViewController: NSViewController {
         self.title = "场景 \"\(scene.name)\" "
         
         addViewController.delegate = self
+        editViewController.delegate = self
         
         reloadNodes()
         
         setupGestureRecognizer()
-        
         setupMenu()
-        
         setupRenderer()
     }
     
@@ -152,9 +155,8 @@ extension SceneViewController {
         }
         
         if let object = editObject {
-            let editVC = EditViewController()
-            editVC.editObject = object
-            self.presentAsModalWindow(editVC)
+            editViewController.editObject = object
+            self.presentAsModalWindow(editViewController)
         }
     }
 }
@@ -178,6 +180,23 @@ extension SceneViewController: AddViewControllerDelegate {
         skyboxs.append(skybox)
         segmentIndex = 2
         sceneNodesTableView.reloadData()
+    }
+}
+
+// MARK: - EditViewControllerDelegate
+extension SceneViewController: EditViewControllerDelegate {
+    func editViewController(_ editViewController: EditViewController, didEditNode node: Node) {
+        scene.remove(node: node)
+        scene.add(node: node)
+        reloadNodes()
+    }
+    
+    func editViewController(_ editViewController: EditViewController, didEditLight light: Light, origin: Light) {
+//        guard let index = (scene.lights.firstIndex{ $0 === origin }) else  { return }
+    }
+    
+    func editViewConttoller(_ editViewController: EditViewController, didEditSkybox skybox: Skybox) {
+        
     }
 }
 

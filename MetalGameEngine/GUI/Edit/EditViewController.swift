@@ -10,8 +10,8 @@ import Cocoa
 
 protocol EditViewControllerDelegate: class {
     func editViewController(_ editViewController: EditViewController, didEditNode node: Node)
-    func editViewController(_ editViewController: EditViewController, didEditLight light: Light)
     func editViewConttoller(_ editViewController: EditViewController, didEditSkybox skybox: Skybox)
+    func editViewController(_ editViewController: EditViewController, didEditLight light: Light, origin: Light)
 }
 
 class EditViewController: NSViewController {
@@ -19,16 +19,45 @@ class EditViewController: NSViewController {
     @IBOutlet weak var containerView: NSView!
     
     @IBAction func doneButtonClick(_ sender: NSButton) {
+        guard let vaildVC = viewController as? AddNodeVaildable,
+            vaildVC.checkVaild().isVaild else {
+            self.dismiss(self)
+            return
+        }
+        
+        if let vc = viewController as? AddModelViewController
+        {
+            delegate?.editViewController(self, didEditNode: vc.model!)
+        }
+        else if let vc = viewController as? AddCameraViewController
+        {
+            delegate?.editViewController(self, didEditNode: vc.camera)
+        }
+        else if let vc = viewController as? AddLightViewController
+        {
+            delegate?.editViewController(self, didEditLight: vc.lightNode.light, origin: self.editObject as! Light)
+        }
+        else if let vc = viewController as? AddTerrainViewController
+        {
+            delegate?.editViewController(self, didEditNode: vc.terrain)
+        }
+        else if let vc = viewController as? AddSkyboxViewController
+        {
+            delegate?.editViewConttoller(self, didEditSkybox: vc.skybox)
+        }
+        
         self.dismiss(self)
     }
     
     weak var delegate: EditViewControllerDelegate?
     
+    var viewController: NSViewController?
+    
     var editObject: Any?
     
     private func configureView(with object: Any) {
         
-        var viewController: NSViewController?
+        viewController?.view.removeFromSuperview()
         
         if let model = object as? Model
         {
@@ -63,13 +92,16 @@ class EditViewController: NSViewController {
         
         guard let vc = viewController else { return }
         
-        addChild(vc)
         containerView.addSubview(vc.view)
         vc.view.frame = containerView.bounds
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
         
         guard let editObject = self.editObject else {
             self.dismiss(self)
