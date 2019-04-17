@@ -62,7 +62,7 @@ class Terrain: Node {
         
         super.init()
         
-        self.name = "Terrain \(heightMapName)"
+        self.name = "\(heightMapName)"
         
         buildControlPointsBuffers()
         

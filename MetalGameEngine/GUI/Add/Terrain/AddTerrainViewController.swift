@@ -35,6 +35,24 @@ class AddTerrainViewController: NSViewController, EditableViewContoller {
         sizeZTextField.formatter = formatter
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        setupData()
+    }
+    
+    private func setupData() {
+        guard let terrain = self.terrain else { return }
+        
+        inputTextfield.stringValue = terrain.name
+        
+        positionInputView.float3Value = terrain.position
+        heightTextField.floatValue = terrain.height
+        sizeXTextField.floatValue = terrain.patchSize.x
+        sizeZTextField.floatValue = terrain.patchSize.y
+        previewImageView.image = NSImage(named: terrain.name)
+    }
+    
 }
 
 extension AddTerrainViewController: NSTextFieldDelegate {
@@ -70,7 +88,22 @@ extension AddTerrainViewController: AddNodeVaildable {
                 return(false, "尺寸不能为 0")
             }
             
-            terrain = Terrain(heightMapName: inputTextfield.stringValue, size: size, height: height)
+            // for safe
+            let imageName = inputTextfield.stringValue
+            if imageName.isEmpty {
+                return (false, "")
+            }
+                
+            // 如果图片不一样则需重新创建对象
+            if self.terrain == nil || self.terrain.name != imageName {
+                terrain = Terrain(heightMapName: imageName, size: size, height: height)
+            } else {
+                terrain.patchSize = size
+                terrain.height = height
+            }
+            
+            terrain.position = positionInputView.float3Value
+            
             return (true, nil)
         } else {
             return (false, nil)

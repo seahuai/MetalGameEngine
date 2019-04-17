@@ -18,7 +18,6 @@ class VectorInputView: NSView {
         }
     }
     
-    
     @IBInspectable var width: Int = 3 {
         didSet {
             if self.width <= 0 || self.width > 4 {
@@ -41,22 +40,52 @@ class VectorInputView: NSView {
     }
     
     var float: Float {
-        return self.values[0]
+        get {
+            return self.values[0]
+        }
+        
+        set {
+            self.x = newValue
+        }
     }
     
     var float2Value: float2 {
-        return float2(self.values[0], self.values[1])
+        get {
+            return float2(self.values[0], self.values[1])
+        }
+        
+        set {
+            self.x = newValue.x
+            self.y = newValue.y
+        }
     }
     
     var float3Value: float3 {
-        return float3(self.values[0], self.values[1], self.values[2])
+        get {
+            return float3(self.values[0], self.values[1], self.values[2])
+        }
+        
+        set {
+            self.x = newValue.x
+            self.y = newValue.y
+            self.z = newValue.z
+        }
     }
     
     var float4Value: float4 {
-        return float4(self.values[0], self.values[1], self.values[2], self.values[3])
+        get {
+            return float4(self.values[0], self.values[1], self.values[2], self.values[3])
+        }
+        
+        set {
+            self.x = newValue.x
+            self.y = newValue.y
+            self.z = newValue.z
+            self.w = newValue.w
+        }
     }
     
-    var values: [Float] {
+    private var values: [Float] {
         var values: [Float] = []
         for textField in self.textFields {
             let stringValue = textField.stringValue
