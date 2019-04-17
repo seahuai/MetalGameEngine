@@ -30,64 +30,95 @@ class DeferredRenderer: Renderer {
     var quadTextureCoodBuffer: MTLBuffer!
     var compositionPipelineState: MTLRenderPipelineState!
     
+    var dontWriteDepthStencilStatae: MTLDepthStencilState!
+    
     var uniforms: Uniforms!
     
     required init(metalView: MTKView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
         
-        buildProps()
-        buildLights()
+        scene.delegate = self
         
         uniforms = scene.uniforms
         
         buildCompositionPipeline()
+        
+        buildDontWriteDepthStencilState()
     }
     
-    func buildProps() {
+    private func buildDontWriteDepthStencilState() {
+        let descriptor = MTLDepthStencilDescriptor()
+        descriptor.depthCompareFunction = .less
+        descriptor.isDepthWriteEnabled = false
+        dontWriteDepthStencilStatae = Renderer.device.makeDepthStencilState(descriptor: descriptor)
+    }
+    
+    private func buildProps() {
         shadowProps = self.scene.props(type: .Depth)
         gbufferProps = self.scene.props(type: .Gbuffer)
     }
     
-    func buildLights() {
+    private func buildLights() {
         light = scene.lights.first{ $0.type == Sunlight }
         lightsBuffer = Renderer.device.makeBuffer(bytes: scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, options: [])
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
         scene.sceneSizeWillChange(size)
-        
-        buildProps()
-        
+
         buildShadowRenderPass(size: size)
         
         buildGbufferRenderPass(size: size)
     }
 
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
+        
+        // render shadow texture
         guard let shadowRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: shadowRendererPass) else {
             return
         }
         renderShadow(shadowRenderEncoder, light: self.light)
+        shadowRenderEncoder.endEncoding()
         
-        guard let gBufferRenderer = commandBuffer.makeRenderCommandEncoder(descriptor: gBufferRenderePass) else {
+        // render to Gbuffer
+        gBufferRenderePass.setupDepthAttachment(with: self.metalView.depthStencilTexture!)
+        guard let gBufferRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: gBufferRenderePass) else {
             return
         }
-        renderGbuffer(gBufferRenderer)
+        renderGbuffer(gBufferRenderEncoder)
+        gBufferRenderEncoder.endEncoding()
         
+        // render main
+        // main对于深度信息只读取不清除
+        mainPassDescriptor.depthAttachment.loadAction = .load
+        mainPassDescriptor.depthAttachment.texture = self.metalView.depthStencilTexture
         guard let mainRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
             return
         }
         
-        renderMain(mainRenderEncoder)
+        renderComposition(mainRenderEncoder)
+        
+        scene.skybox?.render(renderEncoder: mainRenderEncoder, uniforms: scene.uniforms)
         
         mainRenderEncoder.endEncoding()
+    }
+}
+
+extension DeferredRenderer: SceneDelegate {
+    func scene(_ scene: Scene, didChangeModels models: [Model]) {
+        buildProps()
+        
+    }
+    
+    func scene(_ scnee: Scene, didChangeLights lights: [Light]) {
+        buildLights()
     }
 }
 
 // MARK: - Shadow
 extension DeferredRenderer {
     func buildShadowRenderPass(size: CGSize) {
-        shadowTexture = Texture.newTexture(pixelFormat: .depth32Float, size: size, label: "Shadow")
+        shadowTexture = Texture.newTexture(pixelFormat: Renderer.depthPixelFormat, size: size, label: "Shadow")
         shadowRendererPass = MTLRenderPassDescriptor()
         shadowRendererPass.setupDepthAttachment(with: shadowTexture)
     }
@@ -116,8 +147,6 @@ extension DeferredRenderer {
             prop.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
         }
         
-        renderEncoder.endEncoding()
-        
         renderEncoder.popDebugGroup()
     }
 }
@@ -128,14 +157,12 @@ extension DeferredRenderer {
         baseColorTexture = Texture.newTexture(pixelFormat: .bgra8Unorm, size: size, label: "Color")
         normalTexture = Texture.newTexture(pixelFormat: .rgba16Float, size: size, label: "Normal")
         positionTexture = Texture.newTexture(pixelFormat: .rgba16Float, size: size, label: "Position")
-        depthTexture = Texture.newTexture(pixelFormat: .depth32Float, size: size, label: "Depth")
         
         gBufferRenderePass = MTLRenderPassDescriptor()
-        
+
         gBufferRenderePass.setupColorAttachment(index: 0, texture: baseColorTexture)
         gBufferRenderePass.setupColorAttachment(index: 1, texture: normalTexture)
         gBufferRenderePass.setupColorAttachment(index: 2, texture: positionTexture)
-        gBufferRenderePass.setupDepthAttachment(with: depthTexture)
     }
     
     func renderGbuffer(_ renderEncoder: MTLRenderCommandEncoder) {
@@ -152,8 +179,6 @@ extension DeferredRenderer {
         for prop in gbufferProps {
             prop.render(renderEncoder: renderEncoder, uniforms: uniforms, fragmentUniforms: scene.fragmentUniforms)
         }
-        
-        renderEncoder.endEncoding()
         
         renderEncoder.popDebugGroup()
     }
@@ -179,7 +204,7 @@ extension DeferredRenderer {
         
         let desciptor = MTLRenderPipelineDescriptor()
         desciptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
-        desciptor.depthAttachmentPixelFormat = .depth32Float
+        desciptor.depthAttachmentPixelFormat = Renderer.depthPixelFormat
         desciptor.vertexFunction = Renderer.library?.makeFunction(name: "vertex_composition")
         desciptor.fragmentFunction = Renderer.library?.makeFunction(name: "fragment_composition")
         
@@ -190,14 +215,14 @@ extension DeferredRenderer {
         }
     }
     
-    func renderMain(_ renderEncoder: MTLRenderCommandEncoder) {
+    func renderComposition(_ renderEncoder: MTLRenderCommandEncoder) {
         renderEncoder.pushDebugGroup("Composition")
         renderEncoder.label = "Composition RenderEncoder"
         
         scene.skybox?.render(renderEncoder: renderEncoder, uniforms: scene.uniforms)
         
         renderEncoder.setRenderPipelineState(compositionPipelineState)
-        renderEncoder.setDepthStencilState(self.depthStencilState)
+        renderEncoder.setDepthStencilState(self.dontWriteDepthStencilStatae)
         
         renderEncoder.setVertexBuffer(quadVertexBuffer, offset: 0, index: 0)
         renderEncoder.setVertexBuffer(quadTextureCoodBuffer, offset: 0, index: 1)

@@ -14,7 +14,8 @@ class Renderer: NSObject {
     
     static var device: MTLDevice!
     static var library: MTLLibrary?
-    static var colorPixelFormat: MTLPixelFormat!
+    static var colorPixelFormat: MTLPixelFormat! = .bgra8Unorm
+    static var depthPixelFormat: MTLPixelFormat! = .depth32Float
     
     final let metalView: MTKView
     final let commandQueue: MTLCommandQueue
@@ -27,7 +28,8 @@ class Renderer: NSObject {
                 fatalError("Command queue not available")
         }
         
-        Renderer.colorPixelFormat = metalView.colorPixelFormat
+        metalView.colorPixelFormat = Renderer.colorPixelFormat
+        metalView.depthStencilPixelFormat = Renderer.depthPixelFormat
         
         self.metalView = metalView
         self.commandQueue = commandQueue
@@ -37,7 +39,6 @@ class Renderer: NSObject {
         
         self.metalView.delegate = self
         self.metalView.device = Renderer.device
-        self.metalView.depthStencilPixelFormat = .depth32Float
         
         buildDepthStencilState()
     }

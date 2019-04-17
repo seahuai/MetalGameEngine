@@ -51,8 +51,8 @@ class Water: Node {
         descriptor.vertexFunction = Renderer.library?.makeFunction(name: "vertex_water")
         descriptor.fragmentFunction = Renderer.library?.makeFunction(name: "fragment_water")
         descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(waterMesh.vertexDescriptor)
-        descriptor.depthAttachmentPixelFormat = .depth32Float
-        descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        descriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+        descriptor.depthAttachmentPixelFormat = Renderer.depthPixelFormat
         
         descriptor.colorAttachments[0].isBlendingEnabled = true
         descriptor.colorAttachments[0].rgbBlendOperation = .add

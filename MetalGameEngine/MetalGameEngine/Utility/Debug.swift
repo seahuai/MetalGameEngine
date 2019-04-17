@@ -42,7 +42,7 @@ class Debug {
             pipelineDescriptor.vertexFunction = vertexFunction
             pipelineDescriptor.fragmentFunction = fragmentFunction
             pipelineDescriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
-            pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
+            pipelineDescriptor.depthAttachmentPixelFormat = Renderer.depthPixelFormat
             
             do {
                 Debug.lightPipelineState = try Renderer.device.makeRenderPipelineState(descriptor: pipelineDescriptor)

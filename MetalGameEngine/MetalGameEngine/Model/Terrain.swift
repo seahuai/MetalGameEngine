@@ -150,8 +150,8 @@ private extension Terrain {
     
     func buildRenderPipelineState() {
         let descriptor = MTLRenderPipelineDescriptor()
-        descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-        descriptor.depthAttachmentPixelFormat = .depth32Float
+        descriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+        descriptor.depthAttachmentPixelFormat = Renderer.depthPixelFormat
         
         descriptor.vertexFunction = Renderer.library?.makeFunction(name: "tessellation_vertex")
         descriptor.fragmentFunction = Renderer.library?.makeFunction(name: "tessellation_fragment")

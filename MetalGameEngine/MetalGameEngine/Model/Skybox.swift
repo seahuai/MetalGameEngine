@@ -111,8 +111,8 @@ extension Skybox {
     private class func buildPipelineState(_ vertexDescrptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
         let desciptor = MTLRenderPipelineDescriptor()
         
-        desciptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-        desciptor.depthAttachmentPixelFormat = .depth32Float
+        desciptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+        desciptor.depthAttachmentPixelFormat = Renderer.depthPixelFormat
         desciptor.vertexFunction = Renderer.library?.makeFunction(name: "vertex_skybox")
         desciptor.fragmentFunction = Renderer.library?.makeFunction(name: "fragment_skybox")
         desciptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(vertexDescrptor)
@@ -130,7 +130,7 @@ extension Skybox {
     private class func buildDepthStencilState() -> MTLDepthStencilState {
         let desciptor = MTLDepthStencilDescriptor()
         desciptor.depthCompareFunction = .lessEqual
-        desciptor.isDepthWriteEnabled = true
+        desciptor.isDepthWriteEnabled = false
         let depthStencilState = Renderer.device.makeDepthStencilState(descriptor: desciptor)
         return depthStencilState!
     }

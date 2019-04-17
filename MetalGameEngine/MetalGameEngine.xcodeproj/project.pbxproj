@@ -99,6 +99,7 @@
 		3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B3A0224DEF120060229F /* TerrainRenderer.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
 		3570B9192266C0050074B2B4 /* EditableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570B9182266C0050074B2B4 /* EditableViewController.swift */; };
+		3570B91A226701CD0074B2B4 /* DeferredRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B932224B18C000CDD1AF /* DeferredRenderer.swift */; };
 		357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB8F225F103E00880C01 /* SceneViewController.swift */; };
 		357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFB90225F103E00880C01 /* SceneViewController.xib */; };
 		357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB9E225F1C8D00880C01 /* AddViewController.swift */; };
@@ -947,6 +948,7 @@
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
+				3570B91A226701CD0074B2B4 /* DeferredRenderer.swift in Sources */,
 				350E945B225DE6B7003B51E3 /* Enum.swift in Sources */,
 				35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */,
 				357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */,

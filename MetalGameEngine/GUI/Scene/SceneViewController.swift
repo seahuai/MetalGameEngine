@@ -99,7 +99,7 @@ class SceneViewController: NSViewController {
         case .rayTracing:
             fallthrough
         case .deffered:
-            fallthrough
+            renderer = DeferredRenderer(metalView: mtkView, scene: scene)
         default:
             fatalError()
         }

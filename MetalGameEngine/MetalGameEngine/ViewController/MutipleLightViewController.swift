@@ -43,6 +43,9 @@ class MutipleLightViewController: NormalMetalViewController {
         
         scene.lights.append(sunLight)
         
+        let skybox = Skybox(textureName: "redSky")
+        scene.skybox = skybox
+        
         setupAddButton()
         
         self.renderer = DeferredRenderer(metalView: self.mtkView, scene: scene)

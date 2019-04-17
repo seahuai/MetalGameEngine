@@ -88,7 +88,8 @@ private class RenderableSubmesh {
         
         descriptor.vertexFunction = vFunction
         descriptor.fragmentFunction = fFunction
-        descriptor.depthAttachmentPixelFormat = .depth32Float
+        descriptor.depthAttachmentPixelFormat = Renderer.depthPixelFormat
+//        descriptor.stencilAttachmentPixelFormat = Renderer.depthPixelFormat
         descriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(submesh.vertexDescriptor)
         
         do {

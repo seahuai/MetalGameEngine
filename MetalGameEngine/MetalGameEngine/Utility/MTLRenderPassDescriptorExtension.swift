@@ -22,4 +22,11 @@ extension MTLRenderPassDescriptor {
         attachment?.loadAction = .clear
         attachment?.storeAction = .store
     }
+    
+    func setupStencilAttachment(with texture: MTLTexture) {
+        stencilAttachment.texture = texture
+        stencilAttachment.clearStencil = 0
+        stencilAttachment.loadAction = .clear
+        stencilAttachment.storeAction = .store
+    }
 }

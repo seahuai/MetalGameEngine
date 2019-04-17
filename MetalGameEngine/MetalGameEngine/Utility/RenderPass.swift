@@ -30,7 +30,7 @@ class RenderPass {
         if !isDepth {
             texture = Texture.newTexture(pixelFormat: .bgra8Unorm, size: size, label: name)
         }
-        depthTexture = Texture.newTexture(pixelFormat: .depth32Float, size: size, label: name)
+        depthTexture = Texture.newTexture(pixelFormat: Renderer.depthPixelFormat, size: size, label: name)
     }
     
     private func initializeDescriptor() {
