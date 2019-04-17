@@ -12,6 +12,8 @@ class Skybox {
     
     var name: String = "Skybox"
     
+    var textureName: String?
+    
     let mesh: MTKMesh
     
     let pipelineState: MTLRenderPipelineState
@@ -31,9 +33,11 @@ class Skybox {
         var groundAlbedo: Float = 4
     }
     
-    var setting = Setting() {
+    var setting: Setting? {
         didSet {
-            texture = generateSkyboxTexture([256, 256])
+            if let setting = self.setting {
+                texture = generateSkyboxTexture(setting, dimensions: [256, 256])
+            }
         }
     }
     
@@ -52,9 +56,10 @@ class Skybox {
         depthStencilState = Skybox.buildDepthStencilState()
         
         if let name = textureName {
-            texture = Texture.loadCubeTexture(imageName: name)            
+            texture = Texture.loadCubeTexture(imageName: name)
+            self.textureName = name
         }else {
-            texture = generateSkyboxTexture([256, 256])
+            texture = generateSkyboxTexture(Setting() , dimensions: [256, 256])
         }
         
     }
@@ -81,7 +86,7 @@ class Skybox {
         renderEncoder.popDebugGroup()
     }
     
-    private func generateSkyboxTexture(_ dimensions: int2) -> MTLTexture? {
+    private func generateSkyboxTexture(_ setting: Setting, dimensions: int2) -> MTLTexture? {
         var texture: MTLTexture?
         let skyTexture = MDLSkyCubeTexture(name: "sky",
                                            channelEncoding: .uInt8,

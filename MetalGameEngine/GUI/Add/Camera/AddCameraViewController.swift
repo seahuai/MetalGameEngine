@@ -65,6 +65,26 @@ class AddCameraViewController: NSViewController, EditableViewContoller {
         selectParentNodeButton.addItems(withTitles: parentNodeNames)
     }
     
+    private func setupData() {
+        guard let camera = self.camera else { return }
+        
+        cameraNameTextField.stringValue = camera.name
+        
+        positionInputView.x = camera.position.x
+        positionInputView.y = camera.position.y
+        positionInputView.z = camera.position.z
+        
+        rotationInputView.x = camera.rotation.x
+        rotationInputView.y = camera.rotation.y
+        rotationInputView.z = camera.rotation.z
+        
+        selectParentNodeButton.isEnabled = !isEdit
+        
+        if isEdit {
+            selectParentNodeButton.title = camera.parent?.name ?? "无"
+        }
+    }
+    
     private func setupDefaultValues() {
         nearPlaneTextField.stringValue = "1"
         farPlaneTextField.stringValue = "150"
@@ -79,12 +99,24 @@ extension AddCameraViewController: AddNodeVaildable {
             return (false, "名称不能为空")
         }
         
-        if nearPlaneTextField.stringValue.isEmpty || farPlaneTextField.stringValue.isEmpty || selectParentNodeButton.indexOfSelectedItem <= 0 {
+        if nearPlaneTextField.stringValue.isEmpty || farPlaneTextField.stringValue.isEmpty {
             return (false, "信息不完整")
         }
         
-        if camera == nil {
+        if !isEdit {
+            
+            if selectParentNodeButton.indexOfSelectedItem <= 0 {
+                return (false, "信息不完整")
+            }
+            
             self.camera = Camera()
+            var parentNode: Node? = nil
+            let index = selectParentNodeButton.indexOfSelectedItem - 1
+            if index >= 1 {
+                parentNode = parentNodes[index - 1]
+            }
+            
+            self.parentNode = parentNode
         }
         
         camera.name = name
@@ -94,14 +126,7 @@ extension AddCameraViewController: AddNodeVaildable {
         camera.far = farPlaneTextField.floatValue
         camera.fovDegrees = Float(forDegreeSlider.integerValue)
         
-        var parentNode: Node? = nil
-        let index = selectParentNodeButton.indexOfSelectedItem - 1
-        if index >= 1 {
-            parentNode = parentNodes[index - 1]
-        }
-        
-        self.parentNode = parentNode
-        
+
         return (true, nil)
         
     }

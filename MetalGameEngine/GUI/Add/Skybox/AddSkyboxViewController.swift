@@ -68,6 +68,39 @@ class AddSkyboxViewController: NSViewController, EditableViewContoller {
         buttonClick(loadTextureButton)
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        setupData()
+    }
+    
+    private func setupData() {
+        guard let skybox = skybox else { return }
+        
+        isCustom = skybox.setting != nil
+        let button = isCustom ? customTextureButton : loadTextureButton
+        buttonClick(button!)
+        
+        if isCustom {
+            sliderWithTag(1).floatValue = skybox.setting!.turbidity
+            sliderWithTag(2).floatValue = skybox.setting!.sunElevation
+            sliderWithTag(3).floatValue = skybox.setting!.upperAtmosphereScattering
+            sliderWithTag(4).floatValue = skybox.setting!.groundAlbedo
+            
+            for i in 1...4 {
+                sliderValueChanged(sliderWithTag(i))
+            }
+        } else {
+            textureNameTextfield.stringValue = skybox.textureName ?? ""
+        }
+    }
+    
+    private func sliderWithTag(_ tag: Int) -> NSSlider {
+        let slider = self.view.viewWithTag(tag) as! NSSlider
+        return slider
+    }
+   
+    
 }
 
 extension AddSkyboxViewController: AddNodeVaildable {
@@ -79,7 +112,7 @@ extension AddSkyboxViewController: AddNodeVaildable {
             skybox = Skybox(textureName: nil)
             var setting = Skybox.Setting()
             setting.turbidity = turbidityLabel.floatValue
-            setting.groundAlbedo = groundAlbedoLabel.floatValue
+            setting.sunElevation = sunElevationLabel.floatValue
             setting.upperAtmosphereScattering = upperAtmosphereScatteringLabel.floatValue
             setting.groundAlbedo = groundAlbedoLabel.floatValue
             skybox?.setting = setting

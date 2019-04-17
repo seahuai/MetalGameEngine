@@ -12,7 +12,7 @@
                 <outlet property="loadTextureButton" destination="o0g-sZ-y0z" id="fJd-OK-L7Q"/>
                 <outlet property="sunElevationLabel" destination="JKQ-rz-Xo8" id="nXK-3X-PBj"/>
                 <outlet property="textureNameTextfield" destination="mdA-x2-yls" id="sBN-23-bca"/>
-                <outlet property="turbidityLabel" destination="JKQ-rz-Xo8" id="nhg-yt-iBj"/>
+                <outlet property="turbidityLabel" destination="ccL-GT-gqt" id="gyk-On-9vH"/>
                 <outlet property="upperAtmosphereScatteringLabel" destination="rKl-TO-h8e" id="P8m-PF-A3g"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
                 <outlet property="warningLabel" destination="qFH-6V-pc8" id="CiZ-an-eO0"/>
