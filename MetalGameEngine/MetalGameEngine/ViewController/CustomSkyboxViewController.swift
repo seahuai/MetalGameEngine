@@ -150,19 +150,19 @@ extension CustomSkyboxViewController {
     }
     
     @objc public func turbiditySliderChanged(sender: NSSlider) {
-        skybox?.setting.turbidity = sender.floatValue
+        skybox?.setting?.turbidity = sender.floatValue
     }
     
     @objc public func sunElevationSliderChanged(sender: NSSlider) {
-        skybox?.setting.sunElevation = sender.floatValue
+        skybox?.setting?.sunElevation = sender.floatValue
     }
     
     @objc public func scatteringSliderChanged(sender: NSSlider) {
-        skybox?.setting.upperAtmosphereScattering = sender.floatValue
+        skybox?.setting?.upperAtmosphereScattering = sender.floatValue
     }
     
     @objc public func albedoSliderChanged(sender: NSSlider) {
-        skybox?.setting.groundAlbedo = sender.floatValue
+        skybox?.setting?.groundAlbedo = sender.floatValue
     }
   
 }
