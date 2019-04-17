@@ -49,4 +49,16 @@ class LightNode: Node {
     
 }
 
-//extension LightNode
+extension Light: Equatable {
+    public static func == (lhs: Light, rhs: Light) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    private static var _id: uint = 0
+    
+    init(_ id: uint = 0) {
+        self.init()
+        self.id = Light._id
+        Light._id += 1
+    }
+}

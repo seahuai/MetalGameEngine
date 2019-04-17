@@ -191,9 +191,14 @@ extension SceneViewController: EditViewControllerDelegate {
         reloadNodes()
     }
     
-    func editViewController(_ editViewController: EditViewController, didEditLight light: Light, origin: Light) {
-//        guard let index = (scene.lights.firstIndex{ $0 === origin }) else  { return }
+    func editViewController(_ editViewController: EditViewController, didEditLight light: Light) {
+        guard let index = scene.lights.firstIndex(of: light) else {
+            return
+        }
+        scene.lights[index] = light
+        sceneNodesTableView.reloadData()
     }
+    
     
     func editViewConttoller(_ editViewController: EditViewController, didEditSkybox skybox: Skybox) {
         scene.skybox = skybox

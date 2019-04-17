@@ -72,7 +72,7 @@ class AddViewController: NSViewController {
         }
         
         if let vc = viewController as? AddLightViewController {
-            let light = vc.lightNode.light
+            let light = vc.light!
             delegate?.addViewController(self, didAddLight: light)
         }
         

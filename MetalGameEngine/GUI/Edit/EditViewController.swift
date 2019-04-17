@@ -11,7 +11,7 @@ import Cocoa
 protocol EditViewControllerDelegate: class {
     func editViewController(_ editViewController: EditViewController, didEditNode node: Node)
     func editViewConttoller(_ editViewController: EditViewController, didEditSkybox skybox: Skybox)
-    func editViewController(_ editViewController: EditViewController, didEditLight light: Light, origin: Light)
+    func editViewController(_ editViewController: EditViewController, didEditLight light: Light)
 }
 
 class EditViewController: NSViewController {
@@ -35,7 +35,7 @@ class EditViewController: NSViewController {
         }
         else if let vc = viewController as? AddLightViewController
         {
-            delegate?.editViewController(self, didEditLight: vc.lightNode.light, origin: self.editObject as! Light)
+            delegate?.editViewController(self, didEditLight: vc.light)
         }
         else if let vc = viewController as? AddTerrainViewController
         {
@@ -74,7 +74,7 @@ class EditViewController: NSViewController {
         else if let light = object as? Light
         {
             let addLightVC = AddLightViewController()
-            addLightVC.lightNode = LightNode(light)
+            addLightVC.light = light
             viewController = addLightVC
         }
         else if let terrain = object as? Terrain

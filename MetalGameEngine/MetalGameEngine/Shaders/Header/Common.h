@@ -50,6 +50,7 @@ typedef enum {
 
 
 typedef struct {
+    uint id; // 用于比较
     vector_float3 position;  // for a sunlight, this is direction
     vector_float3 color;
     vector_float3 specularColor;

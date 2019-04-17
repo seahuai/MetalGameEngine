@@ -12,7 +12,8 @@ class AddLightViewController: NSViewController, EditableViewContoller {
     
     var isEdit: Bool = false
     
-    var lightNode: LightNode!
+//    var lightNode: LightNode!
+    var light: Light!
     
     private var lightTypes = ["直射光", "聚光灯光", "点光源", "环境光"]
     
@@ -53,10 +54,54 @@ class AddLightViewController: NSViewController, EditableViewContoller {
         setupItems()
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        setupData()
+    }
+    
     private func setupItems() {
         selectLightTypeButton.removeAllItems()
         selectLightTypeButton.addItem(withTitle: "选择")
         selectLightTypeButton.addItems(withTitles: lightTypes)
+    }
+    
+    private func setupData() {
+        guard let light = self.light else { return }
+        
+        selectLightTypeButton.isEnabled = !isEdit
+        selectLightTypeButton.title = lightTypes[Int(light.type.rawValue - 1)]
+        
+        positionInputView.float3Value = light.position
+        
+        spotLightDirectionInputView.float3Value = light.coneDirection
+        
+        lightColorWell.color = NSColor(deviceRed: CGFloat(light.color.x),
+                                       green: CGFloat(light.color.y),
+                                       blue: CGFloat(light.color.z),
+                                       alpha: 1.0)
+        
+        specularColorWell.color = NSColor(deviceRed: CGFloat(light.specularColor.x),
+                                          green: CGFloat(light.specularColor.y),
+                                          blue: CGFloat(light.specularColor.z),
+                                          alpha: 1.0)
+        
+        
+        sliderWithTag(1).floatValue = light.attenuation.x
+        sliderWithTag(2).floatValue = light.attenuation.y
+        sliderWithTag(3).floatValue = light.attenuation.z
+        sliderWithTag(4).floatValue = light.intensity
+        sliderWithTag(5).floatValue = degrees(fromRadians: light.coneAngle)
+        
+        for i in 1...5 {
+            sliderValueChanged(sliderWithTag(i))
+        }
+        
+    }
+    
+    private func sliderWithTag(_ tag: Int) -> NSSlider {
+        let slider = self.view.viewWithTag(tag) as! NSSlider
+        return slider
     }
     
 }
@@ -67,20 +112,28 @@ extension AddLightViewController: AddNodeVaildable {
         
         let index = selectLightTypeButton.indexOfSelectedItem
         
-        if index <= 0 {
+        if !isEdit && index <= 0 {
             return (false, "灯光类型未选择")
         }
         
-        lightNode = LightNode()
-        lightNode.position = positionInputView.float3Value
-        lightNode.color = lightColorWell.color.float3Value
-        lightNode.specularColor = specularColorWell.color.float3Value
-        lightNode.intensity = intensityLabel.floatValue
-        lightNode.attenuation = [attenuationXLabel.floatValue, attenuationYLabel.floatValue, attenuationZLabel.floatValue]
-        lightNode.coneAngle = radians(fromDegrees: coneDegreeLabel.floatValue)
-        lightNode.coneDirection = spotLightDirectionInputView.float3Value
-        lightNode.coneAttenuation = 12
-        lightNode.type = LightType(UInt32(index))
+        var light = Light(0)
+        light.position = positionInputView.float3Value
+        light.color = lightColorWell.color.float3Value
+        light.specularColor = specularColorWell.color.float3Value
+        light.intensity = intensityLabel.floatValue
+        light.attenuation = [attenuationXLabel.floatValue, attenuationYLabel.floatValue, attenuationZLabel.floatValue]
+        light.coneAngle = radians(fromDegrees: coneDegreeLabel.floatValue)
+        light.coneDirection = spotLightDirectionInputView.float3Value
+        light.coneAttenuation = 12
+        
+        if let _light = self.light {
+            light.type = _light.type
+            light.id = _light.id
+        } else {
+            light.type = LightType(UInt32(index))
+        }
+        
+        self.light = light
         
         return (true, nil)
     }
