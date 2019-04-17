@@ -46,9 +46,9 @@ class MutipleLightViewController: NormalMetalViewController {
         let skybox = Skybox(textureName: "redSky")
         scene.skybox = skybox
         
-        let terrain = Terrain(heightMapName: "mountain", size: [2, 2], height: 1)
-        terrain.position = [0, 1, 2]
-        scene.add(node: terrain)
+//        let terrain = Terrain(heightMapName: "mountain", size: [2, 2], height: 1)
+//        terrain.position = [0, 1, 2]
+//        scene.add(node: terrain)
         
         setupAddButton()
 

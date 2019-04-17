@@ -126,6 +126,8 @@
 		3590B936224B218F00CDD1AF /* Gbuffer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3590B935224B218F00CDD1AF /* Gbuffer.metal */; };
 		3590B938224B21A600CDD1AF /* GbufferComposition.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3590B937224B21A600CDD1AF /* GbufferComposition.metal */; };
 		3590B93A224BAEBA00CDD1AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B939224BAEBA00CDD1AF /* Utility.swift */; };
+		35ACFB4D22674CFB00B737B1 /* large-plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA9225223C7000E2A4C /* large-plane.mtl */; };
+		35ACFB4E22674CFB00B737B1 /* large-plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEAA225223C7000E2A4C /* large-plane.obj */; };
 		35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B13649223CEE370018ED0B /* AppDelegate.swift */; };
 		35B1364C223CEE370018ED0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1364B223CEE370018ED0B /* ViewController.swift */; };
 		35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B1364D223CEE390018ED0B /* Assets.xcassets */; };
@@ -866,11 +868,13 @@
 				357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */,
 				357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */,
 				357BFBBA225F213E00880C01 /* AddModelViewController.xib in Resources */,
+				35ACFB4D22674CFB00B737B1 /* large-plane.mtl in Resources */,
 				35B3983C2260343400D0905A /* plane.obj in Resources */,
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
 				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
 				35DAA2D42266060D00D63D11 /* EditViewController.xib in Resources */,
+				35ACFB4E22674CFB00B737B1 /* large-plane.obj in Resources */,
 				35FC74B522642A3A00634353 /* train.mtl in Resources */,
 				357BFBC2225F215C00880C01 /* AddSkyboxViewController.xib in Resources */,
 				35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */,

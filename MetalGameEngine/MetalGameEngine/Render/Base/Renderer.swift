@@ -59,8 +59,6 @@ class Renderer: NSObject {
 
 extension Renderer: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        guard scene.currentCamera != nil else { return }
-        
         scene.sceneSizeWillChange(size)
         mtkView(drawableSizeWillChange: size)
     }

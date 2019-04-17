@@ -12,12 +12,12 @@ class DeferredRenderer: Renderer {
     
     // Shadow
     var light: Light!
-    var shadowRendererPass: MTLRenderPassDescriptor!
+    var shadowRenderPass: MTLRenderPassDescriptor!
     var shadowProps: [Prop] = []
     var shadowTexture: MTLTexture!
     
     // Gbuffer
-    var gBufferRenderePass: MTLRenderPassDescriptor!
+    var gBufferRenderPass: MTLRenderPassDescriptor!
     var gbufferProps: [Prop] = []
     var depthTexture: MTLTexture!
     var baseColorTexture: MTLTexture!
@@ -44,6 +44,8 @@ class DeferredRenderer: Renderer {
         buildCompositionPipeline()
         
         buildDontWriteDepthStencilState()
+        
+        mtkView(drawableSizeWillChange: self.metalView.drawableSize)
     }
     
     private func buildDontWriteDepthStencilState() {
@@ -59,15 +61,13 @@ class DeferredRenderer: Renderer {
     }
     
     private func buildLights() {
+        if scene.lights.isEmpty { return }
         light = scene.lights.first{ $0.type == Sunlight }
         lightsBuffer = Renderer.device.makeBuffer(bytes: scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, options: [])
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
-        scene.sceneSizeWillChange(size)
-
         buildShadowRenderPass(size: size)
-        
         buildGbufferRenderPass(size: size)
     }
 
@@ -79,20 +79,25 @@ class DeferredRenderer: Renderer {
         }
         
         // render shadow texture
-        guard let shadowRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: shadowRendererPass) else {
-            return
+        if let shadowRenderPass = self.shadowRenderPass,
+            let light = self.light
+        {
+            if let shadowRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: shadowRenderPass) {
+                renderShadow(shadowRenderEncoder, light: light)
+                shadowRenderEncoder.endEncoding()
+            }
         }
-        renderShadow(shadowRenderEncoder, light: self.light)
-        shadowRenderEncoder.endEncoding()
         
         // render to Gbuffer
-        gBufferRenderePass.setupDepthAttachment(with: self.metalView.depthStencilTexture!)
-        guard let gBufferRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: gBufferRenderePass) else {
-            return
+        if let gBufferRenderPass = self.gBufferRenderPass {
+            gBufferRenderPass.setupDepthAttachment(with: self.metalView.depthStencilTexture!)
+            guard let gBufferRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: gBufferRenderPass) else {
+                return
+            }
+            renderGbuffer(gBufferRenderEncoder)
+            gBufferRenderEncoder.endEncoding()
         }
-        renderGbuffer(gBufferRenderEncoder)
-        gBufferRenderEncoder.endEncoding()
-        
+      
         // render main
         // main对于深度信息只读取不清除
         mainPassDescriptor.depthAttachment.loadAction = .load
@@ -130,8 +135,8 @@ extension DeferredRenderer: SceneDelegate {
 extension DeferredRenderer {
     func buildShadowRenderPass(size: CGSize) {
         shadowTexture = Texture.newTexture(pixelFormat: Renderer.depthPixelFormat, size: size, label: "Shadow")
-        shadowRendererPass = MTLRenderPassDescriptor()
-        shadowRendererPass.setupDepthAttachment(with: shadowTexture)
+        shadowRenderPass = MTLRenderPassDescriptor()
+        shadowRenderPass.setupDepthAttachment(with: shadowTexture)
     }
     
     func renderShadow(_ renderEncoder: MTLRenderCommandEncoder, light: Light) {
@@ -169,11 +174,11 @@ extension DeferredRenderer {
         normalTexture = Texture.newTexture(pixelFormat: .rgba16Float, size: size, label: "Normal")
         positionTexture = Texture.newTexture(pixelFormat: .rgba16Float, size: size, label: "Position")
         
-        gBufferRenderePass = MTLRenderPassDescriptor()
+        gBufferRenderPass = MTLRenderPassDescriptor()
 
-        gBufferRenderePass.setupColorAttachment(index: 0, texture: baseColorTexture)
-        gBufferRenderePass.setupColorAttachment(index: 1, texture: normalTexture)
-        gBufferRenderePass.setupColorAttachment(index: 2, texture: positionTexture)
+        gBufferRenderPass.setupColorAttachment(index: 0, texture: baseColorTexture)
+        gBufferRenderPass.setupColorAttachment(index: 1, texture: normalTexture)
+        gBufferRenderPass.setupColorAttachment(index: 2, texture: positionTexture)
     }
     
     func renderGbuffer(_ renderEncoder: MTLRenderCommandEncoder) {
