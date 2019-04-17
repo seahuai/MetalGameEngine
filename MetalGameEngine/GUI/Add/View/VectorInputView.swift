@@ -106,19 +106,19 @@ class VectorInputView: NSView {
     
     var y: Float = 0 {
         didSet {
-            textFields[1].floatValue = x
+            textFields[1].floatValue = y
         }
     }
     
     var z: Float = 0 {
         didSet {
-            textFields[2].floatValue = x
+            textFields[2].floatValue = z
         }
     }
     
     var w: Float = 0 {
         didSet {
-            textFields[3].floatValue = x
+            textFields[3].floatValue = w
         }
     }
     
