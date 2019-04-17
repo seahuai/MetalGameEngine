@@ -98,6 +98,7 @@
 		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
 		3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B3A0224DEF120060229F /* TerrainRenderer.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
+		3570B9192266C0050074B2B4 /* EditableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570B9182266C0050074B2B4 /* EditableViewController.swift */; };
 		357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB8F225F103E00880C01 /* SceneViewController.swift */; };
 		357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357BFB90225F103E00880C01 /* SceneViewController.xib */; };
 		357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357BFB9E225F1C8D00880C01 /* AddViewController.swift */; };
@@ -223,6 +224,7 @@
 		3553B39E224DEEE10060229F /* TerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainViewController.swift; sourceTree = "<group>"; };
 		3553B3A0224DEF120060229F /* TerrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainRenderer.swift; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		3570B9182266C0050074B2B4 /* EditableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableViewController.swift; sourceTree = "<group>"; };
 		357BFB8F225F103E00880C01 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		357BFB90225F103E00880C01 /* SceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneViewController.xib; sourceTree = "<group>"; };
 		357BFB9E225F1C8D00880C01 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -607,6 +609,14 @@
 			path = Tessellation;
 			sourceTree = "<group>";
 		};
+		3570B9172266BFEA0074B2B4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3570B9182266C0050074B2B4 /* EditableViewController.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		357BFB8C225F0F5200880C01 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,6 +767,7 @@
 		35DAA2D02266041600D63D11 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				3570B9172266BFEA0074B2B4 /* Protocol */,
 				35DAA2D12266060D00D63D11 /* EditViewController.swift */,
 				35DAA2D22266060D00D63D11 /* EditViewController.xib */,
 			);
@@ -914,6 +925,7 @@
 				357BFBBD225F214C00880C01 /* AddLightViewController.swift in Sources */,
 				350E9468225E173C003B51E3 /* Camera.swift in Sources */,
 				350E9473225E1765003B51E3 /* Shadow.metal in Sources */,
+				3570B9192266C0050074B2B4 /* EditableViewController.swift in Sources */,
 				350E9463225E1738003B51E3 /* Water.swift in Sources */,
 				35B3983F2260349300D0905A /* FileTool.swift in Sources */,
 				350E9470225E175F003B51E3 /* PhongShader.metal in Sources */,

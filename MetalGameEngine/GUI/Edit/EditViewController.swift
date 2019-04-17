@@ -90,7 +90,10 @@ class EditViewController: NSViewController {
             viewController = addSkyboxVC
         }
         
-        guard let vc = viewController else { return }
+        guard let vc = viewController,
+            var editVC = vc as? EditableViewContoller else { return }
+        
+        editVC.isEdit = true
         
         containerView.addSubview(vc.view)
         vc.view.frame = containerView.bounds

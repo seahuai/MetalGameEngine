@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class AddTerrainViewController: NSViewController {
+class AddTerrainViewController: NSViewController, EditableViewContoller {
+    
+    var isEdit: Bool = false
     
     var terrain: Terrain!
 

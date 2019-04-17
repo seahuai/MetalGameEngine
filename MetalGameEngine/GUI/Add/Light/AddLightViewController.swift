@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class AddLightViewController: NSViewController {
+class AddLightViewController: NSViewController, EditableViewContoller {
+    
+    var isEdit: Bool = false
     
     var lightNode: LightNode!
     

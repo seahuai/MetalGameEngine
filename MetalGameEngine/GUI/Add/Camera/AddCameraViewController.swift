@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class AddCameraViewController: NSViewController {
+class AddCameraViewController: NSViewController, EditableViewContoller {
+    
+    var isEdit: Bool = false
     
     var camera: Camera!
     var parentNode: Node?

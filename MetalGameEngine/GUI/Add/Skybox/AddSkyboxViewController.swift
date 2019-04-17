@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class AddSkyboxViewController: NSViewController {
+class AddSkyboxViewController: NSViewController, EditableViewContoller {
+    
+    var isEdit: Bool = false
     
     private var isCustom = false
     

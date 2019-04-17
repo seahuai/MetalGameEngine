@@ -69,6 +69,30 @@ class VectorInputView: NSView {
         return values
     }
     
+    var x: Float = 0 {
+        didSet {
+            textFields[0].floatValue = x
+        }
+    }
+    
+    var y: Float = 0 {
+        didSet {
+            textFields[1].floatValue = x
+        }
+    }
+    
+    var z: Float = 0 {
+        didSet {
+            textFields[2].floatValue = x
+        }
+    }
+    
+    var w: Float = 0 {
+        didSet {
+            textFields[3].floatValue = x
+        }
+    }
+    
     private var placeholders = ["X", "Y", "Z", "W"]
     
     private var textFields: [NSTextField] = []

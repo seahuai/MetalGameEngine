@@ -8,8 +8,9 @@
 
 import Cocoa
 
-class AddModelViewController: NSViewController {
+class AddModelViewController: NSViewController, EditableViewContoller {
     
+    var isEdit = false
     var model: Model?
     var parentNode: Node?
     
@@ -39,6 +40,8 @@ class AddModelViewController: NSViewController {
         super.viewWillAppear()
         
         setupItems()
+        
+        setupData()
     }
     
     private func setupItems() {
@@ -55,6 +58,27 @@ class AddModelViewController: NSViewController {
         selectParentNodeButton.addItems(withTitles: parentNodeNames)
     }
     
+    private func setupData() {
+        guard let model = self.model else { return }
+        
+        modelNameTextField.stringValue = model.name
+        
+        postitionTextfield.x = model.position.x
+        postitionTextfield.y = model.position.y
+        postitionTextfield.z = model.position.z
+        
+        selectModelButton.isEnabled = !isEdit
+        selectParentNodeButton.isEnabled = !isEdit
+        
+        if isEdit {
+            if let fileName = model.fileName {
+                selectModelButton.title = fileName
+            }
+            
+            selectParentNodeButton.title = model.parent?.name ?? "无"
+        }
+    }
+    
     private func changePopUpButtonTitle(titles: [String], sender: NSPopUpButton) {
         let index = sender.indexOfSelectedItem
         let title = titles[index - 1]
@@ -66,37 +90,35 @@ class AddModelViewController: NSViewController {
 extension AddModelViewController: AddNodeVaildable {
     
     func checkVaild() -> (isVaild: Bool, errorMsg: String?) {
-    
-        if selectModelButton.indexOfSelectedItem <= 0 || selectParentNodeButton.indexOfSelectedItem <= 0 {
-            return (false, "信息不完整")
-        }
         
         let name = modelNameTextField.stringValue
         if parentNodeNames.contains(name) {
             return (false, "名称 \"\(name)\" 已存在")
         }
         
-        let selectModelButtonIndex = selectModelButton.indexOfSelectedItem
-        let objFileName = objModelNames[selectModelButtonIndex - 1]
-        
-        // 如果 model 未空才创建新的对象
-        if self.model == nil {
+        if !isEdit {
+            if selectModelButton.indexOfSelectedItem <= 0 || selectParentNodeButton.indexOfSelectedItem <= 0 {
+                return (false, "信息不完整")
+            }
+            
+            let selectModelButtonIndex = selectModelButton.indexOfSelectedItem
+            let objFileName = objModelNames[selectModelButtonIndex - 1]
+            
             guard let model = Model(name: objFileName) else {
                 return (false, "创建失败")
             }
             self.model = model
-        }
-        
-        let selectParentNodeButtonIndex = selectParentNodeButton.indexOfSelectedItem
-        let index = selectParentNodeButtonIndex - 1
-        var parentNode: Node? = nil
-        if index >= 1 {
-            parentNode = parentNodes[index - 1]
+            let selectParentNodeButtonIndex = selectParentNodeButton.indexOfSelectedItem
+            let index = selectParentNodeButtonIndex - 1
+            var parentNode: Node? = nil
+            if index >= 1 {
+                parentNode = parentNodes[index - 1]
+            }
+            self.parentNode = parentNode
         }
         
         self.model!.position = postitionTextfield.float3Value
         self.model!.name = name
-        self.parentNode = parentNode
         
         return (true, nil)
     }
