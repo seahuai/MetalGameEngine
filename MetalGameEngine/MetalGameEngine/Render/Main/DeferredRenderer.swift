@@ -73,6 +73,11 @@ class DeferredRenderer: Renderer {
 
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
         
+        // 计算
+        scene.terrains.forEach {
+            $0.compute(mainPassDescriptor: mainPassDescriptor, commandBuffer: commandBuffer, uniforms: scene.uniforms, cameraPosition: scene.fragmentUniforms.cameraPosition)
+        }
+        
         // render shadow texture
         guard let shadowRenderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: shadowRendererPass) else {
             return
@@ -98,7 +103,13 @@ class DeferredRenderer: Renderer {
         
         renderComposition(mainRenderEncoder)
         
+        // 渲染天空盒
         scene.skybox?.render(renderEncoder: mainRenderEncoder, uniforms: scene.uniforms)
+        
+        // 渲染地形（非延迟渲染的方式）
+        scene.terrains.forEach {
+            $0.render(mainRenderEncoder)
+        }
         
         mainRenderEncoder.endEncoding()
     }
