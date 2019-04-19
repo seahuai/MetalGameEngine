@@ -16,19 +16,11 @@ protocol SceneDelegate: class {
 // 以Scene为单位，每个场景单独渲染自己的光照和模型
 class Scene {
     
-    weak var delegate: SceneDelegate? {
-        didSet {
-            self.delegate?.scene(self, didChangeModels: self.models)
-            self.delegate?.scene(self, didChangeLights: self.lights)
-        }
-    }
-    
+    // MARK: - Pubild Variable
     var name: String = "untitled"
-    
-    var shadowTexture: MTLTexture?
-    
     var nodes: [Node] = []
-    
+    var skybox: Skybox?
+    var terrains: [Terrain] = []
     var cameras: [Camera] = []
     var currentCameraIndex = 0
     var currentCamera: Camera? {
@@ -43,14 +35,19 @@ class Scene {
         }
     }
     
-    private var models: [Model] = []
+    weak var delegate: SceneDelegate? {
+        didSet {
+            self.delegate?.scene(self, didChangeModels: self.models)
+            self.delegate?.scene(self, didChangeLights: self.lights)
+        }
+    }
     
+    // MARK: - Private Variable
+    private var models: [Model] = []
     private var waters: [Water] = []
     
-    var skybox: Skybox?
     
-    var terrains: [Terrain] = []
-    
+    // MARK: - Compute Variable
     var uniforms: Uniforms {
         var uniforms = Uniforms()
         uniforms.clipPlane = [0, -1, 0, 100];
@@ -74,6 +71,17 @@ class Scene {
         
         return fragmentUniforms
     }
+
+}
+
+// MARK: - Public Method
+extension Scene {
+    
+    struct VerticesBuffer {
+        let positionsBuffer: MTLBuffer
+        let normalsBuffer: MTLBuffer
+        let colorsBuffer: MTLBuffer
+    }
     
     func props(type: RendererType) -> [Prop] {
         let props: [Prop] = self.models.map{
@@ -81,57 +89,60 @@ class Scene {
         }
         return props
     }
-}
-
-extension Scene {
-    func renderWaters(renderEncoder: MTLRenderCommandEncoder, reflectionTexture: MTLTexture?, refractionTexture: MTLTexture?) {
-        guard !waters.isEmpty else { return }
+    
+    func rayTracingUsedBuffer() -> VerticesBuffer? {
+        var positions: [float3] = []
+        var normals: [float3] = []
+        var colors: [float3] = []
+        // 遍历所有 Model
+        for model in models {
+            // 取出 mesh buffer 中的数据重新处理
+            let mesh = model.mesh
+            let count = mesh.vertexCount
+            let positionsBuffer = mesh.vertexBuffers[0].buffer
+            let normalsBuffer = mesh.vertexBuffers[1].buffer
+            let positionPoninter = positionsBuffer.contents().bindMemory(to: float3.self, capacity: count)
+            let normalPointer = normalsBuffer.contents().bindMemory(to: float3.self, capacity: count)
+            
+            for submesh in model.submeshes {
+                let mtksubmesh = submesh.mtkSubmesh
+                let indexCount = mtksubmesh.indexCount
+                let indexBuffer = mtksubmesh.indexBuffer.buffer
+                // 从 submesh 中取数据需要先做偏移
+                let offset = mtksubmesh.indexBuffer.offset
+                let indexPointer = indexBuffer.contents().advanced(by: offset)
+                let indices = indexPointer.bindMemory(to: uint.self, capacity: indexCount)
+                
+                for i in 0..<indexCount {
+                    let index = Int(indices[i])
+                    // TODO: 需要做坐标空间的转换
+                    let position = positionPoninter[index] + model.position
+                    positions.append(position)
+                    normals.append(normalPointer[index])
+                    
+                    // 暂时只传颜色用于测试
+                    let baseColor = submesh.material.baseColor
+                    colors.append(baseColor)
+                }
+            }
+        }
         
-        for water in waters {
-            water.render(renderEncoder: renderEncoder,
-                         uniforms: self.uniforms,
-                         fragmentUniforms: self.fragmentUniforms,
-                         reflectionTexture: reflectionTexture,
-                         refractionTexture: refractionTexture)
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            fatalError("GPU not available")
         }
+        
+        // 如果没有顶点数据则直接返回
+        guard !positions.isEmpty else { return nil }
+        
+        guard let positionsBuffer = device.makeBuffer(bytes: positions, length: MemoryLayout<float3>.stride * positions.count, options: .storageModePrivate),
+            let normalsBuffer = device.makeBuffer(bytes: normals, length: MemoryLayout<float3>.stride * normals.count, options: .storageModePrivate),
+            let colorsBuffer = device.makeBuffer(bytes: colors, length: MemoryLayout<float3>.stride * colors.count, options: .storageModePrivate) else { return nil }
+        
+        return VerticesBuffer(positionsBuffer: positionsBuffer, normalsBuffer: normalsBuffer, colorsBuffer: colorsBuffer)
     }
 }
 
-extension Scene {
-    func sceneSizeWillChange(_ size: CGSize) {
-        guard let currentCamera = currentCamera else { return }
-        currentCamera.aspect = Float(size.width)/Float(size.height)
-    }
-    
-    func sceneHorizontalRotate(_ translation: float2) {
-        guard let currentCamera = currentCamera else { return }
-        let sensitivity: Float = 0.01
-        currentCamera.isHorizontalRotate = true
-        currentCamera.position = float4x4(rotationY: translation.x * sensitivity).upperLeft() * currentCamera.position
-        currentCamera.rotation.y = atan2f(-currentCamera.position.x, -currentCamera.position.z)
-    }
-    
-    func sceneRotate(_ translation: float2) {
-        guard let currentCamera = currentCamera else { return }
-        let sensitivity: Float = 0.01
-        currentCamera.isHorizontalRotate = false
-        currentCamera.rotation.x += Float(translation.y) * sensitivity
-        currentCamera.rotation.y -= Float(translation.x) * sensitivity
-    }
-    
-    func sceneZooming(_ delta: CGFloat) {
-        guard let currentCamera = currentCamera else { return }
-        let sensitivity: Float = 0.01
-        if currentCamera.isHorizontalRotate {
-            let cameraVector = currentCamera.modelMatrix.upperLeft().columns.2
-            currentCamera.position += Float(delta) * sensitivity * cameraVector
-        } else {
-            currentCamera.position.z += Float(delta) * sensitivity
-        }
-    
-    }
-}
-
+// MARK: - Handle Node
 extension Scene {
     func add(node: Node, parentNode: Node? = nil) {
         if let parentNode = parentNode {
@@ -225,8 +236,58 @@ extension Scene {
         }
         return false
     }
+}
 
+// MARK: - Scene
+extension Scene {
+    func sceneSizeWillChange(_ size: CGSize) {
+        guard let currentCamera = currentCamera else { return }
+        currentCamera.aspect = Float(size.width)/Float(size.height)
+    }
     
+    func sceneHorizontalRotate(_ translation: float2) {
+        guard let currentCamera = currentCamera else { return }
+        let sensitivity: Float = 0.01
+        currentCamera.isHorizontalRotate = true
+        currentCamera.position = float4x4(rotationY: translation.x * sensitivity).upperLeft() * currentCamera.position
+        currentCamera.rotation.y = atan2f(-currentCamera.position.x, -currentCamera.position.z)
+    }
+    
+    func sceneRotate(_ translation: float2) {
+        guard let currentCamera = currentCamera else { return }
+        let sensitivity: Float = 0.01
+        currentCamera.isHorizontalRotate = false
+        currentCamera.rotation.x += Float(translation.y) * sensitivity
+        currentCamera.rotation.y -= Float(translation.x) * sensitivity
+    }
+    
+    func sceneZooming(_ delta: CGFloat) {
+        guard let currentCamera = currentCamera else { return }
+        let sensitivity: Float = 0.01
+        if currentCamera.isHorizontalRotate {
+            let cameraVector = currentCamera.modelMatrix.upperLeft().columns.2
+            currentCamera.position += Float(delta) * sensitivity * cameraVector
+        } else {
+            currentCamera.position.z += Float(delta) * sensitivity
+        }
+        
+    }
+}
+
+
+// TODO: need to remove
+extension Scene {
+    func renderWaters(renderEncoder: MTLRenderCommandEncoder, reflectionTexture: MTLTexture?, refractionTexture: MTLTexture?) {
+        guard !waters.isEmpty else { return }
+        
+        for water in waters {
+            water.render(renderEncoder: renderEncoder,
+                         uniforms: self.uniforms,
+                         fragmentUniforms: self.fragmentUniforms,
+                         reflectionTexture: reflectionTexture,
+                         refractionTexture: refractionTexture)
+        }
+    }
 }
 
 
