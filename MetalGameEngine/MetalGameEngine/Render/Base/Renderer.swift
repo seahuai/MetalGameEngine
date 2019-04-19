@@ -65,7 +65,9 @@ extension Renderer: MTKViewDelegate {
     
     func draw(in view: MTKView) {
         // 没有光照和视点不进行渲染
-        guard !scene.lights.isEmpty, scene.currentCamera != nil else { return }
+        if type(of: self) != RayTracingTestRenderer.self {
+            guard !scene.lights.isEmpty, scene.currentCamera != nil else { return }
+        }
         
         guard let drawable = view.currentDrawable,
             let descriptor = view.currentRenderPassDescriptor,

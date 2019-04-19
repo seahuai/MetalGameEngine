@@ -12,6 +12,10 @@ class RayTracingViewController: NormalMetalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let scene = Scene()
+        
+        self.renderer = RayTracingTestRenderer(metalView: self.mtkView, scene: scene)
     }
     
 }

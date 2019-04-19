@@ -138,6 +138,9 @@
 		35B3983C2260343400D0905A /* plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBAA2244D58B00C01902 /* plane.obj */; };
 		35B3983F2260349300D0905A /* FileTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3983E2260349300D0905A /* FileTool.swift */; };
 		35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B39841226066F900D0905A /* SceneNodeCellView.swift */; };
+		35B943732268B238001A46EA /* RayTracingTestRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B943722268B238001A46EA /* RayTracingTestRenderer.swift */; };
+		35B943752268BB79001A46EA /* RayTracing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35B943742268BB79001A46EA /* RayTracing.metal */; };
+		35BE544522696E1F00877533 /* Bilt.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35BE544422696E1F00877533 /* Bilt.metal */; };
 		35C05ACB2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
 		35C05ACC2264BC9D00A13B47 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C05ACA2264BC9D00A13B47 /* mountain.png */; };
 		35DAA2CA2265B2A100D63D11 /* RayTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */; };
@@ -265,6 +268,9 @@
 		35B39839226027E200D0905A /* OnlyNumericFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyNumericFormatter.swift; sourceTree = "<group>"; };
 		35B3983E2260349300D0905A /* FileTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTool.swift; sourceTree = "<group>"; };
 		35B39841226066F900D0905A /* SceneNodeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNodeCellView.swift; sourceTree = "<group>"; };
+		35B943722268B238001A46EA /* RayTracingTestRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingTestRenderer.swift; sourceTree = "<group>"; };
+		35B943742268BB79001A46EA /* RayTracing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = RayTracing.metal; sourceTree = "<group>"; };
+		35BE544422696E1F00877533 /* Bilt.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Bilt.metal; sourceTree = "<group>"; };
 		35C05ACA2264BC9D00A13B47 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mountain.png; path = MetalGameEngine/Textures.xcassets/mountain.textureset/Universal.mipmapset/mountain.png; sourceTree = SOURCE_ROOT; };
 		35DAA2C92265B2A100D63D11 /* RayTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingViewController.swift; sourceTree = "<group>"; };
 		35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingRenderer.swift; sourceTree = "<group>"; };
@@ -550,6 +556,7 @@
 				352F50E422637074002351FD /* Main */,
 				3553B3A0224DEF120060229F /* TerrainRenderer.swift */,
 				353F913A223F3B730071597B /* PBRRenderer.swift */,
+				35B943722268B238001A46EA /* RayTracingTestRenderer.swift */,
 				352C3F5922467F1C00053171 /* ShadowRenderer.swift */,
 				352C3F5B224752F800053171 /* PhongRenderer.swift */,
 				353F9137223F398E0071597B /* Base */,
@@ -763,6 +770,8 @@
 		35DAA2CF2265BE0B00D63D11 /* RayTracing */ = {
 			isa = PBXGroup;
 			children = (
+				35B943742268BB79001A46EA /* RayTracing.metal */,
+				35BE544422696E1F00877533 /* Bilt.metal */,
 			);
 			path = RayTracing;
 			sourceTree = "<group>";
@@ -997,6 +1006,7 @@
 				352C3F5822467E0500053171 /* MTLRenderPassDescriptorExtension.swift in Sources */,
 				35EB8419225C76050088B3F9 /* Water.metal in Sources */,
 				352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */,
+				35B943752268BB79001A46EA /* RayTracing.metal in Sources */,
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
 				35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */,
 				353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */,
@@ -1018,6 +1028,7 @@
 				3553B39A224DAE7A0060229F /* Terrain.swift in Sources */,
 				35EB8416225C72010088B3F9 /* Geometry.swift in Sources */,
 				353F913B223F3B730071597B /* PBRRenderer.swift in Sources */,
+				35B943732268B238001A46EA /* RayTracingTestRenderer.swift in Sources */,
 				350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */,
 				352C3F51224676BD00053171 /* Shadow.metal in Sources */,
 				35242EA722423A9500B8F91A /* LoadObjectViewController.swift in Sources */,
@@ -1036,6 +1047,7 @@
 				352F50E6226370AC002351FD /* RasterizationRender.swift in Sources */,
 				35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */,
 				356428322241E58B0000A5BB /* Texture.swift in Sources */,
+				35BE544522696E1F00877533 /* Bilt.metal in Sources */,
 				35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */,
 				3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */,
 				350614552240B63C00BFB42E /* Camera.swift in Sources */,

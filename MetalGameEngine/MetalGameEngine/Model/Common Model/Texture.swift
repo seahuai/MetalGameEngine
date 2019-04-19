@@ -84,9 +84,11 @@ extension Texture {
         return texture
     }
     
-    static func newTexture(pixelFormat: MTLPixelFormat, size: CGSize, label: String) -> MTLTexture {
+    static func newTexture(pixelFormat: MTLPixelFormat, size: CGSize, label: String) -> MTLTexture? {
+        guard size.width != .zero && size.height != .zero else { return nil }
+        
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: Int(size.width), height: Int(size.height), mipmapped: false)
-        descriptor.usage = [.shaderRead, .renderTarget]
+        descriptor.usage = [.shaderRead, .renderTarget, .shaderWrite]
         descriptor.storageMode = .private
         guard let texture = Renderer.device.makeTexture(descriptor: descriptor) else {
             fatalError("new texture failed")
