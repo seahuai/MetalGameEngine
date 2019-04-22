@@ -57,6 +57,7 @@
 		350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
 		350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
 		351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */; };
+		35208F63226DA109007289DC /* RayTracingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35208F62226DA109007289DC /* RayTracingModel.swift */; };
 		352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352184E9224A60250006D5BA /* MutipleLightViewController.swift */; };
 		35242E98224212E400B8F91A /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
 		35242E9D2242312F00B8F91A /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
@@ -186,6 +187,7 @@
 		350E945A225DE6B7003B51E3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		350E9480225E2CFC003B51E3 /* DateExtextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtextension.swift; sourceTree = "<group>"; };
 		351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNodeVaildable.swift; sourceTree = "<group>"; };
+		35208F62226DA109007289DC /* RayTracingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingModel.swift; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		35242E97224212E400B8F91A /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
 		35242E9C2242312F00B8F91A /* Main.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Main.metal; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				352C3F6122476EE700053171 /* Skybox.swift */,
 				3553B399224DAE7A0060229F /* Terrain.swift */,
 				35EB8411225C41DF0088B3F9 /* Water.swift */,
+				35208F62226DA109007289DC /* RayTracingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1042,6 +1045,7 @@
 				352C3F3B2246178800053171 /* Phong.metal in Sources */,
 				3590B938224B21A600CDD1AF /* GbufferComposition.metal in Sources */,
 				352C3F3D2246179000053171 /* PBR.metal in Sources */,
+				35208F63226DA109007289DC /* RayTracingModel.swift in Sources */,
 				353F9139223F39EF0071597B /* Renderer.swift in Sources */,
 				3525CE982251F66A000E2A4C /* InstanceViewController.swift in Sources */,
 				352F50E6226370AC002351FD /* RasterizationRender.swift in Sources */,

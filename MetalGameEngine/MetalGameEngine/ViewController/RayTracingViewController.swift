@@ -15,6 +15,9 @@ class RayTracingViewController: NormalMetalViewController {
         
         let scene = Scene()
         
+        let train = RayTracingModel(name: "train")!
+        scene.add(node: train)
+        
         self.renderer = RayTracingTestRenderer(metalView: self.mtkView, scene: scene)
     }
     

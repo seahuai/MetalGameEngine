@@ -14,6 +14,7 @@ struct Ray {
     float minDistance;
     packed_float3 direction;
     float maxDistance;
+    float3 color;
 };
 
 struct Intersection {
@@ -35,14 +36,15 @@ kernel void generateRays(device Ray *rays [[ buffer(0) ]],
     
     // camera origin
     float3 origin = float3(0.0, 1.0, 2.0);
-    float aspect = float(size.x) / float(size.y);
-    float3 direction = float3(aspect * uv.x, uv.y, -1.0);
+    float aspect = float(size.y) / float(size.x);
+    float3 direction = float3(uv.x, uv.y * aspect, -1.0);
     direction = normalize(direction);
     
     rays[index].origin = origin;
     rays[index].direction = direction;
     rays[index].minDistance = 0.0;
     rays[index].maxDistance = INFINITY;
+    rays[index].color = float3(1);
     
 }
 
@@ -56,7 +58,8 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
     if (intersection.distance > 0) {
         float2 coordinates = intersection.coordinates;
         float w = 1 - coordinates.x - coordinates.y;
-        renderTarget.write(float4(coordinates, w, 1.0), position);
+//        renderTarget.write(float4(coordinates, w, 1.0), position);
+        renderTarget.write(float4(1.0), position);
     }
 }
 

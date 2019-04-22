@@ -13,7 +13,7 @@ class RayTracingTestRenderer: Renderer {
     
     // Ray
     var rayCount: Int = 0
-    var rayStride = MemoryLayout<MPSRayOriginMinDistanceDirectionMaxDistance>.stride
+    var rayStride = MemoryLayout<MPSRayOriginMinDistanceDirectionMaxDistance>.stride + MemoryLayout<float3>.stride
     var rayBuffer: MTLBuffer!
     var rayGeneratorComputePipelineState: MTLComputePipelineState!
     
@@ -34,14 +34,19 @@ class RayTracingTestRenderer: Renderer {
     // Bilt
     var biltRenderPipelineState: MTLRenderPipelineState!
     
+    var isAccelerationStructureDataReady = false
+    var rayTracingUsedBuffer: Scene.VerticesBuffer?
+    
     required init(metalView: MTKView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
+        
+        scene.delegate = self
         
         buildPipelineState()
         
         buildRenderTarget(metalView.drawableSize)
         
-        buildRayIntersectionStructure()
+//        buildRayIntersectionStructure()
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
@@ -53,6 +58,9 @@ class RayTracingTestRenderer: Renderer {
     }
     
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
+        
+        // 数据就绪才开始进行渲染操作
+        guard isAccelerationStructureDataReady else { return }
         
         // 1. 生成射线
         dispatchComputeOperation(rayGeneratorComputePipelineState,
@@ -135,26 +143,19 @@ private extension RayTracingTestRenderer {
         renderTarget = Texture.newTexture(pixelFormat: .rgba32Float, size: size, label: "Ray Tracing Render Target")
     }
     
-    
     func buildRayIntersectionStructure() {
-        let device = Renderer.device!
-        let vertices: [Float] = [
-            0.0, 0.5, 0.0,
-            -0.5, -0.5, 0.0,
-            0.5, -0.5, 0
-        ]
+        rayTracingUsedBuffer = scene.rayTracingUsedBuffer()
         
-        let indices: [UInt32] = [0, 1, 2]
-        
-        let vertexBuffer = Renderer.device.makeBuffer(bytes: vertices, length: MemoryLayout<float3>.stride * 3, options: .storageModeManaged)
-        let indexBuffer = Renderer.device.makeBuffer(bytes: indices, length: MemoryLayout<UInt32>.size * indices.count, options: .storageModeManaged)
+        guard let device = Renderer.device, let vertexBuffer = rayTracingUsedBuffer else {
+            isAccelerationStructureDataReady = false
+            return
+        }
+        isAccelerationStructureDataReady = true
         
         // MARK: - Setup Acceleration Structure
         accelerationStructure = MPSTriangleAccelerationStructure(device: device)
-        accelerationStructure.vertexBuffer = vertexBuffer
+        accelerationStructure.vertexBuffer = vertexBuffer.positionsBuffer
         accelerationStructure.vertexStride = MemoryLayout<float3>.stride
-        accelerationStructure.indexBuffer = indexBuffer
-        accelerationStructure.indexType = .uInt32
         accelerationStructure.triangleCount = 1
         accelerationStructure.rebuild()
         
@@ -163,6 +164,16 @@ private extension RayTracingTestRenderer {
         rayIntersector.rayStride = rayStride
         rayIntersector.intersectionDataType = intersectionDataType
         rayIntersector.intersectionStride = intersectionStride
+    }
+}
+
+extension RayTracingTestRenderer: SceneDelegate {
+    func scene(_ scene: Scene, didChangeModels models: [Model]) {
+        buildRayIntersectionStructure()
+    }
+    
+    func scene(_ scnee: Scene, didChangeLights lights: [Light]) {
+        
     }
 }
 

@@ -11,6 +11,14 @@ import Metal
 protocol SceneDelegate: class {
     func scene(_ scene: Scene, didChangeModels models: [Model])
     func scene(_ scnee: Scene, didChangeLights lights: [Light])
+    func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel])
+}
+
+extension SceneDelegate {
+    // 可选方法
+    func scene(_ scene: Scene, didChangeModels models: [Model]) {}
+    func scene(_ scnee: Scene, didChangeLights lights: [Light]) {}
+    func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel]) {}
 }
 
 // 以Scene为单位，每个场景单独渲染自己的光照和模型
@@ -44,6 +52,7 @@ class Scene {
     
     // MARK: - Private Variable
     private var models: [Model] = []
+    private var rayTracingModels: [RayTracingModel] = []
     private var waters: [Water] = []
     
     
@@ -91,19 +100,21 @@ extension Scene {
     }
     
     func rayTracingUsedBuffer() -> VerticesBuffer? {
+        guard !rayTracingModels.isEmpty else { return nil }
+        
         var positions: [float3] = []
         var normals: [float3] = []
         var colors: [float3] = []
         // 遍历所有 Model
-        for model in models {
+        for model in rayTracingModels {
             // 取出 mesh buffer 中的数据重新处理
             let mesh = model.mesh
             let count = mesh.vertexCount
+//            let count = mesh.vertexBuffers[0].buffer.length / MemoryLayout<float3>.size
             let positionsBuffer = mesh.vertexBuffers[0].buffer
             let normalsBuffer = mesh.vertexBuffers[1].buffer
             let positionPoninter = positionsBuffer.contents().bindMemory(to: float3.self, capacity: count)
             let normalPointer = normalsBuffer.contents().bindMemory(to: float3.self, capacity: count)
-            
             for submesh in model.submeshes {
                 let mtksubmesh = submesh.mtkSubmesh
                 let indexCount = mtksubmesh.indexCount
@@ -111,14 +122,14 @@ extension Scene {
                 // 从 submesh 中取数据需要先做偏移
                 let offset = mtksubmesh.indexBuffer.offset
                 let indexPointer = indexBuffer.contents().advanced(by: offset)
-                let indices = indexPointer.bindMemory(to: uint.self, capacity: indexCount)
-                
-                for i in 0..<indexCount {
-                    let index = Int(indices[i])
+                var indices = indexPointer.bindMemory(to: uint32.self, capacity: indexCount)
+                for _ in 0..<indexCount {
+                    let index = Int(indices.pointee)
                     // TODO: 需要做坐标空间的转换
                     let position = positionPoninter[index] + model.position
                     positions.append(position)
                     normals.append(normalPointer[index])
+                    indices = indices.advanced(by: 1)
                     
                     // 暂时只传颜色用于测试
                     let baseColor = submesh.material.baseColor
@@ -134,9 +145,11 @@ extension Scene {
         // 如果没有顶点数据则直接返回
         guard !positions.isEmpty else { return nil }
         
-        guard let positionsBuffer = device.makeBuffer(bytes: positions, length: MemoryLayout<float3>.stride * positions.count, options: .storageModePrivate),
-            let normalsBuffer = device.makeBuffer(bytes: normals, length: MemoryLayout<float3>.stride * normals.count, options: .storageModePrivate),
-            let colorsBuffer = device.makeBuffer(bytes: colors, length: MemoryLayout<float3>.stride * colors.count, options: .storageModePrivate) else { return nil }
+        guard
+            let positionsBuffer = device.makeBuffer(bytes: positions, length: MemoryLayout<float3>.stride * positions.count, options: []),
+            let normalsBuffer = device.makeBuffer(bytes: normals, length: MemoryLayout<float3>.stride * normals.count, options: []),
+            let colorsBuffer = device.makeBuffer(bytes: colors, length: MemoryLayout<float3>.stride * colors.count, options: [])
+            else { return nil }
         
         return VerticesBuffer(positionsBuffer: positionsBuffer, normalsBuffer: normalsBuffer, colorsBuffer: colorsBuffer)
     }
@@ -181,6 +194,11 @@ extension Scene {
             delegate?.scene(self, didChangeModels: models)
         }
         
+        if let model = node as? RayTracingModel {
+            rayTracingModels.append(model)
+            delegate?.scene(self, didChangeRayTracingModels: rayTracingModels)
+        }
+        
         if let water = node as? Water {
             waters.append(water)
         }
@@ -206,6 +224,12 @@ extension Scene {
             guard let index = models.firstIndex(of: model) else { return }
             models.remove(at: index)
             delegate?.scene(self, didChangeModels: models)
+        }
+        
+        if let model = node as? RayTracingModel {
+            guard let index = rayTracingModels.firstIndex(of: model) else { return }
+            rayTracingModels.remove(at: index)
+            delegate?.scene(self, didChangeRayTracingModels: rayTracingModels)
         }
         
         if let water = node as? Water {
