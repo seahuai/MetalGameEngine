@@ -23,6 +23,10 @@ class RayTracingTestRenderer: Renderer {
     var intersectionBuffer: MTLBuffer!
     var intersectionComputePipelinseState: MTLComputePipelineState!
     
+    // Shadow Ray
+    var shadowRayBuffer: MTLBuffer!
+    var shadowComputePipelineState: MTLComputePipelineState!
+    
     // Accumulate
     var frameIndex: Int = 0
     var accumulateComputePipelieState: MTLComputePipelineState!
@@ -34,6 +38,10 @@ class RayTracingTestRenderer: Renderer {
     // Render Target
     var renderTargetSize: MTLSize!
     var renderTarget: MTLTexture!
+    
+    // Light
+    var hasDirectionalLight = false
+    var light = Light()
     
     // Bilt
     var biltRenderPipelineState: MTLRenderPipelineState!
@@ -72,6 +80,7 @@ class RayTracingTestRenderer: Renderer {
         }
         
         // 2. 使用 MPS 计算射线与三角形的相交
+        rayIntersector.label = "Intersectort"
         rayIntersector.encodeIntersection(commandBuffer: commandBuffer,
                                           intersectionType: .nearest,
                                           rayBuffer: rayBuffer, rayBufferOffset: 0,
@@ -90,10 +99,32 @@ class RayTracingTestRenderer: Renderer {
                                     computeEncoder.setBuffer(rayBuffer, offset: 0, index: 1)
                                     computeEncoder.setBuffer(normalsBuffer, offset: 0, index: 2)
                                     computeEncoder.setBuffer(colorsBuffer, offset: 0, index: 3)
-                                    
+                                    computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 4)
+                                    computeEncoder.setBytes(&light, length: MemoryLayout<Light>.stride, index: 5)
+                                    computeEncoder.setBytes(&hasDirectionalLight, length: MemoryLayout<Bool>.size, index: 6)
         }
         
-        // 4. 降噪
+        // 4. 处理阴影
+        if hasDirectionalLight {
+            rayIntersector.label = "Shadow Intersector"
+            rayIntersector.intersectionDataType = .distance
+            rayIntersector.encodeIntersection(commandBuffer: commandBuffer,
+                                              intersectionType: .any,
+                                              rayBuffer: shadowRayBuffer, rayBufferOffset: 0,
+                                              intersectionBuffer: intersectionBuffer, intersectionBufferOffset: 0,
+                                              rayCount: rayCount,
+                                              accelerationStructure: accelerationStructure)
+            
+            dispatchComputeOperation(shadowComputePipelineState,
+                                     commandBuffer: commandBuffer) { (computeEncoder) in
+                                        computeEncoder.label = "Shadow Kernal"
+                                        computeEncoder.setTexture(renderTarget, index: 0)
+                                        computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 0)
+                                        computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 1)
+            }
+        }
+        
+        // 5. 降噪
         dispatchComputeOperation(accumulateComputePipelieState,
                                  commandBuffer: commandBuffer) { (computeEncoder) in
                                     computeEncoder.label = "Accumulate"
@@ -103,7 +134,7 @@ class RayTracingTestRenderer: Renderer {
             
         }
         
-        // 5. 将 renderTarget 复制到 drawable texture 上
+        // 6. 将 renderTarget 复制到 drawable texture 上
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
             return
         }
@@ -137,6 +168,7 @@ private extension RayTracingTestRenderer {
     func buildPipelineState() {
         let rayGeneratorFunction = Renderer.library!.makeFunction(name: "generateRays")!
         let intersectionFunction = Renderer.library!.makeFunction(name: "handleIntersecitons")!
+        let shadowFunction = Renderer.library!.makeFunction(name: "shadowKernal")!
         let accumulateFunction = Renderer.library!.makeFunction(name: "accumulateKernal")!
         
         let descriptor = MTLRenderPipelineDescriptor()
@@ -148,6 +180,7 @@ private extension RayTracingTestRenderer {
         do {
             rayGeneratorComputePipelineState = try Renderer.device.makeComputePipelineState(function: rayGeneratorFunction)
             intersectionComputePipelinseState = try Renderer.device.makeComputePipelineState(function: intersectionFunction)
+            shadowComputePipelineState = try Renderer.device.makeComputePipelineState(function: shadowFunction)
             accumulateComputePipelieState = try Renderer.device.makeComputePipelineState(function: accumulateFunction)
             biltRenderPipelineState = try Renderer.device.makeRenderPipelineState(descriptor: descriptor)
         } catch {
@@ -157,6 +190,7 @@ private extension RayTracingTestRenderer {
     
     func buildBuffers(_ rayCount: Int) {
         rayBuffer = Renderer.device.makeBuffer(length: rayStride * rayCount, options: .storageModePrivate)
+        shadowRayBuffer = Renderer.device.makeBuffer(length: rayStride * rayCount, options: .storageModePrivate)
         intersectionBuffer = Renderer.device.makeBuffer(length: intersectionStride * rayCount, options: .storageModePrivate)
     }
     
@@ -192,6 +226,15 @@ private extension RayTracingTestRenderer {
 extension RayTracingTestRenderer: SceneDelegate {
     func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel]) {
         buildRayIntersectionStructure()
+    }
+    
+    func scene(_ scnee: Scene, didChangeLights lights: [Light]) {
+        if let light = (scene.lights.first{ $0.type == Sunlight }) {
+            self.light = light
+            hasDirectionalLight = true
+        } else {
+            hasDirectionalLight = false
+        }
     }
 }
 

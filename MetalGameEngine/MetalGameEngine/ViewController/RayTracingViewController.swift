@@ -15,6 +15,16 @@ class RayTracingViewController: NormalMetalViewController {
         
         let scene = Scene()
         
+        var light = Light()
+        light.type = Sunlight
+        light.position = float3(0.0, 2, 0.0)
+        light.forward = float3(0.0, -1.0, 0.0)
+        light.right = float3(0.25, 0.0, 0.0)
+        light.up = float3(0.0, 0.0, 0.25)
+        light.color = float3(1.0)
+        
+        scene.lights.append(light)
+        
         let train = RayTracingModel(name: "train")!
         scene.add(node: train)
         
