@@ -47,6 +47,7 @@ class Scene {
         didSet {
             self.delegate?.scene(self, didChangeModels: self.models)
             self.delegate?.scene(self, didChangeLights: self.lights)
+            self.delegate?.scene(self, didChangeRayTracingModels: self.rayTracingModels)
         }
     }
     
@@ -87,6 +88,7 @@ class Scene {
 extension Scene {
     
     struct VerticesBuffer {
+        let triangleCount: Int
         let positionsBuffer: MTLBuffer
         let normalsBuffer: MTLBuffer
         let colorsBuffer: MTLBuffer
@@ -110,7 +112,6 @@ extension Scene {
             // 取出 mesh buffer 中的数据重新处理
             let mesh = model.mesh
             let count = mesh.vertexCount
-//            let count = mesh.vertexBuffers[0].buffer.length / MemoryLayout<float3>.size
             let positionsBuffer = mesh.vertexBuffers[0].buffer
             let normalsBuffer = mesh.vertexBuffers[1].buffer
             let positionPoninter = positionsBuffer.contents().bindMemory(to: float3.self, capacity: count)
@@ -151,7 +152,7 @@ extension Scene {
             let colorsBuffer = device.makeBuffer(bytes: colors, length: MemoryLayout<float3>.stride * colors.count, options: [])
             else { return nil }
         
-        return VerticesBuffer(positionsBuffer: positionsBuffer, normalsBuffer: normalsBuffer, colorsBuffer: colorsBuffer)
+        return VerticesBuffer(triangleCount: positions.count / 3, positionsBuffer: positionsBuffer, normalsBuffer: normalsBuffer, colorsBuffer: colorsBuffer)
     }
 }
 

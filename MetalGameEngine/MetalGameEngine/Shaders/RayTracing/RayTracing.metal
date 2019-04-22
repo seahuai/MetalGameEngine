@@ -8,21 +8,13 @@
 
 #include <metal_stdlib>
 using namespace metal;
+#import "RayTracingStructure.h"
 
-struct Ray {
-    packed_float3 origin;
-    float minDistance;
-    packed_float3 direction;
-    float maxDistance;
-    float3 color;
-};
+// MARK: - Method Define
+template<typename T>
+inline T interpolateVertexAttribute(device T *attributes, Intersection intersection);
 
-struct Intersection {
-    float distance;
-    uint primitiveIndex;
-    float2 coordinates;
-};
-
+// MARK: - Shdaer
 kernel void generateRays(device Ray *rays [[ buffer(0) ]],
                          uint2 position [[ thread_position_in_grid ]],
                          uint2 size [[threads_per_grid ]])
@@ -50,16 +42,35 @@ kernel void generateRays(device Ray *rays [[ buffer(0) ]],
 
 kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ texture(0) ]],
                                 device Intersection *intersections [[ buffer(0) ]],
+                                device Ray *rays [[ buffer(1) ]],
+                                device float3 *normals [[ buffer(2) ]],
+                                device float3 *colors [[ buffer(3) ]],
                                 uint2 position [[ thread_position_in_grid ]],
                                 uint2 size [[ threads_per_grid ]]) {
     uint index = position.x + position.y * size.x;
-    Intersection intersection = intersections[index];
-    // 相交则大于0
+    device Intersection &intersection = intersections[index];
+    device Ray &ray = rays[index];
+    float3 color = ray.color;
+    
     if (intersection.distance > 0) {
-        float2 coordinates = intersection.coordinates;
-        float w = 1 - coordinates.x - coordinates.y;
-//        renderTarget.write(float4(coordinates, w, 1.0), position);
-        renderTarget.write(float4(1.0), position);
+        // 颜色插值
+        color *= interpolateVertexAttribute(colors, intersection);
+        ray.color = color;
     }
 }
 
+// MARK: - Method
+
+// Interpolates vertex attribute of an arbitrary type across the surface of a triangle
+// given the barycentric coordinates and triangle index in an intersection struct
+template<typename T>
+inline T interpolateVertexAttribute(device T *attributes, Intersection intersection) {
+    float3 uvw;
+    uvw.xy = intersection.coordinates;
+    uvw.z = 1.0 - uvw.x - uvw.y;
+    unsigned int triangleIndex = intersection.primitiveIndex;
+    T T0 = attributes[triangleIndex * 3 + 0];
+    T T1 = attributes[triangleIndex * 3 + 1];
+    T T2 = attributes[triangleIndex * 3 + 2];
+    return uvw.x * T0 + uvw.y * T1 + uvw.z * T2;
+}

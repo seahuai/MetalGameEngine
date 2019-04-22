@@ -23,6 +23,10 @@ class RayTracingTestRenderer: Renderer {
     var intersectionBuffer: MTLBuffer!
     var intersectionComputePipelinseState: MTLComputePipelineState!
     
+    // Accumulate
+    var frameIndex: Int = 0
+    var accumulateComputePipelieState: MTLComputePipelineState!
+    
     // MPS
     var accelerationStructure: MPSTriangleAccelerationStructure!
     var rayIntersector: MPSRayIntersector!
@@ -45,8 +49,6 @@ class RayTracingTestRenderer: Renderer {
         buildPipelineState()
         
         buildRenderTarget(metalView.drawableSize)
-        
-//        buildRayIntersectionStructure()
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
@@ -65,8 +67,8 @@ class RayTracingTestRenderer: Renderer {
         // 1. 生成射线
         dispatchComputeOperation(rayGeneratorComputePipelineState,
                                  commandBuffer: commandBuffer) { (computeEncoder) in
-            computeEncoder.label = "Ray Generator"
-            computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
+                                    computeEncoder.label = "Ray Generator"
+                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
         }
         
         // 2. 使用 MPS 计算射线与三角形的相交
@@ -78,14 +80,30 @@ class RayTracingTestRenderer: Renderer {
                                           accelerationStructure: accelerationStructure)
         
         // 3. 处理得到的数据
+        let normalsBuffer = rayTracingUsedBuffer?.normalsBuffer
+        let colorsBuffer = rayTracingUsedBuffer?.colorsBuffer
         dispatchComputeOperation(intersectionComputePipelinseState,
                                  commandBuffer: commandBuffer) { (computeEncoder) in
-            computeEncoder.label = "Handle Intersection"
-            computeEncoder.setTexture(renderTarget, index: 0)
-            computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 0)
+                                    computeEncoder.label = "Handle Intersection"
+                                    computeEncoder.setTexture(renderTarget, index: 0)
+                                    computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 0)
+                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 1)
+                                    computeEncoder.setBuffer(normalsBuffer, offset: 0, index: 2)
+                                    computeEncoder.setBuffer(colorsBuffer, offset: 0, index: 3)
+                                    
         }
         
-        // 4. 将 renderTarget 复制到 drawable texture 上
+        // 4. 降噪
+        dispatchComputeOperation(accumulateComputePipelieState,
+                                 commandBuffer: commandBuffer) { (computeEncoder) in
+                                    computeEncoder.label = "Accumulate"
+                                    computeEncoder.setTexture(renderTarget, index: 0)
+                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
+                                    computeEncoder.setBytes(&frameIndex, length: MemoryLayout<Int>.size, index: 1)
+            
+        }
+        
+        // 5. 将 renderTarget 复制到 drawable texture 上
         guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
             return
         }
@@ -95,6 +113,8 @@ class RayTracingTestRenderer: Renderer {
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
         
         renderEncoder.endEncoding()
+        
+        frameIndex += 1
     }
 }
 
@@ -117,6 +137,7 @@ private extension RayTracingTestRenderer {
     func buildPipelineState() {
         let rayGeneratorFunction = Renderer.library!.makeFunction(name: "generateRays")!
         let intersectionFunction = Renderer.library!.makeFunction(name: "handleIntersecitons")!
+        let accumulateFunction = Renderer.library!.makeFunction(name: "accumulateKernal")!
         
         let descriptor = MTLRenderPipelineDescriptor()
         descriptor.vertexFunction = Renderer.library?.makeFunction(name: "vertexShader")
@@ -127,6 +148,7 @@ private extension RayTracingTestRenderer {
         do {
             rayGeneratorComputePipelineState = try Renderer.device.makeComputePipelineState(function: rayGeneratorFunction)
             intersectionComputePipelinseState = try Renderer.device.makeComputePipelineState(function: intersectionFunction)
+            accumulateComputePipelieState = try Renderer.device.makeComputePipelineState(function: accumulateFunction)
             biltRenderPipelineState = try Renderer.device.makeRenderPipelineState(descriptor: descriptor)
         } catch {
             fatalError(error.localizedDescription)
@@ -156,7 +178,7 @@ private extension RayTracingTestRenderer {
         accelerationStructure = MPSTriangleAccelerationStructure(device: device)
         accelerationStructure.vertexBuffer = vertexBuffer.positionsBuffer
         accelerationStructure.vertexStride = MemoryLayout<float3>.stride
-        accelerationStructure.triangleCount = 1
+        accelerationStructure.triangleCount = vertexBuffer.triangleCount
         accelerationStructure.rebuild()
         
         // MARK: - Setup Intersection Structure
@@ -168,12 +190,8 @@ private extension RayTracingTestRenderer {
 }
 
 extension RayTracingTestRenderer: SceneDelegate {
-    func scene(_ scene: Scene, didChangeModels models: [Model]) {
+    func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel]) {
         buildRayIntersectionStructure()
-    }
-    
-    func scene(_ scnee: Scene, didChangeLights lights: [Light]) {
-        
     }
 }
 

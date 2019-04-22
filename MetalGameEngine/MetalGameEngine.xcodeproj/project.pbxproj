@@ -58,6 +58,7 @@
 		350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
 		351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */; };
 		35208F63226DA109007289DC /* RayTracingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35208F62226DA109007289DC /* RayTracingModel.swift */; };
+		35208F65226DA888007289DC /* Accumulate.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35208F64226DA888007289DC /* Accumulate.metal */; };
 		352184EA224A60250006D5BA /* MutipleLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352184E9224A60250006D5BA /* MutipleLightViewController.swift */; };
 		35242E98224212E400B8F91A /* Prop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35242E97224212E400B8F91A /* Prop.swift */; };
 		35242E9D2242312F00B8F91A /* Main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35242E9C2242312F00B8F91A /* Main.metal */; };
@@ -188,6 +189,8 @@
 		350E9480225E2CFC003B51E3 /* DateExtextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtextension.swift; sourceTree = "<group>"; };
 		351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNodeVaildable.swift; sourceTree = "<group>"; };
 		35208F62226DA109007289DC /* RayTracingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingModel.swift; sourceTree = "<group>"; };
+		35208F64226DA888007289DC /* Accumulate.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Accumulate.metal; sourceTree = "<group>"; };
+		35208F66226DA8C1007289DC /* RayTracingStructure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RayTracingStructure.h; sourceTree = "<group>"; };
 		352184E9224A60250006D5BA /* MutipleLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleLightViewController.swift; sourceTree = "<group>"; };
 		35242E97224212E400B8F91A /* Prop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prop.swift; sourceTree = "<group>"; };
 		35242E9C2242312F00B8F91A /* Main.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Main.metal; sourceTree = "<group>"; };
@@ -773,7 +776,9 @@
 		35DAA2CF2265BE0B00D63D11 /* RayTracing */ = {
 			isa = PBXGroup;
 			children = (
+				35208F66226DA8C1007289DC /* RayTracingStructure.h */,
 				35B943742268BB79001A46EA /* RayTracing.metal */,
+				35208F64226DA888007289DC /* Accumulate.metal */,
 				35BE544422696E1F00877533 /* Bilt.metal */,
 			);
 			path = RayTracing;
@@ -1053,6 +1058,7 @@
 				356428322241E58B0000A5BB /* Texture.swift in Sources */,
 				35BE544522696E1F00877533 /* Bilt.metal in Sources */,
 				35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */,
+				35208F65226DA888007289DC /* Accumulate.metal in Sources */,
 				3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */,
 				350614552240B63C00BFB42E /* Camera.swift in Sources */,
 			);
