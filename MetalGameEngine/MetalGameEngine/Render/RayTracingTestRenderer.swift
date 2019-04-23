@@ -11,6 +11,9 @@ import MetalPerformanceShaders
 
 class RayTracingTestRenderer: Renderer {
     
+    // Const
+    let maxFrameInFlight = 3
+    
     // Ray
     var rayCount: Int = 0
     var rayStride = MemoryLayout<MPSRayOriginMinDistanceDirectionMaxDistance>.stride + MemoryLayout<float3>.stride
@@ -43,6 +46,17 @@ class RayTracingTestRenderer: Renderer {
     var hasDirectionalLight = false
     var light = Light()
     
+    // Random
+    let randomBufferCapacity = 256
+    lazy var randomBufferStride: Int = {
+        return MemoryLayout<float2>.stride * self.randomBufferCapacity
+    }()
+    var randomBuffer: MTLBuffer!
+    var randomBufferOffset = 0
+    
+    // Buffer Index
+    var bufferIndex = 0
+    
     // Bilt
     var biltRenderPipelineState: MTLRenderPipelineState!
     
@@ -71,6 +85,9 @@ class RayTracingTestRenderer: Renderer {
         
         // 数据就绪才开始进行渲染操作
         guard isAccelerationStructureDataReady else { return }
+        
+        // 更新 Buffer
+        updateBuffers()
         
         // 1. 生成射线
         dispatchComputeOperation(rayGeneratorComputePipelineState,
@@ -102,6 +119,7 @@ class RayTracingTestRenderer: Renderer {
                                     computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 4)
                                     computeEncoder.setBytes(&light, length: MemoryLayout<Light>.stride, index: 5)
                                     computeEncoder.setBytes(&hasDirectionalLight, length: MemoryLayout<Bool>.size, index: 6)
+                                    computeEncoder.setBuffer(randomBuffer, offset: randomBufferOffset, index: 7)
         }
         
         // 4. 处理阴影
@@ -161,6 +179,23 @@ private extension RayTracingTestRenderer {
         computeEncoder.dispatchThreads(renderTargetSize, threadsPerThreadgroup: MTLSize(width: 8, height: 8, depth: 1))
         computeEncoder.endEncoding()
     }
+    
+    func updateBuffers() {
+        updateRandomBuffer()
+        bufferIndex += 1
+        bufferIndex %= maxFrameInFlight
+    }
+    
+    func updateRandomBuffer() {
+        randomBufferOffset = randomBufferStride * bufferIndex
+        var randomBufferPointer = randomBuffer.contents().advanced(by: randomBufferOffset).bindMemory(to: float2.self, capacity: randomBufferCapacity)
+        for _ in 0..<randomBufferCapacity {
+            // 产生一个随机的 float2 值
+            randomBufferPointer.pointee = float2(Float(drand48()), Float(drand48()))
+            randomBufferPointer = randomBufferPointer.advanced(by: 1)
+        }
+        randomBuffer?.didModifyRange(randomBufferOffset..<(randomBufferOffset + randomBufferStride))
+    }
 }
 
 // MARK: - Build
@@ -192,6 +227,9 @@ private extension RayTracingTestRenderer {
         rayBuffer = Renderer.device.makeBuffer(length: rayStride * rayCount, options: .storageModePrivate)
         shadowRayBuffer = Renderer.device.makeBuffer(length: rayStride * rayCount, options: .storageModePrivate)
         intersectionBuffer = Renderer.device.makeBuffer(length: intersectionStride * rayCount, options: .storageModePrivate)
+        
+        let randomBufferSize = randomBufferStride * maxFrameInFlight
+        randomBuffer = Renderer.device.makeBuffer(length: randomBufferSize, options: .storageModeManaged)
     }
     
     func buildRenderTarget(_ size: CGSize) {

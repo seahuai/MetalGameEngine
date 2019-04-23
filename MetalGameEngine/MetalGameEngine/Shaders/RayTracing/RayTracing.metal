@@ -50,6 +50,8 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
                                 device float3 *colors [[ buffer(3) ]],
                                 device Ray *shadowRays [[ buffer(4) ]],
                                 constant Light &light [[ buffer(5) ]],
+                                constant bool &hasLight [[ buffer(6) ]],
+                                constant float2 *randomCoods [[ buffer(7) ]],
                                 uint2 position [[ thread_position_in_grid ]],
                                 uint2 size [[ threads_per_grid ]]) {
     uint index = position.x + position.y * size.x;
@@ -72,7 +74,8 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
         normal = normalize(normal);
         
         // 3. 计算光照相关内容
-        float2 randomCood = float2(0); // 暂未设置
+        float2 randomCood = randomCoods[(position.y % 16) * 16 + (position.x % 16)];
+        
         float3 lightColor;
         float3 lightDirection;
         float lightDistance;
