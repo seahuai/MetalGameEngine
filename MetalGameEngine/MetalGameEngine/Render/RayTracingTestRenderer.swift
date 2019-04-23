@@ -13,6 +13,7 @@ class RayTracingTestRenderer: Renderer {
     
     // Const
     let maxFrameInFlight = 3
+    let semaphore: DispatchSemaphore
     
     // Ray
     var rayCount: Int = 0
@@ -64,6 +65,9 @@ class RayTracingTestRenderer: Renderer {
     var rayTracingUsedBuffer: Scene.VerticesBuffer?
     
     required init(metalView: MTKView, scene: Scene) {
+        
+        semaphore = DispatchSemaphore.init(value: maxFrameInFlight)
+        
         super.init(metalView: metalView, scene: scene)
         
         scene.delegate = self
@@ -85,6 +89,12 @@ class RayTracingTestRenderer: Renderer {
         
         // 数据就绪才开始进行渲染操作
         guard isAccelerationStructureDataReady else { return }
+        
+        // 添加信号量
+        semaphore.wait()
+        commandBuffer.addCompletedHandler { cb in
+            self.semaphore.signal()
+        }
         
         // 更新 Buffer
         updateBuffers()
