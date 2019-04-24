@@ -17,16 +17,27 @@ inline T interpolateVertexAttribute(device T *attributes, Intersection intersect
 
 inline void sampleAreaLight(constant Light &light, float2 randomCood, float3 position, thread float3 &lightDirection, thread float3 &lightColor, thread float &lightDistance);
 
+inline float3 sampleCosineWeightedHemisphere(float2 u);
+
+inline float3 alignHemisphereWithNormal(float3 sample, float3 normal);
+
 // MARK: - Shdaer
-kernel void generateRays(device Ray *rays [[ buffer(0) ]],
+kernel void generateRays(texture2d<float, access::read_write> renderTarget [[ texture(0) ]],
+                         device Ray *rays [[ buffer(0) ]],
+                         constant float2 *randomCoods [[ buffer(1) ]],
                          uint2 position [[ thread_position_in_grid ]],
                          uint2 size [[threads_per_grid ]])
 {
     // ray index
     uint index = position.x + position.y * size.x;
     
+    // antialiasing
+    float2 pixel = (float2)position;
+    float2 r = randomCoods[(position.y % 16) * 16 + (position.x % 16)];
+    pixel += r;
+    
     // convert position to (-1, 1)
-    float2 uv = float2(position) / float2(size - 1);
+    float2 uv = (float2)pixel / (float2)size;
     uv = uv * 2.0 - 1.0;
     
     // camera origin
@@ -34,6 +45,7 @@ kernel void generateRays(device Ray *rays [[ buffer(0) ]],
     float aspect = float(size.y) / float(size.x);
     float3 direction = float3(uv.x, uv.y * aspect, -1.0);
     direction = normalize(direction);
+
     
     rays[index].origin = origin;
     rays[index].direction = direction;
@@ -41,6 +53,8 @@ kernel void generateRays(device Ray *rays [[ buffer(0) ]],
     rays[index].maxDistance = INFINITY;
     rays[index].color = float3(1);
     
+    // 将图像背景设置为黑色
+    renderTarget.write(float4(0), position);
 }
 
 kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ texture(0) ]],
@@ -53,17 +67,17 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
                                 constant bool &hasLight [[ buffer(6) ]],
                                 constant float2 *randomCoods [[ buffer(7) ]],
                                 uint2 position [[ thread_position_in_grid ]],
-                                uint2 size [[ threads_per_grid ]]) {
+                                uint2 size [[ threads_per_grid ]])
+{
     uint index = position.x + position.y * size.x;
     device Intersection &intersection = intersections[index];
     device Ray &ray = rays[index];
     device Ray &shadowRay = shadowRays[index];
     float3 color = ray.color;
     
-    if (intersection.distance > 0) {
-        // 颜色插值
+    if (ray.maxDistance >= 0.0f && intersection.distance >= 0.0f) {
         color *= interpolateVertexAttribute(colors, intersection);
-        ray.color = color;
+        float2 randomCood = randomCoods[(position.y % 16) * 16 + (position.x % 16)];
         
         // 创建阴影射线
         // 1. 求出当前射线的交点位置，作为阴影射线的起点
@@ -74,8 +88,6 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
         normal = normalize(normal);
         
         // 3. 计算光照相关内容
-        float2 randomCood = randomCoods[(position.y % 16) * 16 + (position.x % 16)];
-        
         float3 lightColor;
         float3 lightDirection;
         float lightDistance;
@@ -87,15 +99,23 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
         
         // 5. 设置 shadowRay
         shadowRay.origin = intersectionPoint + normal * 1e-3; // 稍微偏移
-        shadowRay.direction = lightDistance;
+        shadowRay.direction = lightDirection;
         shadowRay.maxDistance = lightDistance - 1e-3;
-        shadowRay.color = color * lightColor;
+        shadowRay.color = lightColor * color;
+        
+        // 散射
+//        float3 sampleDirection = sampleCosineWeightedHemisphere(randomCood);
+//        sampleDirection = alignHemisphereWithNormal(sampleDirection, normal);
+//        ray.origin = intersectionPoint + normal * 1e-3f;
+//        ray.direction = sampleDirection;
+//        ray.color = color;
     } else {
-        // 没有和三角形相交的不需要处理阴影的情况
+        ray.maxDistance = -1;
         shadowRay.maxDistance = -1;
     }
 }
 
+// 主要的着色过程
 kernel void shadowKernal(texture2d<float, access::read_write> renderTarget [[ texture(0) ]],
                          device Ray *shadowRays [[ buffer(0) ]],
                          device float *intersections [[ buffer(1) ]],
@@ -167,5 +187,39 @@ inline void sampleAreaLight(constant Light & light,
     // Light also falls off with the cosine of angle between the intersection point and
     // the light source
     lightColor *= saturate(dot(-lightDirection, light.forward));
+}
+
+// Uses the inversion method to map two uniformly random numbers to a three dimensional
+// unit hemisphere where the probability of a given sample is proportional to the cosine
+// of the angle between the sample direction and the "up" direction (0, 1, 0)
+inline float3 sampleCosineWeightedHemisphere(float2 u) {
+    float phi = 2.0f * M_PI_F * u.x;
+    
+    float cos_phi;
+    float sin_phi = sincos(phi, cos_phi);
+    
+    float cos_theta = sqrt(u.y);
+    float sin_theta = sqrt(1.0f - cos_theta * cos_theta);
+    
+    return float3(sin_theta * cos_phi, cos_theta, sin_theta * sin_phi);
+}
+
+// Aligns a direction on the unit hemisphere such that the hemisphere's "up" direction
+// (0, 1, 0) maps to the given surface normal direction
+inline float3 alignHemisphereWithNormal(float3 sample, float3 normal) {
+    // Set the "up" vector to the normal
+    float3 up = normal;
+    
+    // Find an arbitrary direction perpendicular to the normal. This will become the
+    // "right" vector.
+    float3 right = normalize(cross(normal, float3(0.0072f, 1.0f, 0.0034f)));
+    
+    // Find a third vector perpendicular to the previous two. This will be the
+    // "forward" vector.
+    float3 forward = cross(right, up);
+    
+    // Map the direction on the unit hemisphere to the coordinate system aligned
+    // with the normal.
+    return sample.x * right + sample.y * up + sample.z * forward;
 }
 

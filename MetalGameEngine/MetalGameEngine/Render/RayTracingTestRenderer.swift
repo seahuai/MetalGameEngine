@@ -33,6 +33,7 @@ class RayTracingTestRenderer: Renderer {
     
     // Accumulate
     var frameIndex: Int = 0
+    var accumulateRenderTarget: MTLTexture!
     var accumulateComputePipelieState: MTLComputePipelineState!
     
     // MPS
@@ -72,6 +73,9 @@ class RayTracingTestRenderer: Renderer {
         
         scene.delegate = self
         
+        let randomBufferSize = randomBufferStride * maxFrameInFlight
+        randomBuffer = Renderer.device.makeBuffer(length: randomBufferSize, options: .storageModeManaged)!
+    
         buildPipelineState()
         
         buildRenderTarget(metalView.drawableSize)
@@ -103,62 +107,69 @@ class RayTracingTestRenderer: Renderer {
         dispatchComputeOperation(rayGeneratorComputePipelineState,
                                  commandBuffer: commandBuffer) { (computeEncoder) in
                                     computeEncoder.label = "Ray Generator"
-                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
-        }
-        
-        // 2. 使用 MPS 计算射线与三角形的相交
-        rayIntersector.label = "Intersectort"
-        rayIntersector.encodeIntersection(commandBuffer: commandBuffer,
-                                          intersectionType: .nearest,
-                                          rayBuffer: rayBuffer, rayBufferOffset: 0,
-                                          intersectionBuffer: intersectionBuffer, intersectionBufferOffset: 0,
-                                          rayCount: rayCount,
-                                          accelerationStructure: accelerationStructure)
-        
-        // 3. 处理得到的数据
-        let normalsBuffer = rayTracingUsedBuffer?.normalsBuffer
-        let colorsBuffer = rayTracingUsedBuffer?.colorsBuffer
-        dispatchComputeOperation(intersectionComputePipelinseState,
-                                 commandBuffer: commandBuffer) { (computeEncoder) in
-                                    computeEncoder.label = "Handle Intersection"
                                     computeEncoder.setTexture(renderTarget, index: 0)
-                                    computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 0)
-                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 1)
-                                    computeEncoder.setBuffer(normalsBuffer, offset: 0, index: 2)
-                                    computeEncoder.setBuffer(colorsBuffer, offset: 0, index: 3)
-                                    computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 4)
-                                    computeEncoder.setBytes(&light, length: MemoryLayout<Light>.stride, index: 5)
-                                    computeEncoder.setBytes(&hasDirectionalLight, length: MemoryLayout<Bool>.size, index: 6)
-                                    computeEncoder.setBuffer(randomBuffer, offset: randomBufferOffset, index: 7)
+                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
+                                    computeEncoder.setBuffer(randomBuffer, offset: randomBufferOffset, index: 1)
         }
         
-        // 4. 处理阴影
-        if hasDirectionalLight {
-            rayIntersector.label = "Shadow Intersector"
-            rayIntersector.intersectionDataType = .distance
+        for _ in 0..<3 {
+            
+            // 2. 使用 MPS 计算射线与三角形的相交
+            rayIntersector.label = "Intersectort"
+            rayIntersector.intersectionDataType = .distancePrimitiveIndexCoordinates
             rayIntersector.encodeIntersection(commandBuffer: commandBuffer,
-                                              intersectionType: .any,
-                                              rayBuffer: shadowRayBuffer, rayBufferOffset: 0,
+                                              intersectionType: .nearest,
+                                              rayBuffer: rayBuffer, rayBufferOffset: 0,
                                               intersectionBuffer: intersectionBuffer, intersectionBufferOffset: 0,
                                               rayCount: rayCount,
                                               accelerationStructure: accelerationStructure)
             
-            dispatchComputeOperation(shadowComputePipelineState,
+            // 3. 处理得到的数据
+            let normalsBuffer = rayTracingUsedBuffer?.normalsBuffer
+            let colorsBuffer = rayTracingUsedBuffer?.colorsBuffer
+            dispatchComputeOperation(intersectionComputePipelinseState,
                                      commandBuffer: commandBuffer) { (computeEncoder) in
-                                        computeEncoder.label = "Shadow Kernal"
+                                        computeEncoder.label = "Handle Intersection"
                                         computeEncoder.setTexture(renderTarget, index: 0)
-                                        computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 0)
-                                        computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 1)
+                                        computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 0)
+                                        computeEncoder.setBuffer(rayBuffer, offset: 0, index: 1)
+                                        computeEncoder.setBuffer(normalsBuffer, offset: 0, index: 2)
+                                        computeEncoder.setBuffer(colorsBuffer, offset: 0, index: 3)
+                                        computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 4)
+                                        computeEncoder.setBytes(&light, length: MemoryLayout<Light>.stride, index: 5)
+                                        computeEncoder.setBytes(&hasDirectionalLight, length: MemoryLayout<Bool>.size, index: 6)
+                                        computeEncoder.setBuffer(randomBuffer, offset: randomBufferOffset, index: 7)
             }
-        }
-        
-        // 5. 降噪
-        dispatchComputeOperation(accumulateComputePipelieState,
-                                 commandBuffer: commandBuffer) { (computeEncoder) in
-                                    computeEncoder.label = "Accumulate"
-                                    computeEncoder.setTexture(renderTarget, index: 0)
-                                    computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
-                                    computeEncoder.setBytes(&frameIndex, length: MemoryLayout<Int>.size, index: 1)
+            
+            // 4. 处理阴影
+            if hasDirectionalLight {
+                rayIntersector.label = "Shadow Intersector"
+                rayIntersector.intersectionDataType = .distance
+                rayIntersector.encodeIntersection(commandBuffer: commandBuffer,
+                                                  intersectionType: .any,
+                                                  rayBuffer: shadowRayBuffer, rayBufferOffset: 0,
+                                                  intersectionBuffer: intersectionBuffer, intersectionBufferOffset: 0,
+                                                  rayCount: rayCount,
+                                                  accelerationStructure: accelerationStructure)
+                
+                dispatchComputeOperation(shadowComputePipelineState,
+                                         commandBuffer: commandBuffer) { (computeEncoder) in
+                                            computeEncoder.label = "Shadow Kernal"
+                                            computeEncoder.setTexture(renderTarget, index: 0)
+                                            computeEncoder.setBuffer(shadowRayBuffer, offset: 0, index: 0)
+                                            computeEncoder.setBuffer(intersectionBuffer, offset: 0, index: 1)
+                }
+            }
+            
+            // 5. 降噪
+            dispatchComputeOperation(accumulateComputePipelieState,
+                                     commandBuffer: commandBuffer) { (computeEncoder) in
+                                        computeEncoder.label = "Accumulate"
+                                        computeEncoder.setTexture(renderTarget, index: 0)
+                                        computeEncoder.setTexture(accumulateRenderTarget, index: 1)
+                                        computeEncoder.setBytes(&frameIndex, length: MemoryLayout<Int>.size, index: 1)
+                                        
+            }
             
         }
         
@@ -168,7 +179,7 @@ class RayTracingTestRenderer: Renderer {
         }
         
         renderEncoder.setRenderPipelineState(biltRenderPipelineState)
-        renderEncoder.setFragmentTexture(renderTarget, index: 0)
+        renderEncoder.setFragmentTexture(accumulateRenderTarget, index: 0)
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
         
         renderEncoder.endEncoding()
@@ -204,7 +215,7 @@ private extension RayTracingTestRenderer {
             randomBufferPointer.pointee = float2(Float(drand48()), Float(drand48()))
             randomBufferPointer = randomBufferPointer.advanced(by: 1)
         }
-        randomBuffer?.didModifyRange(randomBufferOffset..<(randomBufferOffset + randomBufferStride))
+        randomBuffer.didModifyRange(randomBufferOffset..<(randomBufferOffset + randomBufferStride))
     }
 }
 
@@ -237,14 +248,12 @@ private extension RayTracingTestRenderer {
         rayBuffer = Renderer.device.makeBuffer(length: rayStride * rayCount, options: .storageModePrivate)
         shadowRayBuffer = Renderer.device.makeBuffer(length: rayStride * rayCount, options: .storageModePrivate)
         intersectionBuffer = Renderer.device.makeBuffer(length: intersectionStride * rayCount, options: .storageModePrivate)
-        
-        let randomBufferSize = randomBufferStride * maxFrameInFlight
-        randomBuffer = Renderer.device.makeBuffer(length: randomBufferSize, options: .storageModeManaged)
     }
     
     func buildRenderTarget(_ size: CGSize) {
         renderTargetSize = MTLSize(width: Int(size.width), height: Int(size.height), depth: 1)
         renderTarget = Texture.newTexture(pixelFormat: .rgba32Float, size: size, label: "Ray Tracing Render Target")
+        accumulateRenderTarget = Texture.newTexture(pixelFormat: .rgba32Float, size: size, label: "Ray Tracing Accumulate Render Targer")
     }
     
     func buildRayIntersectionStructure() {

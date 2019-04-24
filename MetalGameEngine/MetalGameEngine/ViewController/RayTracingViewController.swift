@@ -21,9 +21,12 @@ class RayTracingViewController: NormalMetalViewController {
         light.forward = float3(0.0, -1.0, 0.0)
         light.right = float3(0.25, 0.0, 0.0)
         light.up = float3(0.0, 0.0, 0.25)
-        light.color = float3(1.0)
+        light.color = float3(4.0)
         
         scene.lights.append(light)
+        
+        let plane = RayTracingModel(name: "plane")!
+        scene.add(node: plane)
         
         let train = RayTracingModel(name: "train")!
         scene.add(node: train)
