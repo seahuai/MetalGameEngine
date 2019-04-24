@@ -28,7 +28,7 @@ class RayTracingViewController: NormalMetalViewController {
         let plane = RayTracingModel(name: "plane")!
         scene.add(node: plane)
         
-        let train = RayTracingModel(name: "train")!
+        let train = RayTracingModel(name: "treefir")!
         scene.add(node: train)
         
         self.renderer = RayTracingTestRenderer(metalView: self.mtkView, scene: scene)

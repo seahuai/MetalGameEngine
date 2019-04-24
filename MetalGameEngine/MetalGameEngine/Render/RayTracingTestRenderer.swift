@@ -22,7 +22,6 @@ class RayTracingTestRenderer: Renderer {
     var rayGeneratorComputePipelineState: MTLComputePipelineState!
     
     // Intersection
-    var intersectionDataType: MPSIntersectionDataType = .distancePrimitiveIndexCoordinates
     var intersectionStride = MemoryLayout<MPSIntersectionDistancePrimitiveIndexCoordinates>.stride
     var intersectionBuffer: MTLBuffer!
     var intersectionComputePipelinseState: MTLComputePipelineState!
@@ -82,10 +81,13 @@ class RayTracingTestRenderer: Renderer {
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
-        buildRenderTarget(size)
-        
         // 更新射线数量，一个像素一条射线
         rayCount = Int(size.width) * Int(size.height)
+        
+        frameIndex = 0
+        
+        buildRenderTarget(size)
+        
         buildBuffers(rayCount)
     }
     
@@ -275,8 +277,6 @@ private extension RayTracingTestRenderer {
         // MARK: - Setup Intersection Structure
         rayIntersector = MPSRayIntersector(device: device)
         rayIntersector.rayStride = rayStride
-        rayIntersector.intersectionDataType = intersectionDataType
-        rayIntersector.intersectionStride = intersectionStride
     }
 }
 

@@ -94,21 +94,21 @@ kernel void handleIntersecitons(texture2d<float, access::write> renderTarget [[ 
         sampleAreaLight(light, randomCood, intersectionPoint, lightDirection, lightColor, lightDistance);
         
         // 4. 光照的颜色
-        float intensity = saturate(dot(lightDirection, normal));
+        float intensity = saturate(dot(normalize(lightDirection), normal));
         lightColor *= intensity;
         
         // 5. 设置 shadowRay
-        shadowRay.origin = intersectionPoint + normal * 1e-3; // 稍微偏移
+        shadowRay.origin = intersectionPoint + normal * 1e-3f; // 稍微偏移
         shadowRay.direction = lightDirection;
-        shadowRay.maxDistance = lightDistance - 1e-3;
+        shadowRay.maxDistance = lightDistance - 1e-3f;
         shadowRay.color = lightColor * color;
         
         // 散射
-//        float3 sampleDirection = sampleCosineWeightedHemisphere(randomCood);
-//        sampleDirection = alignHemisphereWithNormal(sampleDirection, normal);
-//        ray.origin = intersectionPoint + normal * 1e-3f;
-//        ray.direction = sampleDirection;
-//        ray.color = color;
+        float3 sampleDirection = sampleCosineWeightedHemisphere(randomCood);
+        sampleDirection = alignHemisphereWithNormal(sampleDirection, normal);
+        ray.origin = intersectionPoint + normal * 1e-3f;
+        ray.direction = sampleDirection;
+        ray.color = color;
     } else {
         ray.maxDistance = -1;
         shadowRay.maxDistance = -1;

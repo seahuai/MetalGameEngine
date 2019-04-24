@@ -56,6 +56,7 @@
 		350E947F225E17B1003B51E3 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE952251E748000E2A4C /* Transform.swift */; };
 		350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
 		350E9482225E2D5C003B51E3 /* DateExtextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E9480225E2CFC003B51E3 /* DateExtextension.swift */; };
+		35181E7F227032C2001E8040 /* SkyboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5F224766E000053171 /* SkyboxViewController.swift */; };
 		351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A3C0D2261BE5E008ED05C /* AddNodeVaildable.swift */; };
 		35208F63226DA109007289DC /* RayTracingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35208F62226DA109007289DC /* RayTracingModel.swift */; };
 		35208F65226DA888007289DC /* Accumulate.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35208F64226DA888007289DC /* Accumulate.metal */; };
@@ -551,6 +552,7 @@
 			children = (
 				3590B932224B18C000CDD1AF /* DeferredRenderer.swift */,
 				352F50E5226370AC002351FD /* RasterizationRender.swift */,
+				352C3F5F224766E000053171 /* SkyboxViewController.swift */,
 				35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */,
 			);
 			path = Main;
@@ -585,7 +587,6 @@
 				35242EA522423A9500B8F91A /* LoadObjectViewController.swift */,
 				352C3F4B22461F4A00053171 /* PhongViewController.swift */,
 				352C3F5222467C7E00053171 /* ShadowViewController.swift */,
-				352C3F5F224766E000053171 /* SkyboxViewController.swift */,
 				352C3F66224913DC00053171 /* CustomSkyboxViewController.swift */,
 				352184E9224A60250006D5BA /* MutipleLightViewController.swift */,
 				3553B39E224DEEE10060229F /* TerrainViewController.swift */,
@@ -944,6 +945,7 @@
 				350E945F225E172C003B51E3 /* Renderer.swift in Sources */,
 				35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */,
 				350E9466225E173C003B51E3 /* Texture.swift in Sources */,
+				35181E7F227032C2001E8040 /* SkyboxViewController.swift in Sources */,
 				357BFBBD225F214C00880C01 /* AddLightViewController.swift in Sources */,
 				350E9468225E173C003B51E3 /* Camera.swift in Sources */,
 				350E9473225E1765003B51E3 /* Shadow.metal in Sources */,
