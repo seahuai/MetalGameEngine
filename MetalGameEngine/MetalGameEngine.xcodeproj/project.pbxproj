@@ -156,6 +156,7 @@
 		35DFF159227693F000F22D44 /* RayTracingTestRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B943722268B238001A46EA /* RayTracingTestRenderer.swift */; };
 		35DFF15A2276940700F22D44 /* NormalMetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506144522408ED700BFB42E /* NormalMetalViewController.swift */; };
 		35DFF15B2276941B00F22D44 /* PhongRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5B224752F800053171 /* PhongRenderer.swift */; };
+		35DFF15E22769CCB00F22D44 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15D22769CCB00F22D44 /* GameView.swift */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -288,6 +289,7 @@
 		35DAA2D12266060D00D63D11 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		35DAA2D22266060D00D63D11 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		35DFF15622768D9600F22D44 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		35DFF15D22769CCB00F22D44 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -751,6 +753,7 @@
 		35B13648223CEE370018ED0B /* MetalGameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				35DFF15C22769CAD00F22D44 /* GameVIew */,
 				352C3F5622467DEC00053171 /* Utility */,
 				35242EA02242371A00B8F91A /* File */,
 				3506144F2240B4E300BFB42E /* Main */,
@@ -800,6 +803,14 @@
 				35DAA2D22266060D00D63D11 /* EditViewController.xib */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		35DFF15C22769CAD00F22D44 /* GameVIew */ = {
+			isa = PBXGroup;
+			children = (
+				35DFF15D22769CCB00F22D44 /* GameView.swift */,
+			);
+			path = GameVIew;
 			sourceTree = "<group>";
 		};
 		35EB8417225C75FD0088B3F9 /* Water */ = {
@@ -1036,6 +1047,7 @@
 				3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */,
 				3506144722408ED700BFB42E /* NormalMetalViewController.swift in Sources */,
 				352C3F5422467C7E00053171 /* ShadowViewController.swift in Sources */,
+				35DFF15E22769CCB00F22D44 /* GameView.swift in Sources */,
 				350614532240B53500BFB42E /* Node.swift in Sources */,
 				35DAA2CA2265B2A100D63D11 /* RayTracingViewController.swift in Sources */,
 				352C3F6222476EE700053171 /* Skybox.swift in Sources */,
