@@ -14,6 +14,14 @@ class PhongViewController: NormalMetalViewController {
 
     var models: [Model] = []
     
+    lazy var inputController: InputController = {
+        let inputController = InputController()
+        inputController.delegate = self
+        return inputController
+    }()
+    
+    var train: Node!
+    
     lazy var sunLight: Light = {
         var light = Light()
         light.position = [0, 4, -1]
@@ -57,12 +65,12 @@ class PhongViewController: NormalMetalViewController {
         self.renderer = PhongRenderer(metalView: self.mtkView, scene: self.scene)
         
         self.mtkView.clearColor = MTLClearColor(red: 1, green: 1, blue: 1, alpha: 1)
-        
+
         let plane = Model(name: "plane")!
         plane.scale = [8, 8, 8]
         plane.tiling = 16
         
-        let train = Model(name: "train")!
+        train = Model(name: "train")!
         train.position = [0, 0, 0]
         
         scene.add(node: plane)
@@ -76,6 +84,9 @@ class PhongViewController: NormalMetalViewController {
         scene.lights.append(sunLight)
         scene.lights.append(pointLight)
         scene.lights.append(spotLight)
+        
+        inputController.node = train
+        self.mtkView.inputController = inputController
     }
     
     override func scrollWheel(with event: NSEvent) {
@@ -85,5 +96,11 @@ class PhongViewController: NormalMetalViewController {
     
     override func gesturePan(_ translation: float2) {
         scene.sceneHorizontalRotate(translation)
+    }
+}
+
+extension PhongViewController: InputControllerDelegate {
+    func inputController(_ controller: InputController, pressKey key: Key, state: InputState) -> Bool {
+        return true
     }
 }

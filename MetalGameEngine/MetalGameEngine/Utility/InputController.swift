@@ -10,12 +10,18 @@ import MetalKit
 
 protocol InputControllerDelegate: class {
     func inputController(_ controller: InputController, pressKey key: Key, state: InputState) -> Bool
-    func inputController(_ controller: InputController, handleKey key: Key)
+}
+
+extension InputControllerDelegate {
+    func inputController(_ controller: InputController, pressKey key: Key, state: InputState) -> Bool { return true }
 }
 
 class InputController {
     
     weak var delegate: InputControllerDelegate?
+    
+    // 需要处理的节点
+    var node: Node?
     
     // 移动速率和旋转速率
     var translationSpeed: Float = 1.0
@@ -37,24 +43,42 @@ class InputController {
         }
     }
     
-    func update(_ deltaTime: TimeInterval) {
-        let key = keys.removeFirst()
-        delegate?.inputController(self, handleKey: key)
-    }
-}
-
-
-// MARK: - Keys Input
-extension GameView {
-    open override func keyDown(with event: NSEvent) {
-        guard let key = Key(rawValue: event.keyCode) else { return }
-        let state: InputState = event.isARepeat ? .continued : .began
-        inputController?.processKey(key, state: state)
-    }
-    
-    open override func keyUp(with event: NSEvent) {
-        guard let key = Key(rawValue: event.keyCode) else { return }
-        inputController?.processKey(key, state: .ended)
+    func update(_ deltaTime: Float) {
+        guard let player = node else { return }
+        let translationSpeed = deltaTime * self.translationSpeed
+        let rotationSpeed = deltaTime * self.rotationSpeed
+        var direction = float3(repeating: 0)
+        var rotation = float3(repeating: 0)
+        for key in keys {
+            switch key {
+            case .w:
+                direction.z += 1
+            case .a:
+                direction.x -= 1
+            case .s:
+                direction.z -= 1
+            case .d:
+                direction.x += 1
+            case .left:
+                rotation.y -= rotationSpeed
+            case .right:
+                rotation.y += rotationSpeed
+            default:
+                break
+            }
+        }
+        if rotation != [0, 0, 0] {
+            let newRotation = player.rotation + rotation
+            player.rotation = newRotation
+        }
+        
+        if direction != [0, 0, 0] {
+            direction = normalize(direction)
+            let translationDirection = direction.z * player.forwardVector + direction.x * player.rightVector
+            let translation = translationDirection * translationSpeed
+            let newPosition = player.position + translation
+            player.position = newPosition
+        }
     }
 }
 

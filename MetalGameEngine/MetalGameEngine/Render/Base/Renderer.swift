@@ -74,6 +74,10 @@ extension Renderer: MTKViewDelegate {
             let commandBuffer = commandQueue.makeCommandBuffer()
             else { return }
         
+        // update inputController
+        let deltaTime = 1.0 / Float(view.preferredFramesPerSecond)
+        self.metalView.inputController?.update(deltaTime)
+        
         draw(with: descriptor, commandBuffer: commandBuffer)
         
         commandBuffer.present(drawable)
