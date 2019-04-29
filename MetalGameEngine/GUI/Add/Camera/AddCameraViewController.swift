@@ -55,6 +55,8 @@ class AddCameraViewController: NSViewController, EditableViewContoller {
         super.viewWillAppear()
         
         setupItems()
+        
+        setupData()
     }
     
     private func setupItems() {
