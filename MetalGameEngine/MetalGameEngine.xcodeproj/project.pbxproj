@@ -151,6 +151,11 @@
 		35DAA2CE2265B3AC00D63D11 /* RayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */; };
 		35DAA2D32266060D00D63D11 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DAA2D12266060D00D63D11 /* EditViewController.swift */; };
 		35DAA2D42266060D00D63D11 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DAA2D22266060D00D63D11 /* EditViewController.xib */; };
+		35DFF15722768D9600F22D44 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15622768D9600F22D44 /* InputController.swift */; };
+		35DFF158227693D700F22D44 /* RayTracingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35208F62226DA109007289DC /* RayTracingModel.swift */; };
+		35DFF159227693F000F22D44 /* RayTracingTestRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B943722268B238001A46EA /* RayTracingTestRenderer.swift */; };
+		35DFF15A2276940700F22D44 /* NormalMetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506144522408ED700BFB42E /* NormalMetalViewController.swift */; };
+		35DFF15B2276941B00F22D44 /* PhongRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C3F5B224752F800053171 /* PhongRenderer.swift */; };
 		35EB8412225C41DF0088B3F9 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8411225C41DF0088B3F9 /* Water.swift */; };
 		35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB8413225C42DB0088B3F9 /* normal-water.png */; };
 		35EB8416225C72010088B3F9 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB8415225C72010088B3F9 /* Geometry.swift */; };
@@ -282,6 +287,7 @@
 		35DAA2CB2265B39600D63D11 /* RayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracingRenderer.swift; sourceTree = "<group>"; };
 		35DAA2D12266060D00D63D11 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		35DAA2D22266060D00D63D11 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
+		35DFF15622768D9600F22D44 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
 		35EB8411225C41DF0088B3F9 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		35EB8413225C42DB0088B3F9 /* normal-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal-water.png"; sourceTree = "<group>"; };
 		35EB8415225C72010088B3F9 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -527,6 +533,7 @@
 				353FAF172254E5840012F85C /* Debug.swift */,
 				35EB8415225C72010088B3F9 /* Geometry.swift */,
 				35EB841F225C92BE0088B3F9 /* RenderPass.swift */,
+				35DFF15622768D9600F22D44 /* InputController.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -962,6 +969,7 @@
 				350E9440225D96C2003B51E3 /* WelcomeViewController.swift in Sources */,
 				357BFBB9225F213E00880C01 /* AddModelViewController.swift in Sources */,
 				352F50E3226356FE002351FD /* SceneLightCellView.swift in Sources */,
+				35DFF15B2276941B00F22D44 /* PhongRenderer.swift in Sources */,
 				350E944D225DCDEA003B51E3 /* HistorySceneCellView.swift in Sources */,
 				350E9478225E177C003B51E3 /* Debug.swift in Sources */,
 				35FC74B822642AA700634353 /* SceneViewControllerExtension.swift in Sources */,
@@ -977,6 +985,7 @@
 				357BFBA4225F204700880C01 /* AddCameraViewController.swift in Sources */,
 				357BFB91225F103E00880C01 /* SceneViewController.swift in Sources */,
 				35FC74B42264268B00634353 /* RasterizationRender.swift in Sources */,
+				35DFF159227693F000F22D44 /* RayTracingTestRenderer.swift in Sources */,
 				350E9469225E173C003B51E3 /* Model.swift in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
 				357BFBB5225F20FF00880C01 /* AddTerrainViewController.swift in Sources */,
@@ -986,10 +995,12 @@
 				350E947A225E177C003B51E3 /* RenderPass.swift in Sources */,
 				350E9481225E2CFC003B51E3 /* DateExtextension.swift in Sources */,
 				350E9476225E177C003B51E3 /* MTLRenderPassDescriptorExtension.swift in Sources */,
+				35DFF158227693D700F22D44 /* RayTracingModel.swift in Sources */,
 				350E946F225E175F003B51E3 /* Phong.metal in Sources */,
 				350E9464225E173C003B51E3 /* Prop.swift in Sources */,
 				350E9465225E173C003B51E3 /* Submesh.swift in Sources */,
 				350E946A225E174A003B51E3 /* Water.metal in Sources */,
+				35DFF15A2276940700F22D44 /* NormalMetalViewController.swift in Sources */,
 				350E9460225E1738003B51E3 /* Scene.swift in Sources */,
 				352F50E12262D3BE002351FD /* LightNode.swift in Sources */,
 				35DAA2D32266060D00D63D11 /* EditViewController.swift in Sources */,
@@ -1031,6 +1042,7 @@
 				352C3F60224766E000053171 /* SkyboxViewController.swift in Sources */,
 				3590B933224B18C000CDD1AF /* DeferredRenderer.swift in Sources */,
 				3590B936224B218F00CDD1AF /* Gbuffer.metal in Sources */,
+				35DFF15722768D9600F22D44 /* InputController.swift in Sources */,
 				3590B93A224BAEBA00CDD1AF /* Utility.swift in Sources */,
 				352C3F5C224752F800053171 /* PhongRenderer.swift in Sources */,
 				35242E98224212E400B8F91A /* Prop.swift in Sources */,
