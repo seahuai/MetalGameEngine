@@ -17,13 +17,13 @@ class Renderer: NSObject {
     static var colorPixelFormat: MTLPixelFormat! = .bgra8Unorm
     static var depthPixelFormat: MTLPixelFormat! = .depth32Float
     
-    final let metalView: MTKView
+    final let metalView: GameView
     final let commandQueue: MTLCommandQueue
     final var depthStencilState: MTLDepthStencilState!
     
     let scene: Scene
     
-    required init(metalView: MTKView, scene: Scene) {
+    required init(metalView: GameView, scene: Scene) {
         guard let commandQueue = Renderer.device.makeCommandQueue() else {
                 fatalError("Command queue not available")
         }

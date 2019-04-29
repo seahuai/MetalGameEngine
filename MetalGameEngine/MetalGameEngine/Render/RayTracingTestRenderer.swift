@@ -64,7 +64,7 @@ class RayTracingTestRenderer: Renderer {
     var isAccelerationStructureDataReady = false
     var rayTracingUsedBuffer: Scene.VerticesBuffer?
     
-    required init(metalView: MTKView, scene: Scene) {
+    required init(metalView: GameView, scene: Scene) {
         
         semaphore = DispatchSemaphore.init(value: maxFrameInFlight)
         

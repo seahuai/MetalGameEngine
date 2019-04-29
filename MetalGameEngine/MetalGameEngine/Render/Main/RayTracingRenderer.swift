@@ -30,7 +30,7 @@ class RayTracingRenderer: Renderer {
     // accelerate
     private var accelerationStructure: MPSTriangleAccelerationStructure!
     
-    required init(metalView: MTKView, scene: Scene) {
+    required init(metalView: GameView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
     }
     

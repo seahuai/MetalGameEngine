@@ -27,7 +27,7 @@ class RasterizationRenderer: Renderer {
     private var firstDirectionalLight: Light?
     
     
-    required init(metalView: MTKView, scene: Scene) {
+    required init(metalView: GameView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
         
         scene.delegate = self

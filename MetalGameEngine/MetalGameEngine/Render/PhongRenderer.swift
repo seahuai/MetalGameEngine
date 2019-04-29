@@ -12,7 +12,7 @@ class PhongRenderer: Renderer {
     
     private var props: [Prop] = []
      
-    required init(metalView: MTKView, scene: Scene) {
+    required init(metalView: GameView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
     }
     

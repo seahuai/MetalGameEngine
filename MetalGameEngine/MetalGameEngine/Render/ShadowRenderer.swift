@@ -24,12 +24,12 @@ class ShadowRenderer: Renderer {
     var shadowPassDescriptor = MTLRenderPassDescriptor()
     var shadowRenderPipelineState: MTLRenderPipelineState!
     
-    convenience init(metalView: MTKView, scene: Scene, light: Light) {
+    convenience init(metalView: GameView, scene: Scene, light: Light) {
         self.init(metalView: metalView, scene: scene)
         self.light = light
     }
     
-    required init(metalView: MTKView, scene: Scene) {
+    required init(metalView: GameView, scene: Scene) {
         super.init(metalView: metalView, scene: scene)
     }
     

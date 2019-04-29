@@ -12,7 +12,7 @@ class NormalMetalViewController: NSViewController {
     
     var renderer: Renderer!
 
-    var mtkView: MTKView
+    var mtkView: GameView
     
     override func loadView() {
         self.view = NSView()
@@ -21,7 +21,7 @@ class NormalMetalViewController: NSViewController {
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
-        mtkView = MTKView()
+        mtkView = GameView()
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
