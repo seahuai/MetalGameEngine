@@ -17,7 +17,7 @@ class SceneViewController: NSViewController {
         }
     }
     @IBOutlet weak var addButton: NSButton!
-    @IBOutlet weak var mtkView: MTKView!
+    @IBOutlet weak var mtkView: GameView!
     @IBOutlet weak var sceneNodesTableView: NSTableView! {
         didSet {
             self.sceneNodesTableView.dataSource = self

@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="586" height="335"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="LPg-93-zzq" customClass="MTKView">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="LPg-93-zzq" customClass="GameView" customModule="GUI" customModuleProvider="target">
                     <rect key="frame" x="230" y="5" width="351" height="325"/>
                 </customView>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-GA-ZDq">

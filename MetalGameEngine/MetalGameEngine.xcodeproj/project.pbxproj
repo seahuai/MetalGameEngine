@@ -103,6 +103,7 @@
 		35582760227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
 		35582761227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
 		35582762227ACD8000EA2A6A /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15622768D9600F22D44 /* InputController.swift */; };
+		35582763227AD51600EA2A6A /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15D22769CCB00F22D44 /* GameView.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
 		3570B9192266C0050074B2B4 /* EditableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570B9182266C0050074B2B4 /* EditableViewController.swift */; };
 		3570B91A226701CD0074B2B4 /* DeferredRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B932224B18C000CDD1AF /* DeferredRenderer.swift */; };
@@ -980,6 +981,7 @@
 				35582762227ACD8000EA2A6A /* InputController.swift in Sources */,
 				350E9472225E1763003B51E3 /* PBRShader.metal in Sources */,
 				350E9471225E1763003B51E3 /* PBR.metal in Sources */,
+				35582763227AD51600EA2A6A /* GameView.swift in Sources */,
 				357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */,
 				350E9475225E1768003B51E3 /* Main.metal in Sources */,
 				350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */,
