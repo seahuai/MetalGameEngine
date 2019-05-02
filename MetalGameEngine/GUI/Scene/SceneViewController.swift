@@ -97,7 +97,7 @@ class SceneViewController: NSViewController {
         case .rasterization:
             renderer = RasterizationRenderer(metalView: mtkView, scene: scene)
         case .rayTracing:
-            fallthrough
+            renderer = RayTracingRenderer(metalView: mtkView, scene: scene)
         case .deffered:
             renderer = DeferredRenderer(metalView: mtkView, scene: scene)
         default:
