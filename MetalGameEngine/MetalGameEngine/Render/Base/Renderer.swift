@@ -74,13 +74,29 @@ extension Renderer: MTKViewDelegate {
             let commandBuffer = commandQueue.makeCommandBuffer()
             else { return }
         
-        // update inputController
-        let deltaTime = 1.0 / Float(view.preferredFramesPerSecond)
-        self.metalView.inputController?.update(deltaTime)
+        updateNode()
         
         draw(with: descriptor, commandBuffer: commandBuffer)
         
         commandBuffer.present(drawable)
         commandBuffer.commit()
+    }
+    
+    private func updateNode() {
+        guard let node = metalView.inputController?.node else { return }
+        let holdPosition = node.position
+        let holdRotation = node.rotation
+        let deltaTime = 1.0 / Float(metalView.preferredFramesPerSecond)
+        
+        metalView.physicsController?.dynamicBody = node
+
+        // update inputController
+        metalView.inputController?.update(deltaTime)
+        
+        // check collied
+        if let physicsController = metalView.physicsController, physicsController.checkCollisions() {
+            node.position = holdPosition
+            node.rotation = holdRotation
+        }
     }
 }

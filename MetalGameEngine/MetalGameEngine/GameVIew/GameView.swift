@@ -10,6 +10,7 @@ import MetalKit
 
 class GameView: MTKView {
     var inputController: InputController?
+    var physicsController: PhysicsController?
 }
 
 // MARK: - Keys Input

@@ -121,12 +121,12 @@ class Model: Node {
         
         var pointer = instanceUniformBuffer.contents().bindMemory(to: InstanceUniforms.self, capacity: transforms.count)
         pointer = pointer.advanced(by: index)
-        pointer.pointee.modelMatrix = transform.modelMatrix
+        pointer.pointee.modelMatrix = self.worldTransform * transform.modelMatrix
         pointer.pointee.normalMatrix = transform.normalMatrix
     }
     
     private func updateCurrentTransform() {
-        let transform = Transform(node: self)
+        let transform = Transform()
         update(transform: transform, at: 0)
     }
 }
@@ -137,7 +137,7 @@ extension Model {
         let oldInstancesCount = transforms.count
         
         if oldInstancesCount < instanceCount {
-            let defalutTransform = Transform(node: self)
+            let defalutTransform = Transform()
             let newTransformsCount = instanceCount - oldInstancesCount
             let newTransforms = [Transform].init(repeating: defalutTransform, count: newTransformsCount)
             transforms.append(contentsOf: newTransforms)

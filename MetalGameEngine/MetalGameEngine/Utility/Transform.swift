@@ -13,14 +13,6 @@ struct Transform {
     var rotation: float3 = [0, 0, 0]
     var scale: float3 = [1, 1, 1]
     
-    init(node: Node) {
-        position = node.position
-        rotation = node.rotation
-        scale = node.scale
-    }
-    
-    init() {}
-    
     var modelMatrix: float4x4 {
         let translateMatrix = float4x4(translation: position)
         let rotateMatrix = float4x4(rotation: rotation)

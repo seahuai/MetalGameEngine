@@ -100,6 +100,9 @@
 		3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39C224DBCCD0060229F /* Tessellation.metal */; };
 		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
 		3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B3A0224DEF120060229F /* TerrainRenderer.swift */; };
+		35582760227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
+		35582761227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
+		35582762227ACD8000EA2A6A /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15622768D9600F22D44 /* InputController.swift */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
 		3570B9192266C0050074B2B4 /* EditableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570B9182266C0050074B2B4 /* EditableViewController.swift */; };
 		3570B91A226701CD0074B2B4 /* DeferredRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B932224B18C000CDD1AF /* DeferredRenderer.swift */; };
@@ -241,6 +244,7 @@
 		3553B39C224DBCCD0060229F /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
 		3553B39E224DEEE10060229F /* TerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainViewController.swift; sourceTree = "<group>"; };
 		3553B3A0224DEF120060229F /* TerrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainRenderer.swift; sourceTree = "<group>"; };
+		3558275F227ACD7B00EA2A6A /* PhysicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsController.swift; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		3570B9182266C0050074B2B4 /* EditableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableViewController.swift; sourceTree = "<group>"; };
 		357BFB8F225F103E00880C01 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
@@ -536,6 +540,7 @@
 				35EB8415225C72010088B3F9 /* Geometry.swift */,
 				35EB841F225C92BE0088B3F9 /* RenderPass.swift */,
 				35DFF15622768D9600F22D44 /* InputController.swift */,
+				3558275F227ACD7B00EA2A6A /* PhysicsController.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -972,6 +977,7 @@
 				35B3983F2260349300D0905A /* FileTool.swift in Sources */,
 				350E9470225E175F003B51E3 /* PhongShader.metal in Sources */,
 				350E9461225E1738003B51E3 /* Skybox.swift in Sources */,
+				35582762227ACD8000EA2A6A /* InputController.swift in Sources */,
 				350E9472225E1763003B51E3 /* PBRShader.metal in Sources */,
 				350E9471225E1763003B51E3 /* PBR.metal in Sources */,
 				357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */,
@@ -1016,6 +1022,7 @@
 				352F50E12262D3BE002351FD /* LightNode.swift in Sources */,
 				35DAA2D32266060D00D63D11 /* EditViewController.swift in Sources */,
 				350E9477225E177C003B51E3 /* Utility.swift in Sources */,
+				35582761227ACD7B00EA2A6A /* PhysicsController.swift in Sources */,
 				357BFBC1225F215C00880C01 /* AddSkyboxViewController.swift in Sources */,
 				35B398382260251600D0905A /* VectorInputView.swift in Sources */,
 				350E9462225E1738003B51E3 /* Terrain.swift in Sources */,
@@ -1042,6 +1049,7 @@
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
 				35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */,
 				353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */,
+				35582760227ACD7B00EA2A6A /* PhysicsController.swift in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,
 				352C3F67224913DC00053171 /* CustomSkyboxViewController.swift in Sources */,
 				3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */,

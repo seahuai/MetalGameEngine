@@ -20,8 +20,6 @@ class PhongViewController: NormalMetalViewController {
         return inputController
     }()
     
-    var train: Node!
-    
     lazy var sunLight: Light = {
         var light = Light()
         light.position = [0, 4, -1]
@@ -70,11 +68,15 @@ class PhongViewController: NormalMetalViewController {
         plane.scale = [8, 8, 8]
         plane.tiling = 16
         
-        train = Model(name: "train")!
+        let train = Model(name: "train")!
         train.position = [0, 0, 0]
+        
+        let tree = Model(name: "treefir")!
+        tree.position = [0, 0, 2]
         
         scene.add(node: plane)
         scene.add(node: train)
+        scene.add(node: tree)
         
         let camera = Camera()
         camera.position = [0, 1, -3]
@@ -87,6 +89,10 @@ class PhongViewController: NormalMetalViewController {
         
         inputController.node = train
         self.mtkView.inputController = inputController
+        
+        let physicsController = PhysicsController()
+        physicsController.addStaticBody(tree)
+        self.mtkView.physicsController = physicsController
     }
     
     override func scrollWheel(with event: NSEvent) {
