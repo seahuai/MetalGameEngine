@@ -73,7 +73,9 @@ class EditViewController: NSViewController {
         }
         else if let light = object as? Light
         {
-            let addLightVC = AddLightViewController()
+            let isAreaLight = light.isAreaLight == 1
+            let addLightVC = AddLightContainerViewController()
+            addLightVC.isAreaLight = isAreaLight
             addLightVC.light = light
             viewController = addLightVC
         }

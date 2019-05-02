@@ -8,12 +8,9 @@
 
 import Cocoa
 
-class AddLightViewController: NSViewController, EditableViewContoller {
+class AddLightViewController: AddLightBaseViewController, EditableViewContoller {
     
     var isEdit: Bool = false
-    
-//    var lightNode: LightNode!
-    var light: Light!
     
     private var lightTypes = ["直射光", "聚光灯光", "点光源", "环境光"]
     
@@ -133,6 +130,7 @@ extension AddLightViewController: AddNodeVaildable {
             light.type = LightType(UInt32(index))
         }
         
+        light.isAreaLight = 0
         self.light = light
         
         return (true, nil)

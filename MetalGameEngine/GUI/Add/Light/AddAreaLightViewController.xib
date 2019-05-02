@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AddAreaLightViewController" customModule="GUI" customModuleProvider="target">
+            <connections>
+                <outlet property="forwardInputView" destination="qbs-OX-shi" id="kK4-IF-fWU"/>
+                <outlet property="lightColorWell" destination="T6J-iC-D8X" id="NTt-g2-2w4"/>
+                <outlet property="positionInputView" destination="rAx-zv-0O4" id="y4c-ha-VHZ"/>
+                <outlet property="rightInputView" destination="Aqy-VA-FIC" id="pwH-qh-3xk"/>
+                <outlet property="upInputView" destination="CA5-Rh-jTB" id="TYO-pS-prs"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="192"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eCi-AC-WMn">
+                    <rect key="frame" x="33" y="155" width="31" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="位置" id="sLl-Ii-OhY">
+                        <font key="font" metaFont="systemSemibold" size="13"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg4-IU-Rmd">
+                    <rect key="frame" x="235" y="155" width="31" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="颜色" id="Juy-be-NPu">
+                        <font key="font" metaFont="systemSemibold" size="13"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="rAx-zv-0O4" customClass="VectorInputView" customModule="GUI" customModuleProvider="target">
+                    <rect key="frame" x="72" y="146" width="145" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Asp-H0-lIE"/>
+                        <constraint firstAttribute="width" constant="145" id="buS-d2-mVz"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="width">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FOu-JU-qLr">
+                    <rect key="frame" x="42" y="113" width="22" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Up" id="XaS-Kk-pW6">
+                        <font key="font" metaFont="systemSemibold" size="13"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="CA5-Rh-jTB" customClass="VectorInputView" customModule="GUI" customModuleProvider="target">
+                    <rect key="frame" x="72" y="104" width="145" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="MhT-Ye-U7V"/>
+                        <constraint firstAttribute="width" constant="145" id="x1c-Q4-Uw5"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="width">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DJm-Xw-1EP">
+                    <rect key="frame" x="26" y="71" width="38" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Right" id="eVq-1u-DZ3">
+                        <font key="font" metaFont="systemSemibold" size="13"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Aqy-VA-FIC" customClass="VectorInputView" customModule="GUI" customModuleProvider="target">
+                    <rect key="frame" x="72" y="62" width="145" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="145" id="ZB9-FX-UuA"/>
+                        <constraint firstAttribute="height" constant="35" id="lB5-l1-i2N"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="width">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MUu-4D-piP">
+                    <rect key="frame" x="8" y="29" width="56" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Forward" id="3Qo-QQ-Y8Y">
+                        <font key="font" metaFont="systemSemibold" size="13"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="qbs-OX-shi" customClass="VectorInputView" customModule="GUI" customModuleProvider="target">
+                    <rect key="frame" x="72" y="20" width="145" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="AUK-sr-zdG"/>
+                        <constraint firstAttribute="width" constant="145" id="vcb-ch-6Di"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="width">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="T6J-iC-D8X">
+                    <rect key="frame" x="274" y="152" width="48" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="lCU-fv-FQ5"/>
+                        <constraint firstAttribute="width" constant="48" id="xaZ-50-aaU"/>
+                    </constraints>
+                    <color key="color" name="textColor" catalog="System" colorSpace="catalog"/>
+                </colorWell>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MUu-4D-piP" firstAttribute="trailing" secondItem="DJm-Xw-1EP" secondAttribute="trailing" id="9BG-fI-HPd"/>
+                <constraint firstItem="rAx-zv-0O4" firstAttribute="centerY" secondItem="eCi-AC-WMn" secondAttribute="centerY" id="9lA-jw-mKQ"/>
+                <constraint firstItem="MUu-4D-piP" firstAttribute="top" secondItem="DJm-Xw-1EP" secondAttribute="bottom" constant="25" id="Gih-Ho-Vhf"/>
+                <constraint firstItem="eCi-AC-WMn" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="35" id="ONa-Wv-frx"/>
+                <constraint firstItem="DJm-Xw-1EP" firstAttribute="trailing" secondItem="FOu-JU-qLr" secondAttribute="trailing" id="Phq-pk-vs7"/>
+                <constraint firstItem="T6J-iC-D8X" firstAttribute="leading" secondItem="pg4-IU-Rmd" secondAttribute="trailing" constant="10" id="TbF-K1-VzB"/>
+                <constraint firstItem="Aqy-VA-FIC" firstAttribute="leading" secondItem="DJm-Xw-1EP" secondAttribute="trailing" constant="10" id="VVn-oL-avH"/>
+                <constraint firstItem="DJm-Xw-1EP" firstAttribute="top" secondItem="FOu-JU-qLr" secondAttribute="bottom" constant="25" id="Wbc-Id-ssg"/>
+                <constraint firstItem="CA5-Rh-jTB" firstAttribute="centerY" secondItem="FOu-JU-qLr" secondAttribute="centerY" id="X7W-dx-I6M"/>
+                <constraint firstItem="eCi-AC-WMn" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="Zg5-yh-VwW"/>
+                <constraint firstItem="FOu-JU-qLr" firstAttribute="top" secondItem="eCi-AC-WMn" secondAttribute="bottom" constant="25" id="gmb-rq-Ufw"/>
+                <constraint firstItem="qbs-OX-shi" firstAttribute="centerY" secondItem="MUu-4D-piP" secondAttribute="centerY" id="iFZ-h4-Nob"/>
+                <constraint firstItem="qbs-OX-shi" firstAttribute="leading" secondItem="MUu-4D-piP" secondAttribute="trailing" constant="10" id="iK1-Bh-TBY"/>
+                <constraint firstItem="CA5-Rh-jTB" firstAttribute="leading" secondItem="FOu-JU-qLr" secondAttribute="trailing" constant="10" id="ixB-w4-eQH"/>
+                <constraint firstItem="T6J-iC-D8X" firstAttribute="centerY" secondItem="pg4-IU-Rmd" secondAttribute="centerY" id="jmz-em-oUx"/>
+                <constraint firstItem="Aqy-VA-FIC" firstAttribute="centerY" secondItem="DJm-Xw-1EP" secondAttribute="centerY" id="m2W-gV-Tfg"/>
+                <constraint firstItem="rAx-zv-0O4" firstAttribute="leading" secondItem="eCi-AC-WMn" secondAttribute="trailing" constant="10" id="nrB-VN-uOb"/>
+                <constraint firstItem="pg4-IU-Rmd" firstAttribute="centerY" secondItem="eCi-AC-WMn" secondAttribute="centerY" id="oDw-jg-kYh"/>
+                <constraint firstItem="FOu-JU-qLr" firstAttribute="trailing" secondItem="eCi-AC-WMn" secondAttribute="trailing" id="vii-kz-R8m"/>
+                <constraint firstItem="pg4-IU-Rmd" firstAttribute="leading" secondItem="rAx-zv-0O4" secondAttribute="trailing" constant="20" id="zII-hc-JKp"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="114"/>
+        </customView>
+    </objects>
+</document>

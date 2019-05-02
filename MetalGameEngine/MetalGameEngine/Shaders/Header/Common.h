@@ -61,6 +61,7 @@ typedef struct {
     vector_float3 coneDirection;
     float coneAttenuation;
     // 只有光线追踪需要用到
+    uint isAreaLight;
     vector_float3 right;
     vector_float3 up;
     vector_float3 forward;

@@ -71,7 +71,7 @@ class AddViewController: NSViewController {
             delegate?.addViewController(self, didAddNode: camera, parentNode: parentNode)
         }
         
-        if let vc = viewController as? AddLightViewController {
+        if let vc = viewController as? AddLightContainerViewController {
             let light = vc.light!
             delegate?.addViewController(self, didAddLight: light)
         }
@@ -98,7 +98,7 @@ class AddViewController: NSViewController {
     private var viewControllerTypes: [NSViewController.Type] =
         [
             AddModelViewController.self,
-            AddLightViewController.self,
+            AddLightContainerViewController.self,
             AddCameraViewController.self,
             AddSkyboxViewController.self,
             AddTerrainViewController.self
