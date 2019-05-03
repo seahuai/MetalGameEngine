@@ -26,6 +26,19 @@ class AddViewController: NSViewController {
         didSet {
             self.addTypeSegmentedControl.target = self
             self.addTypeSegmentedControl.action = #selector(segmentedControlValueChanged(sender:))
+            
+            var segmentTitles: [String] = []
+            switch renderType! {
+            case .rayTracing:
+                segmentTitles = ["模型", "光照", "视点"]
+            default:
+                segmentTitles = ["模型", "光照", "视点", "天空盒", "地形"]
+            }
+            
+            self.addTypeSegmentedControl.segmentCount = segmentTitles.count
+            for (index, title) in segmentTitles.enumerated() {
+                self.addTypeSegmentedControl.setLabel(title, forSegment: index)
+            }
             self.addTypeSegmentedControl.selectedSegment = 0
         }
     }
