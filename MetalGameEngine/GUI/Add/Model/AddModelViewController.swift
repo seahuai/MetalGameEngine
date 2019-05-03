@@ -8,13 +8,9 @@
 
 import Cocoa
 
-class AddModelViewController: NSViewController, EditableViewContoller {
+class AddModelViewController: AddModelBaseViewController, EditableViewContoller {
     
     var isEdit = false
-    var model: Model?
-    var parentNode: Node?
-    
-    var parentNodes: [Node] = []
     
     private var parentNodeNames: [String] = []
     private var objModelNames: [String] = []
@@ -59,7 +55,7 @@ class AddModelViewController: NSViewController, EditableViewContoller {
     }
     
     private func setupData() {
-        guard let model = self.model else { return }
+        guard let model = self.model as? Model else { return }
         
         modelNameTextField.stringValue = model.name
         

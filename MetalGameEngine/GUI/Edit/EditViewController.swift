@@ -18,6 +18,8 @@ class EditViewController: NSViewController {
     
     @IBOutlet weak var containerView: NSView!
     
+    var renderType: RenderType!
+    
     @IBAction func doneButtonClick(_ sender: NSButton) {
         guard let vaildVC = viewController as? AddNodeVaildable,
             vaildVC.checkVaild().isVaild else {
@@ -25,7 +27,7 @@ class EditViewController: NSViewController {
             return
         }
         
-        if let vc = viewController as? AddModelViewController
+        if let vc = viewController as? AddModelBaseViewController
         {
             delegate?.editViewController(self, didEditNode: vc.model!)
         }
@@ -64,6 +66,12 @@ class EditViewController: NSViewController {
             let addModelVC = AddModelViewController()
             addModelVC.model = model
             viewController = addModelVC
+        }
+        else if let model = object as? RayTracingModel
+        {
+            let addRayTracingModelVC = AddRayTracingModelViewController()
+            addRayTracingModelVC.model = model
+            viewController = addRayTracingModelVC
         }
         else if let camera = object as? Camera
         {

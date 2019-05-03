@@ -96,6 +96,9 @@
 		353F913B223F3B730071597B /* PBRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F913A223F3B730071597B /* PBRRenderer.swift */; };
 		353FAF182254E5840012F85C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF172254E5840012F85C /* Debug.swift */; };
 		353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 353FAF1A2254E5DD0012F85C /* DebugLight.metal */; };
+		35529E8C227C1C430065973F /* RayTracing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35B943742268BB79001A46EA /* RayTracing.metal */; };
+		35529E8D227C1C450065973F /* Accumulate.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35208F64226DA888007289DC /* Accumulate.metal */; };
+		35529E8E227C1C460065973F /* Bilt.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35BE544422696E1F00877533 /* Bilt.metal */; };
 		3553B39A224DAE7A0060229F /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B399224DAE7A0060229F /* Terrain.swift */; };
 		3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39C224DBCCD0060229F /* Tessellation.metal */; };
 		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
@@ -112,6 +115,10 @@
 		3558276D227AE37C00EA2A6A /* AddLightContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558276A227AE37C00EA2A6A /* AddLightContainerViewController.swift */; };
 		3558276E227AE37C00EA2A6A /* AddLightContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3558276B227AE37C00EA2A6A /* AddLightContainerViewController.xib */; };
 		3558276F227AE37C00EA2A6A /* AddLightContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3558276B227AE37C00EA2A6A /* AddLightContainerViewController.xib */; };
+		35582774227B278400EA2A6A /* AddRayTracingModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35582772227B278400EA2A6A /* AddRayTracingModelViewController.swift */; };
+		35582775227B278400EA2A6A /* AddRayTracingModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35582773227B278400EA2A6A /* AddRayTracingModelViewController.xib */; };
+		35582778227B279A00EA2A6A /* AddModelContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35582776227B279A00EA2A6A /* AddModelContainerViewController.swift */; };
+		35582779227B279A00EA2A6A /* AddModelContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35582777227B279A00EA2A6A /* AddModelContainerViewController.xib */; };
 		356428322241E58B0000A5BB /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356428312241E58B0000A5BB /* Texture.swift */; };
 		3570B9192266C0050074B2B4 /* EditableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570B9182266C0050074B2B4 /* EditableViewController.swift */; };
 		3570B91A226701CD0074B2B4 /* DeferredRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B932224B18C000CDD1AF /* DeferredRenderer.swift */; };
@@ -258,6 +265,10 @@
 		35582765227AD87700EA2A6A /* AddAreaLightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAreaLightViewController.xib; sourceTree = "<group>"; };
 		3558276A227AE37C00EA2A6A /* AddLightContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLightContainerViewController.swift; sourceTree = "<group>"; };
 		3558276B227AE37C00EA2A6A /* AddLightContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLightContainerViewController.xib; sourceTree = "<group>"; };
+		35582772227B278400EA2A6A /* AddRayTracingModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRayTracingModelViewController.swift; sourceTree = "<group>"; };
+		35582773227B278400EA2A6A /* AddRayTracingModelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddRayTracingModelViewController.xib; sourceTree = "<group>"; };
+		35582776227B279A00EA2A6A /* AddModelContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModelContainerViewController.swift; sourceTree = "<group>"; };
+		35582777227B279A00EA2A6A /* AddModelContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddModelContainerViewController.xib; sourceTree = "<group>"; };
 		356428312241E58B0000A5BB /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		3570B9182266C0050074B2B4 /* EditableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableViewController.swift; sourceTree = "<group>"; };
 		357BFB8F225F103E00880C01 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
@@ -691,6 +702,10 @@
 			children = (
 				357BFBB7225F213E00880C01 /* AddModelViewController.swift */,
 				357BFBB8225F213E00880C01 /* AddModelViewController.xib */,
+				35582772227B278400EA2A6A /* AddRayTracingModelViewController.swift */,
+				35582773227B278400EA2A6A /* AddRayTracingModelViewController.xib */,
+				35582776227B279A00EA2A6A /* AddModelContainerViewController.swift */,
+				35582777227B279A00EA2A6A /* AddModelContainerViewController.xib */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -922,7 +937,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35582775227B278400EA2A6A /* AddRayTracingModelViewController.xib in Resources */,
 				35582769227AD87700EA2A6A /* AddAreaLightViewController.xib in Resources */,
+				35582779227B279A00EA2A6A /* AddModelContainerViewController.xib in Resources */,
 				350E9442225D96C3003B51E3 /* Assets.xcassets in Resources */,
 				357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */,
 				357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */,
@@ -985,6 +1002,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35582778227B279A00EA2A6A /* AddModelContainerViewController.swift in Sources */,
 				350E9474225E1768003B51E3 /* Skybox.metal in Sources */,
 				350E945F225E172C003B51E3 /* Renderer.swift in Sources */,
 				35B39842226066F900D0905A /* SceneNodeCellView.swift in Sources */,
@@ -997,6 +1015,7 @@
 				350E9463225E1738003B51E3 /* Water.swift in Sources */,
 				35B3983F2260349300D0905A /* FileTool.swift in Sources */,
 				350E9470225E175F003B51E3 /* PhongShader.metal in Sources */,
+				35529E8D227C1C450065973F /* Accumulate.metal in Sources */,
 				350E9461225E1738003B51E3 /* Skybox.swift in Sources */,
 				35582762227ACD8000EA2A6A /* InputController.swift in Sources */,
 				350E9472225E1763003B51E3 /* PBRShader.metal in Sources */,
@@ -1005,6 +1024,7 @@
 				357BFBA0225F1C8D00880C01 /* AddViewController.swift in Sources */,
 				350E9475225E1768003B51E3 /* Main.metal in Sources */,
 				350E947E225E17B1003B51E3 /* MathLibrary.swift in Sources */,
+				35529E8E227C1C460065973F /* Bilt.metal in Sources */,
 				350E9440225D96C2003B51E3 /* WelcomeViewController.swift in Sources */,
 				357BFBB9225F213E00880C01 /* AddModelViewController.swift in Sources */,
 				352F50E3226356FE002351FD /* SceneLightCellView.swift in Sources */,
@@ -1015,6 +1035,7 @@
 				352F50DE2262C9DD002351FD /* NSColorExtension.swift in Sources */,
 				351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */,
 				35582767227AD87700EA2A6A /* AddAreaLightViewController.swift in Sources */,
+				35582774227B278400EA2A6A /* AddRayTracingModelViewController.swift in Sources */,
 				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
@@ -1027,6 +1048,7 @@
 				35FC74B42264268B00634353 /* RasterizationRender.swift in Sources */,
 				35DFF159227693F000F22D44 /* RayTracingTestRenderer.swift in Sources */,
 				350E9469225E173C003B51E3 /* Model.swift in Sources */,
+				35529E8C227C1C430065973F /* RayTracing.metal in Sources */,
 				350E9455225DD9D3003B51E3 /* CreatNewSceneViewController.swift in Sources */,
 				357BFBB5225F20FF00880C01 /* AddTerrainViewController.swift in Sources */,
 				350E9459225DE129003B51E3 /* Error.swift in Sources */,

@@ -51,6 +51,18 @@ class AddAreaLightViewController: AddLightBaseViewController, EditableViewContol
 
 extension AddAreaLightViewController: AddNodeVaildable {
     func checkVaild() -> (isVaild: Bool, errorMsg: String?) {
+        
+        var light = self.light ?? Light(0)
+        light.position = positionInputView.float3Value
+        light.up = upInputView.float3Value
+        light.right = rightInputView.float3Value
+        light.forward = forwardInputView.float3Value
+        light.color = lightColorWell.color.float3Value
+        light.isAreaLight = 1
+        light.type = Sunlight
+        
+        self.light = light
+        
         return (false, "")
     }
 }

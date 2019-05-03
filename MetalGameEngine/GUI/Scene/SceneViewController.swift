@@ -35,6 +35,7 @@ class SceneViewController: NSViewController {
             return false
         }
         addViewController.paretnNodes = nodesExcludedTerrain
+        addViewController.renderType = renderType
         self.presentAsModalWindow(addViewController)
         let windowSize = NSSize(width: 480, height: 420)
         NSApp.mainWindow?.contentMinSize = windowSize

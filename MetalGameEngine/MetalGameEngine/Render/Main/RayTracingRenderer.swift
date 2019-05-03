@@ -286,7 +286,7 @@ extension RayTracingRenderer: SceneDelegate {
     }
     
     func scene(_ scnee: Scene, didChangeLights lights: [Light]) {
-        if let light = (scene.lights.first{ $0.type == Sunlight }) {
+        if let light = (scene.lights.first{ $0.type == Sunlight && $0.isAreaLight == 1 }) {
             self.light = light
             hasDirectionalLight = true
         } else {

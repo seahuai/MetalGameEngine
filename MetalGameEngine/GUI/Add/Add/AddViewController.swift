@@ -18,6 +18,8 @@ class AddViewController: NSViewController {
     
     weak var delegate: AddViewControllerDelegate?
     
+    var renderType: RenderType!
+    
     var paretnNodes: [Node] = []
 
     @IBOutlet weak var addTypeSegmentedControl: NSSegmentedControl! {
@@ -59,7 +61,7 @@ class AddViewController: NSViewController {
             return
         }
         
-        if let vc = viewController as? AddModelViewController {
+        if let vc = viewController as? AddModelContainerViewController {
             let model = vc.model!
             let parentNode = vc.parentNode
             delegate?.addViewController(self, didAddNode: model, parentNode: parentNode)
@@ -97,7 +99,7 @@ class AddViewController: NSViewController {
     
     private var viewControllerTypes: [NSViewController.Type] =
         [
-            AddModelViewController.self,
+            AddModelContainerViewController.self,
             AddLightContainerViewController.self,
             AddCameraViewController.self,
             AddSkyboxViewController.self,
@@ -118,15 +120,21 @@ class AddViewController: NSViewController {
     
     @objc func segmentedControlValueChanged(sender: NSSegmentedControl) {
         let index = sender.selectedSegment
+        let isRayTracing = renderType == .rayTracing
         
         viewController?.view.removeFromSuperview()
         viewController?.removeFromParent()
         
         viewController = viewControllerTypes[index].init()
         
+        if let vc = viewController as? AddModelContainerViewController {
+            vc.parentNodes = paretnNodes
+            vc.isRayTracing = isRayTracing
+        }
+        
         // TODO: Optimize
-        (viewController as? AddModelViewController)?.parentNodes = self.paretnNodes
         (viewController as? AddCameraViewController)?.parentNodes = self.paretnNodes
+        (viewController as? AddLightContainerViewController)?.isAreaLight = isRayTracing
         
         addChild(viewController!)
         containerView.addSubview(self.viewController!.view)
