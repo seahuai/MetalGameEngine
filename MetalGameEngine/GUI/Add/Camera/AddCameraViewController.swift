@@ -88,7 +88,7 @@ class AddCameraViewController: NSViewController, EditableViewContoller {
     }
     
     private func setupDefaultValues() {
-        nearPlaneTextField.stringValue = "1"
+        nearPlaneTextField.stringValue = "0.01"
         farPlaneTextField.stringValue = "150"
     }
     

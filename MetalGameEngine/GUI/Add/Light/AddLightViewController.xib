@@ -95,8 +95,8 @@
                     <color key="color" name="textColor" catalog="System" colorSpace="catalog"/>
                 </colorWell>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="tSO-WG-mOd">
-                    <rect key="frame" x="71" y="67" width="18" height="11"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="0.5" id="cYR-S4-21c">
+                    <rect key="frame" x="71" y="67" width="17" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="0.1" id="cYR-S4-21c">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -104,7 +104,7 @@
                 </textField>
                 <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="hak-WT-lMR">
                     <rect key="frame" x="97" y="64" width="32" height="32"/>
-                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.44444444444444442" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="circular" id="msM-QR-lvn"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.10000000000000001" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="circular" id="msM-QR-lvn"/>
                     <connections>
                         <action selector="sliderValueChanged:" target="-2" id="hxu-w5-Fec"/>
                     </connections>
