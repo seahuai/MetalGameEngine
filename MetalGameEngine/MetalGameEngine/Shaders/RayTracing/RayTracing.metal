@@ -25,6 +25,7 @@ inline float3 alignHemisphereWithNormal(float3 sample, float3 normal);
 kernel void generateRays(texture2d<float, access::read_write> renderTarget [[ texture(0) ]],
                          device Ray *rays [[ buffer(0) ]],
                          constant float2 *randomCoods [[ buffer(1) ]],
+                         constant float3 &cameraPosition [[ buffer(2) ]],
                          uint2 position [[ thread_position_in_grid ]],
                          uint2 size [[threads_per_grid ]])
 {
@@ -41,7 +42,7 @@ kernel void generateRays(texture2d<float, access::read_write> renderTarget [[ te
     uv = uv * 2.0 - 1.0;
     
     // camera origin
-    float3 origin = float3(0.0, 1.0, 2.0);
+    float3 origin = cameraPosition;
     float aspect = float(size.y) / float(size.x);
     float3 direction = float3(uv.x, uv.y * aspect, -1.0);
     direction = normalize(direction);

@@ -98,6 +98,8 @@ class RayTracingRenderer: Renderer {
         // 数据就绪才开始进行渲染操作
         guard isAccelerationStructureDataReady else { return }
         
+        guard var cameraPosition = scene.currentCamera?.position else { return }
+        
         // 添加信号量
         semaphore.wait()
         commandBuffer.addCompletedHandler { cb in
@@ -114,6 +116,7 @@ class RayTracingRenderer: Renderer {
                                     computeEncoder.setTexture(renderTarget, index: 0)
                                     computeEncoder.setBuffer(rayBuffer, offset: 0, index: 0)
                                     computeEncoder.setBuffer(randomBuffer, offset: randomBufferOffset, index: 1)
+                                    computeEncoder.setBytes(&cameraPosition, length: MemoryLayout<float3>.stride, index: 2)
         }
         
         for _ in 0..<3 {
