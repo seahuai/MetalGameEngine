@@ -83,6 +83,8 @@ class SceneViewController: NSViewController {
         
         self.title = "场景 \"\(scene.name)\" "
         
+        mtkView.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 1)
+        
         addViewController.delegate = self
         editViewController.delegate = self
         

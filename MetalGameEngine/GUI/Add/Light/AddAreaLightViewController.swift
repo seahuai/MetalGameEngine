@@ -63,6 +63,6 @@ extension AddAreaLightViewController: AddNodeVaildable {
         
         self.light = light
         
-        return (false, "")
+        return (true, nil)
     }
 }

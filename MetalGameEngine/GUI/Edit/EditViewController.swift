@@ -35,7 +35,7 @@ class EditViewController: NSViewController {
         {
             delegate?.editViewController(self, didEditNode: vc.camera)
         }
-        else if let vc = viewController as? AddLightViewController
+        else if let vc = viewController as? AddLightContainerViewController
         {
             delegate?.editViewController(self, didEditLight: vc.light)
         }

@@ -78,6 +78,8 @@ class RayTracingRenderer: Renderer {
         buildPipelineState()
         
         buildRenderTarget(metalView.drawableSize)
+        
+        mtkView(drawableSizeWillChange: metalView.drawableSize)
     }
     
     override func mtkView(drawableSizeWillChange size: CGSize) {
@@ -288,6 +290,8 @@ extension RayTracingRenderer: SceneDelegate {
     func scene(_ scnee: Scene, didChangeLights lights: [Light]) {
         if let light = (scene.lights.first{ $0.type == Sunlight && $0.isAreaLight == 1 }) {
             self.light = light
+            // 增幅
+            self.light.color *= 4
             hasDirectionalLight = true
         } else {
             hasDirectionalLight = false
