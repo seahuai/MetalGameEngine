@@ -20,7 +20,8 @@ vertex VertexOut vertex_main(const VertexIn in [[ stage_in ]],
     
     InstanceUniforms instanceUniforms = instancesUniforms[instanceId];
     
-    float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * instanceUniforms.modelMatrix;
+    float4x4 modelMatrix = uniforms.worldTransformModelMatrix * instanceUniforms.modelMatrix;
+    float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * modelMatrix;
     out.position = mvp * in.position;
     out.worldPosition = (instanceUniforms.modelMatrix * in.position).xyz;
     out.worldNormal = instanceUniforms.normalMatrix * in.normal;

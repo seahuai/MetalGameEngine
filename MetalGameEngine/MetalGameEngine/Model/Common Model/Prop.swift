@@ -151,6 +151,7 @@ extension Prop {
         _fragmentUniforms.tiling = uint(model.tiling)
         
         var _uniforms = uniforms
+        _uniforms.worldTransformModelMatrix = self.model.worldTransform
         renderEncoder.setVertexBytes(&_uniforms, length: MemoryLayout<Uniforms>.stride, index: Int(BufferIndexUniforms.rawValue))
         renderEncoder.setFragmentBytes(&_fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: Int(BufferIndexFragmentUniforms.rawValue))
         

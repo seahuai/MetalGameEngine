@@ -121,7 +121,7 @@ class Model: Node {
         
         var pointer = instanceUniformBuffer.contents().bindMemory(to: InstanceUniforms.self, capacity: transforms.count)
         pointer = pointer.advanced(by: index)
-        pointer.pointee.modelMatrix = self.worldTransform * transform.modelMatrix
+        pointer.pointee.modelMatrix = transform.modelMatrix
         pointer.pointee.normalMatrix = transform.normalMatrix
     }
     
