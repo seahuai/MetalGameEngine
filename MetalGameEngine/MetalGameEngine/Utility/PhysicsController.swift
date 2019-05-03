@@ -34,6 +34,7 @@ class PhysicsController {
         let dynamicBodyRadius = max((dynamicBody.size.x / 2), (dynamicBody.size.z / 2))
         let dynamicBodyPosition = dynamicBody.worldTransform.columns.3.xyz
         for body in staticsBodices {
+            if body == dynamicBody { continue }
             let bodyRadius = max((body.size.x / 2), (body.size.z / 2))
             let bodyPosition = body.worldTransform.columns.3.xyz
             let d = distance(dynamicBodyPosition, bodyPosition)

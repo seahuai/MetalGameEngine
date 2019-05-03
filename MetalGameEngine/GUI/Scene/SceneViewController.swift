@@ -11,6 +11,9 @@ import MetalKit
 
 class SceneViewController: NSViewController {
     
+    var inputController: InputController!
+    var physicsController: PhysicsController!
+    
     @IBOutlet weak var segmentedControl: NSSegmentedControl! {
         didSet {
             self.segmentedControl.selectedSegment = 0
@@ -24,6 +27,7 @@ class SceneViewController: NSViewController {
             self.sceneNodesTableView.delegate = self
             self.sceneNodesTableView.rowHeight = 26
             self.sceneNodesTableView.tableColumns.first?.width = self.sceneNodesTableView.bounds.width
+            self.sceneNodesTableView.doubleAction = #selector(doubleClickAction(_:))
         }
     }
 
@@ -93,6 +97,7 @@ class SceneViewController: NSViewController {
         setupGestureRecognizer()
         setupMenu()
         setupRenderer()
+        setupController()
     }
     
     private func setupRenderer() {
@@ -108,6 +113,15 @@ class SceneViewController: NSViewController {
         }
     }
     
+    private func setupController() {
+        inputController = InputController()
+        inputController.delegate = self
+        mtkView.inputController = inputController
+        
+        physicsController = PhysicsController()
+        mtkView.physicsController = physicsController
+    }
+    
     private func reloadNodes() {
         nodes = []
         for parent in scene.nodes {
@@ -117,6 +131,17 @@ class SceneViewController: NSViewController {
         if segmentIndex == 0 {
             sceneNodesTableView.reloadData()
         }
+    }
+    
+    @objc func doubleClickAction(_ sender: NSTableView) {
+        let clickedRow = sender.clickedRow
+        
+        if segmentIndex == 0 {
+            let node = nodes[clickedRow]
+            inputController.node = node
+            return
+        }
+    
     }
 }
 
@@ -135,6 +160,7 @@ extension SceneViewController {
         if segmentIndex == 0 {
             let node = nodes[clickedRow]
             scene.remove(node: node)
+            physicsController.removeStaticBody(node)
             reloadNodes()
         } else if segmentIndex == 1 {
             scene.lights.remove(at: clickedRow)
@@ -168,6 +194,9 @@ extension SceneViewController {
 extension SceneViewController: AddViewControllerDelegate {
     func addViewController(_ viewController: AddViewController, didAddNode node: Node, parentNode: Node?) {
         scene.add(node: node, parentNode: parentNode)
+        if node.isCheckingCollide {
+            physicsController.addStaticBody(node)
+        }
         segmentIndex = 0
         reloadNodes()
     }
@@ -205,6 +234,13 @@ extension SceneViewController: EditViewControllerDelegate {
         scene.skybox = skybox
         skyboxs = [skybox]
         sceneNodesTableView.reloadData()
+    }
+}
+
+// MARK: - InputControllerDelegate
+extension SceneViewController: InputControllerDelegate {
+    func inputController(_ controller: InputController, pressKey key: Key, state: InputState) -> Bool {
+        return true
     }
 }
 

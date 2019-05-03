@@ -26,6 +26,9 @@ class Node {
         return boundingBox.maxBounds - boundingBox.minBounds
     }
     
+    // 碰撞检测相关
+    var isCheckingCollide = false
+    
     // 模型矩阵
     var modelMatrix: float4x4 {
         let translationMatrix = float4x4(translation: position)

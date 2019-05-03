@@ -19,6 +19,7 @@ class AddModelViewController: AddModelBaseViewController, EditableViewContoller 
     @IBOutlet weak var postitionTextfield: VectorInputView!
     @IBOutlet weak var selectModelButton: NSPopUpButton!
     @IBOutlet weak var selectParentNodeButton: NSPopUpButton!
+    @IBOutlet weak var checkingCollideButton: NSButton!
     
     @IBAction func selectModelButtonClick(_ sender: NSPopUpButton) {
         changePopUpButtonTitle(titles: objModelNames, sender: sender)
@@ -73,6 +74,8 @@ class AddModelViewController: AddModelBaseViewController, EditableViewContoller 
             
             selectParentNodeButton.title = model.parent?.name ?? "无"
         }
+        
+        checkingCollideButton.state = model.isCheckingCollide ? .on : .off
     }
     
     private func changePopUpButtonTitle(titles: [String], sender: NSPopUpButton) {
@@ -103,6 +106,7 @@ extension AddModelViewController: AddNodeVaildable {
             guard let model = Model(name: objFileName) else {
                 return (false, "创建失败")
             }
+            model.isCheckingCollide = checkingCollideButton.state == .on
             self.model = model
             let selectParentNodeButtonIndex = selectParentNodeButton.indexOfSelectedItem
             let index = selectParentNodeButtonIndex - 1
