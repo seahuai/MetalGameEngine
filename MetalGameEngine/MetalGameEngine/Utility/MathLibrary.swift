@@ -124,17 +124,6 @@ extension float4x4 {
     let W = lhs ? float4( 0,  0,  z * -near,  0) : float4( 0,  0,  z * near,  0)
     self.init()
     columns = (X, Y, Z, W)
-//    var matrix = matrix_float4x4()
-//    let f = 1.0 / tanf(fov / 2.0)
-//
-//    (matrix.columns.0)[0] = f / aspect
-//    (matrix.columns.1)[1] = f
-//    (matrix.columns.2)[2] = (far + near) / (near - far)
-//    (matrix.columns.2)[3] = -1.0
-//    (matrix.columns.3)[2] = (2.0 * far * near) / (near - far)
-//
-//    self.init()
-//    columns = matrix.columns
   }
   
   // left-handed LookAt

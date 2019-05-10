@@ -23,12 +23,12 @@ vertex VertexOut vertex_main(const VertexIn in [[ stage_in ]],
     float4x4 modelMatrix = uniforms.worldTransformModelMatrix * instanceUniforms.modelMatrix;
     float4x4 mvp = uniforms.projectionMatrix * uniforms.viewMatrix * modelMatrix;
     out.position = mvp * in.position;
-    out.worldPosition = (instanceUniforms.modelMatrix * in.position).xyz;
+    out.worldPosition = (modelMatrix * in.position).xyz;
     out.worldNormal = instanceUniforms.normalMatrix * in.normal;
     out.worldTangent = instanceUniforms.normalMatrix * in.tangent;
     out.worldBitangent = instanceUniforms.normalMatrix * in.bitangent;
     out.uv = in.uv;
-    out.shadowPosition = uniforms.shadowMatrix * instanceUniforms.modelMatrix * in.position;
+    out.shadowPosition = uniforms.shadowMatrix * modelMatrix * in.position;
     out.clipDistance[0] = dot(uniforms.clipPlane, (instanceUniforms.modelMatrix * in.position));
     return out;
 }
