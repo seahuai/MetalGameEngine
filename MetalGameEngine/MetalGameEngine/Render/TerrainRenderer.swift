@@ -16,12 +16,22 @@ class TerrainRenderer: Renderer {
     
     override func draw(with mainPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
         
-//        self.scene.terrains.forEach { (terrain) in
-//            terrain.render(mainPassDescriptor: mainPassDescriptor,
-//                           commandBuffer: commandBuffer,
-//                           uniforms: scene.uniforms,
-//                           cameraPosition: scene.fragmentUniforms.cameraPosition)
-//        }
+        // 计算地形相关数据
+        let terrains = scene.terrains
+        terrains.forEach { (terrain) in
+            terrain.compute(mainPassDescriptor: mainPassDescriptor, commandBuffer: commandBuffer, uniforms: scene.uniforms, cameraPosition: scene.fragmentUniforms.cameraPosition)
+        }
+        
+        guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: mainPassDescriptor) else {
+            return
+        }
+        
+        // 渲染地形
+        terrains.forEach { (terrain) in
+            terrain.render(renderEncoder)
+        }
+        
+        renderEncoder.endEncoding()
         
     }
 }

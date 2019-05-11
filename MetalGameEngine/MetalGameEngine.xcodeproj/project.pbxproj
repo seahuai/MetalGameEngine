@@ -107,11 +107,8 @@
 		35582761227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
 		35582762227ACD8000EA2A6A /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15622768D9600F22D44 /* InputController.swift */; };
 		35582763227AD51600EA2A6A /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15D22769CCB00F22D44 /* GameView.swift */; };
-		35582766227AD87700EA2A6A /* AddAreaLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35582764227AD87700EA2A6A /* AddAreaLightViewController.swift */; };
-		35582767227AD87700EA2A6A /* AddAreaLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35582764227AD87700EA2A6A /* AddAreaLightViewController.swift */; };
 		35582768227AD87700EA2A6A /* AddAreaLightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35582765227AD87700EA2A6A /* AddAreaLightViewController.xib */; };
 		35582769227AD87700EA2A6A /* AddAreaLightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35582765227AD87700EA2A6A /* AddAreaLightViewController.xib */; };
-		3558276C227AE37C00EA2A6A /* AddLightContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558276A227AE37C00EA2A6A /* AddLightContainerViewController.swift */; };
 		3558276D227AE37C00EA2A6A /* AddLightContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558276A227AE37C00EA2A6A /* AddLightContainerViewController.swift */; };
 		3558276E227AE37C00EA2A6A /* AddLightContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3558276B227AE37C00EA2A6A /* AddLightContainerViewController.xib */; };
 		3558276F227AE37C00EA2A6A /* AddLightContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3558276B227AE37C00EA2A6A /* AddLightContainerViewController.xib */; };
@@ -148,6 +145,16 @@
 		3590B936224B218F00CDD1AF /* Gbuffer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3590B935224B218F00CDD1AF /* Gbuffer.metal */; };
 		3590B938224B21A600CDD1AF /* GbufferComposition.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3590B937224B21A600CDD1AF /* GbufferComposition.metal */; };
 		3590B93A224BAEBA00CDD1AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590B939224BAEBA00CDD1AF /* Utility.swift */; };
+		359646192286B76300253F2B /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 359646152286B76200253F2B /* sphere.obj */; };
+		3596461A2286B76300253F2B /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 359646152286B76200253F2B /* sphere.obj */; };
+		3596461B2286B76300253F2B /* plane-back.obj in Resources */ = {isa = PBXBuildFile; fileRef = 359646162286B76200253F2B /* plane-back.obj */; };
+		3596461C2286B76300253F2B /* plane-back.obj in Resources */ = {isa = PBXBuildFile; fileRef = 359646162286B76200253F2B /* plane-back.obj */; };
+		3596461D2286B76300253F2B /* plane-back.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 359646172286B76300253F2B /* plane-back.mtl */; };
+		3596461E2286B76300253F2B /* plane-back.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 359646172286B76300253F2B /* plane-back.mtl */; };
+		3596461F2286B76300253F2B /* sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 359646182286B76300253F2B /* sphere.mtl */; };
+		359646202286B76300253F2B /* sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 359646182286B76300253F2B /* sphere.mtl */; };
+		359646212286B8B000253F2B /* treefir.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBAB2244D58B00C01902 /* treefir.mtl */; };
+		359646222286B8B000253F2B /* treefir.obj in Resources */ = {isa = PBXBuildFile; fileRef = 358EDBAC2244D58B00C01902 /* treefir.obj */; };
 		35ACFB4D22674CFB00B737B1 /* large-plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA9225223C7000E2A4C /* large-plane.mtl */; };
 		35ACFB4E22674CFB00B737B1 /* large-plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEAA225223C7000E2A4C /* large-plane.obj */; };
 		35B1364A223CEE370018ED0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B13649223CEE370018ED0B /* AppDelegate.swift */; };
@@ -183,6 +190,7 @@
 		35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841B225C7E660088B3F9 /* WaterViewController.swift */; };
 		35EB841E225C8DB20088B3F9 /* underwater.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EB841D225C8DB20088B3F9 /* underwater.png */; };
 		35EB8420225C92BE0088B3F9 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EB841F225C92BE0088B3F9 /* RenderPass.swift */; };
+		35EDF6A42282FDF900F8F10D /* AddAreaLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35582764227AD87700EA2A6A /* AddAreaLightViewController.swift */; };
 		35F29EA722433BB000020395 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA522433BB000020395 /* chest.obj */; };
 		35F29EA822433BB000020395 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35F29EA622433BB000020395 /* chest.mtl */; };
 		35FC74B42264268B00634353 /* RasterizationRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F50E5226370AC002351FD /* RasterizationRender.swift */; };
@@ -297,6 +305,10 @@
 		3590B935224B218F00CDD1AF /* Gbuffer.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Gbuffer.metal; sourceTree = "<group>"; };
 		3590B937224B21A600CDD1AF /* GbufferComposition.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GbufferComposition.metal; sourceTree = "<group>"; };
 		3590B939224BAEBA00CDD1AF /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		359646152286B76200253F2B /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		359646162286B76200253F2B /* plane-back.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "plane-back.obj"; sourceTree = "<group>"; };
+		359646172286B76300253F2B /* plane-back.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "plane-back.mtl"; sourceTree = "<group>"; };
+		359646182286B76300253F2B /* sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.mtl; sourceTree = "<group>"; };
 		35B13646223CEE370018ED0B /* MetalGameEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalGameEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B13649223CEE370018ED0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35B1364B223CEE370018ED0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +456,10 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				359646172286B76300253F2B /* plane-back.mtl */,
+				359646162286B76200253F2B /* plane-back.obj */,
+				359646182286B76300253F2B /* sphere.mtl */,
+				359646152286B76200253F2B /* sphere.obj */,
 				35C05ACA2264BC9D00A13B47 /* mountain.png */,
 				35EB841D225C8DB20088B3F9 /* underwater.png */,
 				35EB8413225C42DB0088B3F9 /* normal-water.png */,
@@ -938,15 +954,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				35582775227B278400EA2A6A /* AddRayTracingModelViewController.xib in Resources */,
+				3596461C2286B76300253F2B /* plane-back.obj in Resources */,
 				35582769227AD87700EA2A6A /* AddAreaLightViewController.xib in Resources */,
 				35582779227B279A00EA2A6A /* AddModelContainerViewController.xib in Resources */,
 				350E9442225D96C3003B51E3 /* Assets.xcassets in Resources */,
+				359646222286B8B000253F2B /* treefir.obj in Resources */,
 				357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */,
 				357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */,
+				359646202286B76300253F2B /* sphere.mtl in Resources */,
 				357BFBBA225F213E00880C01 /* AddModelViewController.xib in Resources */,
 				35ACFB4D22674CFB00B737B1 /* large-plane.mtl in Resources */,
 				35B3983C2260343400D0905A /* plane.obj in Resources */,
+				359646212286B8B000253F2B /* treefir.mtl in Resources */,
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
+				3596461A2286B76300253F2B /* sphere.obj in Resources */,
 				350E9445225D96C3003B51E3 /* Main.storyboard in Resources */,
 				357BFBA5225F204700880C01 /* AddCameraViewController.xib in Resources */,
 				35DAA2D42266060D00D63D11 /* EditViewController.xib in Resources */,
@@ -958,6 +979,7 @@
 				35B3983B2260343400D0905A /* plane.mtl in Resources */,
 				35FC74B622642A3A00634353 /* train.obj in Resources */,
 				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
+				3596461E2286B76300253F2B /* plane-back.mtl in Resources */,
 				357BFBA1225F1C8D00880C01 /* AddViewController.xib in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
 			);
@@ -980,17 +1002,21 @@
 				358EDBB12244D58B00C01902 /* treefir.mtl in Resources */,
 				3525CE9F2251F876000E2A4C /* grass01.mtl in Resources */,
 				35F29EA822433BB000020395 /* chest.mtl in Resources */,
+				3596461F2286B76300253F2B /* sphere.mtl in Resources */,
 				35242E9F224236EA00B8F91A /* Textures.xcassets in Resources */,
 				35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */,
+				3596461D2286B76300253F2B /* plane-back.mtl in Resources */,
 				358EDBAE2244D58B00C01902 /* plane.mtl in Resources */,
 				3525CEA12251F87C000E2A4C /* grass01.obj in Resources */,
 				358EDBAF2244D58B00C01902 /* train.mtl in Resources */,
+				359646192286B76300253F2B /* sphere.obj in Resources */,
 				35F29EA722433BB000020395 /* chest.obj in Resources */,
 				3525CEA82251FB04000E2A4C /* License.txt in Resources */,
 				35EB841E225C8DB20088B3F9 /* underwater.png in Resources */,
 				35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */,
 				35B13651223CEE390018ED0B /* Main.storyboard in Resources */,
 				358EDBB02244D58B00C01902 /* plane.obj in Resources */,
+				3596461B2286B76300253F2B /* plane-back.obj in Resources */,
 				35C05ACB2264BC9D00A13B47 /* mountain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1034,9 +1060,9 @@
 				35FC74B822642AA700634353 /* SceneViewControllerExtension.swift in Sources */,
 				352F50DE2262C9DD002351FD /* NSColorExtension.swift in Sources */,
 				351A3C0E2261BE5E008ED05C /* AddNodeVaildable.swift in Sources */,
-				35582767227AD87700EA2A6A /* AddAreaLightViewController.swift in Sources */,
 				35582774227B278400EA2A6A /* AddRayTracingModelViewController.swift in Sources */,
 				350E947F225E17B1003B51E3 /* Transform.swift in Sources */,
+				35EDF6A42282FDF900F8F10D /* AddAreaLightViewController.swift in Sources */,
 				350E946D225E1754003B51E3 /* Gbuffer.metal in Sources */,
 				350E946B225E174D003B51E3 /* DebugLight.metal in Sources */,
 				350E9479225E177C003B51E3 /* Geometry.swift in Sources */,
@@ -1089,13 +1115,11 @@
 				3525CE962251E748000E2A4C /* Transform.swift in Sources */,
 				35EB8412225C41DF0088B3F9 /* Water.swift in Sources */,
 				352C3F5822467E0500053171 /* MTLRenderPassDescriptorExtension.swift in Sources */,
-				3558276C227AE37C00EA2A6A /* AddLightContainerViewController.swift in Sources */,
 				35EB8419225C76050088B3F9 /* Water.metal in Sources */,
 				352C3F5A22467F1C00053171 /* ShadowRenderer.swift in Sources */,
 				35B943752268BB79001A46EA /* RayTracing.metal in Sources */,
 				352C3F4D22461F4A00053171 /* PhongViewController.swift in Sources */,
 				35EB841C225C7E660088B3F9 /* WaterViewController.swift in Sources */,
-				35582766227AD87700EA2A6A /* AddAreaLightViewController.swift in Sources */,
 				353FAF1B2254E5DD0012F85C /* DebugLight.metal in Sources */,
 				35582760227ACD7B00EA2A6A /* PhysicsController.swift in Sources */,
 				350614512240B4FA00BFB42E /* MathLibrary.swift in Sources */,

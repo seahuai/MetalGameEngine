@@ -57,11 +57,41 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
         let dateString = date.yyyyMMdd() + " " + date.HHmm()
         let scene = Scene()
         scene.name = name
+        createDefaultModels(renderType: renderType, scene: scene)
         let data = RowData(scene: scene, renderType: renderType, lastModifiedDateText: dateString)
         rowDatas.append(data)
         
         if open {
             openScene(rowData: data)
+        }
+    }
+    
+    func createDefaultModels(renderType: RenderType, scene: Scene) {
+        switch renderType {
+        case .rayTracing:
+            let train = RayTracingModel(name: "train")!
+            let plane = RayTracingModel(name: "plane")!
+            let tree = RayTracingModel(name: "treefir")!
+
+            scene.add(node: train)
+            scene.add(node: plane)
+            
+            var light = Light()
+            light.type = Sunlight
+            light.position = float3(0, 2, -1)
+            light.forward = float3(0.0, -1.0, 0.0)
+            light.right = float3(0.25, 0.0, 0.0)
+            light.up = float3(0.0, 0.0, 0.25)
+            light.color = float3(repeating: 2)
+            light.isAreaLight = 1
+            scene.lights.append(light)
+            
+            let camera = Camera()
+            camera.name = "Camera"
+            camera.position = [0, 1, -1.5]
+            scene.add(node: camera)
+        default:
+            break
         }
     }
  

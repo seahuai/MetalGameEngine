@@ -44,7 +44,7 @@ kernel void generateRays(texture2d<float, access::read_write> renderTarget [[ te
     // camera origin
     float3 origin = cameraPosition;
     float aspect = float(size.y) / float(size.x);
-    float3 direction = float3(uv.x, uv.y * aspect, -1.0);
+    float3 direction = float3(uv.x, uv.y * aspect, 1.0);
     direction = normalize(direction);
 
     

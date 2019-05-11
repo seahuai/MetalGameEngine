@@ -11,14 +11,14 @@ import Metal
 protocol SceneDelegate: class {
     func scene(_ scene: Scene, didChangeModels models: [Model])
     func scene(_ scnee: Scene, didChangeLights lights: [Light])
-    func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel])
+    func scene(_ scene: Scene, didChangeRayTracingModels models: [RayTracingModel])
 }
 
 extension SceneDelegate {
     // 可选方法
     func scene(_ scene: Scene, didChangeModels models: [Model]) {}
     func scene(_ scnee: Scene, didChangeLights lights: [Light]) {}
-    func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel]) {}
+    func scene(_ scene: Scene, didChangeRayTracingModels models: [RayTracingModel]) {}
 }
 
 // 以Scene为单位，每个场景单独渲染自己的光照和模型
@@ -127,7 +127,9 @@ extension Scene {
                 for _ in 0..<indexCount {
                     let index = Int(indices.pointee)
                     // TODO: 需要做坐标空间的转换
-                    let position = positionPoninter[index] + model.position
+                    var position = positionPoninter[index]
+                    let tmp = model.modelMatrix * float4(x: position.x, y: position.y, z: position.z, w: 1) 
+                    position = float3(x: tmp.x, y: tmp.y, z: tmp.z)
                     positions.append(position)
                     normals.append(normalPointer[index])
                     indices = indices.advanced(by: 1)

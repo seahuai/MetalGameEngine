@@ -27,7 +27,7 @@ float distanceBetweenPointAndLine(float3 pointa, float3 pointb, float3 point, fl
     float3 a = (float4(pointa, 1) * matrix).xyz;
     float3 b = (float4(pointb, 1) * matrix).xyz;
     float3 lineMidPoint = (a + b) * 0.5;
-    float dis = distance(lineMidPoint, lineMidPoint);
+    float dis = distance(lineMidPoint, point);
     return dis;
 }
 

@@ -286,7 +286,7 @@ private extension RayTracingRenderer {
 }
 
 extension RayTracingRenderer: SceneDelegate {
-    func scene(_ scene: Scene, didChangeRayTracingModels: [RayTracingModel]) {
+    func scene(_ scene: Scene, didChangeRayTracingModels models: [RayTracingModel]) {
         buildRayIntersectionStructure()
     }
     
