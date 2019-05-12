@@ -71,8 +71,6 @@
 		3525CE982251F66A000E2A4C /* InstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525CE972251F66A000E2A4C /* InstanceViewController.swift */; };
 		3525CE9F2251F876000E2A4C /* grass01.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CE9E2251F876000E2A4C /* grass01.mtl */; };
 		3525CEA12251F87C000E2A4C /* grass01.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA02251F87C000E2A4C /* grass01.obj */; };
-		3525CEA62251FB04000E2A4C /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA32251FB03000E2A4C /* tree.obj */; };
-		3525CEA72251FB04000E2A4C /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA42251FB03000E2A4C /* tree.mtl */; };
 		3525CEA82251FB04000E2A4C /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA52251FB04000E2A4C /* License.txt */; };
 		3525CEAB225223C8000E2A4C /* large-plane.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEA9225223C7000E2A4C /* large-plane.mtl */; };
 		3525CEAC225223C8000E2A4C /* large-plane.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3525CEAA225223C7000E2A4C /* large-plane.obj */; };
@@ -103,6 +101,22 @@
 		3553B39D224DBCCD0060229F /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39C224DBCCD0060229F /* Tessellation.metal */; };
 		3553B39F224DEEE10060229F /* TerrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B39E224DEEE10060229F /* TerrainViewController.swift */; };
 		3553B3A1224DEF120060229F /* TerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553B3A0224DEF120060229F /* TerrainRenderer.swift */; };
+		35579605228718B60030CB4C /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35579603228718B60030CB4C /* tree.obj */; };
+		35579606228718B60030CB4C /* tree.obj in Resources */ = {isa = PBXBuildFile; fileRef = 35579603228718B60030CB4C /* tree.obj */; };
+		35579607228718B60030CB4C /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35579604228718B60030CB4C /* tree.mtl */; };
+		35579608228718B60030CB4C /* tree.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 35579604228718B60030CB4C /* tree.mtl */; };
+		3557960F2287192B0030CB4C /* cottage1.obj in Resources */ = {isa = PBXBuildFile; fileRef = 355796092287192A0030CB4C /* cottage1.obj */; };
+		355796102287192B0030CB4C /* cottage1.obj in Resources */ = {isa = PBXBuildFile; fileRef = 355796092287192A0030CB4C /* cottage1.obj */; };
+		355796112287192B0030CB4C /* cottage2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3557960A2287192A0030CB4C /* cottage2.mtl */; };
+		355796122287192B0030CB4C /* cottage2.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3557960A2287192A0030CB4C /* cottage2.mtl */; };
+		355796132287192B0030CB4C /* cottage2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3557960B2287192B0030CB4C /* cottage2.obj */; };
+		355796142287192B0030CB4C /* cottage2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3557960B2287192B0030CB4C /* cottage2.obj */; };
+		355796152287192B0030CB4C /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3557960C2287192B0030CB4C /* cube.mtl */; };
+		355796162287192B0030CB4C /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3557960C2287192B0030CB4C /* cube.mtl */; };
+		355796172287192B0030CB4C /* cottage1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3557960D2287192B0030CB4C /* cottage1.mtl */; };
+		355796182287192B0030CB4C /* cottage1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3557960D2287192B0030CB4C /* cottage1.mtl */; };
+		355796192287192B0030CB4C /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3557960E2287192B0030CB4C /* cube.obj */; };
+		3557961A2287192B0030CB4C /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3557960E2287192B0030CB4C /* cube.obj */; };
 		35582760227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
 		35582761227ACD7B00EA2A6A /* PhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558275F227ACD7B00EA2A6A /* PhysicsController.swift */; };
 		35582762227ACD8000EA2A6A /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFF15622768D9600F22D44 /* InputController.swift */; };
@@ -236,8 +250,6 @@
 		3525CE972251F66A000E2A4C /* InstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceViewController.swift; sourceTree = "<group>"; };
 		3525CE9E2251F876000E2A4C /* grass01.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grass01.mtl; sourceTree = "<group>"; };
 		3525CEA02251F87C000E2A4C /* grass01.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grass01.obj; sourceTree = "<group>"; };
-		3525CEA32251FB03000E2A4C /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
-		3525CEA42251FB03000E2A4C /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
 		3525CEA52251FB04000E2A4C /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		3525CEA9225223C7000E2A4C /* large-plane.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "large-plane.mtl"; sourceTree = "<group>"; };
 		3525CEAA225223C7000E2A4C /* large-plane.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "large-plane.obj"; sourceTree = "<group>"; };
@@ -268,6 +280,14 @@
 		3553B39C224DBCCD0060229F /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
 		3553B39E224DEEE10060229F /* TerrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainViewController.swift; sourceTree = "<group>"; };
 		3553B3A0224DEF120060229F /* TerrainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainRenderer.swift; sourceTree = "<group>"; };
+		35579603228718B60030CB4C /* tree.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.obj; sourceTree = "<group>"; };
+		35579604228718B60030CB4C /* tree.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.mtl; sourceTree = "<group>"; };
+		355796092287192A0030CB4C /* cottage1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cottage1.obj; sourceTree = "<group>"; };
+		3557960A2287192A0030CB4C /* cottage2.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cottage2.mtl; sourceTree = "<group>"; };
+		3557960B2287192B0030CB4C /* cottage2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cottage2.obj; sourceTree = "<group>"; };
+		3557960C2287192B0030CB4C /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.mtl; path = "../../../../../Lessons/Metal_by_Tutorials_v1.0.1/07-maps-and-materials/final/Materials/Materials/Models/cube.mtl"; sourceTree = "<group>"; };
+		3557960D2287192B0030CB4C /* cottage1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cottage1.mtl; sourceTree = "<group>"; };
+		3557960E2287192B0030CB4C /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.obj; path = "../../../../../Lessons/Metal_by_Tutorials_v1.0.1/07-maps-and-materials/final/Materials/Materials/Models/cube.obj"; sourceTree = "<group>"; };
 		3558275F227ACD7B00EA2A6A /* PhysicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsController.swift; sourceTree = "<group>"; };
 		35582764227AD87700EA2A6A /* AddAreaLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAreaLightViewController.swift; sourceTree = "<group>"; };
 		35582765227AD87700EA2A6A /* AddAreaLightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAreaLightViewController.xib; sourceTree = "<group>"; };
@@ -456,6 +476,12 @@
 		35242EA02242371A00B8F91A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				3557960D2287192B0030CB4C /* cottage1.mtl */,
+				355796092287192A0030CB4C /* cottage1.obj */,
+				3557960A2287192A0030CB4C /* cottage2.mtl */,
+				3557960B2287192B0030CB4C /* cottage2.obj */,
+				3557960C2287192B0030CB4C /* cube.mtl */,
+				3557960E2287192B0030CB4C /* cube.obj */,
 				359646172286B76300253F2B /* plane-back.mtl */,
 				359646162286B76200253F2B /* plane-back.obj */,
 				359646182286B76300253F2B /* sphere.mtl */,
@@ -525,9 +551,9 @@
 		3525CEA22251FAF7000E2A4C /* tree */ = {
 			isa = PBXGroup;
 			children = (
+				35579604228718B60030CB4C /* tree.mtl */,
+				35579603228718B60030CB4C /* tree.obj */,
 				3525CEA52251FB04000E2A4C /* License.txt */,
-				3525CEA42251FB03000E2A4C /* tree.mtl */,
-				3525CEA32251FB03000E2A4C /* tree.obj */,
 			);
 			path = tree;
 			sourceTree = "<group>";
@@ -954,17 +980,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				35582775227B278400EA2A6A /* AddRayTracingModelViewController.xib in Resources */,
+				355796122287192B0030CB4C /* cottage2.mtl in Resources */,
 				3596461C2286B76300253F2B /* plane-back.obj in Resources */,
 				35582769227AD87700EA2A6A /* AddAreaLightViewController.xib in Resources */,
 				35582779227B279A00EA2A6A /* AddModelContainerViewController.xib in Resources */,
+				35579608228718B60030CB4C /* tree.mtl in Resources */,
+				355796162287192B0030CB4C /* cube.mtl in Resources */,
 				350E9442225D96C3003B51E3 /* Assets.xcassets in Resources */,
 				359646222286B8B000253F2B /* treefir.obj in Resources */,
 				357BFBB6225F20FF00880C01 /* AddTerrainViewController.xib in Resources */,
 				357BFBBE225F214C00880C01 /* AddLightViewController.xib in Resources */,
+				355796142287192B0030CB4C /* cottage2.obj in Resources */,
 				359646202286B76300253F2B /* sphere.mtl in Resources */,
 				357BFBBA225F213E00880C01 /* AddModelViewController.xib in Resources */,
 				35ACFB4D22674CFB00B737B1 /* large-plane.mtl in Resources */,
 				35B3983C2260343400D0905A /* plane.obj in Resources */,
+				355796102287192B0030CB4C /* cottage1.obj in Resources */,
 				359646212286B8B000253F2B /* treefir.mtl in Resources */,
 				350E947B225E178A003B51E3 /* Textures.xcassets in Resources */,
 				3596461A2286B76300253F2B /* sphere.obj in Resources */,
@@ -979,7 +1010,10 @@
 				35B3983B2260343400D0905A /* plane.mtl in Resources */,
 				35FC74B622642A3A00634353 /* train.obj in Resources */,
 				357BFB92225F103E00880C01 /* SceneViewController.xib in Resources */,
+				355796182287192B0030CB4C /* cottage1.mtl in Resources */,
 				3596461E2286B76300253F2B /* plane-back.mtl in Resources */,
+				35579606228718B60030CB4C /* tree.obj in Resources */,
+				3557961A2287192B0030CB4C /* cube.obj in Resources */,
 				357BFBA1225F1C8D00880C01 /* AddViewController.xib in Resources */,
 				350E9456225DD9D3003B51E3 /* CreatNewSceneViewController.xib in Resources */,
 			);
@@ -992,30 +1026,36 @@
 				35582768227AD87700EA2A6A /* AddAreaLightViewController.xib in Resources */,
 				358EDBAD2244D58B00C01902 /* train.obj in Resources */,
 				3558276E227AE37C00EA2A6A /* AddLightContainerViewController.xib in Resources */,
-				3525CEA62251FB04000E2A4C /* tree.obj in Resources */,
 				35242EA32242373400B8F91A /* cube.obj in Resources */,
 				358EDBB22244D58B00C01902 /* treefir.obj in Resources */,
+				35579607228718B60030CB4C /* tree.mtl in Resources */,
+				355796192287192B0030CB4C /* cube.obj in Resources */,
 				3525CEAC225223C8000E2A4C /* large-plane.obj in Resources */,
 				3525CEAB225223C8000E2A4C /* large-plane.mtl in Resources */,
 				35242EA42242373400B8F91A /* cube.mtl in Resources */,
-				3525CEA72251FB04000E2A4C /* tree.mtl in Resources */,
 				358EDBB12244D58B00C01902 /* treefir.mtl in Resources */,
 				3525CE9F2251F876000E2A4C /* grass01.mtl in Resources */,
+				35579605228718B60030CB4C /* tree.obj in Resources */,
 				35F29EA822433BB000020395 /* chest.mtl in Resources */,
 				3596461F2286B76300253F2B /* sphere.mtl in Resources */,
+				355796132287192B0030CB4C /* cottage2.obj in Resources */,
 				35242E9F224236EA00B8F91A /* Textures.xcassets in Resources */,
 				35EB8414225C42DB0088B3F9 /* normal-water.png in Resources */,
 				3596461D2286B76300253F2B /* plane-back.mtl in Resources */,
+				355796112287192B0030CB4C /* cottage2.mtl in Resources */,
 				358EDBAE2244D58B00C01902 /* plane.mtl in Resources */,
 				3525CEA12251F87C000E2A4C /* grass01.obj in Resources */,
+				3557960F2287192B0030CB4C /* cottage1.obj in Resources */,
 				358EDBAF2244D58B00C01902 /* train.mtl in Resources */,
 				359646192286B76300253F2B /* sphere.obj in Resources */,
 				35F29EA722433BB000020395 /* chest.obj in Resources */,
 				3525CEA82251FB04000E2A4C /* License.txt in Resources */,
 				35EB841E225C8DB20088B3F9 /* underwater.png in Resources */,
+				355796172287192B0030CB4C /* cottage1.mtl in Resources */,
 				35B1364E223CEE390018ED0B /* Assets.xcassets in Resources */,
 				35B13651223CEE390018ED0B /* Main.storyboard in Resources */,
 				358EDBB02244D58B00C01902 /* plane.obj in Resources */,
+				355796152287192B0030CB4C /* cube.mtl in Resources */,
 				3596461B2286B76300253F2B /* plane-back.obj in Resources */,
 				35C05ACB2264BC9D00A13B47 /* mountain.png in Resources */,
 			);
