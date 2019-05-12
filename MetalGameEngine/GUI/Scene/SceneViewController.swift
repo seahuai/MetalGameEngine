@@ -92,6 +92,10 @@ class SceneViewController: NSViewController {
         addViewController.delegate = self
         editViewController.delegate = self
         
+        if let skybox = scene.skybox {
+            skyboxs = [skybox]
+        }
+        
         reloadNodes()
         
         setupGestureRecognizer()

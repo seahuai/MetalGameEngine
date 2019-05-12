@@ -111,6 +111,7 @@ class EditViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "编辑"
     }
     
     override func viewWillAppear() {

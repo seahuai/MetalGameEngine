@@ -23,7 +23,7 @@ class CreatNewSceneViewController: NSViewController {
     
     private var renderType: RenderType = .unknown
     
-    private var shaders = ["选择", "Rasterization", "Ray Tracing", "Deffered Rendering"]
+    private var shaders = ["选择", "正向渲染", "延迟渲染", "光线追踪"]
 
     @IBOutlet weak var sceneNameTextField: NSTextField! {
         didSet {
@@ -54,8 +54,8 @@ class CreatNewSceneViewController: NSViewController {
     @IBAction func selectShaderType(_ sender: NSPopUpButton) {
         shaderTypeIndex = sender.indexOfSelectedItem
         if shaderTypeIndex == 1 { renderType = .rasterization}
-        if shaderTypeIndex == 2 { renderType = .rayTracing }
-        if shaderTypeIndex == 3 { renderType = .deffered }
+        if shaderTypeIndex == 2 { renderType = .deffered }
+        if shaderTypeIndex == 3 { renderType = .rayTracing }
         sender.title = shaders[shaderTypeIndex]
         reloadDoneButtonState()
     }
@@ -63,7 +63,7 @@ class CreatNewSceneViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "创建场景"
+        self.title = "创建新场景"
         
         self.sceneShaderSelectButton.removeAllItems()
         self.sceneShaderSelectButton.addItems(withTitles: shaders)
