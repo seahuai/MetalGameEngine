@@ -45,7 +45,7 @@ class DeferredRenderer: Renderer {
         
         buildDontWriteDepthStencilState()
         
-//        mtkView(drawableSizeWillChange: self.metalView.drawableSize)
+        mtkView(drawableSizeWillChange: self.metalView.drawableSize)
     }
     
     private func buildDontWriteDepthStencilState() {
