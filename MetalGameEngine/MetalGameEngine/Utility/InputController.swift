@@ -59,6 +59,10 @@ class InputController {
                 direction.z -= 1
             case .d:
                 direction.x += 1
+            case .up:
+                direction.y += 1
+            case .down:
+                direction.y -= 1
             case .left:
                 rotation.y -= rotationSpeed
             case .right:
@@ -76,7 +80,9 @@ class InputController {
             direction = normalize(direction)
             let translationDirection = direction.z * player.forwardVector + direction.x * player.rightVector
             let translation = translationDirection * translationSpeed
-            let newPosition = player.position + translation
+            let translationY = direction.y * translationSpeed
+            var newPosition = player.position + translation
+            newPosition.y += translationY
             player.position = newPosition
         }
     }
