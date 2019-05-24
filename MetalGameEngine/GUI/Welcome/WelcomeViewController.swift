@@ -90,7 +90,7 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
             
             let camera = Camera()
             camera.name = "Camera"
-            camera.position = [0, 1, -6]
+            camera.position = [0, 1.8, -6]
             scene.add(node: camera)
             
             var sunlight = createDefaultLight()
@@ -100,6 +100,19 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
             var otherLight = createDefaultLight()
             otherLight.position = camera.position
             otherLight.type = Sunlight
+            
+            var spotLight = createDefaultLight()
+            spotLight.attenuation = [1, 2, 3]
+            spotLight.coneAngle = radians(fromDegrees: 45)
+            spotLight.position = [0, 0.5, 0]
+            spotLight.coneDirection = [1, 0, 0]
+            spotLight.type = Spotlight
+            
+            var pointLight = createDefaultLight()
+            pointLight.attenuation = [2, 2, 2]
+            pointLight.color = [1, 0, 0]
+            pointLight.position = [0, 0.2, 0]
+            pointLight.type = Pointlight
  
             var ambientLight = createDefaultLight()
             ambientLight.type = Ambientlight
@@ -107,6 +120,8 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
             scene.lights.append(sunlight)
             scene.lights.append(otherLight)
             scene.lights.append(ambientLight)
+            scene.lights.append(spotLight)
+            scene.lights.append(pointLight)
             
         case .deffered:
             
@@ -127,7 +142,6 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
             let camera = Camera()
             camera.name = "Camera"
             camera.position = [0, 1, -3]
-//            camera.rotation = [-0.5, 0, 0]
             scene.add(node: camera)
             
             var sunlight = createDefaultLight()
@@ -135,7 +149,10 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
             sunlight.position = [0, 4, -5]
             scene.lights.append(sunlight)
             
-            let numbers = 2
+            let skyBox = Skybox()
+            scene.skybox = skyBox
+            
+            let numbers = 100
             for _ in 0..<numbers {
                 scene.lights.append(createRandomLight())
             }
@@ -159,7 +176,7 @@ extension WelcomeViewController: CreatNewSceneViewControllerDelegate {
             
             let camera = Camera()
             camera.name = "Camera"
-            camera.position = [0, 1, -1.5]
+            camera.position = [0, 1, -4]
             scene.add(node: camera)
             
         default:
